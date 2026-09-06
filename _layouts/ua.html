@@ -1,0 +1,160 @@
+---
+layout: default
+---
+
+<div class="ua-page">
+
+  <header class="ua-header">
+
+    <h1>{{ page.title }}</h1>
+
+    {% if page.code %}
+      <p class="ua-reference">
+        <strong>Code :</strong> {{ page.code }}
+      </p>
+    {% endif %}
+
+    {% if page.competence %}
+
+      {% assign competence =
+        site.competences
+        | where: "code", page.competence
+        | first
+      %}
+
+      <p class="ua-reference">
+        <strong>Compétence :</strong>
+
+        {% if competence %}
+          <a href="{{ competence.url | relative_url }}">
+            {{ competence.code }} — {{ competence.title }}
+          </a>
+        {% else %}
+          {{ page.competence }}
+        {% endif %}
+      </p>
+
+    {% endif %}
+
+
+    {% if page.domaine %}
+
+      {% assign domaine =
+        site.domaines
+        | where: "code", page.domaine
+        | first
+      %}
+
+      <p class="ua-reference">
+        <strong>Domaine :</strong>
+
+        {% if domaine %}
+          <a href="{{ domaine.url | relative_url }}">
+            {{ domaine.code }} — {{ domaine.title }}
+          </a>
+        {% else %}
+          {{ page.domaine }}
+        {% endif %}
+      </p>
+
+    {% endif %}
+
+
+    {% if page.duree %}
+      <p class="ua-reference">
+        <strong>Durée :</strong> {{ page.duree }} h
+      </p>
+    {% endif %}
+
+  </header>
+
+
+  {% if page.objectif %}
+    <section class="ua-section">
+      <h2>Objectif</h2>
+      <p>{{ page.objectif }}</p>
+    </section>
+  {% endif %}
+
+
+  {% if page.description %}
+    <section class="ua-section">
+      <h2>Description</h2>
+      <p>{{ page.description }}</p>
+    </section>
+  {% endif %}
+
+
+  {% if page.notions and page.notions.size > 0 %}
+    <section class="ua-section">
+
+      <h2>Notions</h2>
+
+      <ul>
+        {% for notion in page.notions %}
+          <li>{{ notion }}</li>
+        {% endfor %}
+      </ul>
+
+    </section>
+  {% endif %}
+
+
+  {% if page.livrable %}
+    <section class="ua-section">
+
+      <h2>Livrable attendu</h2>
+
+      <p>{{ page.livrable }}</p>
+
+    </section>
+  {% endif %}
+
+
+  {% if page.travail_a_faire %}
+    <section class="ua-section">
+
+      <h2>Travail à faire</h2>
+
+      <p>{{ page.travail_a_faire }}</p>
+
+    </section>
+  {% endif %}
+
+
+  {% if content != "" %}
+    <section class="ua-section">
+      {{ content }}
+    </section>
+  {% endif %}
+
+
+  <!-- ==================================================
+       TUTORIELS
+       ================================================== -->
+
+  {% assign ua_tutos =
+    site.tutos
+    | where: "ua", page.code
+  %}
+
+  <section class="ua-section">
+
+    <h2>Tutoriels</h2>
+
+    {% if ua_tutos.size > 0 %}
+
+      {% include tuto-list.html tutos=ua_tutos %}
+
+    {% else %}
+
+      <p>
+        Aucun tutoriel associé à cette unité d'apprentissage.
+      </p>
+
+    {% endif %}
+
+  </section>
+
+</div>
+

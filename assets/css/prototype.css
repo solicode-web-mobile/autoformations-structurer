@@ -1,0 +1,287 @@
+/* =========================================================
+   FORMATION WEB — PROTOTYPE
+   ========================================================= */
+
+
+/* =========================================================
+   1. STRUCTURE
+   ========================================================= */
+
+.prototype-page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding-bottom: 3rem;
+}
+
+
+/* =========================================================
+   2. HEADER
+   ========================================================= */
+
+.prototype-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.prototype-header-main {
+  min-width: 0;
+}
+
+.prototype-badge {
+  display: inline-block;
+  margin-bottom: 0.75rem;
+  padding: 0.2rem 0.55rem;
+  border-radius: 0.3rem;
+  background: #f3f0ff;
+  color: #7253ed;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.prototype-header h1 {
+  margin: 0;
+  font-size: 2rem;
+  line-height: 1.25;
+  color: #1f2937;
+}
+
+.prototype-code {
+  flex-shrink: 0;
+  padding: 0.35rem 0.65rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.35rem;
+  background: #f8f9fa;
+  color: #6b7280;
+  font-family: monospace;
+  font-size: 0.8rem;
+}
+
+.prototype-session {
+  display: inline-block;
+  margin-top: 0.65rem;
+  color: #6b7280;
+  font-size: 0.85rem;
+  text-decoration: none;
+}
+
+.prototype-session:hover {
+  color: #7253ed;
+  text-decoration: none;
+}
+
+
+/* =========================================================
+   3. SECTIONS
+   ========================================================= */
+
+.prototype-section {
+  margin-bottom: 2.5rem;
+}
+
+.prototype-section-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.prototype-section-number {
+  flex-shrink: 0;
+  min-width: 2rem;
+  color: #9ca3af;
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1.7;
+}
+
+.prototype-section h2 {
+  margin: 0;
+  color: #1f2937;
+  font-size: 1.25rem;
+  line-height: 1.4;
+}
+
+.prototype-section-intro {
+  margin: 0.15rem 0 0;
+  color: #9ca3af;
+  font-size: 0.8rem;
+}
+
+
+/* =========================================================
+   4. TRAVAIL À FAIRE
+   ========================================================= */
+
+.prototype-work {
+  padding: 1.15rem 1.25rem;
+  border-left: 3px solid #7253ed;
+  border-radius: 0 0.4rem 0.4rem 0;
+  background: #f8f9fa;
+  color: #374151;
+  line-height: 1.7;
+}
+
+.prototype-work p:last-child {
+  margin-bottom: 0;
+}
+
+
+/* =========================================================
+   5. LIVRABLES
+   ========================================================= */
+
+.prototype-deliverables {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.prototype-deliverables li {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-bottom: 0.5rem;
+  padding: 0.65rem 0.8rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.4rem;
+  background: #fff;
+  color: #374151;
+  font-size: 0.9rem;
+}
+
+.prototype-check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.25rem;
+  height: 1.25rem;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #f3f0ff;
+  color: #7253ed;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+
+/* =========================================================
+   6. UNITÉS D'APPRENTISSAGE
+   ========================================================= */
+
+.prototype-ua-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.prototype-ua {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.7rem 0.85rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.4rem;
+  background: #fff;
+  color: #374151;
+  text-decoration: none;
+  transition:
+    border-color 0.15s ease,
+    background-color 0.15s ease,
+    transform 0.15s ease;
+}
+
+.prototype-ua:hover {
+  border-color: #c4b5fd;
+  background: #faf9ff;
+  text-decoration: none;
+  transform: translateX(2px);
+}
+
+.prototype-ua-code {
+  flex-shrink: 0;
+  color: #7253ed;
+  font-family: monospace;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.prototype-ua-title {
+  flex: 1;
+  font-size: 0.88rem;
+}
+
+.prototype-ua-arrow {
+  flex-shrink: 0;
+  color: #9ca3af;
+  font-size: 0.9rem;
+}
+
+.prototype-ua:hover .prototype-ua-arrow {
+  color: #7253ed;
+}
+
+
+/* =========================================================
+   7. CONTENU COMPLÉMENTAIRE
+   ========================================================= */
+
+.prototype-extra {
+  padding-top: 1rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+
+/* =========================================================
+   8. MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+  .prototype-page {
+    padding-bottom: 2rem;
+  }
+
+  .prototype-header {
+    margin-bottom: 2rem;
+  }
+
+  .prototype-header h1 {
+    font-size: 1.6rem;
+  }
+
+  .prototype-code {
+    font-size: 0.72rem;
+  }
+
+  .prototype-section {
+    margin-bottom: 2rem;
+  }
+
+  .prototype-section-header {
+    gap: 0.55rem;
+  }
+
+  .prototype-section-number {
+    min-width: 1.5rem;
+  }
+
+  .prototype-work {
+    padding: 1rem;
+  }
+
+  .prototype-ua {
+    align-items: flex-start;
+  }
+
+  .prototype-ua-title {
+    line-height: 1.45;
+  }
+
+}

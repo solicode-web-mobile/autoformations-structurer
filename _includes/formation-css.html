@@ -1,0 +1,21 @@
+<link rel="stylesheet" href="{{ '/assets/css/base.css' | relative_url }}">
+
+{% if page.layout == "mission" %}
+  <link rel="stylesheet" href="{{ '/assets/css/mission.css' | relative_url }}">
+{% elsif page.layout == "competence" %}
+  <link rel="stylesheet" href="{{ '/assets/css/competence.css' | relative_url }}">
+{% elsif page.layout == "domaine" %}
+  <link rel="stylesheet" href="{{ '/assets/css/domaine.css' | relative_url }}">
+{% elsif page.layout == "ua" %}
+  <link rel="stylesheet" href="{{ '/assets/css/ua.css' | relative_url }}">
+{% elsif page.layout == "session" %}
+  <link rel="stylesheet" href="{{ '/assets/css/session.css' | relative_url }}">
+{% elsif page.layout == "tuto" %}
+  <link rel="stylesheet" href="{{ '/assets/css/tuto.css' | relative_url }}">
+{% elsif page.layout == "prototype" %}
+  <link rel="stylesheet" href="{{ '/assets/css/prototype.css' | relative_url }}">
+{% elsif page.layout == "lab" %}
+  <link rel="stylesheet" href="{{ '/assets/css/lab.css' | relative_url }}">
+{% elsif page.layout == "projet" %}
+  <link rel="stylesheet" href="{{ '/assets/css/projet.css' | relative_url }}">
+{% endif %}

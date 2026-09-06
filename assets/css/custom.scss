@@ -1,0 +1,1024 @@
+---
+---
+
+/* =========================================================
+   FORMATION WEB
+   Jekyll + Just the Docs
+   ========================================================= */
+
+
+/* =========================================================
+   1. STRUCTURE GÉNÉRALE
+   ========================================================= */
+
+.session-page,
+.mission-page,
+.competence-page,
+.domaine-page,
+.ua-page,
+.tuto-page {
+  width: 100%;
+}
+
+
+/* =========================================================
+   2. EN-TÊTES
+   ========================================================= */
+
+.session-header,
+.mission-header,
+.competence-header,
+.domaine-header,
+.ua-header,
+.tuto-header {
+  margin-bottom: 2rem;
+}
+
+.session-header h1,
+.mission-header h1,
+.competence-header h1,
+.domaine-header h1,
+.ua-header h1,
+.tuto-header h1 {
+  margin-bottom: 1rem;
+}
+
+
+/* =========================================================
+   3. SECTIONS
+   ========================================================= */
+
+.session-section,
+.mission-section,
+.competence-section,
+.domaine-section,
+.ua-section {
+  margin-top: 2rem;
+}
+
+
+/* =========================================================
+   4. RÉFÉRENCES
+   ========================================================= */
+
+.session-reference,
+.mission-code,
+.mission-level,
+.competence-code,
+.competence-level,
+.competence-mission,
+.domaine-reference,
+.ua-reference,
+.tuto-reference {
+  margin: 0.25rem 0;
+}
+
+
+/* =========================================================
+   5. OBJECTIFS
+   ========================================================= */
+
+.session-objective,
+.competence-objective,
+.ua-objective,
+.ua-card-objective {
+  margin-bottom: 1rem;
+}
+
+
+/* =========================================================
+   6. MISSIONS
+   ========================================================= */
+
+.mission-competences {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+
+/* =========================================================
+   7. COMPÉTENCES
+   ========================================================= */
+
+.competence-domaines,
+.competence-uas {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.competence-header h1,
+.competence-card h3 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+/* =========================================================
+   8. DOMAINES
+   ========================================================= */
+
+.domaine-uas {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+
+/* =========================================================
+   9. UNITÉS D'APPRENTISSAGE
+   ========================================================= */
+
+.session-uas {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.ua-card {
+  margin-bottom: 1rem;
+}
+
+.ua-card-header {
+  margin-bottom: 1rem;
+}
+
+.ua-card-reference {
+  margin: 0.25rem 0;
+}
+
+.ua-card-tutos {
+  margin-top: 1.25rem;
+}
+
+
+/* =========================================================
+   10. TUTORIELS
+   ========================================================= */
+
+.tuto-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.tuto-card {
+  display: block;
+
+  padding: 1rem;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+
+  text-decoration: none;
+
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.tuto-card:hover {
+  text-decoration: none;
+  border-color: #cbd5e1;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.tuto-card-code {
+  display: block;
+
+  margin-bottom: 0.25rem;
+
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.tuto-card-title {
+  display: block;
+
+  font-size: 1rem;
+}
+
+.tuto-card-error {
+  color: #b00020;
+}
+
+
+/* =========================================================
+   11. ACTIVITÉS
+   ========================================================= */
+
+.activity-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.activity-card {
+  padding: 1rem;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+}
+
+.activity-card h3 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+.activity-card p {
+  margin-bottom: 0;
+}
+
+
+/* =========================================================
+   12. CONTENU DU TUTORIEL
+   ========================================================= */
+
+.tuto-page {
+  max-width: 800px;
+
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.tuto-content {
+  width: 100%;
+}
+
+.tuto-page p,
+.tuto-page li,
+.tuto-page blockquote {
+  line-height: 1.7;
+}
+
+.tuto-page h1,
+.tuto-page h2,
+.tuto-page h3,
+.tuto-page h4,
+.tuto-page h5,
+.tuto-page h6 {
+  line-height: 1.3;
+}
+
+.tuto-page h1 {
+  font-size: 2rem;
+}
+
+.tuto-page h2 {
+  font-size: 1.5rem;
+}
+
+.tuto-page h3 {
+  font-size: 1.25rem;
+}
+
+.tuto-page h4 {
+  font-size: 1.1rem;
+}
+
+
+/* =========================================================
+   13. CODE
+   ========================================================= */
+
+.tuto-page pre {
+  max-width: 100%;
+  overflow-x: auto;
+  line-height: 1.5;
+}
+
+.tuto-page code {
+  line-height: 1.5;
+}
+
+
+/* =========================================================
+   14. IMAGES
+   ========================================================= */
+
+.tuto-page img {
+  display: block;
+
+  max-width: 100%;
+  height: auto;
+
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+
+/* =========================================================
+   15. TABLEAUX
+   ========================================================= */
+
+.tuto-page table {
+  display: block;
+
+  max-width: 100%;
+
+  overflow-x: auto;
+}
+
+
+/* =========================================================
+   16. CONTRÔLE DE TAILLE DU TEXTE
+   ========================================================= */
+
+.text-size-control {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 0.25rem;
+
+  margin-bottom: 1rem;
+}
+
+.text-size-button {
+  min-width: 2.25rem;
+
+  padding: 0.4rem 0.6rem;
+
+  border: 1px solid #d9d9d9;
+  border-radius: 0.35rem;
+
+  background: transparent;
+
+  cursor: pointer;
+
+  font-size: 0.9rem;
+  line-height: 1;
+
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    transform 0.1s ease;
+}
+
+.text-size-button:hover {
+  border-color: #b8b8b8;
+}
+
+.text-size-button:active {
+  transform: scale(0.96);
+}
+
+.text-size-button:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+
+/* =========================================================
+   17. OUTILS DE LECTURE
+   ========================================================= */
+
+.tuto-tools {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 1rem;
+
+  margin-bottom: 2rem;
+
+  padding-bottom: 1rem;
+
+  border-bottom: 1px solid #e5e7eb;
+}
+
+
+/* =========================================================
+   18. SÉLECTEUR DE VERSION
+   ========================================================= */
+
+/* =========================================================
+   18. SÉLECTEUR DE VERSION
+   ========================================================= */
+
+.version-switcher {
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background-color: #f8f9fa;
+  border-left: 4px solid #7253ed;
+  border-radius: 4px;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.version-switcher span {
+  font-weight: 600;
+  font-size: 0.9em;
+  color: #495057;
+  margin-right: 10px;
+}
+
+.version-switcher a,
+.version-switcher button {
+  margin: 0;
+  padding: 0.4rem 0.7rem;
+
+  border: 1px solid #d9d9d9 !important;
+  border-radius: 0.35rem;
+
+ 
+ 
+
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.version-switcher a:hover,
+.version-switcher button:hover {
+  text-decoration: none;
+
+  border-color: #7253ed !important;
+  background: #f5f1ff !important;
+  color: #7253ed !important;
+}
+
+.version-switcher a:focus,
+.version-switcher button:focus {
+  outline: 2px solid rgba(114, 83, 237, 0.25);
+  outline-offset: 2px;
+}
+
+/* Version active */
+.version-switcher a.active,
+.version-switcher button.active {
+  font-weight: 700;
+  background-color: #7253ed !important;
+  border-color: #7253ed !important;
+  color: #fff !important;
+}
+
+/* Hover sur la version active */
+.version-switcher a.active:hover,
+.version-switcher button.active:hover {
+  background-color: #5f42d6 !important;
+  border-color: #5f42d6 !important;
+  color: #fff !important;
+}
+
+/* =========================================================
+   19. ÉTAPE SUIVANTE
+   ========================================================= */
+
+
+   .next-step {
+  margin: 0 0 1.5rem;
+  padding: 0.5rem 0;
+  border-top: 1px solid #e5e7eb;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.next-step-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.next-step-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  max-width: 48%;
+  color: #495057;
+  text-decoration: none;
+  font-size: 0.85rem;
+}
+
+.next-step-link:hover {
+  color: #7253ed;
+  text-decoration: none;
+}
+
+.next-step-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.next-step-label {
+  font-size: 0.7rem;
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.next-step-type {
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+.next-step-title {
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.next-step-arrow {
+  flex-shrink: 0;
+  font-size: 1rem;
+  color: #9ca3af;
+}
+
+.previous-step-link {
+  text-align: left;
+}
+
+.previous-step-link .next-step-content {
+  align-items: flex-start;
+}
+
+.next-step-link:not(.previous-step-link) {
+  margin-left: auto;
+  text-align: right;
+}
+
+.next-step-link:not(.previous-step-link) .next-step-content {
+  align-items: flex-end;
+}
+
+@media (max-width: 700px) {
+  .next-step-navigation {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .next-step-link {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .next-step-link:not(.previous-step-link) {
+    justify-content: flex-end;
+  }
+}
+
+/* =========================================================
+   20. NAVIGATION UA
+   ========================================================= */
+
+.ua-navigation {
+  display: flex;
+
+  justify-content: space-between;
+
+  gap: 1rem;
+
+  margin-top: 2rem;
+
+  padding-top: 1.5rem;
+
+  border-top: 1px solid #e5e7eb;
+}
+
+
+/* =========================================================
+   21. ERREURS
+   ========================================================= */
+
+.content-error {
+  padding: 0.75rem 1rem;
+
+  margin: 1rem 0;
+
+  border-left: 3px solid #b00020;
+
+  background: #fff5f5;
+}
+
+
+/* =========================================================
+   22. JUST THE DOCS — SIDEBAR
+   ========================================================= */
+
+@media (min-width: 50rem) {
+
+  .side-bar {
+    width: 350px !important;
+    min-width: 350px !important;
+  }
+
+  .site-nav {
+    width: 100%;
+  }
+
+  .site-nav a,
+  .site-nav .nav-list-link {
+    width: 100%;
+
+    font-size: 0.95rem;
+    line-height: 1.4;
+
+    white-space: nowrap;
+
+    overflow: visible;
+
+    text-overflow: unset;
+  }
+
+  .site-nav .nav-list,
+  .site-nav .nav-list .nav-list-item,
+  .site-nav .nav-list .nav-list-link {
+    width: 100%;
+  }
+
+}
+
+
+/* =========================================================
+   23. RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 49.99rem) {
+
+  .side-bar {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .site-nav a,
+  .site-nav .nav-list-link {
+    white-space: normal;
+  }
+
+  .competence-header h1,
+  .competence-card h3 {
+    white-space: normal;
+  }
+
+  .tuto-page {
+    max-width: 100%;
+  }
+
+  .tuto-tools {
+    align-items: flex-start;
+
+    flex-direction: column;
+  }
+
+  .version-switcher {
+    flex-wrap: wrap;
+  }
+
+  .next-step-link {
+    align-items: flex-start;
+  }
+
+  .next-step-type {
+    white-space: normal;
+  }
+
+  .ua-navigation {
+    flex-direction: column;
+  }
+
+}
+
+
+/* =========================================================
+   24. ACCESSIBILITÉ
+   ========================================================= */
+
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+
+/* =========================================================
+   25. ANIMATIONS RÉDUITES
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .tuto-card,
+  .text-size-button,
+  .version-switcher a,
+  .version-switcher button,
+  .next-step-link {
+    transition: none;
+  }
+
+}
+
+
+/* =========================================================
+   26. IMPRESSION
+   ========================================================= */
+
+@media print {
+
+  .side-bar,
+  .tuto-tools,
+  .next-step,
+  .ua-navigation {
+    display: none;
+  }
+
+  .tuto-page,
+  .session-page,
+  .mission-page,
+  .competence-page,
+  .domaine-page,
+  .ua-page {
+    max-width: 100%;
+  }
+}
+
+
+/* =========================================================
+   PROTOTYPE
+   ========================================================= */
+
+.prototype-page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding-bottom: 3rem;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.prototype-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.prototype-header-main {
+  min-width: 0;
+}
+
+.prototype-badge {
+  display: inline-block;
+  margin-bottom: 0.75rem;
+  padding: 0.2rem 0.55rem;
+  border-radius: 0.3rem;
+  background: #f3f0ff;
+  color: #7253ed;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.prototype-header h1 {
+  margin: 0;
+  font-size: 2rem;
+  line-height: 1.25;
+  color: #1f2937;
+}
+
+.prototype-code {
+  flex-shrink: 0;
+  padding: 0.35rem 0.65rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.35rem;
+  background: #f8f9fa;
+  color: #6b7280;
+  font-family: monospace;
+  font-size: 0.8rem;
+}
+
+.prototype-session {
+  display: inline-block;
+  margin-top: 0.65rem;
+  color: #6b7280;
+  font-size: 0.85rem;
+  text-decoration: none;
+}
+
+.prototype-session:hover {
+  color: #7253ed;
+  text-decoration: none;
+}
+
+
+/* =========================================================
+   SECTIONS
+   ========================================================= */
+
+.prototype-section {
+  margin-bottom: 2.5rem;
+}
+
+.prototype-section-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.prototype-section-number {
+  flex-shrink: 0;
+  min-width: 2rem;
+  color: #9ca3af;
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1.7;
+}
+
+.prototype-section h2 {
+  margin: 0;
+  color: #1f2937;
+  font-size: 1.25rem;
+  line-height: 1.4;
+}
+
+.prototype-section-intro {
+  margin: 0.15rem 0 0;
+  color: #9ca3af;
+  font-size: 0.8rem;
+}
+
+
+/* =========================================================
+   TRAVAIL À FAIRE
+   ========================================================= */
+
+.prototype-work {
+  padding: 1.15rem 1.25rem;
+  border-left: 3px solid #7253ed;
+  border-radius: 0 0.4rem 0.4rem 0;
+  background: #f8f9fa;
+  color: #374151;
+  line-height: 1.7;
+}
+
+.prototype-work p:last-child {
+  margin-bottom: 0;
+}
+
+
+/* =========================================================
+   LIVRABLES
+   ========================================================= */
+
+.prototype-deliverables {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.prototype-deliverables li {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-bottom: 0.5rem;
+  padding: 0.65rem 0.8rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.4rem;
+  background: #fff;
+  color: #374151;
+  font-size: 0.9rem;
+}
+
+.prototype-check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.25rem;
+  height: 1.25rem;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #f3f0ff;
+  color: #7253ed;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+
+/* =========================================================
+   UNITÉS D'APPRENTISSAGE
+   ========================================================= */
+
+.prototype-ua-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.prototype-ua {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.7rem 0.85rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.4rem;
+  background: #fff;
+  color: #374151;
+  text-decoration: none;
+  transition:
+    border-color 0.15s ease,
+    background-color 0.15s ease,
+    transform 0.15s ease;
+}
+
+.prototype-ua:hover {
+  border-color: #c4b5fd;
+  background: #faf9ff;
+  text-decoration: none;
+  transform: translateX(2px);
+}
+
+.prototype-ua-code {
+  flex-shrink: 0;
+  color: #7253ed;
+  font-family: monospace;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.prototype-ua-title {
+  flex: 1;
+  font-size: 0.88rem;
+}
+
+.prototype-ua-arrow {
+  flex-shrink: 0;
+  color: #9ca3af;
+  font-size: 0.9rem;
+}
+
+.prototype-ua:hover .prototype-ua-arrow {
+  color: #7253ed;
+}
+
+
+/* =========================================================
+   CONTENU COMPLÉMENTAIRE
+   ========================================================= */
+
+.prototype-extra {
+  padding-top: 1rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+  .prototype-page {
+    padding-bottom: 2rem;
+  }
+
+  .prototype-header {
+    margin-bottom: 2rem;
+  }
+
+  .prototype-header h1 {
+    font-size: 1.6rem;
+  }
+
+  .prototype-code {
+    font-size: 0.72rem;
+  }
+
+  .prototype-section {
+    margin-bottom: 2rem;
+  }
+
+  .prototype-section-header {
+    gap: 0.55rem;
+  }
+
+  .prototype-section-number {
+    min-width: 1.5rem;
+  }
+
+  .prototype-work {
+    padding: 1rem;
+  }
+
+  .prototype-ua {
+    align-items: flex-start;
+  }
+
+  .prototype-ua-title {
+    line-height: 1.45;
+  }
+
+}

@@ -1,0 +1,313 @@
+---
+layout: default
+---
+
+<div class="competence-page">
+
+  <!-- ==================================================
+       EN-TÊTE DE LA COMPÉTENCE
+       ================================================== -->
+
+  <header class="competence-header">
+
+    <h1>
+      {{ page.title }}
+    </h1>
+
+    
+    {% if page.mission %}
+      {% assign mission =
+        site.missions
+        | where: "code", page.mission
+        | first
+      %}
+
+      {% if mission %}
+        <p class="competence-mission">
+          <strong>Mission :</strong>
+          <a href="{{ mission.url | relative_url }}">
+            {{ mission.title }}
+          </a>
+        </p>
+      {% endif %}
+    {% endif %}
+
+  </header>
+
+
+  <!-- ==================================================
+       DESCRIPTION
+       ================================================== -->
+
+  {% if page.description %}
+
+    <section class="competence-section">
+
+      <h2>Description</h2>
+
+      <div>
+        {{ page.description | markdownify }}
+      </div>
+
+    </section>
+
+  {% endif %}
+
+
+  <!-- ==================================================
+       OBJECTIF
+       ================================================== -->
+
+  {% if page.objectif %}
+
+    <section class="competence-section">
+
+      <h2>Objectif</h2>
+
+      <p>
+        {{ page.objectif }}
+      </p>
+
+    </section>
+
+  {% endif %}
+
+
+  <!-- ==================================================
+       RÉSULTAT ATTENDU
+       ================================================== -->
+
+  {% if page.resultat %}
+
+    <section class="competence-section">
+
+      <h2>Résultat attendu</h2>
+
+      <p>
+        {{ page.resultat }}
+      </p>
+
+    </section>
+
+  {% endif %}
+
+
+  <!-- ==================================================
+       LIVRABLE
+       ================================================== -->
+
+  {% if page.livrable %}
+
+    <section class="competence-section">
+
+      <h2>Livrable</h2>
+
+      <p>
+        {{ page.livrable }}
+      </p>
+
+    </section>
+
+  {% endif %}
+
+
+  <!-- ==================================================
+       DOMAINES
+       ================================================== -->
+
+  <section class="competence-section">
+
+    <h2>Domaines d'apprentissage</h2>
+
+    {% assign competence_domaines =
+      site.domaines
+      | where: "competence", page.code
+    %}
+
+    {% if competence_domaines.size > 0 %}
+
+      <div class="competence-domaines">
+
+        {% for domaine in competence_domaines %}
+
+          <article class="domaine-card">
+
+            <h3>
+              <a href="{{ domaine.url | relative_url }}">
+                 {{ domaine.title }}
+              </a>
+            </h3>
+
+            {% if domaine.description %}
+              <p>
+                {{ domaine.description }}
+              </p>
+            {% endif %}
+
+          </article>
+
+        {% endfor %}
+
+      </div>
+
+    {% else %}
+
+      <p>
+        Aucun domaine associé à cette compétence.
+      </p>
+
+    {% endif %}
+
+  </section>
+
+
+  <!-- ==================================================
+       UNITÉS D'APPRENTISSAGE
+       ================================================== -->
+
+  <section class="competence-section">
+
+    <h2>Unités d'apprentissage</h2>
+
+    {% assign competence_uas =
+      site.uas
+      | where: "competence", page.code
+    %}
+
+    {% if competence_uas.size > 0 %}
+
+      <div class="competence-uas">
+
+        {% for ua in competence_uas %}
+
+          <article class="ua-card">
+
+            <h3>
+              <a href="{{ ua.url | relative_url }}">
+                {{ ua.code }} — {{ ua.title }}
+              </a>
+            </h3>
+
+            {% if ua.objectif %}
+              <p>
+                {{ ua.objectif }}
+              </p>
+            {% endif %}
+
+          </article>
+
+        {% endfor %}
+
+      </div>
+
+    {% else %}
+
+      <p>
+        Aucune unité d'apprentissage associée à cette compétence.
+      </p>
+
+    {% endif %}
+
+  </section>
+
+
+<!-- ==================================================
+     SESSIONS
+     ================================================== -->
+
+<section class="competence-section">
+
+  <h2>Sessions</h2>
+
+  {% assign competence_uas =
+    site.uas
+    | where: "competence", page.code
+  %}
+
+  {% assign competence_session_codes = "" | split: "," %}
+
+
+  <!-- ==========================================
+       Rechercher les sessions qui contiennent
+       les UA de cette compétence
+       ========================================== -->
+
+  {% for session in site.sessions %}
+
+    {% for ua_code in session.uas %}
+
+      {% for ua in competence_uas %}
+
+        {% if ua_code == ua.code %}
+
+          {% unless competence_session_codes contains session.code %}
+
+            {% assign competence_session_codes =
+              competence_session_codes
+              | push: session.code
+            %}
+
+          {% endunless %}
+
+        {% endif %}
+
+      {% endfor %}
+
+    {% endfor %}
+
+  {% endfor %}
+
+
+  <!-- ==========================================
+       Affichage
+       ========================================== -->
+
+  {% if competence_session_codes.size > 0 %}
+
+    <div class="activity-list">
+
+      {% for session_code in competence_session_codes %}
+
+        {% assign session =
+          site.sessions
+          | where: "code", session_code
+          | first
+        %}
+
+        {% if session %}
+
+          <article class="activity-card">
+
+            <h3>
+              <a href="{{ session.url | relative_url }}">
+                 {{ session.title }}
+              </a>
+            </h3>
+
+            {% if session.objectif %}
+
+              <p>
+                {{ session.objectif }}
+              </p>
+
+            {% endif %}
+
+          </article>
+
+        {% endif %}
+
+      {% endfor %}
+
+    </div>
+
+  {% else %}
+
+    <p>
+      Aucune session associée à cette compétence.
+    </p>
+
+  {% endif %}
+
+</section>
+
+</div>

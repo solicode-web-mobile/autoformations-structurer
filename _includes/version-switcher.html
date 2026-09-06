@@ -1,0 +1,19 @@
+{% if page.tuto_id %}
+<div class="version-switcher" style="margin-bottom: 5px; padding: 5px;  border-left: 4px solid #7253ed; border-radius: 4px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center;">
+  <span style="font-weight: 600; font-size: 0.9em; color: #495057; margin-right: 5px;">Format du cours :</span>
+  
+  {% assign versions = site.tutos | where: "tuto_id", page.tuto_id %}
+  
+  {% for v in versions %}
+    <a href="{{ v.url | relative_url }}" class="btn btn-sm {% if page.version == v.version %}btn-primary{% else %}btn-outline{% endif %}" style="margin: 0;">
+      {% if v.version == 'compact' %}
+        ⚡ Synthèse
+      {% elsif v.version == 'normal' %}
+        📖 Standard
+      {% elsif v.version == 'detaille' %}
+        🔍 Approfondi
+      {% endif %}
+    </a>
+  {% endfor %}
+</div>
+{% endif %}

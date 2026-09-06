@@ -1,0 +1,28 @@
+
+<link rel="stylesheet" href="{{ '/assets/css/base.css' | relative_url }}">
+
+{% case page.layout %}
+  {% when "mission" %}
+    <link rel="stylesheet" href="{{ '/assets/css/mission.css' | relative_url }}">
+  {% when "competence" %}
+    <link rel="stylesheet" href="{{ '/assets/css/competence.css' | relative_url }}">
+  {% when "domaine" %}
+    <link rel="stylesheet" href="{{ '/assets/css/domaine.css' | relative_url }}">
+  {% when "ua" %}
+    <link rel="stylesheet" href="{{ '/assets/css/ua.css' | relative_url }}">
+  {% when "session" %}
+    <link rel="stylesheet" href="{{ '/assets/css/session.css' | relative_url }}">
+  {% when "tuto" %}
+    <link rel="stylesheet" href="{{ '/assets/css/tuto.css' | relative_url }}">
+  {% when "prototype" %}
+    <link rel="stylesheet" href="{{ '/assets/css/prototype.css' | relative_url }}">
+  {% when "lab" %}
+    <link rel="stylesheet" href="{{ '/assets/css/lab.css' | relative_url }}">
+  {% when "projet" %}
+    <link rel="stylesheet" href="{{ '/assets/css/projet.css' | relative_url }}">
+{% endcase %}
+
+<script defer
+        src="{{ '/assets/js/formation.js' | relative_url }}">
+</script>
+

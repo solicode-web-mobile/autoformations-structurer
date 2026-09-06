@@ -1,0 +1,206 @@
+---
+layout: default
+---
+
+<div class="prototype-page">
+
+  <header class="prototype-header">
+
+    <div class="prototype-header-main">
+
+      <span class="prototype-badge">
+        Projet fil rouge
+      </span>
+
+      <h1>{{ page.title }}</h1>
+
+      {% if page.session %}
+        {% assign session = site.sessions | where: "code", page.session | first %}
+
+        {% if session %}
+          <a
+            href="{{ session.url | relative_url }}"
+            class="prototype-session"
+          >
+            {{ session.title }}
+          </a>
+        {% endif %}
+      {% endif %}
+
+    </div>
+
+    {% if page.code %}
+      <span class="prototype-code">
+        {{ page.code }}
+      </span>
+    {% endif %}
+
+  </header>
+
+
+  <main class="prototype-content">
+
+
+    <!-- ==========================================
+         TRAVAIL À FAIRE
+         ========================================== -->
+
+    {% if page.travail_a_faire %}
+
+      <section class="prototype-section prototype-work-section">
+
+        <div class="prototype-section-header">
+
+          <span class="prototype-section-number">
+            01
+          </span>
+
+          <div>
+            <h2>Travail à faire</h2>
+
+            <p class="prototype-section-intro">
+              Réalisation attendue
+            </p>
+          </div>
+
+        </div>
+
+        <div class="prototype-work">
+          {{ page.travail_a_faire | markdownify }}
+        </div>
+
+      </section>
+
+    {% endif %}
+
+
+    <!-- ==========================================
+         LIVRABLE
+         ========================================== -->
+
+    {% if page.livrable %}
+
+      <section class="prototype-section">
+
+        <div class="prototype-section-header">
+
+          <span class="prototype-section-number">
+            02
+          </span>
+
+          <div>
+            <h2>Livrable</h2>
+
+            <p class="prototype-section-intro">
+              Ce qui doit être produit
+            </p>
+          </div>
+
+        </div>
+
+        <ul class="prototype-deliverables">
+
+          {% for item in page.livrable %}
+
+            <li>
+              <span class="prototype-check">
+                ✓
+              </span>
+
+              <span>
+                {{ item }}
+              </span>
+            </li>
+
+          {% endfor %}
+
+        </ul>
+
+      </section>
+
+    {% endif %}
+
+
+    <!-- ==========================================
+         UNITÉS D'APPRENTISSAGE
+         ========================================== -->
+
+    {% if page.uas %}
+
+      <section class="prototype-section">
+
+        <div class="prototype-section-header">
+
+          <span class="prototype-section-number">
+            03
+          </span>
+
+          <div>
+            <h2>Unités d'apprentissage</h2>
+
+            <p class="prototype-section-intro">
+              Notions mobilisées dans ce prototype
+            </p>
+          </div>
+
+        </div>
+
+        <div class="prototype-ua-list">
+
+          {% for ua_code in page.uas %}
+
+            {% assign ua =
+              site.uas
+              | where: "code", ua_code
+              | first
+            %}
+
+            {% if ua %}
+
+              <a
+                href="{{ ua.url | relative_url }}"
+                class="prototype-ua"
+              >
+
+                <span class="prototype-ua-code">
+                  {{ ua.code }}
+                </span>
+
+                <span class="prototype-ua-title">
+                  {{ ua.title }}
+                </span>
+
+                <span class="prototype-ua-arrow">
+                  →
+                </span>
+
+              </a>
+
+            {% endif %}
+
+          {% endfor %}
+
+        </div>
+
+      </section>
+
+    {% endif %}
+
+
+    <!-- ==========================================
+         CONTENU COMPLÉMENTAIRE
+         ========================================== -->
+
+    {% if content != "" %}
+
+      <section class="prototype-section prototype-extra">
+
+        {{ content }}
+
+      </section>
+
+    {% endif %}
+
+  </main>
+
+</div>

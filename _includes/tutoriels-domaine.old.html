@@ -1,0 +1,173 @@
+{% assign domaine_tutoriels = site.pages
+  | where: "domaine_code", page.domaine_code
+  | where: "version", "normal"
+  | sort: "nav_order"
+%}
+
+<div class="tutorial-context-menu">
+
+  <button class="tutorial-context-trigger" type="button">
+    {{ page.domaine_code }} — {{ page.domaine_title }}
+    <span class="tutorial-context-arrow">⌄</span>
+  </button>
+
+  <div class="tutorial-context-dropdown">
+
+    <div class="tutorial-context-title">
+      {{ page.domaine_code }} — {{ page.domaine_title }}
+    </div>
+
+    {% for tutoriel in domaine_tutoriels %}
+      <a
+        href="{{ tutoriel.url | relative_url }}"
+        class="{% if tutoriel.url == page.url %}is-active{% endif %}"
+      >
+        {{ tutoriel.title }}
+      </a>
+    {% endfor %}
+
+  </div>
+
+</div>
+
+<style>
+/* =========================================================
+   MENU CONTEXTUEL — TUTORIELS DU DOMAINE
+   ========================================================= */
+
+.tutorial-context-menu {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 1.5rem;
+}
+
+/* Bouton */
+.tutorial-context-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+
+  padding: .45rem .7rem;
+
+  border: 1px solid #d9dee5;
+  border-radius: 5px;
+
+  background: #fff;
+
+  font-size: .85rem;
+  line-height: 1.2;
+
+  cursor: pointer;
+}
+
+/* Flèche */
+.tutorial-context-arrow {
+  font-size: .8rem;
+  line-height: 1;
+}
+
+/* Menu déroulant */
+.tutorial-context-dropdown {
+  display: none;
+
+  position: absolute;
+  top: 100%;
+  left: 0;
+
+  width: 320px;
+
+  padding: .5rem;
+
+  background: #fff;
+
+  border: 1px solid #d9dee5;
+  border-top: none;
+  border-radius: 0 6px 6px 6px;
+
+  box-shadow: 0 6px 18px rgba(0, 0, 0, .08);
+
+  z-index: 1000;
+}
+
+/* Affichage au survol */
+.tutorial-context-menu:hover .tutorial-context-dropdown {
+  display: block;
+}
+
+/* Titre du domaine */
+.tutorial-context-title {
+  padding: .5rem;
+
+  margin-bottom: .25rem;
+
+  font-size: .8rem;
+  font-weight: 600;
+  line-height: 1.3;
+
+  border-bottom: 1px solid #eee;
+}
+
+/* Liens des tutoriels */
+.tutorial-context-dropdown a {
+  display: block;
+
+  padding: .45rem .5rem;
+
+  border-radius: 4px;
+
+  font-size: .88rem;
+  line-height: 1.3;
+
+  text-decoration: none;
+}
+
+/* Survol d'un tutoriel */
+.tutorial-context-dropdown a:hover {
+  background: #f5f7fa;
+}
+
+/* Tutoriel actuel */
+.tutorial-context-dropdown a.is-active {
+  font-weight: 600;
+}
+
+/* =========================================================
+   MENU DES VERSIONS
+   ========================================================= */
+
+.tutorial-versions {
+  margin-bottom: 2rem;
+
+  font-size: .9rem;
+  line-height: 1.5;
+}
+
+.tutorial-versions a {
+  text-decoration: none;
+}
+
+.tutorial-versions a:hover {
+  text-decoration: underline;
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+  .tutorial-context-dropdown {
+    width: min(320px, calc(100vw - 2rem));
+  }
+
+  .tutorial-context-trigger {
+    font-size: .82rem;
+  }
+
+  .tutorial-context-dropdown a {
+    font-size: .85rem;
+  }
+
+}
+
+</style>

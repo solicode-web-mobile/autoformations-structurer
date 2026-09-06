@@ -1,0 +1,144 @@
+{% comment %}
+  ============================================================
+  MENU DES VERSIONS D'UN TUTORIEL
+  ============================================================
+
+  Structure attendue :
+
+  /tutoriel/
+  /tutoriel/compact/
+  /tutoriel/detaille/
+
+  La version actuelle est identifiée par :
+  page.version = compact | normal | detaille
+
+  La présence d'une version est vérifiée dans site.pages.
+{% endcomment %}
+
+
+{% comment %}
+  Construction de l'URL de base.
+
+  On supprime /compact/ ou /detaille/ si la page courante
+  est une version alternative.
+
+  append + replace corrigent le problème de slash :
+  /tutorieldetaille/
+  /tutoriel//detaille/
+
+  Le résultat doit toujours être :
+  /tutoriel/
+{% endcomment %}
+
+{% assign base_url = page.permalink
+  | remove: '/compact/'
+  | remove: '/detaille/'
+  | append: '/'
+  | replace: '//', '/' %}
+
+
+{% comment %}
+  Construction des trois URLs.
+{% endcomment %}
+
+{% assign compact_url = base_url | append: 'compact/' %}
+{% assign normal_url = base_url %}
+{% assign detaille_url = base_url | append: 'detaille/' %}
+
+
+{% comment %}
+  Recherche des pages existantes.
+{% endcomment %}
+
+{% assign compact_page = site.pages
+  | where: "url", compact_url
+  | first %}
+
+{% assign normal_page = site.pages
+  | where: "url", normal_url
+  | first %}
+
+{% assign detaille_page = site.pages
+  | where: "url", detaille_url
+  | first %}
+
+
+{% comment %}
+  Affichage du menu.
+{% endcomment %}
+
+<div class="tutorial-versions">
+
+  <span class="tutorial-versions-label">Version :</span>
+
+
+  {% if compact_page %}
+    {% if page.version == "compact" %}
+      <strong>Compact</strong>
+    {% else %}
+      <a href="{{ compact_url | relative_url }}">Compact</a>
+    {% endif %}
+  {% endif %}
+
+
+  {% if compact_page and normal_page %}
+    <span>·</span>
+  {% endif %}
+
+
+  {% if normal_page %}
+    {% if page.version == "normal" %}
+      <strong>Normal</strong>
+    {% else %}
+      <a href="{{ normal_url | relative_url }}">Normal</a>
+    {% endif %}
+  {% endif %}
+
+
+  {% if normal_page and detaille_page %}
+    <span>·</span>
+  {% endif %}
+
+
+  {% if detaille_page %}
+    {% if page.version == "detaille" %}
+      <strong>Détaillée</strong>
+    {% else %}
+      <a href="{{ detaille_url | relative_url }}">Détaillée</a>
+    {% endif %}
+  {% endif %}
+
+</div>
+
+<div class="tutorial-font-size" aria-label="Taille du texte">
+  <span class="tutorial-font-size-label">Taille du texte</span>
+
+  <div class="tutorial-font-size-controls">
+    <button
+      type="button"
+      data-font-size="small"
+      title="Réduire la taille du texte"
+      aria-label="Réduire la taille du texte"
+    >
+      A−
+    </button>
+
+    <button
+      type="button"
+      data-font-size="reset"
+      title="Taille normale"
+      aria-label="Taille normale"
+    >
+      A
+    </button>
+
+    <button
+      type="button"
+      data-font-size="large"
+      title="Agrandir la taille du texte"
+      aria-label="Agrandir la taille du texte"
+    >
+      A+
+    </button>
+  </div>
+</div>

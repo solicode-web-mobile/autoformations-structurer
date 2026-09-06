@@ -1,0 +1,228 @@
+```css
+/* =========================================================
+   PAGE UA
+   ========================================================= */
+
+.ua-page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding-bottom: 3rem;
+}
+
+
+/* =========================================================
+   EN-TÊTE
+   ========================================================= */
+
+.ua-header {
+  margin-bottom: 2.25rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.ua-header h1 {
+  margin: 0 0 1rem;
+  color: #1f2937;
+  font-size: 2rem;
+  line-height: 1.25;
+}
+
+.ua-reference {
+  margin: 0.35rem 0;
+  color: #6b7280;
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+.ua-reference strong {
+  color: #374151;
+}
+
+.ua-reference a {
+  color: #7253ed;
+  text-decoration: none;
+}
+
+.ua-reference a:hover {
+  text-decoration: underline;
+}
+
+
+/* =========================================================
+   SECTIONS
+   ========================================================= */
+
+.ua-section {
+  margin-bottom: 2.25rem;
+}
+
+.ua-section h2 {
+  margin: 0 0 0.9rem;
+  color: #1f2937;
+  font-size: 1.25rem;
+  line-height: 1.4;
+}
+
+.ua-section p {
+  margin-top: 0;
+  color: #374151;
+  line-height: 1.7;
+}
+
+.ua-section ul {
+  margin: 0;
+  padding-left: 1.3rem;
+}
+
+.ua-section li {
+  margin-bottom: 0.35rem;
+  color: #374151;
+  line-height: 1.6;
+}
+
+
+/* =========================================================
+   LISTE DES TUTORIELS
+   ========================================================= */
+
+.ua-section .tuto-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.ua-section .tuto-card {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 2.75rem;
+  padding: 0.65rem 0.8rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.4rem;
+  background: #fff;
+  color: #374151;
+  text-decoration: none;
+  transition:
+    border-color 0.15s ease,
+    background-color 0.15s ease,
+    transform 0.15s ease;
+}
+
+.ua-section .tuto-card:hover {
+  border-color: #c4b5fd;
+  background-color: #faf9ff;
+  text-decoration: none;
+  transform: translateX(2px);
+}
+
+.ua-section .tuto-card-title {
+  flex: 1;
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+.ua-section .tuto-card-error {
+  color: #b91c1c;
+  cursor: default;
+}
+
+.ua-section .tuto-card-error:hover {
+  border-color: #e5e7eb;
+  background-color: #fff;
+  transform: none;
+}
+
+
+/* =========================================================
+   CONTENU MARKDOWN
+   ========================================================= */
+
+.ua-page .ua-section img {
+  max-width: 100%;
+  height: auto;
+}
+
+.ua-page .ua-section pre {
+  overflow-x: auto;
+}
+
+.ua-page .ua-section table {
+  width: 100%;
+  overflow: hidden;
+  border-collapse: collapse;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+  .ua-page {
+    padding-bottom: 2rem;
+  }
+
+  .ua-header {
+    margin-bottom: 1.75rem;
+  }
+
+  .ua-header h1 {
+    font-size: 1.6rem;
+  }
+
+  .ua-section {
+    margin-bottom: 1.75rem;
+  }
+
+  .ua-section h2 {
+    font-size: 1.1rem;
+  }
+
+  .ua-reference {
+    font-size: 0.82rem;
+  }
+
+  .ua-section .tuto-card {
+    padding: 0.6rem 0.7rem;
+  }
+
+  .ua-section .tuto-card-title {
+    font-size: 0.86rem;
+  }
+
+}
+
+
+/* =========================================================
+   ACCESSIBILITÉ
+   ========================================================= */
+
+.ua-page a:focus-visible {
+  outline: 2px solid #7253ed;
+  outline-offset: 2px;
+}
+
+
+/* =========================================================
+   IMPRESSION
+   ========================================================= */
+
+@media print {
+
+  .ua-page {
+    max-width: none;
+  }
+
+  .ua-header {
+    border-bottom: 1px solid #000;
+  }
+
+  .ua-section .tuto-card {
+    border: 1px solid #999;
+    color: #000;
+  }
+
+}
+```

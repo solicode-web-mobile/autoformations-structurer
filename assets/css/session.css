@@ -1,0 +1,701 @@
+/* =========================================================
+   FORMATION WEB — SESSION
+   Jekyll + Just the Docs
+   ========================================================= */
+
+
+/* =========================================================
+   1. PAGE
+   ========================================================= */
+
+.session-page {
+  width: 100%;
+}
+
+
+/* =========================================================
+   2. EN-TÊTE
+   ========================================================= */
+
+.session-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.5rem;
+
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.session-header-main {
+  min-width: 0;
+}
+
+.session-label {
+  display: block;
+
+  margin-bottom: 0.5rem;
+
+  color: #7253ed;
+
+  font-size: 0.75rem;
+  font-weight: 700;
+
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.session-header h1 {
+  margin: 0;
+
+  font-size: 2rem;
+  line-height: 1.25;
+}
+
+.session-code {
+  flex-shrink: 0;
+
+  padding: 0.35rem 0.65rem;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 0.35rem;
+
+  background: #f8f9fa;
+
+  color: #6b7280;
+
+  font-family: monospace;
+  font-size: 0.8rem;
+}
+
+
+/* =========================================================
+   3. SECTIONS
+   ========================================================= */
+
+.session-section {
+  margin-top: 2.5rem;
+}
+
+.session-section-heading {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+
+  margin-bottom: 1.25rem;
+}
+
+.session-section-heading h2 {
+  margin-top: 0;
+  margin-bottom: 0.25rem;
+}
+
+.session-section-intro {
+  margin: 0;
+
+  color: #6b7280;
+
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.session-section-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 2rem;
+  height: 2rem;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  background: #f3f0ff;
+  color: #7253ed;
+
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+
+/* =========================================================
+   4. OBJECTIF
+   ========================================================= */
+
+.session-objective-section {
+  padding: 1.25rem 1.35rem;
+
+  border-left: 4px solid #7253ed;
+  border-radius: 0 0.5rem 0.5rem 0;
+
+  background: #f8f9fa;
+}
+
+.session-objective-section h2 {
+  margin-top: 0;
+}
+
+.session-objective {
+  margin-bottom: 0;
+
+  line-height: 1.7;
+}
+
+
+/* =========================================================
+   5. DESCRIPTION
+   ========================================================= */
+
+.session-description-section p {
+  line-height: 1.7;
+}
+
+
+/* =========================================================
+   6. PARCOURS
+   ========================================================= */
+
+.session-path-section {
+  position: relative;
+}
+
+
+/* =========================================================
+   7. PHASES
+   ========================================================= */
+
+.session-phase {
+  position: relative;
+
+  margin-top: 2rem;
+  padding-left: 3.25rem;
+}
+
+.session-phase::before {
+  content: "";
+
+  position: absolute;
+
+  top: 2.75rem;
+  bottom: -2rem;
+  left: 1rem;
+
+  width: 1px;
+
+  background: #e5e7eb;
+}
+
+.session-phase:last-child::before {
+  display: none;
+}
+
+.session-phase-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+
+  margin-bottom: 1.25rem;
+}
+
+.session-phase-marker {
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 2rem;
+  height: 2rem;
+
+  border: 2px solid #7253ed;
+  border-radius: 50%;
+
+  background: #fff;
+  color: #7253ed;
+
+  font-size: 0.75rem;
+  font-weight: 700;
+
+  z-index: 1;
+}
+
+.session-phase-label {
+  display: block;
+
+  margin-bottom: 0.15rem;
+
+  color: #7253ed;
+
+  font-size: 0.7rem;
+  font-weight: 700;
+
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.session-phase-header h3 {
+  margin: 0;
+
+  font-size: 1.25rem;
+}
+
+
+/* =========================================================
+   8. UNITÉS D'APPRENTISSAGE
+   ========================================================= */
+
+.session-uas {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+
+/* =========================================================
+   9. CARTE UA
+   ========================================================= */
+
+.ua-card {
+  padding: 1.25rem;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+
+  background: #fff;
+}
+
+.ua-card-header {
+  margin-bottom: 1rem;
+}
+
+.ua-card-code {
+  display: block;
+
+  margin-bottom: 0.35rem;
+
+  color: #7253ed;
+
+  font-family: monospace;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.ua-card-code a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.ua-card-code a:hover {
+  text-decoration: underline;
+}
+
+.ua-card-header h3 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+.ua-card-header h3 a {
+  text-decoration: none;
+}
+
+.ua-card-header h3 a:hover {
+  text-decoration: underline;
+}
+
+.ua-card-objective {
+  margin-bottom: 0;
+
+  color: #374151;
+
+  line-height: 1.6;
+}
+
+
+/* =========================================================
+   10. RÉFÉRENCES UA
+   ========================================================= */
+
+.ua-card-references {
+  margin-bottom: 1rem;
+  padding-top: 0.9rem;
+
+  border-top: 1px solid #f0f0f0;
+}
+
+.ua-card-reference {
+  margin: 0.25rem 0;
+
+  color: #6b7280;
+
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+.ua-card-reference strong {
+  margin-right: 0.25rem;
+
+  color: #374151;
+}
+
+.ua-card-reference a {
+  color: #7253ed;
+  text-decoration: none;
+}
+
+.ua-card-reference a:hover {
+  text-decoration: underline;
+}
+
+
+/* =========================================================
+   11. TUTORIELS
+   ========================================================= */
+
+.ua-card-tutos {
+  margin-top: 1rem;
+  padding-top: 0.85rem;
+
+  border-top: 1px solid #e5e7eb;
+}
+
+.ua-card-tutos-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  margin-bottom: 0.65rem;
+}
+
+.ua-card-tutos-header h4 {
+  margin: 0;
+
+  color: #374151;
+
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.ua-card-tutos-header span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 1.4rem;
+  height: 1.25rem;
+  padding: 0 0.35rem;
+
+  border-radius: 999px;
+
+  background: #f3f0ff;
+  color: #7253ed;
+
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+
+/* Liste */
+
+.ua-card-tutos .tuto-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+
+  margin: 0;
+}
+
+
+/* Tutoriel */
+
+.ua-card-tutos .tuto-card {
+  display: flex;
+  align-items: center;
+
+  width: 100%;
+  min-height: 2.5rem;
+
+  box-sizing: border-box;
+
+  padding: 0.55rem 0.7rem;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 0.35rem;
+
+  background: #fff;
+  color: #374151;
+
+  text-decoration: none;
+
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    transform 0.15s ease;
+}
+
+.ua-card-tutos .tuto-card:hover {
+  background: #faf9ff;
+  border-color: #c4b5fd;
+  color: #7253ed;
+
+  text-decoration: none;
+
+  transform: translateX(2px);
+}
+
+.ua-card-tutos .tuto-card-title {
+  flex: 1;
+
+  min-width: 0;
+
+  font-size: 0.84rem;
+  line-height: 1.4;
+}
+
+.ua-card-tutos .tuto-card-error {
+  color: #b91c1c;
+  cursor: default;
+}
+
+.ua-card-tutos .tuto-card-error:hover {
+  background: #fff;
+  border-color: #e5e7eb;
+  color: #b91c1c;
+
+  transform: none;
+}
+
+
+/* =========================================================
+   12. ACTIVITÉS
+   ========================================================= */
+
+.activity-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.activity-card {
+  padding: 1.1rem 1.2rem;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+
+  background: #fff;
+}
+
+.activity-card-header {
+  margin-bottom: 1rem;
+}
+
+.activity-code {
+  display: block;
+
+  margin-bottom: 0.35rem;
+
+  color: #7253ed;
+
+  font-family: monospace;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.activity-card h4 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+.activity-card h4 a {
+  text-decoration: none;
+}
+
+.activity-card h4 a:hover {
+  text-decoration: underline;
+}
+
+.activity-card p {
+  margin-bottom: 0;
+
+  line-height: 1.6;
+}
+
+
+/* =========================================================
+   13. ACTIVITÉ — RÉALISATION
+   ========================================================= */
+
+.activity-card-featured {
+  padding: 1.25rem;
+
+  border-left: 4px solid #7253ed;
+}
+
+.activity-work {
+  margin-top: 1rem;
+  padding: 1rem;
+
+  border-radius: 0.4rem;
+
+  background: #f8f9fa;
+}
+
+.activity-work h5 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+
+  font-size: 0.9rem;
+}
+
+.activity-work p {
+  margin-bottom: 0;
+
+  line-height: 1.7;
+}
+
+.activity-work ul,
+.activity-work ol {
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+}
+
+
+/* =========================================================
+   14. LIVRABLES
+   ========================================================= */
+
+.activity-deliverables {
+  margin-top: 1rem;
+  padding-top: 1rem;
+
+  border-top: 1px solid #e5e7eb;
+}
+
+.activity-deliverables h5 {
+  margin-top: 0;
+  margin-bottom: 0.65rem;
+
+  font-size: 0.9rem;
+}
+
+.activity-deliverables ul {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+.activity-deliverables li {
+  margin-bottom: 0.35rem;
+
+  line-height: 1.5;
+}
+
+.activity-deliverables li:last-child {
+  margin-bottom: 0;
+}
+
+
+/* =========================================================
+   15. ERREURS
+   ========================================================= */
+
+.content-error {
+  padding: 0.75rem 1rem;
+
+  margin: 1rem 0;
+
+  border-left: 3px solid #b00020;
+
+  background: #fff5f5;
+
+  color: #7f1d1d;
+
+  font-size: 0.9rem;
+}
+
+
+/* =========================================================
+   16. ACCESSIBILITÉ
+   ========================================================= */
+
+.session-page a:focus-visible {
+  outline: 2px solid #7253ed;
+  outline-offset: 2px;
+}
+
+
+/* =========================================================
+   17. RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+  .session-header {
+    flex-direction: column;
+
+    margin-bottom: 2rem;
+  }
+
+  .session-header h1 {
+    font-size: 1.6rem;
+  }
+
+  .session-code {
+    align-self: flex-start;
+  }
+
+  .session-section {
+    margin-top: 2rem;
+  }
+
+  .session-objective-section {
+    padding: 1rem;
+  }
+
+  .session-phase {
+    padding-left: 2.75rem;
+  }
+
+  .session-phase::before {
+    left: 0.85rem;
+  }
+
+  .session-phase-marker {
+    width: 1.75rem;
+    height: 1.75rem;
+  }
+
+  .ua-card {
+    padding: 1rem;
+  }
+
+  .activity-card-featured {
+    padding: 1rem;
+  }
+
+  .ua-card-tutos .tuto-card {
+    padding: 0.5rem 0.65rem;
+  }
+
+  .ua-card-tutos .tuto-card-title {
+    font-size: 0.82rem;
+  }
+
+}
+
+
+/* =========================================================
+   18. RÉDUCTION DES ANIMATIONS
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .ua-card-tutos .tuto-card {
+    transition: none;
+  }
+
+}

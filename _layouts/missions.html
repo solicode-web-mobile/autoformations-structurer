@@ -1,0 +1,125 @@
+---
+layout: default
+---
+
+<div class="mission-page">
+
+  <!-- ==================================================
+       EN-TÊTE DE LA MISSION
+       ================================================== -->
+
+  <header class="mission-header">
+
+    <h1>
+      {{ page.title }}
+    </h1>
+
+    {% if page.description %}
+      <section class="mission-section">
+        <h2>Description</h2>
+
+        <div>
+          {{ page.description | markdownify }}
+        </div>
+      </section>
+    {% endif %}
+
+  </header>
+
+
+  <!-- ==================================================
+       COMPÉTENCES
+       ================================================== -->
+
+  <section class="mission-section">
+
+    <h2>Compétences</h2>
+
+    {% assign mission_competences =
+      site.competences
+      | where: "mission", page.code
+    %}
+
+    {% if mission_competences.size > 0 %}
+
+      <div class="mission-competences">
+
+        {% for competence in mission_competences %}
+
+          <article class="competence-card">
+
+            <h3>
+
+              <a href="{{ competence.url | relative_url }}">
+
+                {{ competence.title }}
+
+              </a>
+
+            </h3>
+
+            {% if competence.objectif %}
+
+              <p class="competence-objective">
+                {{ competence.objectif }}
+              </p>
+
+            {% endif %}
+
+
+            <!-- ==========================================
+                 DOMAINES DE LA COMPÉTENCE
+                 ========================================== -->
+
+            {% assign competence_domaines =
+              site.domaines
+              | where: "competence", competence.code
+            %}
+
+            {% if competence_domaines.size > 0 %}
+
+              <div class="competence-domaines">
+
+                <h4>Domaines</h4>
+
+                <ul>
+
+                  {% for domaine in competence_domaines %}
+
+                    <li>
+
+                      <a href="{{ domaine.url | relative_url }}">
+
+                        {{ domaine.title }}
+
+                      </a>
+
+                    </li>
+
+                  {% endfor %}
+
+                </ul>
+
+              </div>
+
+            {% endif %}
+
+          </article>
+
+        {% endfor %}
+
+      </div>
+
+    {% else %}
+
+      <p>
+        Aucune compétence associée à cette mission.
+      </p>
+
+    {% endif %}
+
+  </section>
+
+
+
+</div>

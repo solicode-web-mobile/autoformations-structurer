@@ -1,0 +1,6 @@
+Une illustration numérique en style flat design 2D, sur fond beige clair texturé, avec des tons harmonieux (beige, gris, bleu pastel, brun clair).
+L’élément central est un document ou écran affichant des symboles de programmation orientée objet en PHP (par exemple, { class, object } ou <?php ... ?> avec une mention "POO").
+Autour de cet élément, placer de petites icônes minimalistes (livre, ampoule, engrenage, bulle de dialogue) pour évoquer l’apprentissage et la logique orientée objet.
+Ajouter en haut ou en bas un texte lisible en typo sans-serif :
+"Autoformation – PHP POO".
+L’ensemble doit rester moderne, épuré et pédagogique, cohérent avec le style des illustrations précédentes (HTML, CSS, JavaScript…).

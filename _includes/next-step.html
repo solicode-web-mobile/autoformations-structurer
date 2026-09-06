@@ -1,0 +1,471 @@
+{% assign current_session = nil %}
+{% assign current_ua_index = nil %}
+
+{% for session in site.sessions %}
+  {% for ua_code in session.uas %}
+    {% if ua_code == page.ua and current_session == nil %}
+      {% assign current_session = session %}
+      {% assign current_ua_index = forloop.index0 %}
+    {% endif %}
+  {% endfor %}
+{% endfor %}
+
+
+{% assign previous_type = nil %}
+{% assign previous_title = nil %}
+{% assign previous_url = nil %}
+{% assign previous_compact_url = nil %}
+{% assign previous_detaille_url = nil %}
+
+{% assign next_type = nil %}
+{% assign next_title = nil %}
+{% assign next_url = nil %}
+{% assign next_compact_url = nil %}
+{% assign next_detaille_url = nil %}
+
+
+{% if current_session %}
+
+  <!-- ==================================================
+       TUTORIELS DE L'UA COURANTE
+       ================================================== -->
+
+  {% assign current_ua_tutos =
+    site.tutos
+    | where: "ua", page.ua
+    | where: "version", "normal"
+    | sort: "nav_order"
+  %}
+
+  {% assign current_tuto_index = nil %}
+
+  {% for tuto in current_ua_tutos %}
+    {% if tuto.tuto_id == page.tuto_id %}
+      {% assign current_tuto_index = forloop.index0 %}
+    {% endif %}
+  {% endfor %}
+
+
+  <!-- ==================================================
+       1. TUTORIEL PRÉCÉDENT DANS LA MÊME UA
+       ================================================== -->
+
+  {% if current_tuto_index != nil %}
+
+    {% if current_tuto_index > 0 %}
+
+      {% assign previous_tuto_index =
+        current_tuto_index | minus: 1
+      %}
+
+      {% assign previous_tuto =
+        current_ua_tutos[previous_tuto_index]
+      %}
+
+      {% assign previous_versions =
+        site.tutos
+        | where: "tuto_id", previous_tuto.tuto_id
+      %}
+
+      {% assign previous_normal =
+        previous_versions
+        | where: "version", "normal"
+        | first
+      %}
+
+      {% assign previous_compact =
+        previous_versions
+        | where: "version", "compact"
+        | first
+      %}
+
+      {% assign previous_detaille =
+        previous_versions
+        | where: "version", "detaille"
+        | first
+      %}
+
+      {% assign previous_type = "tuto" %}
+      {% assign previous_title = previous_normal.title %}
+      {% assign previous_url = previous_normal.url %}
+      {% assign previous_compact_url = previous_compact.url %}
+      {% assign previous_detaille_url = previous_detaille.url %}
+
+    {% endif %}
+
+  {% endif %}
+
+
+  <!-- ==================================================
+       2. DERNIER TUTORIEL DE L'UA PRÉCÉDENTE
+       ================================================== -->
+
+  {% if previous_type == nil and current_ua_index != nil %}
+
+    {% if current_ua_index > 0 %}
+
+      {% assign previous_ua_index =
+        current_ua_index | minus: 1
+      %}
+
+      {% assign previous_ua_code =
+        current_session.uas[previous_ua_index]
+      %}
+
+      {% assign previous_ua_tutos =
+        site.tutos
+        | where: "ua", previous_ua_code
+        | where: "version", "normal"
+        | sort: "nav_order"
+      %}
+
+      {% assign previous_tuto =
+        previous_ua_tutos | last
+      %}
+
+      {% if previous_tuto %}
+
+        {% assign previous_versions =
+          site.tutos
+          | where: "tuto_id", previous_tuto.tuto_id
+        %}
+
+        {% assign previous_normal =
+          previous_versions
+          | where: "version", "normal"
+          | first
+        %}
+
+        {% assign previous_compact =
+          previous_versions
+          | where: "version", "compact"
+          | first
+        %}
+
+        {% assign previous_detaille =
+          previous_versions
+          | where: "version", "detaille"
+          | first
+        %}
+
+        {% assign previous_type = "tuto" %}
+        {% assign previous_title = previous_normal.title %}
+        {% assign previous_url = previous_normal.url %}
+        {% assign previous_compact_url = previous_compact.url %}
+        {% assign previous_detaille_url = previous_detaille.url %}
+
+      {% endif %}
+
+    {% endif %}
+
+  {% endif %}
+
+
+  <!-- ==================================================
+       3. TUTORIEL SUIVANT DANS LA MÊME UA
+       ================================================== -->
+
+  {% if current_tuto_index != nil %}
+
+    {% assign next_tuto_index =
+      current_tuto_index | plus: 1
+    %}
+
+    {% if next_tuto_index < current_ua_tutos.size %}
+
+      {% assign next_tuto =
+        current_ua_tutos[next_tuto_index]
+      %}
+
+      {% assign next_versions =
+        site.tutos
+        | where: "tuto_id", next_tuto.tuto_id
+      %}
+
+      {% assign next_normal =
+        next_versions
+        | where: "version", "normal"
+        | first
+      %}
+
+      {% assign next_compact =
+        next_versions
+        | where: "version", "compact"
+        | first
+      %}
+
+      {% assign next_detaille =
+        next_versions
+        | where: "version", "detaille"
+        | first
+      %}
+
+      {% assign next_type = "tuto" %}
+      {% assign next_title = next_normal.title %}
+      {% assign next_url = next_normal.url %}
+      {% assign next_compact_url = next_compact.url %}
+      {% assign next_detaille_url = next_detaille.url %}
+
+    {% endif %}
+
+  {% endif %}
+
+
+  <!-- ==================================================
+       4. PREMIER TUTORIEL DE L'UA SUIVANTE
+       ================================================== -->
+
+  {% if next_type == nil and current_ua_index != nil %}
+
+    {% assign next_ua_index =
+      current_ua_index | plus: 1
+    %}
+
+    {% if next_ua_index < current_session.uas.size %}
+
+      {% assign next_ua_code =
+        current_session.uas[next_ua_index]
+      %}
+
+      {% assign next_ua_tutos =
+        site.tutos
+        | where: "ua", next_ua_code
+        | where: "version", "normal"
+        | sort: "nav_order"
+      %}
+
+      {% assign next_tuto =
+        next_ua_tutos | first
+      %}
+
+      {% if next_tuto %}
+
+        {% assign next_versions =
+          site.tutos
+          | where: "tuto_id", next_tuto.tuto_id
+        %}
+
+        {% assign next_normal =
+          next_versions
+          | where: "version", "normal"
+          | first
+        %}
+
+        {% assign next_compact =
+          next_versions
+          | where: "version", "compact"
+          | first
+        %}
+
+        {% assign next_detaille =
+          next_versions
+          | where: "version", "detaille"
+          | first
+        %}
+
+        {% assign next_type = "tuto" %}
+        {% assign next_title = next_normal.title %}
+        {% assign next_url = next_normal.url %}
+        {% assign next_compact_url = next_compact.url %}
+        {% assign next_detaille_url = next_detaille.url %}
+
+      {% endif %}
+
+    {% endif %}
+
+  {% endif %}
+
+
+  <!-- ==================================================
+       5. LAB
+       ================================================== -->
+
+  {% if next_type == nil %}
+
+    {% if current_session.labs and current_session.labs.size > 0 %}
+
+      {% assign next_lab_code =
+        current_session.labs | first
+      %}
+
+      {% assign next_lab =
+        site.labs
+        | where: "code", next_lab_code
+        | first
+      %}
+
+      {% if next_lab %}
+        {% assign next_type = "lab" %}
+        {% assign next_title = next_lab.title %}
+        {% assign next_url = next_lab.url %}
+      {% endif %}
+
+    {% endif %}
+
+  {% endif %}
+
+
+  <!-- ==================================================
+       6. PROTOTYPE
+       ================================================== -->
+
+  {% if next_type == nil %}
+
+    {% if current_session.prototype
+          and current_session.prototype.size > 0 %}
+
+      {% assign next_prototype_code =
+        current_session.prototype | first
+      %}
+
+      {% assign next_prototype =
+        site.prototypes
+        | where: "code", next_prototype_code
+        | first
+      %}
+
+      {% if next_prototype %}
+        {% assign next_type = "prototype" %}
+        {% assign next_title = next_prototype.title %}
+        {% assign next_url = next_prototype.url %}
+      {% endif %}
+
+    {% endif %}
+
+  {% endif %}
+
+
+  <!-- ==================================================
+       7. PROJET FIL ROUGE
+       ================================================== -->
+
+  {% if next_type == nil %}
+
+    {% if current_session.projet_fil_rouge
+          and current_session.projet_fil_rouge.size > 0 %}
+
+      {% assign next_project_code =
+        current_session.projet_fil_rouge | first
+      %}
+
+      {% assign next_project =
+        site.projets
+        | where: "code", next_project_code
+        | first
+      %}
+
+      {% if next_project %}
+        {% assign next_type = "projet" %}
+        {% assign next_title = next_project.title %}
+        {% assign next_url = next_project.url %}
+      {% endif %}
+
+    {% endif %}
+
+  {% endif %}
+
+{% endif %}
+
+
+<!-- ==================================================
+     AFFICHAGE
+     ================================================== -->
+
+{% if previous_type or next_type %}
+
+  <div class="next-step">
+
+    <div class="next-step-navigation">
+
+      <!-- ÉTAPE PRÉCÉDENTE -->
+
+      {% if previous_type %}
+
+        <a
+          id="previous-step-link"
+          class="next-step-link previous-step-link"
+          href="{{ previous_url | relative_url }}"
+          data-next-type="tuto"
+          data-normal-url="{{ previous_url | relative_url }}"
+          data-compact-url="{% if previous_compact_url %}{{ previous_compact_url | relative_url }}{% endif %}"
+          data-detaille-url="{% if previous_detaille_url %}{{ previous_detaille_url | relative_url }}{% endif %}"
+        >
+
+          <span class="next-step-arrow">
+            ←
+          </span>
+
+          <span class="next-step-content">
+
+            <span class="next-step-label">
+              Étape précédente
+            </span>
+
+            <span class="next-step-type">
+              Tutoriel précédent
+            </span>
+
+            <span class="next-step-title">
+              {{ previous_title }}
+            </span>
+
+          </span>
+
+        </a>
+
+      {% endif %}
+
+
+      <!-- ÉTAPE SUIVANTE -->
+
+      {% if next_type %}
+
+        <a
+          id="next-step-link"
+          class="next-step-link"
+          href="{{ next_url | relative_url }}"
+          data-next-type="{{ next_type }}"
+          data-normal-url="{{ next_url | relative_url }}"
+          data-compact-url="{% if next_compact_url %}{{ next_compact_url | relative_url }}{% endif %}"
+          data-detaille-url="{% if next_detaille_url %}{{ next_detaille_url | relative_url }}{% endif %}"
+        >
+
+          <span class="next-step-content">
+
+            <span class="next-step-label">
+              Étape suivante
+            </span>
+
+            <span class="next-step-type">
+
+              {% if next_type == "tuto" %}
+                Tutoriel suivant
+              {% elsif next_type == "lab" %}
+                Lab
+              {% elsif next_type == "prototype" %}
+                Prototype
+              {% elsif next_type == "projet" %}
+                Projet Fil Rouge
+              {% endif %}
+
+            </span>
+
+            <span class="next-step-title">
+              {{ next_title }}
+            </span>
+
+          </span>
+
+          <span class="next-step-arrow">
+            →
+          </span>
+
+        </a>
+
+      {% endif %}
+
+    </div>
+
+  </div>
+
+{% endif %}

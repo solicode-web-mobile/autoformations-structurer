@@ -1,0 +1,160 @@
+title: Autoformations Web
+description: Autoformations Solicode
+
+theme: just-the-docs
+
+url: https://solicode-web-mobile.github.io
+baseurl: /autoformations-web
+
+repository: solicode-web-mobile/autoformations-web
+
+aux_links:
+  "Solicode.co": https://solicode.co/
+
+aux_links_new_tab: true
+
+# --------------------------------------------------
+# Just the Docs
+# --------------------------------------------------
+
+search_enabled: true
+nav_enabled: true
+heading_anchors: true
+enable_copy_code_button: true
+nav_error_report: true
+show_collapsed: true
+
+back_to_top: true
+back_to_top_text: "Retour en haut"
+
+# --------------------------------------------------
+# Mermaid
+# --------------------------------------------------
+
+mermaid:
+  version: "9.1.6"
+
+# --------------------------------------------------
+# GitHub
+# --------------------------------------------------
+
+# gh_edit_link: true
+# gh_edit_link_text: "Modifier cette page sur GitHub"
+# gh_edit_repository: "https://github.com/solicode-web-mobile/autoformations-web"
+# gh_edit_branch: "main"
+# gh_edit_view_mode: "tree"
+
+# --------------------------------------------------
+# Callouts
+# --------------------------------------------------
+
+callouts_level: quiet
+
+callouts:
+  highlight:
+    color: yellow
+
+  important:
+    title: Important
+    color: blue
+
+  new:
+    title: Nouveau
+    color: green
+
+  note:
+    title: Note
+    color: purple
+
+  warning:
+    title: Attention
+    color: red
+
+# --------------------------------------------------
+# Collections Jekyll
+# --------------------------------------------------
+
+collections:
+
+  sessions:
+    output: true
+    permalink: /sessions/:slug/
+
+  labs:
+    output: true
+    permalink: /labs/:slug/
+
+  prototypes:
+    output: true
+    permalink: /prototypes/:slug/
+
+  projets:
+    output: true
+    permalink: /projets/:slug/
+
+
+
+  missions:
+    output: true
+    permalink: /missions/:slug/
+
+  competences:
+    output: true
+    permalink: /competences/:slug/
+
+  domaines:
+    output: true
+    permalink: /formations/:slug/
+
+  uas:
+    output: true
+    permalink: /uas/:slug/
+
+  tutos:
+    output: true
+
+
+
+# --------------------------------------------------
+# Navigation Just the Docs
+# --------------------------------------------------
+
+just_the_docs:
+
+  collections:
+
+    sessions:
+      name: "Parcours par sessions"
+      nav_exclude: false
+
+    missions:
+      name: "Formations"
+      nav_exclude: false
+
+    domaines:
+      name: "Formations"
+      nav_exclude: true
+
+    competences:
+      name: "Compétences"
+      nav_exclude: true
+
+    uas:
+      name: "Unités d'apprentissage"
+      nav_exclude: true
+
+    tutos:
+      name: "Tutoriels"
+      nav_exclude: true
+
+    labs:
+      name: "Labs"
+      nav_exclude: true
+
+    prototypes:
+      name: "Prototypes"
+      nav_exclude: true
+
+    projets:
+      name: "Sprints"
+      nav_exclude: true

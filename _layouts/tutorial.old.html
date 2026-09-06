@@ -1,0 +1,120 @@
+---
+layout: home
+---
+
+{% include tutorial-versions.html %}
+
+{% include tutoriels-domaine.html %}
+
+{{ content }}
+
+
+
+<script src="{{ '/assets/js/tutorial-font-size.js' | relative_url }}"></script>
+
+
+
+<style>
+
+
+/* =========================================================
+   CONTROLE DE TAILLE DU TEXTE
+   ========================================================= */
+
+.tutorial-font-size {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+
+  margin-bottom: 1.5rem;
+
+  font-size: 0.8rem;
+}
+
+/* Libellé */
+.tutorial-font-size-label {
+  color: #6b7280;
+  white-space: nowrap;
+}
+
+/* Groupe de boutons */
+.tutorial-font-size-controls {
+  display: inline-flex;
+  align-items: center;
+
+  overflow: hidden;
+
+  border: 1px solid #d9dee5;
+  border-radius: 6px;
+
+  background: #fff;
+}
+
+/* Boutons */
+.tutorial-font-size-controls button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 2rem;
+  height: 1.8rem;
+
+  padding: 0;
+
+  border: 0;
+  border-right: 1px solid #d9dee5;
+
+  background: transparent;
+
+  color: #374151;
+
+  font-size: 0.85rem;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
+}
+
+/* Supprime la bordure du dernier bouton */
+.tutorial-font-size-controls button:last-child {
+  border-right: 0;
+}
+
+/* Survol */
+.tutorial-font-size-controls button:hover {
+  background: #f3f4f6;
+  color: #111827;
+}
+
+/* Focus clavier */
+.tutorial-font-size-controls button:focus-visible {
+  outline: 2px solid #9ca3af;
+  outline-offset: -2px;
+}
+
+/* Bouton central */
+.tutorial-font-size-controls button[data-font-size="reset"] {
+  font-size: 0.8rem;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .tutorial-font-size {
+    gap: 0.45rem;
+  }
+
+  .tutorial-font-size-label {
+    font-size: 0.75rem;
+  }
+
+  .tutorial-font-size-controls button {
+    width: 1.9rem;
+    height: 1.7rem;
+  }
+}
+
+
+</style>

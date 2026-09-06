@@ -1,0 +1,616 @@
+---
+layout: default
+---
+
+<div class="session-page">
+
+  <!-- ==================================================
+       EN-TÊTE DE LA SESSION
+       ================================================== -->
+
+  <header class="session-header">
+
+    <div class="session-header-main">
+
+      <span class="session-label">
+        {{ page.code }}
+      </span>
+
+      <h1>{{ page.title }}</h1>
+
+    </div>
+
+    <div class="session-tools">
+      {% include text-size-control.html %}
+    </div>
+
+  </header>
+
+
+  <!-- ==================================================
+       01. OBJECTIF
+       ================================================== -->
+
+  {% if page.objectif %}
+
+    <section class="session-section session-objective-section">
+
+      <div class="session-section-heading">
+
+        <span class="session-section-number">
+          01
+        </span>
+
+        <div>
+          <h2>Objectif</h2>
+
+          <p class="session-section-intro">
+            Ce que vous devez être capable de réaliser à la fin de la session.
+          </p>
+        </div>
+
+      </div>
+
+      <p class="session-objective">
+        {{ page.objectif }}
+      </p>
+
+    </section>
+
+  {% endif %}
+
+
+  <!-- ==================================================
+       02. DÉROULEMENT
+       ================================================== -->
+
+  {% if page.description %}
+
+    <section class="session-section session-description-section">
+
+      <div class="session-section-heading">
+
+        <span class="session-section-number">
+          02
+        </span>
+
+        <div>
+          <h2>Déroulement</h2>
+
+          <p class="session-section-intro">
+            Vue d'ensemble du travail réalisé pendant la session.
+          </p>
+        </div>
+
+      </div>
+
+      <p>
+        {{ page.description }}
+      </p>
+
+    </section>
+
+  {% endif %}
+
+
+  <!-- ==================================================
+       03. PARCOURS
+       ================================================== -->
+
+  <section class="session-section session-path-section">
+
+    <div class="session-section-heading">
+
+      <span class="session-section-number">
+        03
+      </span>
+
+      <div>
+        <h2>Parcours de la session</h2>
+
+        <p class="session-section-intro">
+          Apprendre, explorer, adapter puis transposer.
+        </p>
+      </div>
+
+    </div>
+
+
+    <!-- ==================================================
+         1. APPRENDRE — UNITÉS D'APPRENTISSAGE
+         ================================================== -->
+
+    <section class="session-phase session-phase-learning">
+
+      <div class="session-phase-header">
+
+        <div class="session-phase-marker">
+          1
+        </div>
+
+        <div>
+          <span class="session-phase-label">
+            Apprendre
+          </span>
+
+          <h3>Unités d'apprentissage</h3>
+        </div>
+
+      </div>
+
+
+      {% if page.uas and page.uas.size > 0 %}
+
+        <div class="session-uas">
+
+          {% for ua_code in page.uas %}
+
+            {% assign ua =
+              site.uas
+              | where: "code", ua_code
+              | first
+            %}
+
+            {% if ua %}
+
+              <article class="ua-card">
+
+                <!-- ======================================
+                     EN-TÊTE UA
+                     ====================================== -->
+
+                <div class="ua-card-header">
+
+                  <span class="ua-card-code">
+                    <a href="{{ ua.url | relative_url }}">
+                      {{ ua.code }}
+                    </a>
+                  </span>
+
+                  <h3>
+                    {{ ua.title }}
+                  </h3>
+
+                  {% if ua.objectif %}
+
+                    <p class="ua-card-objective">
+                      {{ ua.objectif }}
+                    </p>
+
+                  {% endif %}
+
+                </div>
+
+
+                <!-- ======================================
+                     RÉFÉRENCES
+                     ====================================== -->
+
+                <div class="ua-card-references">
+
+                  {% if ua.competence %}
+
+                    <p class="ua-card-reference">
+
+                      <strong>Compétence</strong>
+
+                      {% assign competence =
+                        site.competences
+                        | where: "code", ua.competence
+                        | first
+                      %}
+
+                      {% if competence %}
+
+                        <a href="{{ competence.url | relative_url }}">
+                          {{ competence.title }}
+                        </a>
+
+                      {% else %}
+
+                        {{ ua.competence }}
+
+                      {% endif %}
+
+                    </p>
+
+                  {% endif %}
+
+
+                  {% if ua.domaine %}
+
+                    <p class="ua-card-reference">
+
+                      <strong>Domaine</strong>
+
+                      {% assign domaine =
+                        site.domaines
+                        | where: "code", ua.domaine
+                        | first
+                      %}
+
+                      {% if domaine %}
+
+                        <a href="{{ domaine.url | relative_url }}">
+                          {{ domaine.title }}
+                        </a>
+
+                      {% else %}
+
+                        {{ ua.domaine }}
+
+                      {% endif %}
+
+                    </p>
+
+                  {% endif %}
+
+                </div>
+
+
+                <!-- ======================================
+                     TUTORIELS
+                     ====================================== -->
+
+                {% assign ua_tutos =
+                  site.tutos
+                  | where: "ua", ua.code
+                %}
+
+                {% assign ua_tutos_normal =
+                  ua_tutos
+                  | where: "version", "normal"
+                  | sort: "nav_order"
+                %}
+
+
+                {% if ua_tutos_normal.size > 0 %}
+
+                  <div class="ua-card-tutos">
+
+                    <div class="ua-card-tutos-header">
+
+                      <h4>
+                        Tutoriels
+                      </h4>
+
+                      <span>
+                        {{ ua_tutos_normal.size }}
+                      </span>
+
+                    </div>
+
+                    {% include tuto-list.html tutos=ua_tutos %}
+
+                  </div>
+
+                {% endif %}
+
+              </article>
+
+            {% else %}
+
+              <p class="content-error">
+                UA introuvable : {{ ua_code }}
+              </p>
+
+            {% endif %}
+
+          {% endfor %}
+
+        </div>
+
+      {% else %}
+
+        <p>
+          Aucune unité d'apprentissage associée à cette session.
+        </p>
+
+      {% endif %}
+
+    </section>
+
+
+    <!-- ==================================================
+         2. EXPLORER — LAB
+         ================================================== -->
+
+    {% if page.labs and page.labs.size > 0 %}
+
+      <section class="session-phase">
+
+        <div class="session-phase-header">
+
+          <div class="session-phase-marker">
+            2
+          </div>
+
+          <div>
+            <span class="session-phase-label">
+              Explorer
+            </span>
+
+            <h3>Lab</h3>
+          </div>
+
+        </div>
+
+
+        <div class="activity-list">
+
+          {% for lab_code in page.labs %}
+
+            {% assign lab =
+              site.labs
+              | where: "code", lab_code
+              | first
+            %}
+
+            {% if lab %}
+
+              <article class="activity-card">
+
+                <div class="activity-card-header">
+
+                  <span class="activity-code">
+                    {{ lab.code }}
+                  </span>
+
+                  <h4>
+                    <a href="{{ lab.url | relative_url }}">
+                      {{ lab.title }}
+                    </a>
+                  </h4>
+
+                </div>
+
+                {% if lab.objectif %}
+
+                  <p>
+                    {{ lab.objectif }}
+                  </p>
+
+                {% endif %}
+
+              </article>
+
+            {% else %}
+
+              <p class="content-error">
+                Lab introuvable : {{ lab_code }}
+              </p>
+
+            {% endif %}
+
+          {% endfor %}
+
+        </div>
+
+      </section>
+
+    {% endif %}
+
+
+    <!-- ==================================================
+         3. ADAPTER — PROTOTYPE
+         ================================================== -->
+
+    {% if page.prototype and page.prototype.size > 0 %}
+
+      <section class="session-phase">
+
+        <div class="session-phase-header">
+
+          <div class="session-phase-marker">
+            3
+          </div>
+
+          <div>
+            <span class="session-phase-label">
+              Adapter
+            </span>
+
+            <h3>Prototype</h3>
+          </div>
+
+        </div>
+
+
+        <div class="activity-list">
+
+          {% for prototype_code in page.prototype %}
+
+            {% assign prototype =
+              site.prototypes
+              | where: "code", prototype_code
+              | first
+            %}
+
+            {% if prototype %}
+
+              <article class="activity-card activity-card-featured">
+
+                <div class="activity-card-header">
+
+                  <span class="activity-code">
+                    {{ prototype.code }}
+                  </span>
+
+                  <h4>
+                    <a href="{{ prototype.url | relative_url }}">
+                      {{ prototype.title }}
+                    </a>
+                  </h4>
+
+                </div>
+
+
+                {% if prototype.travail_a_faire %}
+
+                  <div class="activity-work">
+
+                    <h5>Travail à faire</h5>
+
+                    <div>
+                      {{ prototype.travail_a_faire | markdownify }}
+                    </div>
+
+                  </div>
+
+                {% endif %}
+
+
+                {% if prototype.livrable and prototype.livrable.size > 0 %}
+
+                  <div class="activity-deliverables">
+
+                    <h5>Livrable</h5>
+
+                    <ul>
+
+                      {% for livrable in prototype.livrable %}
+
+                        <li>
+                          {{ livrable }}
+                        </li>
+
+                      {% endfor %}
+
+                    </ul>
+
+                  </div>
+
+                {% endif %}
+
+              </article>
+
+            {% else %}
+
+              <p class="content-error">
+                Prototype introuvable : {{ prototype_code }}
+              </p>
+
+            {% endif %}
+
+          {% endfor %}
+
+        </div>
+
+      </section>
+
+    {% endif %}
+
+
+    <!-- ==================================================
+         4. TRANSPOSER — PROJET FIL ROUGE
+         ================================================== -->
+
+    {% if page.projet_fil_rouge and page.projet_fil_rouge.size > 0 %}
+
+      <section class="session-phase session-phase-final">
+
+        <div class="session-phase-header">
+
+          <div class="session-phase-marker">
+            4
+          </div>
+
+          <div>
+            <span class="session-phase-label">
+              Transposer
+            </span>
+
+            <h3>Projet Fil Rouge</h3>
+          </div>
+
+        </div>
+
+
+        <div class="activity-list">
+
+          {% for projet_code in page.projet_fil_rouge %}
+
+            {% assign projet =
+              site.projets
+              | where: "code", projet_code
+              | first
+            %}
+
+            {% if projet %}
+
+              <article class="activity-card activity-card-featured">
+
+                <div class="activity-card-header">
+
+                  <span class="activity-code">
+                    {{ projet.code }}
+                  </span>
+
+                  <h4>
+                    <a href="{{ projet.url | relative_url }}">
+                      {{ projet.title }}
+                    </a>
+                  </h4>
+
+                </div>
+
+
+                {% if projet.travail_a_faire %}
+
+                  <div class="activity-work">
+
+                    <h5>Travail à faire</h5>
+
+                    <div>
+                      {{ projet.travail_a_faire | markdownify }}
+                    </div>
+
+                  </div>
+
+                {% endif %}
+
+
+                {% if projet.livrable and projet.livrable.size > 0 %}
+
+                  <div class="activity-deliverables">
+
+                    <h5>Livrable</h5>
+
+                    <ul>
+
+                      {% for livrable in projet.livrable %}
+
+                        <li>
+                          {{ livrable }}
+                        </li>
+
+                      {% endfor %}
+
+                    </ul>
+
+                  </div>
+
+                {% endif %}
+
+              </article>
+
+            {% else %}
+
+              <p class="content-error">
+                Projet Fil Rouge introuvable : {{ projet_code }}
+              </p>
+
+            {% endif %}
+
+          {% endfor %}
+
+        </div>
+
+      </section>
+
+    {% endif %}
+
+  </section>
+
+</div>
+

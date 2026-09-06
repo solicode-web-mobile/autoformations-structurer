@@ -1,0 +1,88 @@
+{% if include.tutos and include.tutos.size > 0 %}
+
+  <div class="tuto-list">
+
+    {% assign displayed_tutos = "" | split: "" %}
+
+    {% for tuto in include.tutos %}
+
+      {% unless displayed_tutos contains tuto.tuto_id %}
+
+        {% assign displayed_tutos =
+          displayed_tutos | push: tuto.tuto_id
+        %}
+
+        {% assign tuto_versions =
+          include.tutos
+          | where: "tuto_id", tuto.tuto_id
+        %}
+
+        {% assign tuto_normal =
+          tuto_versions
+          | where: "version", "normal"
+          | first
+        %}
+
+        {% assign tuto_compact =
+          tuto_versions
+          | where: "version", "compact"
+          | first
+        %}
+
+        {% assign tuto_detaille =
+          tuto_versions
+          | where: "version", "detaille"
+          | first
+        %}
+
+        {% if tuto_normal %}
+
+          <a
+            href="{{ tuto_normal.url | relative_url }}"
+            class="tuto-card"
+            data-tuto-link
+            data-tuto-id="{{ tuto.tuto_id }}"
+            data-normal-url="{{ tuto_normal.url | relative_url }}"
+            data-compact-url="{% if tuto_compact %}{{ tuto_compact.url | relative_url }}{% endif %}"
+            data-detaille-url="{% if tuto_detaille %}{{ tuto_detaille.url | relative_url }}{% endif %}"
+          >
+
+            <!-- <span class="tuto-card-code">
+              {{ tuto.tuto_id }} —
+            </span> -->
+
+            <span class="tuto-card-title">
+              {{ tuto_normal.title }}
+            </span>
+
+          </a>
+
+        {% else %}
+
+          <div class="tuto-card tuto-card-error">
+
+            <span class="tuto-card-code">
+              {{ tuto.tuto_id }}
+            </span>
+
+            <span class="tuto-card-title">
+              Tutoriel incomplet
+            </span>
+
+          </div>
+
+        {% endif %}
+
+      {% endunless %}
+
+    {% endfor %}
+
+  </div>
+
+{% else %}
+
+  <p>
+    Aucun tutoriel associé à cette unité d'apprentissage.
+  </p>
+
+{% endif %}

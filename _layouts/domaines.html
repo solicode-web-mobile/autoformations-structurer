@@ -1,0 +1,254 @@
+---
+layout: default
+---
+
+<div class="domaine-page">
+
+  <!-- ==================================================
+       EN-TÊTE DU DOMAINE
+       ================================================== -->
+
+  <header class="domaine-header">
+
+    <h1>
+      {{ page.title }}
+    </h1>
+
+    {% if page.competence %}
+
+      {% assign competence =
+        site.competences
+        | where: "code", page.competence
+        | first
+      %}
+
+      {% if competence %}
+
+        <p class="domaine-reference">
+          <strong>Compétence :</strong>
+
+          <a href="{{ competence.url | relative_url }}">
+            {{ competence.title }}
+          </a>
+        </p>
+
+      {% else %}
+
+        <p class="domaine-reference">
+          <strong>Compétence :</strong>
+          {{ page.competence }}
+        </p>
+
+      {% endif %}
+
+    {% endif %}
+
+  </header>
+
+
+  <!-- ==================================================
+       CONTENU DU DOMAINE
+       ================================================== -->
+
+  {% if content != "" %}
+
+    <section class="domaine-section">
+      {{ content }}
+    </section>
+
+  {% endif %}
+
+
+  <!-- ==================================================
+       CAPACITÉ FINALE
+       ================================================== -->
+
+  {% if page.capacite_finale %}
+
+    <section class="domaine-section">
+
+      <h2>Capacité finale</h2>
+
+      <p>
+        {{ page.capacite_finale }}
+      </p>
+
+    </section>
+
+  {% endif %}
+
+
+  <!-- ==================================================
+       UNITÉS D'APPRENTISSAGE
+       ================================================== -->
+
+  <section class="domaine-section">
+
+    <h2>Unités d'apprentissage</h2>
+
+    {% assign domaine_uas =
+      site.uas
+      | where: "domaine", page.code
+    %}
+
+    {% if domaine_uas.size > 0 %}
+
+      <div class="domaine-uas">
+
+        {% for ua in domaine_uas %}
+
+          <article class="ua-card">
+
+            <h3>
+              <a href="{{ ua.url | relative_url }}">
+                {{ ua.title }}
+              </a>
+            </h3>
+
+            {% if ua.objectif %}
+
+              <p class="ua-card-objective">
+                {{ ua.objectif }}
+              </p>
+
+            {% endif %}
+
+
+            <!-- ==========================================
+                 TUTORIELS DE L'UA
+                 ========================================== -->
+
+            {% assign ua_tutos =
+              site.tutos
+              | where: "ua", ua.code
+            %}
+
+            {% if ua_tutos.size > 0 %}
+
+              <div class="ua-card-tutos">
+
+                <h4>Tutoriels</h4>
+
+                {% include tuto-list.html tutos=ua_tutos %}
+
+              </div>
+
+            {% endif %}
+
+          </article>
+
+        {% endfor %}
+
+      </div>
+
+    {% else %}
+
+      <p>
+        Aucune unité d'apprentissage associée à ce domaine.
+      </p>
+
+    {% endif %}
+
+  </section>
+
+
+  <!-- ==================================================
+       SESSIONS
+       ================================================== -->
+
+  <section class="domaine-section">
+
+    <h2>Sessions</h2>
+
+    {% assign domaine_session_codes = "" | split: "," %}
+
+    {% assign domaine_uas =
+      site.uas
+      | where: "domaine", page.code
+    %}
+
+
+    <!-- ==========================================
+         Rechercher les Sessions contenant
+         les UA du domaine
+         ========================================== -->
+
+    {% for session in site.sessions %}
+
+      {% for ua_code in session.uas %}
+
+        {% for ua in domaine_uas %}
+
+          {% if ua_code == ua.code %}
+
+            {% unless domaine_session_codes contains session.code %}
+
+              {% assign domaine_session_codes =
+                domaine_session_codes
+                | push: session.code
+              %}
+
+            {% endunless %}
+
+          {% endif %}
+
+        {% endfor %}
+
+      {% endfor %}
+
+    {% endfor %}
+
+
+    <!-- ==========================================
+         Affichage des Sessions
+         ========================================== -->
+
+    {% if domaine_session_codes.size > 0 %}
+
+      <div class="activity-list">
+
+        {% for session_code in domaine_session_codes %}
+
+          {% assign session =
+            site.sessions
+            | where: "code", session_code
+            | first
+          %}
+
+          {% if session %}
+
+            <article class="activity-card">
+
+              <h3>
+                <a href="{{ session.url | relative_url }}">
+                  {{ session.title }}
+                </a>
+              </h3>
+
+              {% if session.objectif %}
+
+                <p>
+                  {{ session.objectif }}
+                </p>
+
+              {% endif %}
+
+            </article>
+
+          {% endif %}
+
+        {% endfor %}
+
+      </div>
+
+    {% else %}
+
+      <p>
+        Aucune session associée à ce domaine.
+      </p>
+
+    {% endif %}
+
+  </section>
+
+</div>
