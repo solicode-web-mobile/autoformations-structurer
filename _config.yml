@@ -4,9 +4,9 @@ description: Autoformations Solicode
 theme: just-the-docs
 
 url: https://solicode-web-mobile.github.io
-baseurl: /autoformations-web
+baseurl: /autoformations-structurer
 
-repository: solicode-web-mobile/autoformations-web
+repository: solicode-web-mobile/autoformations-structurer
 
 aux_links:
   "Solicode.co": https://solicode.co/
