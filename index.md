@@ -4,7 +4,7 @@ layout: home
 nav_order: 0
 ---
 
-# **Autoformations Web Solicode**
+# **Autoformations N2 :  Solicode**
 
 ![introduction](assets/images/introduction-350.png)
 
