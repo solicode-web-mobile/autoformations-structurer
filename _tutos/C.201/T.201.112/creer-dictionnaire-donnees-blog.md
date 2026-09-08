@@ -100,7 +100,7 @@ Créez une liste de toutes les données identifiées.
 
 **Exemple :**
 
-```text id="q2m9d4"
+```text"
 titre
 contenu
 date_publication
@@ -117,7 +117,7 @@ description
 
 Pour chaque donnée, indiquez :
 
-```text id="a2th9z"
+```text"
 Nom
 Signification
 Type
@@ -145,7 +145,7 @@ Pour chaque donnée, vérifiez :
 
 Dans VS Code, créez le fichier :
 
-```text id="e9qmb7"
+```text
 dictionnaire_donnees.csv
 ```
 
@@ -153,7 +153,7 @@ dictionnaire_donnees.csv
 
 Ajoutez la première ligne :
 
-```csv id="6fm3zx"
+```csv"
 Nom,Signification,Type,Format,Taille,Obligatoire,Calculée
 ```
 
@@ -163,7 +163,7 @@ Ajoutez une ligne pour chaque donnée identifiée.
 
 **Exemple :**
 
-```csv id="ce8x8z"
+```csv"
 titre,Titre de l’article,Texte,Texte,255,Oui,Non
 contenu,Contenu de l’article,Texte,Texte long,,Oui,Non
 date_publication,Date de publication,Date,JJ/MM/AAAA,,Oui,Non
