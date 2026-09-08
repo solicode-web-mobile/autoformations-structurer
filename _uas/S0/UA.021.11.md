@@ -2,8 +2,8 @@
 title: "De la maquette au dictionnaire de données"
 layout: ua
 code: "UA.021.11"
-competence: "C.021"
-domaine: "D.021.1"
+competence: "C.201"
+domaine: "D.201.1"
 duree: 2
 objectif: >
   Identifier les données nécessaires à une fonctionnalité Web à partir d’une maquette,

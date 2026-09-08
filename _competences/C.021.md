@@ -1,9 +1,9 @@
 ---
-title: "Réaliser une fonctionnalité Web simple"
+title: "Rappel - Réaliser une fonctionnalité Web simple"
 
 layout: competences
 
-code: "C.021"
+code: "C.201"
 
 niveau: "N1"
 

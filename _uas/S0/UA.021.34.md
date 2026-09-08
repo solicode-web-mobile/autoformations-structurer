@@ -2,7 +2,7 @@
 title: "Trier un tableau"
 layout: ua
 code: "UA.021.34"
-competence: "C.021"
+competence: "C.201"
 domaine: "D.021.3"
 duree: 1
 objectif: >

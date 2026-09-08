@@ -2,8 +2,8 @@
 title: "Analyser les données et identifier les entités"
 layout: ua
 code: "UA.021.12"
-competence: "C.021"
-domaine: "D.021.1"
+competence: "C.201"
+domaine: "D.201.1"
 duree: 2
 objectif: >
   Analyser les données d’une fonctionnalité Web afin d’identifier les dépendances

@@ -2,7 +2,7 @@
 title: "Organiser les tâches selon le temps disponible"
 layout: ua
 code: "UA.021.62"
-competence: "C.021"
+competence: "C.201"
 domaine: "D.021.6"
 duree: 1
 objectif: >

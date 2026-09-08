@@ -10,17 +10,6 @@ nav_order: 1
 ---
 
 
----
-
-title: "Définir une donnée et un dictionnaire de données"
-layout: tuto
-slug: "definir-donnee-dictionnaire-donnees"
-permalink: /tutos/:slug/compact
-tuto_id: "T.021.11.1"
-version: "compact"
-ua: "UA.021.11"
-nav_order: 1
-------------
 
 ## 1. Objectif
 

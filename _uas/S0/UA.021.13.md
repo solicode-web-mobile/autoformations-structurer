@@ -2,8 +2,8 @@
 title: "Construire le MCD"
 layout: ua
 code: "UA.021.22"
-competence: "C.021"
-domaine: "D.021.1"
+competence: "C.201"
+domaine: "D.201.1"
 duree: 2
 objectif: >
   Construire un modèle conceptuel de données cohérent en identifiant les

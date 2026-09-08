@@ -8,7 +8,7 @@ version: "compact"
 ua: "UA.021.11"
 nav_order: 2
 ---
----
+
 
 title: "Créer le dictionnaire de données d’un Blog"
 layout: tuto

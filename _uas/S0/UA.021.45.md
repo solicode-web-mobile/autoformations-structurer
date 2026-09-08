@@ -2,7 +2,7 @@
 title: "Corriger et vérifier un traitement"
 layout: ua
 code: "UA.021.45"
-competence: "C.021"
+competence: "C.201"
 domaine: "D.021.4"
 duree: 1
 objectif: >

@@ -2,7 +2,7 @@
 title: "Rechercher une valeur maximale"
 layout: ua
 code: "UA.021.32"
-competence: "C.021"
+competence: "C.201"
 domaine: "D.021.3"
 duree: 1
 objectif: >

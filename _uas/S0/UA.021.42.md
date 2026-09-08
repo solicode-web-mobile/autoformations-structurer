@@ -2,7 +2,7 @@
 title: "Suivre l’exécution ligne par ligne"
 layout: ua
 code: "UA.021.42"
-competence: "C.021"
+competence: "C.201"
 domaine: "D.021.4"
 duree: 1
 objectif: >
