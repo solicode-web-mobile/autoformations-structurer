@@ -1,11 +1,11 @@
 ---
-title: "Identifier le contexte et les acteurs"
+title: "Définir une donnée et un dictionnaire de données"
 layout: tuto
-slug: "identifier-contexte-acteurs"
+slug: "definir-donnee-dictionnaire-donnees"
 permalink: /tutos/:slug/
-tuto_id: "T.111.111"
+tuto_id: "T.021.111"
 version: "normal"
-ua: "UA.111.11"
+ua: "UA.021.11"
 nav_order: 1
 ---
 

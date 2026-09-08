@@ -1,32 +1,39 @@
 ---
-title: "Identifier les dépendances fonctionnelles"
+title: "Construire le MCD"
 layout: ua
-code: "UA.021.13"
+code: "UA.021.22"
 competence: "C.021"
 domaine: "D.021.1"
-duree: 1
+duree: 2
 objectif: >
-  Identifier les dépendances entre les données afin de comprendre les relations
-  qui existent entre les informations manipulées par une fonctionnalité Web.
+  Construire un modèle conceptuel de données cohérent en identifiant les
+  associations et les cardinalités entre les entités à partir du besoin analysé.
 description: >
-  À partir du dictionnaire de données et des informations fournies par le besoin,
-  analyser les relations entre les données afin d’identifier quelles données
-  déterminent ou dépendent d’autres données et de préparer la structuration
-  du modèle de données.
+  À partir de la maquette, du dictionnaire de données, des dépendances
+  fonctionnelles, des entités et de leurs propriétés, analyser les relations
+  entre les objets métier afin d’identifier les associations et leurs
+  cardinalités, puis construire le MCD complet représentant le besoin.
 notions:
- -"Dépendance fonctionnelle"
- -"Donnée déterminante"
- -"Donnée dépendante"
- -"Relation entre les données"
- -"Identifiant"
- -"Unicité d’une donnée"
- -"Lecture du dictionnaire de données"
- -"Analyse des dépendances"
+ - "Association"
+ - "Relation entre entités"
+ - "Cardinalité"
+ - "Occurrence"
+ - "Association 1:1"
+ - "Association 1:N"
+ - "Association N:N"
+ - "Règle de gestion"
+ - "Modèle Conceptuel de Données (MCD)"
+ - "Entité"
+ - "Propriété"
+ - "Identifiant"
+ - "Dépendance fonctionnelle"
+ - "Représentation graphique du MCD"
 livrable: >
-  Analyse des dépendances fonctionnelles indiquant, pour les principales données,
-  les relations de détermination entre les informations identifiées.
+  MCD complet d’une fonctionnalité Web représentant les entités, leurs
+  propriétés, les associations et les cardinalités identifiées à partir du besoin.
   travail_a_faire: >
-  À partir du dictionnaire de données du Blog personnel, identifier les dépendances
-  fonctionnelles entre les données des objets Article, Auteur et Catégorie et
-  représenter les principales relations de détermination.
+  À partir des maquettes et des analyses réalisées pour le Blog personnel,
+  identifier les associations entre Article, Auteur et Catégorie, déterminer
+  leurs cardinalités à partir des règles de gestion, puis construire le MCD
+  complet.
 ---
