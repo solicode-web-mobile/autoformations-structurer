@@ -10,21 +10,26 @@ nav_order: 1
 ---
 
 
-
 ## 1. Objectif
 
-Comprendre ce qu’est une donnée et un dictionnaire de données, puis présenter ces notions avec des exemples simples.
+Comprendre ce qu’est une **donnée** et un **dictionnaire de données**.
+
+Identifier les principales informations utilisées pour décrire une donnée.
+
+Créer une présentation simple pour expliquer ces notions.
 
 ## 2. Prérequis
 
 * Savoir lire une information simple.
-* Savoir créer une présentation.
+* Savoir créer et modifier une présentation.
 
 # Partie 1 — Théorie
 
-## 1.1. Donnée
+## 1.1. Qu’est-ce qu’une donnée ?
 
 Une **donnée** est une information utilisée par une application.
+
+Une donnée peut représenter une personne, un produit, une date, un prix ou une autre information utile.
 
 **Exemple :**
 
@@ -34,60 +39,127 @@ Nom : Madani Ali
 Email : madani@example.com
 ```
 
-## 1.2. Dictionnaire de données
+Ici :
+
+* `Nom` est une donnée ;
+* `Âge` est une donnée ;
+* `Email` est une donnée.
+
+### À retenir
+
+Une **donnée** représente une information utilisée par l’application.
+
+## 1.2. Qu’est-ce qu’un dictionnaire de données ?
 
 Un **dictionnaire de données** est un document qui décrit les données utilisées par une application.
 
-Il peut préciser :
+Pour chaque donnée, il peut préciser :
 
-```text
-Nom
-Signification
-Type
-Format
-Taille
-Obligatoire ou facultative
-Calculée ou non
-```
+* son nom ;
+* sa signification ;
+* son type ;
+* son format ;
+* sa taille ;
+* si elle est obligatoire ;
+* si elle est calculée.
 
 **Exemple :**
 
-| Nom   | Signification      | Type   | Format         | Calculée |
-| ----- | ------------------ | ------ | -------------- | -------- |
-| nom   | Nom d’une personne | Texte  | 100 caractères | Non      |
-| age   | Âge d’une personne | Nombre | Entier         | Non      |
-| email | Adresse email      | Texte  | Adresse email  | Non      |
+| Nom   | Signification      | Type   | Format | Taille | Obligatoire | Calculée |
+| ----- | ------------------ | ------ | ------ | ------ | ----------- | -------- |
+| nom   | Nom d’une personne | Texte  | Texte  | 100    | Oui         | Non      |
+| age   | Âge d’une personne | Nombre | Entier | —      | Oui         | Non      |
+| email | Adresse email      | Texte  | Email  | 255    | Oui         | Non      |
 
-## 1.3. À retenir
+### À retenir
 
-* Une **donnée** est une information.
-* Un **dictionnaire de données** décrit les données.
-* Une donnée peut être saisie, affichée ou calculée.
-* Le dictionnaire aide à préparer la conception du modèle de données.
+Le dictionnaire permet de **décrire et organiser les données** avant la conception du modèle de données.
+
+## 1.3. Donnée obligatoire et donnée facultative
+
+Une donnée peut être **obligatoire** ou **facultative**.
+
+* **Obligatoire** : la donnée doit être renseignée.
+* **Facultative** : la donnée peut rester vide.
+
+**Exemple :**
+
+```text
+Nom : obligatoire
+Téléphone : facultatif
+```
+
+## 1.4. Donnée calculée
+
+Une donnée **calculée** est obtenue à partir d’autres données.
+
+**Exemple :**
+
+```text
+Prix : 100
+Quantité : 2
+Total : 200
+```
+
+Le `Total` est une donnée calculée.
+
+### À retenir
+
+Toutes les données ne sont pas calculées.
+
+Une donnée peut être saisie directement ou être obtenue par un calcul.
 
 # Partie 2 — Pratique
 
-## 2.1. Créer une présentation
+## 2.1. Préparer la présentation
 
-### Étape 1 — Créer les slides
+### Étape 1 — Créer la présentation
 
-Créez une présentation sur :
+Créez une nouvelle présentation.
+
+Ajoutez le titre :
 
 ```text
-Donnée
-Dictionnaire de données
+Donnée et dictionnaire de données
 ```
 
-### Étape 2 — Présenter les notions
+### Étape 2 — Présenter la notion de donnée
 
-Pour chaque notion, ajoutez :
+Créez une slide avec :
 
-* une définition simple ;
-* un exemple concret.
+* la définition d’une donnée ;
+* un exemple simple.
 
-### Étape 3 — Présenter un dictionnaire
+**Exemple :**
 
-Ajoutez un exemple de tableau avec :
+```text
+Donnée = information utilisée par une application.
+
+Exemples :
+Nom
+Âge
+Email
+```
+
+### Étape 3 — Présenter le dictionnaire de données
+
+Créez une slide avec :
+
+* la définition du dictionnaire de données ;
+* son rôle ;
+* un exemple de tableau.
+
+Utilisez par exemple :
+
+| Nom   | Signification      | Type   | Format |
+| ----- | ------------------ | ------ | ------ |
+| nom   | Nom d’une personne | Texte  | Texte  |
+| age   | Âge d’une personne | Nombre | Entier |
+| email | Adresse email      | Texte  | Email  |
+
+### Étape 4 — Présenter les caractéristiques
+
+Ajoutez une slide pour présenter les principales caractéristiques :
 
 ```text
 Nom
@@ -99,20 +171,38 @@ Obligatoire
 Calculée
 ```
 
+Ajoutez un exemple pour chaque caractéristique.
+
+### Étape 5 — Vérifier la présentation
+
+Vérifiez que :
+
+* les définitions sont présentes ;
+* les exemples sont simples ;
+* le tableau est lisible ;
+* les notions sont correctement expliquées.
+
 **Résultat attendu :**
 
-Une présentation courte qui explique la **donnée** et le **dictionnaire de données** avec des exemples simples.
+Une présentation claire qui explique :
+
+* ce qu’est une donnée ;
+* ce qu’est un dictionnaire de données ;
+* les principales caractéristiques d’une donnée ;
+* un exemple de dictionnaire de données.
 
 # 3. Bilan
 
 **Vous avez réalisé :** une présentation sur la donnée et le dictionnaire de données.
 
-**Vous savez maintenant :** expliquer ces notions et identifier les principales informations d’un dictionnaire de données.
+**Vous savez maintenant :** définir une donnée, expliquer le rôle d’un dictionnaire de données et présenter les principales caractéristiques d’une donnée.
 
 # 4. Glossaire
 
 * **Donnée** : information utilisée par une application.
 * **Dictionnaire de données** : document qui décrit les données d’une application.
-* **Type** : nature d’une donnée.
+* **Type** : nature d’une donnée, par exemple Texte ou Nombre.
 * **Format** : manière dont une donnée est écrite.
-* **Donnée calculée** : donnée obtenue à partir d’un calcul.
+* **Obligatoire** : donnée qui doit être renseignée.
+* **Facultative** : donnée qui peut rester vide.
+* **Donnée calculée** : donnée obtenue à partir d’autres données.
