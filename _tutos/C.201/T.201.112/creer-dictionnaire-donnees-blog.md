@@ -40,7 +40,7 @@ Ces informations peuvent être :
 
 **Exemple :**
 
-```text id="u8r9pa"
+```text"
 Titre : Mon premier article
 Auteur : Madani Ali
 Catégorie : Laravel
