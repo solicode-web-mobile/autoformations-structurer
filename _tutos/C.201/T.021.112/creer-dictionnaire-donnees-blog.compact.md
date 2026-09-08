@@ -9,17 +9,6 @@ ua: "UA.021.11"
 nav_order: 2
 ---
 
-
-title: "Créer le dictionnaire de données d’un Blog"
-layout: tuto
-slug: "creer-dictionnaire-donnees-blog"
-permalink: /tutos/:slug/compact
-tuto_id: "T.021.11.2"
-version: "compact"
-ua: "UA.021.11"
-nav_order: 2
-------------
-
 ## 1. Objectif
 
 Créer le dictionnaire de données du **Blog personnel** à partir des maquettes.
