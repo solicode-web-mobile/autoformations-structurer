@@ -20,6 +20,10 @@ nav_order: 2
 * Comprendre ce qu’est un dictionnaire de données.
 * Savoir lire une maquette.
 * Savoir utiliser VS Code.
+  https://solicode-web-mobile.github.io/maquette-blog/
+* Installer l’extension **Edit CSV** dans VS Code.
+
+
 
 # Partie 1 — Théorie
 
