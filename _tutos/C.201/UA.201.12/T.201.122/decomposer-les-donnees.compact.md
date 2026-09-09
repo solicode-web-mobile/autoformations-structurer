@@ -8,12 +8,13 @@ version: "compact"
 ua: "UA.201.12"
 nav_order: 2
 --- 
+ 
 
 ## 1. Objectif
 
 À partir des dépendances fonctionnelles, décomposer progressivement une relation contenant plusieurs groupes de données.
 
-Comprendre pourquoi certaines données doivent être sorties de la relation et identifier les entités obtenues.
+Comprendre pourquoi certaines données doivent être séparées de la relation et identifier les entités obtenues.
 
 ## 2. Prérequis
 
@@ -23,84 +24,47 @@ Comprendre pourquoi certaines données doivent être sorties de la relation et i
 
 # Partie 1 — Théorie
 
-## 1.1. Une dépendance peut être correcte sans garder toutes les données dans la relation
+## 1.1. Utiliser les dépendances fonctionnelles
 
-Dans le Blog, on peut avoir :
+Dans le Blog, nous avons par exemple :
 
 ```text
-id_article → titre_article, contenu_article, date_publication
+id_auteur → nom_auteur, email_auteur
 ```
 
-On peut également observer :
+Cette dépendance montre que les données de l’auteur forment un groupe.
+
+Nous pouvons créer :
+
+```text
+AUTEUR(
+    id_auteur,
+    nom_auteur,
+    email_auteur
+)
+```
+
+Dans `ARTICLE`, nous gardons `id_auteur` pour retrouver l’auteur.
+
+## 1.2. Identifier un autre groupe
+
+Nous pouvons aussi observer :
 
 ```text
 id_article → nom_categorie
 ```
 
-Cette dépendance est correcte si chaque article possède une seule catégorie.
-
-Mais cela ne signifie pas que `nom_categorie` doit rester dans `ARTICLE`.
-
-Il faut observer les données.
+Cette dépendance est correcte, mais `nom_categorie` peut être répété pour plusieurs articles.
 
 Exemple :
 
-```text
-id_article | nom_categorie
------------|--------------
-1          | PHP
-2          | PHP
-3          | Mobile
-```
+| id_article | nom_categorie |
+| ---------- | ------------- |
+| A01        | PHP           |
+| A02        | PHP           |
+| A03        | Mobile        |
 
-On remarque que `PHP` apparaît plusieurs fois.
-
-## 1.2. Pourquoi sortir les données de la catégorie ?
-
-Regardons toutes les données de la catégorie :
-
-```text
-nom_categorie
-description_categorie
-```
-
-Exemple :
-
-```text
-Article   | nom_categorie | description_categorie
-----------|---------------|----------------------
-Laravel   | PHP           | Langage de programmation
-Eloquent  | PHP           | Langage de programmation
-Kotlin    | Mobile        | Développement mobile
-```
-
-Les informations de `PHP` sont enregistrées plusieurs fois.
-
-Cela crée une répétition de données.
-
-Imaginez maintenant que la description de `PHP` change.
-
-Il faudrait modifier plusieurs lignes.
-
-Une ligne pourrait contenir :
-
-```text
-PHP | Langage de programmation
-```
-
-et une autre :
-
-```text
-PHP | Langage de programmation Web
-```
-
-Les données deviennent incohérentes.
-
-Nous devons donc éviter de stocker plusieurs fois les mêmes informations sur une catégorie.
-
-## 1.3. Chercher un identifiant pour la catégorie
-
-Pour séparer les données de catégorie, nous devons pouvoir identifier chaque catégorie.
+Les données de la catégorie peuvent donc être séparées.
 
 Nous ajoutons :
 
@@ -108,13 +72,13 @@ Nous ajoutons :
 id_categorie
 ```
 
-Nous pouvons alors écrire :
+Puis :
 
 ```text
 id_categorie → nom_categorie, description_categorie
 ```
 
-Nous obtenons :
+Nous créons :
 
 ```text
 CATEGORIE(
@@ -124,60 +88,60 @@ CATEGORIE(
 )
 ```
 
-Dans `ARTICLE`, nous gardons seulement :
+Dans `ARTICLE`, nous gardons `id_categorie`.
+
+## 1.3. Obtenir les relations
+
+Après la séparation, nous obtenons :
 
 ```text
-id_categorie
+ARTICLE(
+    id_article,
+    titre_article,
+    contenu_article,
+    date_publication,
+    id_auteur,
+    id_categorie
+)
 ```
-
-L’article peut ainsi retrouver sa catégorie sans recopier toutes les informations de la catégorie.
-
-## 1.4. Comprendre pourquoi la sortie est nécessaire
-
-Même si :
 
 ```text
-id_article → nom_categorie
+AUTEUR(
+    id_auteur,
+    nom_auteur,
+    email_auteur
+)
 ```
-
-est vraie, nous cherchons une organisation qui évite les répétitions.
-
-Nous obtenons :
 
 ```text
-id_article → id_categorie
+CATEGORIE(
+    id_categorie,
+    nom_categorie,
+    description_categorie
+)
 ```
 
-puis :
+Ces relations représentent les entités :
 
 ```text
-id_categorie → nom_categorie, description_categorie
+ARTICLE
+AUTEUR
+CATEGORIE
 ```
 
-Les informations de la catégorie sont donc enregistrées une seule fois.
+## 1.4. À retenir
 
-La même logique peut être appliquée aux données de l’auteur.
-
-## 1.5. À retenir
-
-* Une dépendance fonctionnelle peut être correcte sans être suffisante pour organiser les données.
-* Une donnée répétée peut créer des problèmes de modification et de cohérence.
-* Si plusieurs articles utilisent la même catégorie, les informations de cette catégorie ne doivent pas être répétées dans chaque article.
-* On crée une relation `CATEGORIE`.
-* On ajoute un identifiant pour identifier chaque catégorie.
-* On vérifie alors :
-
-```text
-id_categorie → nom_categorie, description_categorie
-```
-
-* Dans `ARTICLE`, on garde `id_categorie` pour retrouver la catégorie.
+* Une dépendance fonctionnelle aide à repérer un groupe de données.
+* Les données répétées peuvent être séparées.
+* Un identifiant permet de retrouver les données séparées.
+* Après chaque séparation, on reprend les données restantes.
+* Les relations obtenues permettent d’identifier les entités.
 
 # Partie 2 — Pratique
 
-## 2.1. Observer les données
+## 2.1. Analyser les données
 
-### Étape 1 — Lire la relation
+### Étape 1 — Observer la relation
 
 Travaillez avec :
 
@@ -193,45 +157,29 @@ COMMANDE(
 )
 ```
 
-### Étape 2 — Observer les répétitions
+Observez :
 
-Observez les données fournies.
+| numero_commande | date_commande | nom_client  | email_client                              | nom_produit | prix_produit | quantite_commandee |
+| --------------- | ------------- | ----------- | ----------------------------------------- | ----------- | -----------: | -----------------: |
+| C001            | 10/09/2026    | Madani Ali  | [madani@mail.com](mailto:madani@mail.com) | Clavier     |          200 |                  2 |
+| C001            | 10/09/2026    | Madani Ali  | [madani@mail.com](mailto:madani@mail.com) | Souris      |          100 |                  1 |
+| C002            | 11/09/2026    | Sara Amrani | [sara@mail.com](mailto:sara@mail.com)     | Clavier     |          200 |                  3 |
 
-Repérez les informations qui se répètent.
+### Étape 2 — Rechercher les groupes
 
-Pour chaque répétition, écrivez le problème que vous observez.
+Cherchez les données qui se répètent.
 
-## 2.2. Chercher un groupe à sortir
+Pour chaque groupe, cherchez :
 
-### Étape 3 — Chercher les données qui décrivent une même réalité
+* l’identifiant ;
+* les données qu’il détermine ;
+* la dépendance fonctionnelle.
 
-Repérez un groupe de colonnes qui représente une même réalité.
+## 2.2. Décomposer la relation
 
-### Étape 4 — Vérifier le problème
+### Étape 3 — Séparer un groupe
 
-Demandez :
-
-> Ces informations sont-elles répétées dans plusieurs commandes ?
-
-> Que se passe-t-il si une information change ?
-
-### Étape 5 — Chercher un identifiant
-
-Cherchez une donnée qui permet d’identifier chaque occurrence du groupe.
-
-S’il n’existe pas d’identifiant adapté, ajoutez-en un.
-
-### Étape 6 — Vérifier la dépendance fonctionnelle
-
-Vérifiez que l’identifiant détermine une seule valeur pour chaque donnée du groupe.
-
-Écrivez :
-
-```text
-identifiant → données dépendantes
-```
-
-### Étape 7 — Sortir le groupe
+Choisissez un groupe de données.
 
 Créez une nouvelle relation avec :
 
@@ -241,63 +189,55 @@ identifiant
 données dépendantes
 ```
 
-Dans la relation de départ, gardez uniquement l’identifiant nécessaire pour retrouver l’occurrence.
+Conservez l’identifiant dans `COMMANDE`.
 
-## 2.3. Continuer avec les données restantes
+### Étape 4 — Continuer
 
-### Étape 8 — Reprendre la relation restante
-
-Observez les données qui n’ont pas encore été traitées.
+Reprenez les données restantes.
 
 Cherchez un nouveau groupe.
 
-### Étape 9 — Recommencer
+Cherchez ou ajoutez son identifiant.
 
-Cherchez :
+Écrivez sa dépendance fonctionnelle.
 
-* les répétitions ;
-* le groupe concerné ;
-* l’identifiant ;
-* les dépendances fonctionnelles.
+Séparez le groupe.
 
-Séparez le groupe puis reprenez les données restantes.
-
-Continuez jusqu’à ce qu’il n’y ait plus de groupe à sortir.
+Continuez jusqu’à ce qu’il n’y ait plus de groupe à séparer.
 
 **Résultat attendu :**
 
-Des relations organisées avec leurs identifiants et leurs dépendances fonctionnelles, sans répétitions inutiles.
+Un ensemble de relations structurées avec leurs identifiants et leurs dépendances fonctionnelles.
 
-## 2.4. Identifier les entités
+## 2.3. Identifier les entités
 
-### Étape 10 — Interpréter les relations
+### Étape 5 — Interpréter les relations
 
 Pour chaque relation obtenue, indiquez ce qu’elle représente dans le système.
 
-### Étape 11 — Identifier les propriétés
+### Étape 6 — Identifier les propriétés
 
-Indiquez pour chaque entité :
+Pour chaque entité, indiquez :
 
 * son identifiant ;
 * ses propriétés.
 
 **Résultat attendu :**
 
-Une liste d’entités avec leurs identifiants et leurs propriétés.
+La liste des entités avec leurs identifiants et leurs propriétés.
 
 # 3. Bilan
 
-**Vous avez réalisé :** la décomposition d’une relation en supprimant les répétitions de données.
+**Vous avez réalisé :** la décomposition progressive d’une relation à partir des dépendances fonctionnelles.
 
-**Vous savez maintenant :** expliquer pourquoi un groupe de données doit être sorti d’une relation, créer un identifiant, identifier les dépendances fonctionnelles et construire des relations plus cohérentes.
+**Vous savez maintenant :** identifier les groupes de données, les séparer avec leurs identifiants et obtenir les entités correspondantes.
 
 # 4. Glossaire
 
-* **Répétition** : même information enregistrée plusieurs fois.
-* **Cohérence** : fait de conserver une information correcte et identique partout où elle est utilisée.
+* **Décomposition** : séparation d’une relation en plusieurs relations.
+* **Relation** : ensemble de données organisé en lignes et en colonnes.
+* **Groupe de données** : ensemble de données qui décrit une même réalité.
 * **Identifiant** : donnée qui permet d’identifier une occurrence de façon unique.
 * **Dépendance fonctionnelle** : relation dans laquelle une donnée détermine une seule valeur d’une autre donnée.
-* **Relation** : ensemble de données organisé en lignes et en colonnes.
-* **Décomposition** : séparation d’une relation en plusieurs relations.
 * **Entité** : élément du système représenté dans le modèle de données.
 * **Propriété** : donnée qui décrit une entité.
