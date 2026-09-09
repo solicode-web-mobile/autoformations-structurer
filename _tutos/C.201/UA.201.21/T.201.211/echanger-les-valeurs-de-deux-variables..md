@@ -9,91 +9,91 @@ ua: "UA.201.21"
 nav_order: 1
 ---
 
+ 
 ## 1. Objectif
 
-Écrire un traitement JavaScript pour échanger les valeurs de deux variables.
+Écrire un traitement JavaScript permettant d’échanger les valeurs de deux variables.
 
-Exécuter le programme avec **Node.js** et trouver les erreurs avec le **débogueur de VS Code**.
+Exécuter le programme avec **Node.js** et utiliser le **débogueur de VS Code** pour observer son fonctionnement et identifier une éventuelle erreur.
 
 ## 2. Prérequis
 
-* Savoir créer un fichier.
-* Connaître les variables.
-* Connaître l’affectation d’une valeur.
-* Savoir utiliser VS Code.
-* Savoir afficher une valeur avec `console.log()`.
+- Savoir créer un fichier.
+- Connaître les variables.
+- Connaître l’affectation d’une valeur.
+- Savoir utiliser VS Code.
+- Savoir afficher une valeur avec `console.log()`.
 
-# Partie 1 — Théorie
+# Partie 1 — Comprendre le problème
 
 ## 1.1. Le problème
 
 On dispose de deux variables :
 
-* `a` contient une première valeur.
-* `b` contient une deuxième valeur.
+```javascript
+let a = 10;
+let b = 20;
+````
 
-Après le traitement :
-
-* `a` doit contenir l’ancienne valeur de `b`.
-* `b` doit contenir l’ancienne valeur de `a`.
-
-**Exemple :**
-
-Avant :
+Avant le traitement :
 
 ```text
 a = 10
 b = 20
 ```
 
-Après :
+Après le traitement, on souhaite obtenir :
 
 ```text
 a = 20
 b = 10
 ```
 
-## 1.2. Trouver une solution
+Il faut donc échanger les deux valeurs.
 
-Réfléchissez à cette question :
+## 1.2. Pourquoi une solution simple ne fonctionne pas ?
 
-**Comment conserver une valeur avant de la remplacer ?**
+Essayez :
 
-Écrivez votre propre solution.
+```javascript
+a = b;
+b = a;
+```
 
-Ne cherchez pas à copier une solution toute faite.
+Après la première instruction :
 
-## 1.3. À retenir
+```text
+a = 20
+b = 20
+```
 
-* Une valeur peut être remplacée par une autre.
-* Il faut conserver une valeur avant de la remplacer lorsqu’elle sera encore nécessaire.
-* Le programme doit être testé avant d’être validé.
+L’ancienne valeur de `a` a été perdue.
+
+La deuxième instruction ne permet donc plus de retrouver `10`.
+
+## 1.3. Utiliser une variable temporaire
+
+Pour conserver l’ancienne valeur de `a`, on utilise une variable temporaire.
+
+```javascript
+let temporaire = a;
+a = b;
+b = temporaire;
+```
+
+Le traitement se déroule ainsi :
+
+```text
+temporaire = 10
+a = 20
+b = 10
+```
+
+Les valeurs ont bien été échangées.
 
 # Partie 2 — Pratique
 
-## 2.1. Installer Node.js
-
-### Étape 1 — Installer Node.js
-
-Installez **Node.js** sur votre ordinateur.
-
-Pendant l’installation, gardez les options proposées par défaut.
-
-### Étape 2 — Vérifier l’installation
-
-Ouvrez un terminal dans VS Code.
-
-Exécutez :
-
-```bash
-node --version
-```
-
-Vérifiez qu’une version de Node.js s’affiche.
-
-## 2.2. Préparer le programme
-
-### Étape 3 — Créer le fichier
+## 2.1. Préparer le programme
 
 Créez un fichier :
 
@@ -101,91 +101,262 @@ Créez un fichier :
 echange.js
 ```
 
-### Étape 4 — Préparer les valeurs
+Ajoutez :
 
-Dans le fichier, créez deux variables avec des valeurs simples.
+```javascript
+let a = 10;
+let b = 20;
 
-Ajoutez un affichage avant le traitement avec `console.log()`.
+console.log("Avant l'échange :");
+console.log("a =", a);
+console.log("b =", b);
+```
 
-### Étape 5 — Écrire votre traitement
+## 2.2. Écrire le traitement
 
-Écrivez vous-même le traitement qui permet d’échanger les deux valeurs.
+Écrivez le traitement permettant d’échanger les deux valeurs :
 
-Ne consultez pas une solution déjà écrite.
+```javascript
+let temporaire = a;
+a = b;
+b = temporaire;
+```
 
-Ajoutez ensuite un affichage après le traitement.
+Ajoutez ensuite :
 
-**Résultat attendu :**
+```javascript
+console.log("Après l'échange :");
+console.log("a =", a);
+console.log("b =", b);
+```
 
-La valeur de `a` et la valeur de `b` sont inversées.
+Le programme complet est :
+
+```javascript
+let a = 10;
+let b = 20;
+
+console.log("Avant l'échange :");
+console.log("a =", a);
+console.log("b =", b);
+
+let temporaire = a;
+a = b;
+b = temporaire;
+
+console.log("Après l'échange :");
+console.log("a =", a);
+console.log("b =", b);
+```
 
 ## 2.3. Exécuter avec Node.js
 
-### Étape 6 — Lancer le programme
+Ouvrez le terminal de VS Code.
 
-Dans le terminal de VS Code, exécutez :
+Vérifiez que Node.js est disponible :
+
+```bash
+node --version
+```
+
+Puis exécutez :
 
 ```bash
 node echange.js
 ```
 
-### Étape 7 — Vérifier le résultat
+Vous devez obtenir :
 
-Comparez :
+```text
+Avant l'échange :
+a = 10
+b = 20
 
-* les valeurs avant le traitement ;
-* les valeurs après le traitement.
+Après l'échange :
+a = 20
+b = 10
+```
 
-Corrigez votre code si le résultat est incorrect.
+## 2.4. Tester avec d’autres valeurs
 
-## 2.4. Déboguer avec VS Code
+Modifiez les valeurs :
 
-### Étape 8 — Placer un point d’arrêt
+```javascript
+let a = 35;
+let b = 80;
+```
 
-Ouvrez `echange.js`.
+Exécutez à nouveau le programme.
 
-Cliquez dans la marge à gauche d’une ligne de votre traitement pour placer un **point d’arrêt**.
+Le résultat attendu est :
 
-### Étape 9 — Lancer le débogueur
+```text
+a = 80
+b = 35
+```
 
-Ouvrez le panneau **Exécuter et déboguer** de VS Code.
+Testez également avec des valeurs négatives et avec `0`.
 
-Lancez le programme avec le débogueur **Node.js**.
+# Partie 3 — Déboguer avec VS Code
 
-### Étape 10 — Avancer ligne par ligne
+## 3.1. Placer un point d’arrêt
 
-Utilisez **Step Over** pour avancer une ligne à la fois.
+Dans `echange.js`, placez un point d’arrêt sur :
 
-À chaque ligne :
+```javascript
+let temporaire = a;
+```
 
-* observez la valeur de `a` ;
-* observez la valeur de `b` ;
-* vérifiez ce qui change.
+## 3.2. Lancer le débogueur
 
-### Étape 11 — Trouver l’erreur
+Dans VS Code, ouvrez :
 
-Si le résultat est incorrect :
+**Exécuter et déboguer**
 
-* repérez la ligne qui produit le mauvais résultat ;
-* observez les valeurs avant cette ligne ;
-* observez les valeurs après cette ligne ;
-* corrigez votre code ;
-* relancez le débogage.
+Lancez le programme avec **Node.js**.
 
-**Résultat attendu :**
+## 3.3. Suivre l’exécution
 
-Vous pouvez expliquer, ligne par ligne, comment les valeurs changent.
+Utilisez **Step Over** pour avancer instruction par instruction.
 
-# 3. Bilan
+Observez les valeurs :
 
-**Vous avez réalisé :** un programme JavaScript qui échange les valeurs de deux variables.
+```text
+a
+b
+temporaire
+```
 
-**Vous savez maintenant :** écrire, exécuter et déboguer un traitement simple avec **Node.js** et **VS Code**.
+Après :
 
-# 4. Glossaire
+```javascript
+let temporaire = a;
+```
 
-* **Variable** : espace utilisé pour conserver une valeur.
-* **Affectation** : action qui donne une valeur à une variable.
-* **Node.js** : environnement qui permet d’exécuter du JavaScript hors du navigateur.
-* **Débogueur** : outil qui permet d’exécuter un programme étape par étape pour trouver une erreur.
-* **Point d’arrêt** : point où l’exécution du programme s’arrête pour observer son état.
+on doit avoir :
+
+```text
+a = 10
+b = 20
+temporaire = 10
+```
+
+Après :
+
+```javascript
+a = b;
+```
+
+on obtient :
+
+```text
+a = 20
+b = 20
+temporaire = 10
+```
+
+Après :
+
+```javascript
+b = temporaire;
+```
+
+on obtient :
+
+```text
+a = 20
+b = 10
+temporaire = 10
+```
+
+## 3.4. Corriger une erreur
+
+Remplacez temporairement le traitement par :
+
+```javascript
+a = b;
+b = a;
+```
+
+Exécutez le programme.
+
+Vous constaterez que le résultat est incorrect :
+
+```text
+a = 20
+b = 20
+```
+
+Utilisez le débogueur pour identifier l’instruction qui provoque la perte de la valeur initiale de `a`.
+
+Corrigez ensuite le programme avec une variable temporaire.
+
+# Partie 4 — Exercice
+
+Créez un programme avec :
+
+```javascript
+let a = 100;
+let b = 25;
+```
+
+Le programme doit :
+
+1. afficher les valeurs avant l’échange ;
+2. échanger les deux valeurs ;
+3. afficher les valeurs après l’échange ;
+4. être exécuté avec Node.js ;
+5. être vérifié avec le débogueur de VS Code.
+
+Le résultat attendu est :
+
+```text
+Avant :
+a = 100
+b = 25
+
+Après :
+a = 25
+b = 100
+```
+
+# 5. Bilan
+
+Vous savez maintenant :
+
+* utiliser une variable temporaire ;
+* échanger les valeurs de deux variables ;
+* exécuter un programme JavaScript avec Node.js ;
+* suivre l’exécution d’un programme avec le débogueur de VS Code ;
+* identifier et corriger une erreur simple.
+
+# 6. Livrable
+
+Produisez le fichier :
+
+```text
+echange.js
+```
+
+Il doit contenir :
+
+* deux variables ;
+* l’affichage avant l’échange ;
+* le traitement d’échange ;
+* l’affichage après l’échange ;
+* un test permettant de vérifier le résultat.
+
+# 7. Glossaire
+
+**Variable** : espace utilisé pour conserver une valeur.
+
+**Affectation** : opération permettant de donner une valeur à une variable.
+
+**Variable temporaire** : variable utilisée pour conserver provisoirement une valeur pendant un traitement.
+
+**Node.js** : environnement permettant d’exécuter du JavaScript hors du navigateur.
+
+**Débogueur** : outil permettant d’exécuter un programme étape par étape afin d’observer son fonctionnement.
+
+**Point d’arrêt** : emplacement où l’exécution du programme est interrompue pour observer son état.
+ 
