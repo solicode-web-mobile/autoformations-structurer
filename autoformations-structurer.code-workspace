@@ -5,6 +5,21 @@
 		}
 	],
 	"settings": {
-		"hide-files.files": []
+		"hide-files.files": [
+			"_site",
+			".github",
+			".jekyll-cache",
+			"assets",
+			"docs",
+			"_config.yml",
+			".gitignore",
+			"autoformations-structurer.code-workspace",
+			"Gemfile",
+			"Gemfile.lock",
+			"LICENSE",
+			"serve.ps1",
+			"_includes",
+			"_layouts"
+		]
 	}
 }
