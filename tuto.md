@@ -2,6 +2,7 @@
 title: Tutoriel en cours de création
 layout: home
 nav_order: 0
+nav_exclude: true
 ---
 
 # Tutoriel en cours de création
