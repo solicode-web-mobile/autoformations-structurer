@@ -8,42 +8,48 @@ version: "compact"
 ua: "UA.201.21"
 nav_order: 2
 ---
-
-
+ 
 ## 1. Objectif
 
-Rechercher la plus grande valeur d’un tableau en JavaScript.
+Écrire un programme JavaScript qui recherche la plus grande valeur d’un tableau.
 
-Exécuter le programme avec **Node.js** et le déboguer avec **VS Code**.
+Exécuter et tester le programme avec **Node.js**.
 
 ## 2. Prérequis
 
 * Variables.
+* Tableaux.
 * Boucle `for`.
 * `console.log()`.
-* Exécution d’un fichier avec Node.js.
-* Débogage avec VS Code.
+* Node.js.
+* VS Code.
 
 # Partie 1 — Théorie
 
-## 1.1. Tableau
+## 1.1. Rappel JavaScript — Tableau
 
-Un tableau contient plusieurs valeurs.
+Déclarer un tableau :
 
 ```javascript
 let nombres = [12, 5, 27, 9, 18];
 ```
 
-Lire une valeur :
+Lire un élément :
 
 ```javascript
 console.log(nombres[2]);
 ```
 
-Modifier une valeur :
+Écrire une valeur :
 
 ```javascript
 nombres[2] = 30;
+```
+
+Connaître le nombre d’éléments :
+
+```javascript
+nombres.length
 ```
 
 Parcourir le tableau :
@@ -54,13 +60,15 @@ for (let i = 0; i < nombres.length; i++) {
 }
 ```
 
-## 1.2. Rechercher le maximum
+## 1.2. Le problème
 
-Le programme doit trouver la plus grande valeur du tableau.
+Avec le tableau :
 
 ```text
 [12, 5, 27, 9, 18]
 ```
+
+le programme doit trouver la plus grande valeur.
 
 Résultat attendu :
 
@@ -68,11 +76,9 @@ Résultat attendu :
 27
 ```
 
-Pour construire votre solution :
+Trouvez vous-même l’algorithme.
 
-* parcourez le tableau ;
-* comparez les valeurs ;
-* conservez la plus grande valeur trouvée.
+Réfléchissez à la manière de parcourir et de comparer les valeurs.
 
 # Partie 2 — Pratique
 
@@ -86,52 +92,40 @@ Créez :
 maximum.js
 ```
 
-Déclarez un tableau de nombres.
-
-Écrivez votre traitement pour rechercher la plus grande valeur.
-
-**Ne cherchez pas une solution toute faite.**
+Déclarez un tableau de nombres et écrivez votre propre traitement pour rechercher le maximum.
 
 ### Étape 2 — Exécuter
 
-Dans le terminal :
+Dans le terminal de VS Code :
 
 ```bash
 node maximum.js
 ```
 
-Vérifiez que le résultat est correct.
-
-Testez avec plusieurs tableaux.
+Vérifiez le résultat, puis testez avec plusieurs tableaux.
 
 ### Étape 3 — Déboguer
 
-Placez un point d’arrêt au début de votre traitement.
+Utilisez le débogueur **Node.js** de VS Code.
 
-Lancez le débogueur **Node.js** dans VS Code.
+Déboguez votre programme **ligne par ligne** et observez les valeurs des variables pendant l’exécution.
 
-Avancez ligne par ligne et observez :
-
-* `i` ;
-* la valeur du tableau ;
-* la valeur conservée comme maximum.
-
-Corrigez votre code puis relancez le programme.
+Corrigez les erreurs trouvées et relancez les tests.
 
 **Résultat attendu :**
 
-Le programme trouve correctement la plus grande valeur du tableau.
+Le programme affiche correctement la plus grande valeur du tableau.
 
 # 3. Bilan
 
-**Vous avez réalisé :** un programme qui recherche la valeur maximale d’un tableau.
+**Vous avez réalisé :** un programme JavaScript qui recherche la plus grande valeur d’un tableau.
 
-**Vous savez maintenant :** lire, modifier et parcourir un tableau pour rechercher une valeur.
+**Vous savez maintenant :** déclarer, lire et parcourir un tableau pour construire un traitement de recherche.
 
 # 4. Glossaire
 
 * **Tableau** : ensemble de plusieurs valeurs.
-* **Indice** : position d’une valeur dans le tableau.
-* **Maximum** : plus grande valeur.
-* **Parcours** : lecture successive des éléments du tableau.
-* **Débogueur** : outil qui permet de suivre le programme ligne par ligne.
+* **Indice** : position d’un élément dans un tableau.
+* **Maximum** : plus grande valeur d’un ensemble.
+* **Parcours** : lecture successive des éléments d’un tableau.
+* **Débogage** : recherche et correction des erreurs d’un programme.
