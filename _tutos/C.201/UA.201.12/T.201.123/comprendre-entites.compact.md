@@ -4,8 +4,9 @@ layout: tuto
 slug: "comprendre-entites"
 permalink: /tutos/:slug/compact
 tuto_id: "T.201.123"
+ua: "UA.201.12"
 version: "compact"
-------------------
+---
 
 ## 1. Objectif
 

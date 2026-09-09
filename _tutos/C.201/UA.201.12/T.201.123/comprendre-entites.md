@@ -4,6 +4,7 @@ layout: tuto
 slug: "comprendre-entites"
 permalink: /tutos/:slug/
 tuto_id: "T.201.123"
+ua: "UA.201.12"
 version: "normal"
 ---
 
