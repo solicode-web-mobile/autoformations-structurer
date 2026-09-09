@@ -8,12 +8,10 @@ version: "compact"
 ua: "UA.201.12"
 nav_order: 1
 ---
-
+ 
 ## 1. Objectif
 
-Comprendre pourquoi une relation ne doit pas contenir toutes les données d’un besoin.
-
-Découvrir une solution pour éviter les répétitions, puis comprendre la dépendance fonctionnelle entre un identifiant et les données qu’il détermine.
+Comprendre pourquoi certaines données doivent être séparées d’une relation et découvrir comment un identifiant permet de déterminer ces données.
 
 ## 2. Prérequis
 
@@ -23,9 +21,19 @@ Découvrir une solution pour éviter les répétitions, puis comprendre la dépe
 
 ## 1.1. Le problème d’une seule relation
 
-On peut être tenté de mettre toutes les données dans une seule relation.
+À partir du dictionnaire de données du Blog :
 
-Exemple :
+```text
+titre_article
+contenu_article
+date_publication
+nom_auteur
+email_auteur
+nom_categorie
+description_categorie
+```
+
+On peut mettre toutes les données dans une seule relation :
 
 ```text
 ARTICLE(
@@ -39,7 +47,7 @@ ARTICLE(
 )
 ```
 
-On obtient alors des données comme :
+Exemple :
 
 | titre_article | nom_auteur | email_auteur                              | nom_categorie | description_categorie    |
 | ------------- | ---------- | ----------------------------------------- | ------------- | ------------------------ |
@@ -47,18 +55,24 @@ On obtient alors des données comme :
 | Eloquent      | Madani     | [madani@mail.com](mailto:madani@mail.com) | PHP           | Langage de programmation |
 | Kotlin        | Sara       | [sara@mail.com](mailto:sara@mail.com)     | Mobile        | Développement mobile     |
 
+Les informations de l’auteur et de la catégorie sont répétées.
 
-Le problème est visible :
+Une modification doit donc être faite dans plusieurs lignes.
 
-* les données d’un même auteur sont répétées ;
-* les données d’une même catégorie sont répétées ;
-* une modification peut devoir être faite dans plusieurs lignes.
+Cela peut créer un problème de cohérence.
 
-## 1.2. La solution : séparer les données répétées
+## 1.2. La solution : séparer les données
 
-Pour supprimer les répétitions, on peut sortir les données qui décrivent la même réalité et les mettre dans une autre relation.
+Les données :
 
-Par exemple :
+```text
+nom_auteur
+email_auteur
+```
+
+décrivent un auteur.
+
+Nous pouvons les séparer dans une nouvelle relation :
 
 ```text
 AUTEUR(
@@ -67,9 +81,9 @@ AUTEUR(
 )
 ```
 
-Mais il faut pouvoir distinguer un auteur d’un autre.
+Mais `ARTICLE` doit pouvoir retrouver l’auteur.
 
-On ajoute donc un identifiant :
+Nous ajoutons :
 
 ```text
 id_auteur
@@ -85,17 +99,24 @@ AUTEUR(
 )
 ```
 
-Dans `ARTICLE`, on conserve seulement la référence vers l’auteur :
+Dans `ARTICLE`, nous gardons `id_auteur` à la place de :
 
 ```text
-id_auteur
+nom_auteur
+email_auteur
 ```
 
 ## 1.3. Découvrir la dépendance fonctionnelle
 
-Nous pouvons maintenant observer une règle.
+Nous observons :
 
-Pour un même `id_auteur`, il doit exister une seule valeur de `nom_auteur` et une seule valeur de `email_auteur`.
+```text
+id_auteur
+nom_auteur
+email_auteur
+```
+
+Pour un même `id_auteur`, nous devons avoir une seule valeur de `nom_auteur` et de `email_auteur`.
 
 On écrit :
 
@@ -104,50 +125,57 @@ id_auteur → nom_auteur
 id_auteur → email_auteur
 ```
 
-On parle de **dépendance fonctionnelle**.
+ou :
+
+```text
+id_auteur → nom_auteur, email_auteur
+```
+
+C’est une **dépendance fonctionnelle**.
 
 Elle signifie :
 
-> Une valeur donnée de l’identifiant détermine une seule valeur pour la donnée concernée.
+> Une valeur de `id_auteur` permet de déterminer une seule valeur de `nom_auteur` et de `email_auteur`.
 
 ## 1.4. À retenir
 
-* Une seule relation peut provoquer des répétitions.
-* Les données répétées peuvent créer des problèmes de cohérence.
-* On peut séparer les données dans une autre relation.
-* Un identifiant permet d’identifier chaque occurrence.
-* L’identifiant doit déterminer une seule valeur pour les données qui dépendent de lui.
-* Cette relation s’appelle une **dépendance fonctionnelle**.
+* Une relation peut contenir des données répétées.
+* Les répétitions peuvent provoquer des problèmes de cohérence.
+* Les données qui décrivent une même réalité peuvent être séparées.
+* Un identifiant permet de retrouver les données séparées.
+* L’identifiant peut déterminer les données associées.
+* Cette relation est une dépendance fonctionnelle.
 
 # Partie 2 — Pratique
 
 ## 2.1. Observer le problème
 
-### Étape 1 — Lire les données
+### Étape 1 — Repérer les répétitions
 
-Observez la relation `ARTICLE` et les lignes fournies.
+Observez les données de `ARTICLE`.
 
-Repérez les informations qui se répètent.
+Repérez les informations répétées.
 
 ### Étape 2 — Expliquer le problème
 
-Pour chaque information répétée, indiquez :
-
-* ce qui est répété ;
-* pourquoi cette répétition pose un problème ;
-* ce qui peut arriver si l’information change.
+Expliquez ce qui peut se passer si une information répétée est modifiée.
 
 **Résultat attendu :**
 
-Vous avez identifié les problèmes provoqués par les répétitions de données.
+Les problèmes liés aux répétitions sont identifiés.
 
 ## 2.2. Appliquer la solution
 
 ### Étape 3 — Séparer un groupe de données
 
-Prenez les données qui décrivent l’auteur.
+Séparez :
 
-Regroupez-les dans une nouvelle relation :
+```text
+nom_auteur
+email_auteur
+```
+
+Créez :
 
 ```text
 AUTEUR(
@@ -158,15 +186,13 @@ AUTEUR(
 
 ### Étape 4 — Ajouter un identifiant
 
-Ajoutez un identifiant pour distinguer chaque auteur.
-
-Utilisez :
+Ajoutez :
 
 ```text
 id_auteur
 ```
 
-La relation devient :
+Obtenez :
 
 ```text
 AUTEUR(
@@ -176,33 +202,45 @@ AUTEUR(
 )
 ```
 
-### Étape 5 — Garder la référence dans ARTICLE
+### Étape 5 — Remplacer les données dans ARTICLE
 
-Dans `ARTICLE`, gardez `id_auteur` pour retrouver l’auteur associé à l’article.
+Dans `ARTICLE`, remplacez :
+
+```text
+nom_auteur
+email_auteur
+```
+
+par :
+
+```text
+id_auteur
+```
+
+**Résultat attendu :**
+
+`ARTICLE` conserve une référence permettant de retrouver l’auteur.
 
 ## 2.3. Découvrir la dépendance fonctionnelle
 
 ### Étape 6 — Observer les valeurs
 
-Pour plusieurs auteurs, observez la relation entre :
+Observez :
 
-```text
-id_auteur
-nom_auteur
-email_auteur
-```
+| id_auteur | nom_auteur | email_auteur                              |
+| --------- | ---------- | ----------------------------------------- |
+| A01       | Madani     | [madani@mail.com](mailto:madani@mail.com) |
+| A02       | Sara       | [sara@mail.com](mailto:sara@mail.com)     |
 
-Posez la question :
+Demandez :
 
 > Pour un même `id_auteur`, peut-on avoir deux noms différents ?
 
-Puis :
-
 > Pour un même `id_auteur`, peut-on avoir deux emails différents ?
 
-### Étape 7 — Écrire les dépendances
+### Étape 7 — Écrire la dépendance
 
-Écrivez les dépendances fonctionnelles observées :
+Écrivez :
 
 ```text
 id_auteur → nom_auteur
@@ -211,19 +249,18 @@ id_auteur → email_auteur
 
 **Résultat attendu :**
 
-Vous avez séparé les données répétées, ajouté un identifiant et identifié les dépendances fonctionnelles.
+Les données de l’auteur sont séparées et la dépendance fonctionnelle est identifiée.
 
 # 3. Bilan
 
-**Vous avez réalisé :** l’analyse du problème d’une relation contenant des données répétées et la séparation des données d’un auteur.
+**Vous avez réalisé :** la séparation des données répétées d’un auteur.
 
-**Vous savez maintenant :** supprimer une répétition de données en créant une nouvelle relation, ajouter un identifiant et vérifier les dépendances fonctionnelles.
+**Vous savez maintenant :** utiliser un identifiant pour retrouver des données séparées et identifier une dépendance fonctionnelle.
 
 # 4. Glossaire
 
 * **Relation** : ensemble de données organisé en lignes et en colonnes.
 * **Répétition** : même information enregistrée plusieurs fois.
-* **Identifiant** : donnée qui permet d’identifier une occurrence de façon unique.
-* **Occurrence** : un élément enregistré dans une relation.
+* **Identifiant** : donnée qui permet d’identifier une occurrence et de retrouver ses informations.
+* **Référence** : donnée qui permet de retrouver une occurrence dans une autre relation.
 * **Dépendance fonctionnelle** : relation dans laquelle une donnée détermine une seule valeur d’une autre donnée.
-* **Déterminant** : donnée située à gauche de `→`.

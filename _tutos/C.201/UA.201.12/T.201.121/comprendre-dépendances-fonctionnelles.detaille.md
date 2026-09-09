@@ -8,15 +8,10 @@ version: "detaille"
 ua: "UA.201.12"
 nav_order: 1
 ---
-
-
  
-
 ## 1. Objectif
 
-Comprendre pourquoi une relation ne doit pas contenir toutes les données d’un besoin.
-
-Découvrir une solution pour éviter les répétitions, puis comprendre la dépendance fonctionnelle entre un identifiant et les données qu’il détermine.
+Comprendre pourquoi certaines données doivent être séparées d’une relation et découvrir comment un identifiant permet de déterminer ces données.
 
 ## 2. Prérequis
 
@@ -26,7 +21,7 @@ Découvrir une solution pour éviter les répétitions, puis comprendre la dépe
 
 ## 1.1. Le problème d’une seule relation
 
-À partir du dictionnaire de données du Blog, nous disposons de plusieurs informations :
+À partir du dictionnaire de données du Blog, nous disposons des informations suivantes :
 
 ```text
 titre_article
@@ -38,9 +33,7 @@ nom_categorie
 description_categorie
 ```
 
-Une première idée peut être de placer toutes ces données dans une seule relation.
-
-On obtient :
+Une première idée consiste à mettre toutes ces données dans une seule relation :
 
 ```text
 ARTICLE(
@@ -56,11 +49,9 @@ ARTICLE(
 
 Cette organisation semble simple.
 
-Toutes les informations nécessaires sont présentes dans une seule relation.
+Toutes les données d’un article sont réunies au même endroit.
 
-Mais une relation doit être observée avec plusieurs exemples de données.
-
-Par exemple :
+Mais une relation doit être observée avec plusieurs lignes.
 
 | titre_article | nom_auteur | email_auteur                              | nom_categorie | description_categorie    |
 | ------------- | ---------- | ----------------------------------------- | ------------- | ------------------------ |
@@ -68,66 +59,72 @@ Par exemple :
 | Eloquent      | Madani     | [madani@mail.com](mailto:madani@mail.com) | PHP           | Langage de programmation |
 | Kotlin        | Sara       | [sara@mail.com](mailto:sara@mail.com)     | Mobile        | Développement mobile     |
 
-Nous pouvons maintenant observer le problème.
+On remarque que les informations d’un même auteur apparaissent dans plusieurs lignes.
 
-Les informations concernant Madani apparaissent dans plusieurs lignes :
+Par exemple :
 
 ```text
 Madani
 madani@mail.com
 ```
 
-Les informations concernant la catégorie PHP apparaissent également dans plusieurs lignes :
+apparaissent pour plusieurs articles.
+
+Les informations d’une même catégorie peuvent aussi apparaître plusieurs fois :
 
 ```text
 PHP
 Langage de programmation
 ```
 
-Les mêmes informations sont donc enregistrées plusieurs fois.
-
 ### Pourquoi cette répétition est-elle un problème ?
 
-Imaginons que Madani change son adresse email.
+La répétition oblige à enregistrer plusieurs fois la même information.
 
-Dans cette organisation, son email apparaît dans plusieurs lignes.
+Prenons l’exemple de l’email de Madani.
 
-Nous devons modifier chaque ligne concernée.
-
-Par exemple, nous pouvons avoir avant la modification :
+Avant une modification :
 
 | titre_article | nom_auteur | email_auteur                              |
 | ------------- | ---------- | ----------------------------------------- |
 | Laravel       | Madani     | [madani@mail.com](mailto:madani@mail.com) |
 | Eloquent      | Madani     | [madani@mail.com](mailto:madani@mail.com) |
 
-Après la modification, toutes les lignes doivent être mises à jour.
+Supposons que Madani change son email.
 
-Si une ligne n’est pas modifiée, nous pouvons obtenir :
+Nous devons modifier toutes les lignes qui contiennent son ancien email.
+
+Si nous oublions une ligne :
 
 | titre_article | nom_auteur | email_auteur                                    |
 | ------------- | ---------- | ----------------------------------------------- |
 | Laravel       | Madani     | [madani@exemple.com](mailto:madani@exemple.com) |
 | Eloquent      | Madani     | [madani@mail.com](mailto:madani@mail.com)       |
 
-Nous avons maintenant deux emails différents pour le même auteur.
+nous avons deux valeurs différentes pour le même auteur.
 
-La relation contient donc un problème de **répétition** et un risque de **problème de cohérence**.
+La répétition crée donc un risque de **cohérence des données**.
+
+Le problème n’est pas seulement que la table est grande.
+
+Le problème est que la même information doit être enregistrée et modifiée plusieurs fois.
 
 ## 1.2. La solution : séparer les données répétées
 
-Pour éviter ces répétitions, nous pouvons chercher les données qui décrivent une même réalité.
+Pour éviter cette répétition, nous cherchons les données qui décrivent une même réalité.
 
-Par exemple :
+Les données :
 
 ```text
 nom_auteur
 email_auteur
 ```
 
-Ces deux données décrivent un auteur.
+décrivent l’auteur.
 
-Nous pouvons donc les séparer de la relation `ARTICLE` et créer une nouvelle relation :
+Nous pouvons donc les séparer de la relation `ARTICLE`.
+
+Nous créons :
 
 ```text
 AUTEUR(
@@ -136,21 +133,44 @@ AUTEUR(
 )
 ```
 
-Cette séparation permet de conserver les informations de l’auteur une seule fois.
+Les informations d’un auteur peuvent maintenant être enregistrées une seule fois.
 
-Mais un nouveau problème apparaît :
+Mais un nouveau problème apparaît.
 
-> Comment identifier chaque auteur ?
+Dans `ARTICLE`, nous avons retiré :
 
-La relation doit pouvoir distinguer un auteur d’un autre.
+```text
+nom_auteur
+email_auteur
+```
 
-Nous ajoutons donc un identifiant :
+Comment retrouver maintenant les informations de l’auteur d’un article ?
+
+Par exemple, nous avons :
+
+| titre_article |
+| ------------- |
+| Laravel       |
+| Eloquent      |
+| Kotlin        |
+
+Nous devons pouvoir dire :
+
+```text
+Laravel → quel auteur ?
+Eloquent → quel auteur ?
+Kotlin → quel auteur ?
+```
+
+Il faut donc conserver dans `ARTICLE` une donnée qui permet de retrouver l’auteur.
+
+Nous ajoutons :
 
 ```text
 id_auteur
 ```
 
-La relation devient :
+La relation `AUTEUR` devient :
 
 ```text
 AUTEUR(
@@ -160,20 +180,33 @@ AUTEUR(
 )
 ```
 
+Et dans `ARTICLE`, nous remplaçons les données répétées :
+
+```text
+nom_auteur
+email_auteur
+```
+
+par :
+
+```text
+id_auteur
+```
+
+Nous obtenons :
+
+```text
+ARTICLE(
+    titre_article,
+    contenu_article,
+    date_publication,
+    id_auteur,
+    nom_categorie,
+    description_categorie
+)
+```
+
 Par exemple :
-
-| id_auteur | nom_auteur | email_auteur                              |
-| --------- | ---------- | ----------------------------------------- |
-| A01       | Madani     | [madani@mail.com](mailto:madani@mail.com) |
-| A02       | Sara       | [sara@mail.com](mailto:sara@mail.com)     |
-
-Chaque auteur possède maintenant une valeur différente de `id_auteur`.
-
-Dans `ARTICLE`, nous conservons `id_auteur`.
-
-Il permet de retrouver l’auteur associé à chaque article.
-
-Nous pouvons donc avoir :
 
 | titre_article | id_auteur |
 | ------------- | --------- |
@@ -181,11 +214,35 @@ Nous pouvons donc avoir :
 | Eloquent      | A01       |
 | Kotlin        | A02       |
 
-Les informations détaillées de l’auteur ne sont plus répétées dans chaque article.
+Et dans `AUTEUR` :
+
+| id_auteur | nom_auteur | email_auteur                              |
+| --------- | ---------- | ----------------------------------------- |
+| A01       | Madani     | [madani@mail.com](mailto:madani@mail.com) |
+| A02       | Sara       | [sara@mail.com](mailto:sara@mail.com)     |
+
+Pour retrouver l’auteur de `Laravel`, on utilise `A01` :
+
+```text
+Laravel
+   ↓
+A01
+   ↓
+Madani
+madani@mail.com
+```
+
+Nous avons donc remplacé deux informations répétées par une seule référence :
+
+```text
+id_auteur
+```
 
 ## 1.3. Découvrir la dépendance fonctionnelle
 
-Nous avons maintenant une nouvelle relation :
+Nous avons créé `id_auteur` pour permettre de retrouver les informations de l’auteur.
+
+Nous pouvons maintenant observer la nouvelle relation :
 
 ```text
 AUTEUR(
@@ -195,18 +252,16 @@ AUTEUR(
 )
 ```
 
-Nous pouvons observer les valeurs.
-
 | id_auteur | nom_auteur | email_auteur                              |
 | --------- | ---------- | ----------------------------------------- |
 | A01       | Madani     | [madani@mail.com](mailto:madani@mail.com) |
 | A02       | Sara       | [sara@mail.com](mailto:sara@mail.com)     |
 
-Posons une première question :
+Nous devons vérifier ce que permet de retrouver `id_auteur`.
+
+Posons la question :
 
 > Pour une même valeur de `id_auteur`, peut-on avoir deux noms différents ?
-
-La réponse doit être non.
 
 Pour :
 
@@ -214,13 +269,13 @@ Pour :
 id_auteur = A01
 ```
 
-le nom doit toujours être :
+nous devons toujours retrouver :
 
 ```text
 Madani
 ```
 
-Nous pouvons donc écrire :
+Nous pouvons écrire :
 
 ```text
 id_auteur → nom_auteur
@@ -230,35 +285,39 @@ Posons maintenant une deuxième question :
 
 > Pour une même valeur de `id_auteur`, peut-on avoir deux emails différents ?
 
-La réponse doit également être non.
-
 Pour :
 
 ```text
 id_auteur = A01
 ```
 
-l’email doit toujours être :
+nous devons toujours retrouver :
 
 ```text
 madani@mail.com
 ```
 
-Nous écrivons :
+Nous pouvons donc écrire :
 
 ```text
 id_auteur → email_auteur
 ```
 
-Nous avons découvert une **dépendance fonctionnelle**.
+Nous pouvons regrouper les deux :
 
-Elle s’écrit :
+```text
+id_auteur → nom_auteur, email_auteur
+```
+
+Cette relation s’appelle une **dépendance fonctionnelle**.
+
+On écrit :
 
 ```text
 A → B
 ```
 
-et se lit :
+et on lit :
 
 > A détermine B.
 
@@ -270,9 +329,9 @@ id_auteur → nom_auteur
 
 signifie :
 
-> `id_auteur` détermine `nom_auteur`.
+> Une valeur de `id_auteur` détermine une seule valeur de `nom_auteur`.
 
-Et :
+De même :
 
 ```text
 id_auteur → email_auteur
@@ -280,55 +339,88 @@ id_auteur → email_auteur
 
 signifie :
 
-> `id_auteur` détermine `email_auteur`.
+> Une valeur de `id_auteur` détermine une seule valeur de `email_auteur`.
 
-Nous pouvons aussi regrouper les deux :
+La dépendance fonctionnelle permet donc de vérifier que les informations regroupées appartiennent bien au même identifiant.
+
+## 1.4. Comprendre le rôle de l’identifiant
+
+L’identifiant ne sert pas seulement à donner un nom différent à chaque auteur.
+
+Dans notre démarche, il sert surtout à permettre à `ARTICLE` de retrouver les informations de l’auteur après leur séparation.
+
+Avant la séparation :
+
+```text
+ARTICLE
+----------------------------
+nom_auteur
+email_auteur
+```
+
+Après la séparation :
+
+```text
+ARTICLE
+----------------------------
+id_auteur
+```
+
+et :
+
+```text
+AUTEUR
+----------------------------
+id_auteur
+nom_auteur
+email_auteur
+```
+
+Nous avons donc :
+
+```text
+ARTICLE
+   |
+   | id_auteur
+   ↓
+AUTEUR
+```
+
+L’identifiant permet de retrouver les informations associées.
+
+Il permet également d’exprimer la dépendance :
 
 ```text
 id_auteur → nom_auteur, email_auteur
 ```
 
-### Une règle importante
-
-Une dépendance fonctionnelle signifie que, pour une valeur donnée du déterminant, une seule valeur est possible pour la donnée déterminée.
-
-Par exemple :
+Nous avons donc une chaîne simple :
 
 ```text
-id_auteur = A01
+ARTICLE
+   ↓
+id_auteur
+   ↓
+AUTEUR
+   ↓
+nom_auteur
+email_auteur
 ```
 
-doit toujours donner :
+## 1.5. À retenir
 
-```text
-nom_auteur = Madani
-email_auteur = madani@mail.com
-```
-
-Il ne doit pas être possible d’avoir :
-
-```text
-A01 → Madani
-```
-
-dans une ligne et :
-
-```text
-A01 → Sara
-```
-
-dans une autre.
-
-## 1.4. À retenir
-
-* Mettre toutes les données dans une seule relation peut créer des répétitions.
-* Une répétition peut rendre les modifications difficiles.
-* Une répétition peut créer des valeurs différentes pour une même réalité.
+* Une seule relation peut contenir des données répétées.
+* Les répétitions peuvent rendre les modifications difficiles.
+* Elles peuvent aussi créer des problèmes de cohérence.
 * Les données qui décrivent une même réalité peuvent être séparées.
-* Il faut pouvoir identifier chaque occurrence du groupe.
-* L’identifiant permet d’identifier chaque occurrence.
-* L’identifiant peut déterminer les autres données du groupe.
-* Cette relation entre les données est une **dépendance fonctionnelle**.
+* Après la séparation, la relation de départ doit conserver une référence.
+* `id_auteur` permet à `ARTICLE` de retrouver les informations de l’auteur.
+* L’identifiant permet aussi d’exprimer une dépendance fonctionnelle.
+* Dans notre exemple :
+
+```text
+id_auteur → nom_auteur, email_auteur
+```
 
 # Partie 2 — Pratique
 
@@ -336,7 +428,7 @@ dans une autre.
 
 ### Étape 1 — Lire les données
 
-Vous disposez de la relation suivante :
+Observez la relation :
 
 ```text
 ARTICLE(
@@ -350,7 +442,7 @@ ARTICLE(
 )
 ```
 
-Observez les données :
+Observez ensuite les données :
 
 | titre_article | nom_auteur | email_auteur                              | nom_categorie | description_categorie    |
 | ------------- | ---------- | ----------------------------------------- | ------------- | ------------------------ |
@@ -358,42 +450,42 @@ Observez les données :
 | Eloquent      | Madani     | [madani@mail.com](mailto:madani@mail.com) | PHP           | Langage de programmation |
 | Kotlin        | Sara       | [sara@mail.com](mailto:sara@mail.com)     | Mobile        | Développement mobile     |
 
-Lisez le tableau ligne par ligne.
+Comparez les différentes lignes.
+
+Repérez les informations identiques.
 
 ### Étape 2 — Expliquer le problème
 
-Repérez les informations qui apparaissent plusieurs fois.
+Pour les données de l’auteur, répondez :
 
-Pour chaque répétition, répondez aux questions suivantes :
+> Quelles informations sont répétées ?
 
-> Quelle information est répétée ?
+> Pourquoi cette répétition peut-elle poser un problème ?
 
-> Pourquoi est-elle répétée ?
+> Que faut-il modifier si l’email de Madani change ?
 
-> Que faut-il faire si cette information change ?
-
-> Que peut-il se passer si une ligne est modifiée et une autre ne l’est pas ?
+> Que peut-il se passer si une seule ligne est modifiée ?
 
 Écrivez vos réponses.
 
 **Résultat attendu :**
 
-Vous avez identifié les données répétées et expliqué les problèmes possibles.
+Vous avez identifié les répétitions et les problèmes possibles de cohérence.
 
 ## 2.2. Appliquer la solution
 
 ### Étape 3 — Séparer un groupe de données
 
-Prenez les données qui décrivent l’auteur :
+Prenez les données :
 
 ```text
 nom_auteur
 email_auteur
 ```
 
-Ces deux colonnes représentent une même réalité.
+Ces deux données décrivent une même réalité.
 
-Créez une nouvelle relation :
+Séparez-les de `ARTICLE` et créez :
 
 ```text
 AUTEUR(
@@ -402,9 +494,13 @@ AUTEUR(
 )
 ```
 
+L’objectif est de ne plus recopier les informations de l’auteur dans chaque article.
+
 ### Étape 4 — Ajouter un identifiant
 
-La relation doit permettre de distinguer chaque auteur.
+Après avoir séparé les données, posez-vous la question :
+
+> Comment `ARTICLE` peut-il retrouver l’auteur ?
 
 Ajoutez :
 
@@ -412,7 +508,7 @@ Ajoutez :
 id_auteur
 ```
 
-La relation devient :
+dans la relation `AUTEUR` :
 
 ```text
 AUTEUR(
@@ -429,13 +525,35 @@ Utilisez par exemple :
 | A01       | Madani     | [madani@mail.com](mailto:madani@mail.com) |
 | A02       | Sara       | [sara@mail.com](mailto:sara@mail.com)     |
 
-### Étape 5 — Garder la référence dans ARTICLE
+### Étape 5 — Remplacer les données dans ARTICLE
 
-Dans `ARTICLE`, gardez `id_auteur`.
+Dans `ARTICLE`, retirez :
 
-Cette donnée permet de retrouver l’auteur associé à chaque article.
+```text
+nom_auteur
+email_auteur
+```
 
-Par exemple :
+Conservez :
+
+```text
+id_auteur
+```
+
+Vous obtenez :
+
+```text
+ARTICLE(
+    titre_article,
+    contenu_article,
+    date_publication,
+    id_auteur,
+    nom_categorie,
+    description_categorie
+)
+```
+
+Utilisez par exemple :
 
 | titre_article | id_auteur |
 | ------------- | --------- |
@@ -443,7 +561,11 @@ Par exemple :
 | Eloquent      | A01       |
 | Kotlin        | A02       |
 
-Les données détaillées de l’auteur sont maintenant stockées dans `AUTEUR`.
+Vérifiez que `id_auteur` permet toujours de retrouver l’auteur.
+
+**Résultat attendu :**
+
+Les données de l’auteur sont séparées et `ARTICLE` conserve une référence permettant de retrouver l’auteur.
 
 ## 2.3. Découvrir la dépendance fonctionnelle
 
@@ -451,49 +573,31 @@ Les données détaillées de l’auteur sont maintenant stockées dans `AUTEUR`.
 
 Observez la relation :
 
-```text
-AUTEUR(
-    id_auteur,
-    nom_auteur,
-    email_auteur
-)
-```
-
-et les valeurs :
-
 | id_auteur | nom_auteur | email_auteur                              |
 | --------- | ---------- | ----------------------------------------- |
 | A01       | Madani     | [madani@mail.com](mailto:madani@mail.com) |
 | A02       | Sara       | [sara@mail.com](mailto:sara@mail.com)     |
 
-Posez-vous la première question :
+Pour `A01`, observez les valeurs obtenues.
 
-> Pour un même `id_auteur`, peut-on avoir deux noms différents ?
+Posez-vous les questions :
 
-Puis :
+> `A01` peut-il correspondre à deux noms différents ?
 
-> Pour un même `id_auteur`, peut-on avoir deux emails différents ?
+> `A01` peut-il correspondre à deux emails différents ?
 
-Utilisez les données pour justifier vos réponses.
+Faites la même vérification avec `A02`.
 
 ### Étape 7 — Écrire les dépendances
 
-Écrivez les dépendances fonctionnelles trouvées.
-
-Utilisez la forme :
-
-```text
-A → B
-```
-
-Vous devez obtenir :
+À partir de vos observations, écrivez :
 
 ```text
 id_auteur → nom_auteur
 id_auteur → email_auteur
 ```
 
-Vous pouvez aussi écrire :
+Puis regroupez les deux données :
 
 ```text
 id_auteur → nom_auteur, email_auteur
@@ -501,20 +605,21 @@ id_auteur → nom_auteur, email_auteur
 
 **Résultat attendu :**
 
-Vous avez séparé les données répétées, ajouté `id_auteur` et identifié les dépendances fonctionnelles du groupe `AUTEUR`.
+Vous avez séparé les données de l’auteur, utilisé `id_auteur` pour les retrouver et identifié les dépendances fonctionnelles.
 
 # 3. Bilan
 
-**Vous avez réalisé :** l’analyse d’une relation contenant des données répétées et la séparation des données d’un auteur.
+**Vous avez réalisé :** l’analyse d’une relation contenant des données répétées et la séparation des données de l’auteur.
 
-**Vous savez maintenant :** repérer un problème de répétition, expliquer le risque de cohérence, séparer un groupe de données, ajouter un identifiant et vérifier une dépendance fonctionnelle.
+**Vous savez maintenant :** repérer une répétition, expliquer le problème, séparer les données concernées, utiliser un identifiant comme référence et identifier les données qu’il détermine.
 
 # 4. Glossaire
 
 * **Relation** : ensemble de données organisé en lignes et en colonnes.
 * **Répétition** : même information enregistrée plusieurs fois.
 * **Cohérence** : fait de conserver des informations correctes et compatibles.
-* **Identifiant** : donnée qui permet d’identifier une occurrence de façon unique.
+* **Identifiant** : donnée qui permet d’identifier une occurrence et de retrouver ses informations.
+* **Référence** : donnée utilisée pour retrouver une occurrence dans une autre relation.
 * **Occurrence** : élément enregistré dans une relation.
 * **Dépendance fonctionnelle** : relation dans laquelle une donnée détermine une seule valeur d’une autre donnée.
 * **Déterminant** : donnée qui permet de déterminer une autre donnée.
