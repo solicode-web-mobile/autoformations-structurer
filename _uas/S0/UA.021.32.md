@@ -1,32 +1,34 @@
 ---
-title: "Rechercher une valeur maximale"
+title: "Organiser les tâches selon le temps disponible"
 layout: ua
-code: "UA.021.32"
+code: "UA.021.13"
 competence: "C.201"
-domaine: "D.021.3"
+domaine: "D.021.6"
 duree: 1
 objectif: >
-    Construire un traitement algorithmique permettant de rechercher la valeur
-    maximale parmi un ensemble de valeurs.
+  Organiser les tâches d’une réalisation Web en fonction de leur priorité,
+  de leurs dépendances et du temps disponible afin de conduire le travail
+  jusqu’au résultat attendu.
 description: >
-    À partir d’un tableau de valeurs, parcourir les éléments, comparer leurs
-    valeurs et conserver progressivement la plus grande valeur rencontrée afin
-    de déterminer le maximum du tableau.
+  À partir des tâches identifiées pour une réalisation, déterminer leur ordre
+  d’exécution, tenir compte des dépendances entre elles et répartir le travail
+  dans le temps disponible afin de construire une organisation réaliste de la
+  réalisation.
 notions:
- - "Maximum"
- - "Tableau"
- - "Parcours"
- - "Comparaison"
- - "Variable de référence"
- - "Initialisation"
- - "Boucle"
- - "Mise à jour d’une valeur"
- - "Algorithme de recherche"
+ -"Priorité"
+ -"Ordre des tâches"
+ -"Dépendance entre tâches"
+ -"Temps disponible"
+ -"Planification"
+ -"Estimation de durée"
+ -"Échéance"
+ -"Organisation du travail"
+ -"Suivi de réalisation"
 livrable: >
-  Algorithme JavaScript permettant de rechercher la valeur maximale d’un tableau,
-  accompagné d’un exemple de test et d’une trace du traitement.
+  Planning simple de réalisation présentant les tâches, leur ordre, leur priorité
+  et leur répartition dans le temps disponible.
 travail_a_faire: >
-  Écrire un algorithme JavaScript permettant de rechercher la plus grande valeur
-  d’un tableau de nombres, puis tester le traitement avec plusieurs tableaux
-  contenant des valeurs différentes.
+  À partir des tâches définies pour une fonctionnalité du Blog personnel,
+  déterminer leur ordre et leur priorité, estimer leur durée puis les répartir
+  dans le temps disponible pour organiser la réalisation complète de la fonctionnalité.
 ---
