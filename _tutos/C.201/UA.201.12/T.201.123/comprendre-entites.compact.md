@@ -6,6 +6,7 @@ permalink: /tutos/:slug/compact
 tuto_id: "T.201.123"
 ua: "UA.201.12"
 version: "compact"
+nav_order: 3
 ---
 
 ## 1. Objectif
