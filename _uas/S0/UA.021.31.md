@@ -1,30 +1,31 @@
 ---
-title: "Échanger deux variables"
+title: "Découper une réalisation en tâches"
 layout: ua
-code: "UA.021.31"
+code: "UA.021.13"
 competence: "C.201"
-domaine: "D.021.3"
+domaine: "D.201.3"
 duree: 1
 objectif: >
-  Construire un traitement algorithmique permettant d’échanger les valeurs
-  de deux variables.
+  Identifier et découper une réalisation Web simple en tâches distinctes afin
+  de rendre le travail réalisable et de faciliter son organisation.
 description: >
-  Analyser un problème simple d’échange de valeurs, identifier les opérations
-  nécessaires et construire un algorithme utilisant une variable temporaire
-  afin d’échanger correctement les contenus de deux variables.
+  À partir d’une fonctionnalité Web à réaliser, identifier les principales
+  étapes du travail, les décomposer en tâches suffisamment précises et
+  indépendantes afin de préparer leur réalisation et leur planification.
 notions:
- -"Variable"
- -"Valeur d’une variable"
- -"Affectation"
- -"Variable temporaire"
- -"Échange de valeurs"
- -"Séquence d’instructions"
- -"Trace d’exécution"
- -"Algorithme"
+ -"Tâche"
+ -"Découpage du travail"
+ -"Étape de réalisation"
+ -"Décomposition"
+ -"Dépendance entre tâches"
+ -"Ordre des tâches"
+ -"Charge de travail"
+ -"Résultat attendu"
 livrable: >
-  Algorithme permettant d’échanger les valeurs de deux variables, accompagné
-  d’un exemple de test et d’une trace d’exécution.
-  travail_a_faire: >
-  Écrire un algorithme JavaScript permettant d’échanger les valeurs de deux
-  variables, puis l’exécuter et vérifier le résultat avec plusieurs valeurs.
+  Liste structurée des tâches nécessaires à la réalisation d’une fonctionnalité
+  Web, organisées selon les principales étapes du travail.
+travail_a_faire: >
+  À partir d’une fonctionnalité du Blog personnel, découper la réalisation en
+  tâches distinctes, par exemple analyser les données, préparer la base de données,
+  développer le traitement PHP, réaliser l’affichage et tester la fonctionnalité.
 ---
