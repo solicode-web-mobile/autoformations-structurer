@@ -24,6 +24,7 @@ Exécuter le programme avec **Node.js**, puis le déboguer ligne par ligne avec 
 * Savoir utiliser une boucle `for`.
 * Savoir utiliser `console.log()`.
 * Savoir exécuter un fichier avec Node.js.
+* Savoir utiliser le débogueur de VS Code.
 
 # Partie 1 — Théorie
 
@@ -64,55 +65,91 @@ for (let i = 0; i < nombres.length; i++) {
 }
 ```
 
-## 1.2. Rechercher une valeur maximale
+## 1.2. Le problème
 
-Le problème est de trouver la plus grande valeur du tableau.
+Vous disposez d’un tableau de nombres :
 
 ```text
 [12, 5, 27, 9, 18]
 ```
 
-Le résultat attendu est :
+Votre programme doit trouver la plus grande valeur.
+
+Résultat attendu :
 
 ```text
 27
 ```
 
-Pour construire le traitement :
+Le programme doit fonctionner avec différents tableaux.
 
-1. choisissez une valeur de départ ;
-2. parcourez le tableau ;
-3. comparez chaque valeur avec la plus grande valeur trouvée ;
-4. mettez à jour cette valeur lorsque nécessaire.
+## 1.3. Préparer votre raisonnement
 
-Ne copiez pas une solution complète. Construisez votre propre traitement.
+Avant de coder, observez le problème.
 
-## 1.3. Trace du traitement
+Répondez à ces questions :
 
-Pendant le parcours, observez l’évolution de la valeur maximale.
+* Comment parcourir toutes les valeurs du tableau ?
+* Comment savoir quelle valeur est la plus grande ?
+* Quelle information devez-vous conserver pendant le traitement ?
+* Quand cette information doit-elle changer ?
+* Quelle valeur devez-vous afficher à la fin ?
 
-Pour le tableau :
+Écrivez votre raisonnement sur papier avant de commencer.
+
+## 1.4. Observer le parcours
+
+Le parcours permet de lire les éléments du tableau un par un.
+
+Avec :
 
 ```text
 [12, 5, 27, 9, 18]
 ```
 
-Posez-vous la question :
+vous pouvez observer les valeurs dans l’ordre :
 
 ```text
-Quelle est la plus grande valeur trouvée après chaque passage ?
+12
+5
+27
+9
+18
 ```
 
-Cette trace vous aidera à vérifier votre algorithme.
+Votre travail consiste maintenant à utiliser ce parcours pour résoudre le problème.
 
-## 1.4. À retenir
+## 1.5. Utiliser une variable de référence
 
-* Un tableau se déclare avec `[]`.
-* Un élément se lit avec son indice.
+Le programme aura besoin d’une variable permettant de conserver une information pendant le parcours.
+
+Vous devez déterminer vous-même :
+
+* quelle valeur utiliser au départ ;
+* comment comparer cette valeur avec la valeur courante ;
+* dans quel cas la remplacer.
+
+## 1.6. Préparer une trace
+
+Avant le débogage, préparez une trace simple :
+
+```text
+Indice | Valeur courante | Valeur conservée
+```
+
+Pendant l’exécution, complétez cette trace avec les valeurs observées dans VS Code.
+
+Cette trace vous aidera à comprendre votre propre algorithme.
+
+## 1.7. À retenir
+
+* Un tableau contient plusieurs valeurs.
 * Le premier indice est `0`.
+* `tableau[indice]` permet de lire une valeur.
+* `tableau[indice] = valeur` permet de modifier une valeur.
 * `length` donne le nombre d’éléments.
-* Une boucle `for` permet de parcourir le tableau.
-* Une variable peut conserver la plus grande valeur trouvée.
+* Une boucle `for` permet de parcourir un tableau.
+* Une variable peut conserver une information pendant le parcours.
 
 # Partie 2 — Pratique
 
@@ -126,25 +163,27 @@ Créez le fichier :
 maximum.js
 ```
 
-Ajoutez un tableau de nombres :
+Déclarez le tableau :
 
 ```javascript
 let nombres = [12, 5, 27, 9, 18];
 ```
 
-Affichez le tableau pour vérifier son contenu.
+Affichez le tableau.
 
-### Étape 2 — Construire la recherche
+### Étape 2 — Construire votre algorithme
 
-Écrivez votre algorithme pour trouver la plus grande valeur.
+Écrivez votre propre traitement pour trouver la plus grande valeur.
 
-Utilisez :
+Utilisez les notions étudiées :
 
-* une variable pour conserver le maximum ;
-* une boucle `for` ;
-* une comparaison.
+* tableau ;
+* indice ;
+* boucle `for` ;
+* comparaison ;
+* variable.
 
-Affichez le résultat final.
+Ne copiez pas une solution trouvée sur Internet.
 
 ### Étape 3 — Tester
 
@@ -154,21 +193,21 @@ Exécutez :
 node maximum.js
 ```
 
-Le résultat attendu est :
+Le programme doit afficher :
 
 ```text
 27
 ```
 
-Modifiez ensuite le tableau et testez avec plusieurs valeurs.
+Modifiez ensuite le tableau et vérifiez votre algorithme avec d’autres valeurs.
 
 # Partie 3 — Débogage avec VS Code
 
-## 3.1. Suivre le programme
+## 3.1. Suivre votre algorithme
 
 ### Étape 1 — Placer un point d’arrêt
 
-Placez un point d’arrêt sur la première ligne de votre traitement.
+Placez un point d’arrêt au début de votre traitement.
 
 ### Étape 2 — Lancer le débogueur
 
@@ -176,34 +215,38 @@ Dans VS Code, lancez le programme avec le débogueur **Node.js**.
 
 ### Étape 3 — Avancer ligne par ligne
 
-Utilisez **Step Over** pour avancer une ligne à la fois.
+Utilisez **Step Over**.
 
 Observez :
 
 * la valeur de `i` ;
 * la valeur de `nombres[i]` ;
-* la valeur du maximum ;
-* le moment où le maximum change.
+* la variable utilisée pour conserver votre résultat ;
+* les changements de cette variable.
 
-### Étape 4 — Corriger
+Comparez les valeurs observées avec votre raisonnement.
+
+### Étape 4 — Trouver et corriger une erreur
 
 Si le résultat est incorrect :
 
-* trouvez la première ligne incorrecte ;
-* regardez les valeurs des variables ;
+* repérez le premier passage incorrect ;
+* observez les variables ;
+* vérifiez l’indice ;
 * vérifiez la comparaison ;
+* trouvez la cause de l’erreur ;
 * corrigez votre code ;
 * relancez le programme.
 
 **Résultat attendu :**
 
-Le programme trouve correctement la plus grande valeur, et vous pouvez expliquer son fonctionnement ligne par ligne.
+Le programme trouve correctement la plus grande valeur du tableau.
 
 # 3. Bilan
 
-**Vous avez réalisé :** un programme JavaScript qui parcourt un tableau et recherche sa plus grande valeur.
+**Vous avez réalisé :** un programme JavaScript qui parcourt un tableau pour rechercher sa plus grande valeur.
 
-**Vous savez maintenant :** déclarer, lire et modifier un tableau, parcourir ses éléments et conserver une valeur maximale pendant le traitement.
+**Vous savez maintenant :** déclarer, lire et modifier un tableau, le parcourir avec une boucle `for`, construire un algorithme de recherche et déboguer votre traitement avec Node.js et VS Code.
 
 # 4. Glossaire
 
@@ -211,6 +254,8 @@ Le programme trouve correctement la plus grande valeur, et vous pouvez expliquer
 * **Élément** : valeur contenue dans un tableau.
 * **Indice** : position d’un élément dans un tableau.
 * **Parcours** : lecture successive des éléments d’un tableau.
-* **Maximum** : plus grande valeur trouvée.
+* **Maximum** : plus grande valeur d’un ensemble de valeurs.
+* **Valeur courante** : valeur actuellement traitée.
+* **Variable de référence** : variable qui conserve une information pendant le traitement.
 * **Trace d’exécution** : observation des valeurs pendant l’exécution du programme.
 * **Débogueur** : outil qui permet de suivre un programme ligne par ligne.
