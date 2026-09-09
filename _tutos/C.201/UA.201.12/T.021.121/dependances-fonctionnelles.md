@@ -3,9 +3,9 @@ title: "Comprendre les dépendances fonctionnelles"
 layout: tuto
 slug: "comprendre-les-dependances-fonctionnelles"
 permalink: /tutos/dependances-fonctionnelles/
-tuto_id: "T.021.121"
+tuto_id: "T.201.121"
 version: "normal"
-ua: "UA.021.12"
+ua: "UA.201.12"
 nav_order: 1
 ---
 

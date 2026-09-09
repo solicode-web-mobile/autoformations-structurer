@@ -1,7 +1,7 @@
 ---
 title: "De la maquette au dictionnaire de données"
 layout: ua
-code: "UA.021.11"
+code: "UA.201.11"
 competence: "C.201"
 domaine: "D.201.1"
 duree: 2

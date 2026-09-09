@@ -1,9 +1,9 @@
 ---
 title: "Organiser les tâches selon le temps disponible"
 layout: ua
-code: "UA.021.13"
+code: "UA.201.32"
 competence: "C.201"
-domaine: "D.021.6"
+domaine: "D.201.3"
 duree: 1
 objectif: >
   Organiser les tâches d’une réalisation Web en fonction de leur priorité,

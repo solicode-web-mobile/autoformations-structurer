@@ -1,7 +1,7 @@
 ---
 title: "Apprendre les techniques algorithmiques"
 layout: ua
-code: "UA.021.13"
+code: "UA.201.21"
 competence: "C.201"
 domaine: "D.201.2"
 duree: 5

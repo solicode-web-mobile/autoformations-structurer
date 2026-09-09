@@ -1,7 +1,7 @@
 ---
 title: "Analyser les données et identifier les entités"
 layout: ua
-code: "UA.021.12"
+code: "UA.201.12"
 competence: "C.201"
 domaine: "D.201.1"
 duree: 2

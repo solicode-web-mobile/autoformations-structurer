@@ -3,9 +3,9 @@ title: "Créer le dictionnaire de données d’un Blog"
 layout: tuto
 slug: "creer-dictionnaire-donnees-blog"
 permalink: /tutos/:slug/
-tuto_id: "T.021.112"
+tuto_id: "T.201.112"
 version: "normal"
-ua: "UA.021.11"
+ua: "UA.201.11"
 nav_order: 2
 ---
 

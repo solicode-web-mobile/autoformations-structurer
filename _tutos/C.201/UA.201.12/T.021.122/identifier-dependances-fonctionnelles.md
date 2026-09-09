@@ -3,9 +3,9 @@ title: "Identifier les dépendances fonctionnelles"
 layout: tuto
 slug: "identifier-les-dependances-fonctionnelles"
 permalink: /tutos/identifier-dependances-fonctionnelles/
-tuto_id: "T.021.122"
+tuto_id: "T.201.122"
 version: "normal"
-ua: "UA.021.12"
+ua: "UA.201.12"
 nav_order: 2
 ---
 

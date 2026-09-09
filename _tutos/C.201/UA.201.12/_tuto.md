@@ -1,16 +1,16 @@
-Avec le **Domaine D.201.1** fourni, on peut maintenant confirmer la logique générale de l’UA **UA.021.12**.
+Avec le **Domaine D.201.1** fourni, on peut maintenant confirmer la logique générale de l’UA **UA.201.12**.
 
 La progression du domaine est clairement :
 
 **Maquette → Informations → Dictionnaire de données → Dépendances fonctionnelles → Entités → Propriétés → Associations → Cardinalités → MCD**
 
-Pour l’UA **UA.021.12 — Analyser les données et identifier les entités**, je recommande donc **3 tutoriels**, et non 2, car les dépendances fonctionnelles et l’identification des entités sont deux apprentissages distincts.
+Pour l’UA **UA.201.12 — Analyser les données et identifier les entités**, je recommande donc **3 tutoriels**, et non 2, car les dépendances fonctionnelles et l’identification des entités sont deux apprentissages distincts.
 
 | Ordre | Code        | Titre                                                              | Production      |
 | ----- | ----------- | ------------------------------------------------------------------ | --------------- |
-| 1     | `T.021.121` | **Comprendre les dépendances fonctionnelles**                      | Présentation    |
-| 2     | `T.021.122` | **Identifier les dépendances fonctionnelles**                      | Analyse du Blog |
-| 3     | `T.021.123` | **Identifier les entités à partir des dépendances fonctionnelles** | Analyse du Blog |
+| 1     | `T.201.121` | **Comprendre les dépendances fonctionnelles**                      | Présentation    |
+| 2     | `T.201.122` | **Identifier les dépendances fonctionnelles**                      | Analyse du Blog |
+| 3     | `T.201.123` | **Identifier les entités à partir des dépendances fonctionnelles** | Analyse du Blog |
 
 ### Tuto 1 — Comprendre les dépendances fonctionnelles
 
@@ -75,7 +75,7 @@ Catégorie
 
 Cette organisation prépare directement la suite du domaine :
 
-**UA.021.12**
+**UA.201.12**
 → identifier les dépendances et les entités
 
 **UA suivante**

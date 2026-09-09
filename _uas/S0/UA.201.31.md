@@ -1,7 +1,7 @@
 ---
 title: "Découper une réalisation en tâches"
 layout: ua
-code: "UA.021.13"
+code: "UA.201.31"
 competence: "C.201"
 domaine: "D.201.3"
 duree: 1

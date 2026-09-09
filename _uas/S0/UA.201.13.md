@@ -1,7 +1,7 @@
 ---
 title: "Construire le MCD"
 layout: ua
-code: "UA.021.13"
+code: "UA.201.13"
 competence: "C.201"
 domaine: "D.201.1"
 duree: 2

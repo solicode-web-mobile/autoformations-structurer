@@ -2,10 +2,10 @@
 title: "Identifier les entités à partir des dépendances fonctionnelles"
 layout: tuto
 slug: "identifier-les-entites-a-partir-des-dependances-fonctionnelles"
-permalink: /entites-dependances-fonctionnelles/normal
-tuto_id: "T.021.123"
-version: "normal"
-ua: "UA.021.12"
+permalink: /entites-dependances-fonctionnelles/compact
+tuto_id: "T.201.123"
+version: "compact"
+ua: "UA.201.12"
 nav_order: 3
 ---
 

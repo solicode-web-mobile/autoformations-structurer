@@ -3,9 +3,9 @@ title: "Définir une donnée et un dictionnaire de données"
 layout: tuto
 slug: "definir-donnee-dictionnaire-donnees"
 permalink: /tutos/:slug/compact
-tuto_id: "T.021.111"
+tuto_id: "T.201.111"
 version: "compact"
-ua: "UA.021.11"
+ua: "UA.201.11"
 nav_order: 1
 ---
 
