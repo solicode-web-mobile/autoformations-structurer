@@ -34,7 +34,7 @@ Une donnée peut représenter une personne, un produit, une date, un prix ou une
 **Exemple :**
 
 ```text
-Nom : Madani Ali
+Nom : Madani
 Âge : 20
 Email : madani@example.com
 ```

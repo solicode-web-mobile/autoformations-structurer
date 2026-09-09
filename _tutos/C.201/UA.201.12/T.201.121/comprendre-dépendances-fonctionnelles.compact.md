@@ -41,13 +41,12 @@ ARTICLE(
 
 On obtient alors des données comme :
 
-```text
-titre_article | nom_auteur  | email_auteur    | nom_categorie | description_categorie
---------------|-------------|-----------------|---------------|----------------------
-Laravel       | Madani Ali  | madani@mail.com | PHP           | Langage de programmation
-Eloquent      | Madani Ali  | madani@mail.com | PHP           | Langage de programmation
-Kotlin        | Sara Amrani | sara@mail.com   | Mobile        | Développement mobile
-```
+| titre_article | nom_auteur | email_auteur                              | nom_categorie | description_categorie    |
+| ------------- | ---------- | ----------------------------------------- | ------------- | ------------------------ |
+| Laravel       | Madani     | [madani@mail.com](mailto:madani@mail.com) | PHP           | Langage de programmation |
+| Eloquent      | Madani     | [madani@mail.com](mailto:madani@mail.com) | PHP           | Langage de programmation |
+| Kotlin        | Sara       | [sara@mail.com](mailto:sara@mail.com)     | Mobile        | Développement mobile     |
+
 
 Le problème est visible :
 

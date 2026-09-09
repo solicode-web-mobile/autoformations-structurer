@@ -44,7 +44,7 @@ Ces informations peuvent être :
 
 ```text
 Titre : Mon premier article
-Auteur : Madani Ali
+Auteur : Madani
 Catégorie : Laravel
 Date : 08/09/2026
 ```

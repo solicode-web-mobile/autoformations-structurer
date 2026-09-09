@@ -35,7 +35,7 @@ Une application utilise beaucoup de données pour fonctionner.
 **Exemple :**
 
 ```text
-Nom : Madani Ali
+Nom : Madani
 Âge : 20
 Email : madani@example.com
 ```
@@ -272,7 +272,7 @@ Une **donnée saisie** est renseignée par l’utilisateur.
 **Exemple :**
 
 ```text
-Nom : [Madani Ali]
+Nom : [Madani]
 ```
 
 Une **donnée affichée** est montrée par l’application.
@@ -280,7 +280,7 @@ Une **donnée affichée** est montrée par l’application.
 **Exemple :**
 
 ```text
-Nom : Madani Ali
+Nom : Madani
 ```
 
 Une même donnée peut être saisie à un moment et affichée plus tard.

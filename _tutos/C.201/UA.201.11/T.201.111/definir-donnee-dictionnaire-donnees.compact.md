@@ -29,7 +29,7 @@ Une **donnée** est une information utilisée par une application.
 **Exemple :**
 
 ```text
-Nom : Madani Ali
+Nom : Madani
 Âge : 20
 Email : madani@example.com
 ```
