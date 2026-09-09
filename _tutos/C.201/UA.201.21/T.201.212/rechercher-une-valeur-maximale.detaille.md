@@ -8,20 +8,18 @@ version: "detaille"
 ua: "UA.201.21"
 nav_order: 2
 ---
-
+ 
 
 ## 1. Objectif
 
 Écrire un programme JavaScript qui recherche la plus grande valeur d’un tableau.
 
-Vous allez préparer le tableau, construire votre propre algorithme, puis tester et déboguer votre programme avec **Node.js** et **VS Code**.
+Exécuter, tester et déboguer le programme avec **Node.js** et **VS Code**.
 
 ## 2. Prérequis
 
 * Connaître les variables.
-* Savoir déclarer un tableau.
-* Savoir lire un élément avec son indice.
-* Savoir modifier un élément.
+* Connaître les tableaux.
 * Savoir utiliser une boucle `for`.
 * Savoir utiliser `console.log()`.
 * Savoir utiliser VS Code.
@@ -29,26 +27,26 @@ Vous allez préparer le tableau, construire votre propre algorithme, puis tester
 
 # Partie 1 — Théorie
 
-## 1.1. Rappel JavaScript — Déclarer un tableau
+## 1.1. Rappel JavaScript — Tableau
 
 Un tableau permet de stocker plusieurs valeurs dans une même variable.
+
+Pour déclarer un tableau, utilisez les crochets `[]`.
 
 ```javascript
 let nombres = [12, 5, 27, 9, 18];
 ```
 
-Chaque valeur possède un indice.
+Ici, `nombres` contient cinq valeurs.
 
-Le premier indice est `0`.
+Chaque valeur possède un **indice**. Le premier indice est `0`.
 
 ```text
 Indice :  0   1   2   3   4
 Valeur : 12   5  27   9  18
 ```
 
-## 1.2. Lire un élément
-
-Pour lire une valeur, utilisez son indice.
+Pour lire une valeur, utilisez son indice :
 
 ```javascript
 console.log(nombres[0]);
@@ -61,9 +59,7 @@ La forme générale est :
 tableau[indice]
 ```
 
-## 1.3. Écrire une valeur
-
-Vous pouvez modifier une valeur avec son indice.
+Pour écrire ou modifier une valeur :
 
 ```javascript
 nombres[2] = 30;
@@ -75,17 +71,13 @@ La forme générale est :
 tableau[indice] = nouvelleValeur
 ```
 
-## 1.4. Connaître le nombre d’éléments
-
-La propriété `length` donne le nombre d’éléments du tableau.
+La propriété `length` permet de connaître le nombre d’éléments :
 
 ```javascript
 console.log(nombres.length);
 ```
 
-## 1.5. Parcourir un tableau
-
-Une boucle `for` permet de parcourir les éléments du tableau.
+Une boucle `for` permet de parcourir les éléments :
 
 ```javascript
 for (let i = 0; i < nombres.length; i++) {
@@ -95,9 +87,7 @@ for (let i = 0; i < nombres.length; i++) {
 
 La variable `i` représente l’indice courant.
 
-L’expression `nombres[i]` permet de lire la valeur correspondante.
-
-## 1.6. Le problème
+## 1.2. Le problème
 
 Vous disposez d’un tableau de nombres :
 
@@ -111,140 +101,67 @@ Votre programme doit afficher la plus grande valeur :
 27
 ```
 
-Le même programme doit fonctionner avec d’autres tableaux.
-
-Exemples :
+Le programme doit aussi fonctionner avec d’autres tableaux, par exemple :
 
 ```text
 [4, 8, 2, 15, 6]
 ```
 
-```text
-[20, 7, 13, 5, 9]
-```
-
-Vous devez trouver vous-même le traitement qui permet d’obtenir le résultat.
-
-**La solution de l’algorithme n’est pas donnée dans ce tutoriel.**
-
-## 1.7. Réfléchir avant de coder
-
-Avant d’écrire le programme, analysez le problème.
-
-Posez-vous ces questions :
-
-* Quelles valeurs faut-il examiner ?
-* Comment accéder à chaque valeur ?
-* Comment comparer deux valeurs ?
-* Quelle information faut-il conserver pendant le traitement ?
-* Comment déterminer le résultat final ?
-
-Écrivez votre raisonnement avant de commencer le code.
-
-## 1.8. Vérifier votre raisonnement
-
-Prenez ce tableau :
-
-```text
-[12, 5, 27, 9, 18]
-```
-
-Observez les valeurs une par une.
-
-Essayez de déterminer manuellement comment vous trouveriez la plus grande valeur.
-
-Faites ensuite le même travail avec :
-
-```text
-[4, 8, 2, 15, 6]
-```
-
-Puis :
+ou :
 
 ```text
 [20, 7, 13, 5, 9]
 ```
 
-Le but est de transformer votre raisonnement en programme.
+Votre travail consiste à construire vous-même l’algorithme.
 
-## 1.9. Préparer les tests
+Vous devez déterminer comment utiliser le parcours du tableau et les comparaisons pour obtenir le résultat.
 
-Votre programme doit fonctionner avec plusieurs tableaux.
-
-Testez notamment :
-
-* une plus grande valeur au début ;
-* une plus grande valeur au milieu ;
-* une plus grande valeur à la fin ;
-* plusieurs valeurs différentes.
-
-Vous pouvez aussi créer vos propres cas de test.
-
-## 1.10. À retenir
-
-* Un tableau contient plusieurs valeurs.
-* Le premier indice est `0`.
-* `tableau[indice]` permet de lire une valeur.
-* `tableau[indice] = valeur` permet de modifier une valeur.
-* `length` donne le nombre d’éléments.
-* Une boucle `for` permet de parcourir un tableau.
-* Le traitement doit être construit à partir du problème.
+**Aucune solution de l’algorithme n’est donnée dans ce tutoriel.**
 
 # Partie 2 — Pratique
 
-## 2.1. Organiser le travail
+## 2.1. Construire et tester
 
 ### Étape 1 — Créer le fichier
 
-Créez le fichier :
+Créez un fichier :
 
 ```text
 maximum.js
 ```
 
-Ce fichier contient votre programme.
-
-### Étape 2 — Préparer les données
-
-Déclarez un tableau de nombres dans `maximum.js`.
-
-Commencez avec :
+Dans ce fichier, déclarez un tableau de nombres :
 
 ```javascript
 let nombres = [12, 5, 27, 9, 18];
 ```
 
-Ajoutez un affichage pour vérifier le contenu du tableau.
+Affichez le tableau avec `console.log()` pour vérifier les données.
 
-### Étape 3 — Construire votre solution
+Construisez ensuite votre propre traitement pour rechercher la plus grande valeur.
 
-Écrivez votre propre algorithme pour rechercher la plus grande valeur.
+Utilisez les notions étudiées dans la partie théorique :
 
-Utilisez les notions étudiées dans la partie théorique.
+* tableau ;
+* indice ;
+* boucle `for` ;
+* comparaison ;
+* variable.
 
-Ne copiez pas une solution existante.
+Ne copiez pas une solution déjà écrite.
 
-## 2.2. Exécuter avec Node.js
-
-### Étape 4 — Vérifier Node.js
+### Étape 2 — Exécuter
 
 Dans le terminal de VS Code, exécutez :
-
-```bash
-node --version
-```
-
-Une version de Node.js doit s’afficher.
-
-### Étape 5 — Exécuter le programme
-
-Lancez :
 
 ```bash
 node maximum.js
 ```
 
-Avec le tableau :
+Vérifiez le résultat obtenu.
+
+Pour le tableau :
 
 ```text
 [12, 5, 27, 9, 18]
@@ -256,68 +173,57 @@ le résultat attendu est :
 27
 ```
 
-### Étape 6 — Tester plusieurs tableaux
+Changez ensuite les valeurs du tableau.
 
-Modifiez le tableau et testez plusieurs situations.
+Testez par exemple :
 
-Vérifiez à chaque fois que le résultat correspond à la plus grande valeur présente dans le tableau.
+```text
+[4, 8, 2, 15, 6]
+```
 
-# Partie 3 — Test et débogage avec VS Code
+Puis :
 
-## 3.1. Déboguer le programme
+```text
+[20, 7, 13, 5, 9]
+```
 
-Utilisez le débogueur **Node.js** de VS Code pour suivre votre programme **ligne par ligne**.
+Vérifiez que votre programme donne le bon résultat dans chaque cas.
 
-Observez les valeurs des variables pendant l’exécution.
+### Étape 3 — Déboguer
 
-Portez une attention particulière :
+Utilisez le débogueur **Node.js** de VS Code pour suivre votre programme ligne par ligne.
 
-* à l’indice utilisé ;
-* à la valeur actuellement lue ;
-* aux variables utilisées par votre traitement ;
-* aux changements de leurs valeurs.
+Observez les valeurs pendant l’exécution, notamment :
 
-## 3.2. Vérifier votre raisonnement
+* l’indice utilisé ;
+* la valeur actuellement lue dans le tableau ;
+* les variables utilisées par votre traitement ;
+* les changements de leurs valeurs.
 
-Comparez le comportement du programme avec le raisonnement que vous avez préparé avant le codage.
+Comparez ce que vous observez avec votre raisonnement.
 
-Vérifiez que :
+Si le résultat est incorrect, cherchez vous-même à quel moment le comportement du programme devient incorrect.
 
-* les éléments sont bien parcourus ;
-* les valeurs sont correctement comparées ;
-* les variables contiennent les bonnes valeurs ;
-* le résultat final est correct.
+Analysez les valeurs des variables, corrigez votre code et exécutez de nouveau le programme.
 
-## 3.3. Corriger les erreurs
-
-Lorsque le résultat est incorrect, utilisez le débogage pour trouver l’origine du problème.
-
-Observez le programme ligne par ligne.
-
-Identifiez le premier moment où le résultat devient incorrect.
-
-Corrigez votre code, puis relancez le programme.
-
-Réalisez de nouveaux tests après chaque correction.
+Répétez les tests avec plusieurs tableaux.
 
 **Résultat attendu :**
 
-Le programme recherche correctement la plus grande valeur dans différents tableaux.
+Le programme trouve correctement la plus grande valeur du tableau.
 
 # 3. Bilan
 
-**Vous avez réalisé :** un programme JavaScript qui déclare un tableau, parcourt ses éléments et recherche sa plus grande valeur.
+**Vous avez réalisé :** un programme JavaScript qui parcourt un tableau et recherche sa plus grande valeur.
 
-**Vous savez maintenant :** utiliser un tableau, lire ses éléments avec leurs indices, le parcourir avec une boucle `for`, construire un traitement de recherche et vérifier votre programme avec Node.js et VS Code.
+**Vous savez maintenant :** déclarer, lire et modifier un tableau, parcourir ses éléments et construire un traitement de recherche.
 
 # 4. Glossaire
 
 * **Tableau** : ensemble de plusieurs valeurs.
 * **Élément** : valeur contenue dans un tableau.
 * **Indice** : position d’un élément dans un tableau.
-* **`length`** : propriété qui donne le nombre d’éléments.
 * **Parcours** : lecture successive des éléments d’un tableau.
 * **Maximum** : plus grande valeur d’un ensemble.
-* **Test** : exécution du programme avec des données pour vérifier le résultat.
-* **Débogage** : recherche et correction d’une erreur dans un programme.
-* **Débogueur** : outil qui permet d’observer un programme pendant son exécution.
+* **Comparaison** : action qui permet de comparer des valeurs.
+* **Débogage** : recherche et correction des erreurs d’un programme.
