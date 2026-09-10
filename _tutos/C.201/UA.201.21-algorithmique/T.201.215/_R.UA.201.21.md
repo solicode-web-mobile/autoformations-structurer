@@ -1,21 +1,31 @@
 
-Il ne faut pas Rappler une notion Javascript déja rappeller dans les tuto précédent de l'unité d'apprentissage.
 
-Le tuto qui doit choisire le traitement à réaliser n'est pas l'apprenant
+La partie théorique doit expliquer comment réaliser l'algorithme d'un problème compoéser, il doit expliquer les étape à partie d'un exemple, au début il doit donner le problème, puis commencer à trouver l'algorithme par étape, dans chaque étape il faut donner un exemple pour comprendre.
 
+Dans la partie Pratique, il faut donner un autre problème à résoudre par l'apprenant sans donner la solution et les étape de création de 'algorithme.
+
+Donner le tuto dans sa version compact
 ----
 
-Exact. Il faut donc ajouter deux règles précises :
+au début, il faut voire les chose comme ça il faut décomposer le problème 
 
-1. **Ne pas répéter une notion JavaScript déjà expliquée dans un tutoriel précédent de la même UA.**
+1. trier les produit par nombre de vues
+2. Prendre seulement les élément supérier à 1500 views 
+3. Trier le nouveau tableau par prix
+4. prendre les premiere élément j'ausqua la somme des prix ne dpésse pas 100 dh
 
-La règle générale à intégrer au Skill serait :
-
-> **Progression des notions :** dans une même UA, ne pas répéter une notion  déjà présentée dans un tutoriel précédent. Réutiliser directement cette notion dans les tutoriels suivants, sauf si un bref rappel est indispensable à la compréhension.
-
-Et :
-
+pour pour chaue phase, il faut pender à un algorithme pour résoudre le petitre problème
 
 ---
 
-avant de données la version Détaillé et Version Normal pour valider la strcutrer de tuto par le concepteur, il faut donner seulement la strcutre de tuto le plus ( plan strctement compact)
+pour chaque étape trouver, on doit déterminer les variable à utiliser.
+
+il faut que chaque étape enregistrer le résutlat dans les vairable, puis l'étape suivante utiliser le résultat de l'étatp précedente comme donne d'entré
+
+pour chaque étape si l'algorithme élémentaire est utiliser on doit cider son nom: 
+les algorithme élémentaire :
+
+- échanger deux variable
+- trouver la valeur maximal
+- trie un tableau 
+- ..

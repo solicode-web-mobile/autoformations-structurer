@@ -1,178 +1,249 @@
 ---
-
-title: "Combiner plusieurs techniques algorithmiques"
+title: "Construire un algorithme à partir d’un problème"
 layout: tuto
-slug: "combiner-plusieurs-techniques-algorithmiques"
+slug: "construire-algorithme"
 permalink: /tutos/:slug/compact
 tuto_id: "T.201.215"
 version: "compact"
 ua: "UA.201.21"
 nav_order: 5
-------------
+---
+ 
 
 ## 1. Objectif
 
-Combiner plusieurs techniques algorithmiques dans un même programme JavaScript.
+Apprendre une méthode pour construire un algorithme à partir d’un problème composé.
 
-Exécuter le programme avec **Node.js** et déboguer le traitement ligne par ligne avec **VS Code**.
+Appliquer la méthode :
+
+**Comprendre → Décomposer → Construire → Tester → Corriger**
 
 ## 2. Prérequis
 
-* Connaître les variables.
 * Connaître les tableaux.
-* Savoir parcourir un tableau avec `for`.
+* Savoir parcourir un tableau.
 * Savoir comparer des valeurs.
-* Savoir rechercher une valeur dans un tableau.
 * Savoir trier un tableau.
-* Savoir utiliser `console.log()`.
-* Savoir exécuter un fichier avec Node.js.
-* Savoir utiliser le débogueur de VS Code.
+* Connaître les algorithmes élémentaires déjà étudiés.
 
 # Partie 1 — Théorie
 
-## 1.1. Le principe
+## 1.1. Le problème
 
-Un problème peut demander plusieurs traitements.
+Un magasin possède plusieurs produits.
 
-Un même programme peut donc utiliser plusieurs techniques algorithmiques.
+Chaque produit possède un prix et un nombre de `views`.
+
+Un produit est populaire s’il possède plus de **1 500 views**.
+
+Un client possède **100 DH**.
+
+Il veut acheter le plus grand nombre possible de produits populaires sans dépasser son budget.
+
+| Produit |  Prix | Views |
+| ------- | ----: | ----: |
+| A       | 30 DH | 1 200 |
+| B       | 20 DH | 2 500 |
+| C       | 15 DH | 1 800 |
+| D       | 40 DH | 3 000 |
+| E       | 10 DH |   900 |
+| F       | 25 DH | 2 000 |
+
+## 1.2. Comprendre
+
+Identifiez :
+
+* les données ;
+* le résultat attendu ;
+* les contraintes.
 
 **Exemple :**
 
-À partir d’un tableau de nombres, le programme peut :
+```text
+Données : produits, prix, views, budget
+Condition : views > 1500
+Objectif : acheter le plus grand nombre de produits populaires
+Contrainte : total <= 100 DH
+```
 
-1. parcourir le tableau ;
-2. rechercher une information ;
-3. trier les valeurs ;
-4. afficher le résultat.
+## 1.3. Décomposer
 
-Les traitements doivent être réalisés dans le bon ordre.
+Découpez le problème en petits problèmes.
 
-## 1.2. Décomposer le problème
+**Exemple :**
 
-Avant de coder, découpez le problème en petites actions.
+```text
+1. Trier les produits par views
+2. Garder les produits avec plus de 1500 views
+3. Trier les produits obtenus par prix
+4. Choisir les produits sans dépasser 100 DH
+```
 
-Posez-vous ces questions :
+## 1.4. Construire
 
-* Quelle est la première action ?
-* Quelle information faut-il obtenir ?
-* Quel traitement vient ensuite ?
-* Quel résultat doit être affiché à la fin ?
+Pour chaque petit problème :
 
-Ne commencez pas directement par écrire tout le programme.
+* choisir un **algorithme élémentaire** ;
+* déterminer les **variables** ;
+* enregistrer le résultat ;
+* utiliser ce résultat dans l’étape suivante.
 
-## 1.3. À retenir
+**Exemple :**
 
-* Un problème peut utiliser plusieurs techniques.
-* Chaque traitement réalise une tâche précise.
-* Les traitements doivent être placés dans un ordre logique.
-* Un problème complexe peut être découpé en plusieurs traitements simples.
+| Étape | Algorithme                    | Résultat             |
+| ----- | ----------------------------- | -------------------- |
+| 1     | Trier un tableau              | `produitsTriesViews` |
+| 2     | Parcourir + condition         | `produitsPopulaires` |
+| 3     | Trier un tableau              | `produitsTriesPrix`  |
+| 4     | Parcourir + somme + condition | `produitsAchetes`    |
+
+```text
+produits
+   ↓
+produitsTriesViews
+   ↓
+produitsPopulaires
+   ↓
+produitsTriesPrix
+   ↓
+produitsAchetes
+```
+
+## 1.5. Tester
+
+Testez le raisonnement sur papier avec un petit exemple.
+
+Vérifiez le résultat de chaque étape.
+
+**Exemple :**
+
+```text
+Prix : 10 DH, 15 DH, 20 DH
+Budget : 40 DH
+```
+
+## 1.6. Corriger
+
+Vérifiez :
+
+* les résultats intermédiaires ;
+* les variables ;
+* les calculs ;
+* les conditions ;
+* le résultat final.
+
+Corrigez le raisonnement si nécessaire, puis testez à nouveau.
+
+## 1.7. À retenir
+
+**Comprendre → Décomposer → Construire → Tester → Corriger**
+
+* **Comprendre** : identifier les données, le résultat et les contraintes.
+* **Décomposer** : découper le problème.
+* **Construire** : choisir les algorithmes élémentaires et les variables.
+* **Tester** : vérifier le raisonnement sur papier.
+* **Corriger** : corriger les erreurs et finaliser l’algorithme.
 
 # Partie 2 — Pratique
 
-## 2.1. Préparer le programme
+## 2.1. Reproduire la méthode
 
-### Étape 1 — Créer le fichier
+Reprenez le problème du magasin présenté dans la théorie.
 
-Créez un fichier :
+Appliquez vous-même les cinq étapes :
 
-```text id="b8d4sc"
-combinaison.js
-```
+**Étape 1 — Comprendre**
 
-### Étape 2 — Choisir les données
+Identifiez les données, le résultat attendu et les contraintes.
 
-Créez un tableau contenant plusieurs nombres.
+**Étape 2 — Décomposer**
 
-Définissez le résultat que votre programme doit produire.
+Découpez le problème en petits problèmes.
 
-### Étape 3 — Décomposer le problème
+**Étape 3 — Construire**
 
-Écrivez sur papier les traitements nécessaires.
+Pour chaque petit problème :
 
-Utilisez plusieurs techniques déjà étudiées dans les tutoriels précédents.
+* choisissez l’algorithme élémentaire ;
+* déterminez les variables ;
+* indiquez le résultat produit.
 
-Ne cherchez pas une solution toute faite.
+**Étape 4 — Tester**
 
-## 2.2. Construire le traitement
+Testez votre raisonnement sur papier.
 
-### Étape 4 — Écrire le premier traitement
+**Étape 5 — Corriger**
 
-Écrivez la première partie de votre programme.
-
-Testez-la avant de continuer.
-
-### Étape 5 — Ajouter le traitement suivant
-
-Ajoutez le deuxième traitement.
-
-Vérifiez que le résultat du premier traitement peut être utilisé correctement par le deuxième.
-
-### Étape 6 — Ajouter les autres traitements
-
-Continuez jusqu’à obtenir le résultat demandé.
-
-Respectez l’ordre des traitements.
-
-### Étape 7 — Tester le programme
-
-Exécutez le programme :
-
-```bash id="wo6f4t"
-node combinaison.js
-```
-
-Testez avec plusieurs valeurs.
+Corrigez les erreurs et finalisez votre algorithme.
 
 **Résultat attendu :**
 
-Le programme réalise plusieurs traitements dans le bon ordre et produit le résultat demandé.
+Un algorithme complet construit à partir du problème du magasin.
 
-## 2.3. Déboguer ligne par ligne
+# Partie 3 — Exercice
 
-### Étape 8 — Placer un point d’arrêt
+Une plateforme propose plusieurs vidéos pour apprendre une notion technique.
 
-Placez un point d’arrêt au début du premier traitement.
+Chaque vidéo possède :
 
-### Étape 9 — Lancer le débogueur
+* un titre ;
+* une durée ;
+* un nombre de `views`.
 
-Lancez le programme avec le débogueur **Node.js** de VS Code.
+Une vidéo est populaire si elle possède au moins **2 000 views**.
 
-### Étape 10 — Suivre les traitements
+Un apprenant dispose de **10 minutes maximum**.
 
-Avancez ligne par ligne.
+Il veut regarder le plus grand nombre possible de vidéos populaires sans dépasser 10 minutes.
 
-Observez :
+**Travail à faire :**
 
-* la valeur des variables ;
-* les éléments du tableau ;
-* le résultat de chaque traitement ;
-* l’ordre d’exécution des traitements.
+Appliquez seul la méthode :
 
-### Étape 11 — Corriger les erreurs
+```text
+Comprendre
+→ Décomposer
+→ Construire
+→ Tester
+→ Corriger
+```
 
-Si le résultat final est incorrect :
+Pour chaque sous-problème, indiquez :
 
-* trouvez le premier traitement incorrect ;
-* observez les valeurs avant et après ce traitement ;
-* vérifiez l’ordre des traitements ;
-* corrigez votre code ;
-* relancez le programme.
+* l’algorithme élémentaire utilisé ;
+* les variables nécessaires ;
+* le résultat produit.
 
 **Résultat attendu :**
 
-Vous pouvez expliquer comment plusieurs techniques simples sont combinées pour résoudre un même problème.
+Un algorithme complet construit par vous-même.
 
-# 3. Bilan
+# 4. Bilan
 
-**Vous avez réalisé :** un programme JavaScript qui combine plusieurs traitements algorithmiques.
+**Vous avez réalisé :** la construction d’un algorithme à partir d’un problème composé.
 
-**Vous savez maintenant :** décomposer un problème en plusieurs traitements, les organiser dans un ordre logique et les tester avec Node.js et VS Code.
+**Vous savez maintenant :** découper un problème, choisir des algorithmes élémentaires, utiliser des variables intermédiaires et vérifier votre raisonnement.
 
-# 4. Glossaire
+**Méthode à retenir :**
 
-* **Traitement** : action réalisée par le programme.
-* **Combinaison** : utilisation de plusieurs traitements dans un même programme.
-* **Décomposition** : action qui consiste à découper un problème en plusieurs parties.
-* **Ordonnancement** : organisation des traitements dans un ordre logique.
-* **Résultat attendu** : résultat que le programme doit produire.
-* **Débogage** : action qui consiste à suivre le programme pour trouver et corriger une erreur.
+```text
+Comprendre
+   ↓
+Décomposer
+   ↓
+Construire
+   ↓
+Tester
+   ↓
+Corriger
+```
+
+# 5. Glossaire
+
+* **Algorithme** : suite d’actions pour résoudre un problème.
+* **Algorithme élémentaire** : algorithme simple qui réalise une tâche précise.
+* **Décomposer** : découper un problème en petits problèmes.
+* **Variable** : élément qui conserve une valeur ou un résultat.
+* **Résultat intermédiaire** : résultat produit par une étape et utilisé par une autre étape.
+* **Contrainte** : règle que la solution doit respecter.
+* **Test sur papier** : vérification manuelle du raisonnement.
