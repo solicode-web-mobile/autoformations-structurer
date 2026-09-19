@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Environnement de Test d'Intégration</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    </style>
+</head>
+<body class="bg-gray-100 flex flex-col md:flex-row min-h-screen">
+
+    <!-- Panneau de contrôle -->
+    <aside class="w-full md:w-1/4 bg-white shadow-lg p-6 flex flex-col z-10 md:h-screen md:sticky md:top-0 overflow-y-auto">
+        <h1 class="text-xl font-bold mb-4 text-gray-800">Test d'Intégration (Iframe)</h1>
+        <p class="text-sm text-gray-600 mb-6">
+            Cette page simule l'intégration de l'éditeur dans un LMS ou un site statique. 
+            Cliquez sur les boutons pour charger différentes combinaisons de code via l'URL.
+        </p>
+
+        <div class="space-y-3 flex-1">
+            <button onclick="loadScenario('default')" class="w-full text-left px-4 py-3 bg-gray-50 border border-gray-200 rounded hover:bg-gray-100 transition-colors">
+                <div class="font-semibold text-gray-700">1. Démo complète</div>
+                <div class="text-xs text-gray-500">Aucun paramètre (charge les défauts)</div>
+            </button>
+
+            <button onclick="loadScenario('html-css')" class="w-full text-left px-4 py-3 bg-gray-50 border border-gray-200 rounded hover:bg-gray-100 transition-colors">
+                <div class="font-semibold text-blue-700">2. HTML / CSS uniquement</div>
+                <div class="text-xs text-gray-500">Onglets JS et PHP seront masqués</div>
+            </button>
+
+            <button onclick="loadScenario('js-only')" class="w-full text-left px-4 py-3 bg-gray-50 border border-gray-200 rounded hover:bg-gray-100 transition-colors">
+                <div class="font-semibold text-yellow-600">3. JavaScript uniquement</div>
+                <div class="text-xs text-gray-500">Test d'un algorithme pur</div>
+            </button>
+
+            <button onclick="loadScenario('php-cli')" class="w-full text-left px-4 py-3 bg-gray-50 border border-gray-200 rounded hover:bg-gray-100 transition-colors">
+                <div class="font-semibold text-purple-700">4. Script PHP pur (CLI)</div>
+                <div class="text-xs text-gray-500">Test de boucle et console</div>
+            </button>
+
+            <button onclick="loadScenario('php-web')" class="w-full text-left px-4 py-3 bg-gray-50 border border-gray-200 rounded hover:bg-gray-100 transition-colors">
+                <div class="font-semibold text-green-700">5. PHP & HTML (index.php)</div>
+                <div class="text-xs text-gray-500">Génération dynamique de page</div>
+            </button>
+            
+            <button onclick="loadScenario('smart-wrap')" class="w-full text-left px-4 py-3 bg-gray-50 border border-gray-200 rounded hover:bg-gray-100 transition-colors">
+                <div class="font-semibold text-teal-600">6. Smart Wrapping (Complet)</div>
+                <div class="text-xs text-gray-500">Page HTML complète avec &lt;html&gt;</div>
+            </button>
+            
+            <button onclick="loadScenario('tiny')" class="w-full text-left px-4 py-3 bg-gray-50 border border-gray-200 rounded hover:bg-gray-100 transition-colors">
+                <div class="font-semibold text-red-600">7. Test Responsive (1 ligne)</div>
+                <div class="text-xs text-gray-500">Vérifie l'ajustement de hauteur</div>
+            </button>
+        </div>
+    </aside>
+
+    <!-- Zone d'intégration de l'iframe -->
+    <main class="flex-1 bg-gray-200 p-4 md:p-8 flex items-center justify-center min-h-screen md:min-h-0">
+        <!-- Conteneur simulant un espace limité dans un article de blog ou LMS -->
+        <div class="w-full max-w-5xl bg-white rounded-lg shadow-2xl overflow-hidden flex flex-col h-[80vh] md:h-[90vh]">
+            <div class="bg-gray-800 px-4 py-2 flex items-center">
+                <div class="flex space-x-2">
+                    <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                    <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                    <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                </div>
+                <div class="ml-4 text-xs font-mono text-gray-400">Simulation d'intégration (iframe)</div>
+            </div>
+            
+            <iframe id="editor-iframe" src="index.html" class="w-full flex-1 border-none bg-gray-100"></iframe>
+        </div>
+    </main>
+
+    <script>
+        const scenarios = {
+            'default': {},
+            
+            'html-css': {
+                html: '<div class="boite">\n  <h2>Boîte stylisée</h2>\n  <p>Aucun JS ou PHP ici !</p>\n</div>',
+                css: '.boite {\n  border: 2px solid blue;\n  padding: 1rem;\n  border-radius: 8px;\n  background: #e0f2fe;\n}\n\nh2 { color: blue; }'
+            },
+            
+            'js-only': {
+                js: '// Calcul de la factorielle\nfunction factorielle(n) {\n  if (n === 0 || n === 1) return 1;\n  return n * factorielle(n - 1);\n}\n\n// Le Sprint 9 affichera ça dans l\'UI\ndocument.body.innerHTML = "<h1>Factorielle de 5 : " + factorielle(5) + "</h1>";'
+            },
+            
+            'php-cli': {
+                php: '<?php\necho "--- DEBUT DU SCRIPT ---\\n";\nfor ($i = 1; $i <= 5; $i++) {\n    echo "Ligne " . $i . "\\n";\n}\necho "--- FIN DU SCRIPT ---\\n";'
+            },
+            
+            'php-web': {
+                html: '<!-- HTML de base qui sera complété par index.php si besoin, mais ici index.php gère tout -->',
+                'index.php': '<?php\n  $couleurs = ["Rouge", "Vert", "Bleu"];\n?>\n<ul>\n  <?php foreach($couleurs as $c): ?>\n    <li><?= $c ?></li>\n  <?php endforeach; ?>\n</ul>',
+                activeTab: 'index.php'
+            },
+            
+            'smart-wrap': {
+                html: '<!DOCTYPE html>\n<html lang="fr">\n<head>\n  <meta charset="UTF-8">\n  <title>Titre de ma Super Page</tit' + 'le>\n</he' + 'ad>\n<body>\n  <h1>Je gère ma structure moi-même !</h1>\n  <p>Le CSS et JS seront injectés intelligemment par le moteur de l\'éditeur.</p>\n</bo' + 'dy>\n</ht' + 'ml>',
+                css: 'body { background: #fdf2f8; font-family: sans-serif; }\nh1 { color: #db2777; }',
+                js: 'console.log("Le script a bien été injecté avant le </bo" + "dy> !");'
+            },
+            
+            'tiny': {
+                html: '<h1>1 ligne</h1>'
+            }
+        };
+
+        function loadScenario(key) {
+            const data = scenarios[key];
+            const url = new URL('index.html', window.location.href);
+            
+            for (const [lang, code] of Object.entries(data)) {
+                url.searchParams.set(lang, code);
+            }
+            
+            document.getElementById('editor-iframe').src = url.href;
+        }
+    </script>
+</body>
+</html>

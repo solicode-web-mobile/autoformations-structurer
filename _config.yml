@@ -48,6 +48,9 @@ mermaid:
 # Callouts
 # --------------------------------------------------
 
+highlighter: none
+
+
 callouts_level: quiet
 
 callouts:
