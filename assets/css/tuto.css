@@ -1,4 +1,4 @@
-
+﻿
 /* =========================================================
    FORMATION WEB — TUTORIEL
    ========================================================= */
@@ -10,7 +10,6 @@
 
 .tuto-page {
   width: 100%;
-  max-width: 820px;
   font-size: 14px;
   line-height: 1.7;
 }
@@ -37,8 +36,10 @@
 }
 
 .tuto-code {
-  display: block;
-
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
   margin-bottom: 0.15rem;
 
   color: #7253ed;
@@ -137,19 +138,23 @@
 }
 
 .tuto-page h1 {
-  font-size: 2rem;
+  font-size: 2rem !important;;
 }
 
 .tuto-page h2 {
-  font-size: 1.5rem;
+  font-size: 1.5rem !important;;
 }
 
 .tuto-page h3 {
-  font-size: 1.25rem;
+  font-size: 1.3rem !important;;
 }
 
+
 .tuto-page h4 {
-  font-size: 1.1rem;
+    font-size: 1.2rem !important;
+    text-transform: none !important;
+    letter-spacing:  normal !important;
+    font-weight: 500;
 }
 
 
@@ -349,7 +354,165 @@
 
 
 /* =========================================================
-   11. MOBILE
+   11. MENU CONTEXTUEL DOMAINE
+   ========================================================= */
+
+.tuto-domain-menu {
+  margin-top: 1.5rem;
+  margin-bottom: 2.5rem;
+  border: none;
+  background: transparent;
+}
+.tuto-code .tuto-domain-menu {
+  margin: 0;
+}
+
+.tuto-code .tuto-domain-menu-summary {
+  padding: 0;
+}
+
+.tuto-domain-menu-summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0;
+  background: transparent;
+  cursor: pointer;
+  user-select: none;
+  font-weight: 500;
+  color: #6b7280;
+  font-size: 0.85rem;
+  list-style: none;
+  transition: color 0.2s ease;
+}
+
+.tuto-domain-menu-summary:hover {
+  color: #111827;
+}
+
+.tuto-domain-menu-summary::-webkit-details-marker {
+  display: none;
+}
+
+.tuto-domain-menu[open] .tuto-domain-menu-summary {
+  color: #111827;
+  margin-bottom: 0.75rem;
+}
+
+.tuto-domain-menu[open] .tuto-domain-menu-icon {
+  transform: rotate(180deg);
+}
+
+.tuto-domain-menu-icon {
+  font-size: 0.6rem;
+  color: inherit;
+  transition: transform 0.2s ease;
+}
+
+.tuto-domain-menu-content {
+  padding: 0;
+  border-left: 1px solid #e5e7eb;
+  margin-left: 0.5rem;
+  padding-left: 1.25rem;
+}
+
+.tuto-domain-ua-group {
+  margin-bottom: 1.25rem;
+}
+
+.tuto-domain-ua-group:last-child {
+  margin-bottom: 0;
+}
+
+.tuto-domain-ua-group h5 {
+  margin-top: 0;
+  margin-bottom: 0.6rem;
+  color: #9ca3af;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding-left: 0;
+}
+
+/* Modification UI/UX Minimaliste mais plus UI */
+.tuto-domain-menu .tuto-list {
+  gap: 0.2rem;
+}
+
+.tuto-domain-menu .tuto-card {
+  position: relative;
+  min-height: auto;
+  padding: 0.35rem 0.6rem;
+  margin-left: -0.6rem;
+  border: none;
+  border-radius: 0.35rem;
+  background: transparent;
+  display: flex;
+  align-items: baseline;
+}
+
+.tuto-domain-menu .tuto-card:hover {
+  transform: none;
+  background: #f3f4f6;
+}
+
+.tuto-domain-menu .tuto-card-title {
+  font-size: 0.85rem;
+  color: #4b5563;
+  font-weight: 400;
+  transition: color 0.15s ease;
+  line-height: 1.4;
+}
+
+.tuto-domain-menu .tuto-card:hover .tuto-card-title {
+  color: #111827;
+}
+
+.tuto-domain-menu .tuto-card-number {
+  flex-shrink: 0;
+  width: 1.25rem;
+  margin-right: 0.25rem;
+  font-size: 0.75rem;
+  color: #9ca3af;
+  text-align: left;
+  font-weight: 500;
+}
+
+.tuto-domain-menu .tuto-card-active {
+  background: #f5f3ff;
+  box-shadow: none;
+}
+
+.tuto-domain-menu .tuto-card-active:hover {
+  background: #ede9fe;
+}
+
+.tuto-domain-menu .tuto-card-active .tuto-card-title {
+  color: #4f46e5;
+  font-weight: 600;
+}
+
+.tuto-domain-menu .tuto-card-active .tuto-card-number {
+  color: #4f46e5;
+  font-weight: 600;
+}
+
+/* Indicateur point pour le tuto actif */
+.tuto-domain-menu .tuto-card-active::before {
+  content: '';
+  position: absolute;
+  left: calc(-0.65rem - 3px); /* Centrage sur la bordure de 1px */
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #4f46e5;
+  box-shadow: 0 0 0 4px #fff;
+}
+
+/* =========================================================
+   12. MOBILE
    ========================================================= */
 
 @media (max-width: 700px) {
@@ -408,4 +571,31 @@
     white-space: normal;
   }
 
+}
+
+
+
+/* =========================================================
+   13. RESULTAT ATTENDU
+   ========================================================= */
+
+.tuto-resultat {
+  display: none;
+}
+
+.tuto-resultat.show {
+  display: block;
+}
+
+.btn-toggle-resultat {
+  margin-bottom: 1.5rem;
+}
+
+/* Cache également le wrapper généré par iframe-controls.js s'il contient tuto-resultat */
+.iframe-wrapper:has(.tuto-resultat) {
+  display: none;
+}
+
+.iframe-wrapper.show:has(.tuto-resultat) {
+  display: block;
 }

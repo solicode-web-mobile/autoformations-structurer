@@ -1,0 +1,156 @@
+/* =========================================================
+   FORMATION WEB — EDITOR ET IFRAME
+   Styles pour l'affichage de l'éditeur de code et iframe
+   ========================================================= */
+
+/* =========================================================
+   1. IFRAME CONTAINER
+   ========================================================= */
+
+/* Conteneur principal */
+.iframe-wrapper {
+  position: relative;
+  width: 100%;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff; /* Évite le fond noir en plein écran */
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+/* L'iframe s'adapte au conteneur */
+.iframe-wrapper iframe {
+  width: 100%;
+  border: none;
+  display: block; /* Supprime l'espace fantôme sous l'iframe */
+}
+
+/* Bouton d'action flottant (FAB) */
+.fullscreen-fab {
+  position: absolute;
+  bottom: 20px; /* Placé en bas à droite pour moins gêner la lecture */
+  right: 20px;
+  z-index: 10;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  color: #334155;
+  border: 1px solid #cbd5e1;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.6; /* Semi-transparent par défaut */
+  transition: transform 0.2s ease, opacity 0.3s ease, box-shadow 0.2s ease;
+}
+
+/* Apparition complète au survol du conteneur ou du bouton */
+.iframe-wrapper:hover .fullscreen-fab {
+  opacity: 1;
+}
+
+.fullscreen-fab:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+  color: #0f172a;
+}
+
+.iframe-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f8f9fa;
+  padding: 8px 12px;
+  border-bottom: 1px solid #ddd;
+  font-family: system-ui, sans-serif;
+}
+
+.iframe-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #333;
+  font-weight: 500;
+}
+
+.iframe-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.iframe-actions button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 4px;
+  color: #555;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Effet au survol */
+.iframe-actions button:hover {
+  background-color: #e9ecef;
+  color: #000;
+}
+
+.external-toggle,
+.fullscreen-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* =========================================
+   Comportement en mode plein écran
+   ========================================= */
+
+.iframe-wrapper:fullscreen {
+  width: 100vw;
+  height: 100vh;
+  border: none;
+  border-radius: 0;
+}
+
+/* L'iframe prend tout l'espace restant */
+.iframe-wrapper:fullscreen iframe {
+  height: 100% !important;
+}
+
+/* =========================================================
+   2. EDITEUR DE CODE
+   ========================================================= */
+
+/* Le boutton pour affiche l'editeur de code */
+.code-editor-action {
+    margin: 10px 0 20px;
+}
+
+.open-editor-btn {
+    padding: 8px 14px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background: #fff;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.open-editor-btn:hover {
+    background: #f5f5f5;
+}
+
+.code-editor-modal {
+    width: 100vw;
+    height: 100vh;
+    background: #fff;
+}

@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Blog - Catégorie Développement Web</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:wght@400;700;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { primary: { 50: '#f0f6ff', 100: '#e0edff', 500: '#2673e8', 600: '#1c5bba', 900: '#0a2042' } },
+                    fontFamily: { heading: ['Merriweather', 'serif'], body: ['Inter', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-body m-0 text-gray-800 antialiased">
+    
+    <!-- 1. HEADER (Navbar) -->
+    <div id="navbar-wrapper" class="pt-6 px-4 md:px-8 max-w-7xl mx-auto sticky top-0 left-0 right-0 z-50 transition-all duration-300">
+        <nav id="navbar" class="w-full bg-white/80 backdrop-blur-xl border border-white/40 shadow-[0_8px_30px_rgb(0,0,0,0.04)] rounded-2xl py-3.5 px-6 md:px-8 flex items-center justify-between transition-all duration-300">
+            <a href="public-index.html" class="group flex items-center gap-2.5 font-heading text-xl tracking-tight transition-transform duration-300 hover:scale-[1.02]">
+                <div class="flex items-center justify-center w-9 h-9 bg-gradient-to-br from-primary-500 to-blue-400 text-white rounded-xl shadow-lg shadow-primary-500/20 group-hover:from-primary-600 group-hover:to-primary-500 transition-all duration-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
+                </div>
+                <span class="font-black text-gray-900 group-hover:text-primary-500 transition-colors">Mon</span><span class="font-bold text-primary-500">Blog.</span>
+            </a>
+            <ul class="hidden md:flex items-center gap-2 lg:gap-4">
+                <li><a href="public-index.html" class="px-4 py-2 text-gray-500 font-medium text-sm rounded-xl hover:text-gray-900 hover:bg-gray-50 transition-all">Accueil</a></li>
+                
+                <!-- Dropdown Catégories (Actif) -->
+                <li class="relative group">
+                    <button class="flex items-center gap-1.5 px-4 py-2 bg-primary-50 text-primary-600 font-semibold text-sm rounded-xl transition-all">
+                        Catégories
+                        <svg class="w-4 h-4 text-primary-600 group-hover:rotate-180 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                    <!-- Menu dropdown -->
+                    <div class="absolute top-full left-0 mt-1 w-52 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 z-50">
+                        <div class="bg-white rounded-2xl shadow-xl shadow-gray-900/10 border border-gray-100 p-2 flex flex-col gap-1">
+                            <a href="public-categorie.html" class="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-gray-600 rounded-xl hover:text-blue-600 hover:bg-blue-50 transition-colors">
+                                <span class="w-2 h-2 rounded-full bg-blue-500"></span> Développement
+                            </a>
+                            <a href="public-categorie.html" class="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-gray-600 rounded-xl hover:text-pink-600 hover:bg-pink-50 transition-colors">
+                                <span class="w-2 h-2 rounded-full bg-pink-500"></span> Design UI/UX
+                            </a>
+                            <a href="public-categorie.html" class="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-gray-600 rounded-xl hover:text-emerald-600 hover:bg-emerald-50 transition-colors">
+                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span> Productivité
+                            </a>
+                        </div>
+                    </div>
+                </li>
+
+                <li><a href="public-apropos.html" class="px-4 py-2 text-gray-500 font-medium text-sm rounded-xl hover:text-gray-900 hover:bg-gray-50 transition-all">À Propos</a></li>
+            </ul>
+            <div class="flex items-center gap-4">
+                <a href="admin-login.html" class="hidden md:inline-flex items-center justify-center px-5 py-2.5 bg-primary-50 text-primary-600 font-semibold text-sm rounded-xl hover:bg-primary-500 hover:text-white transition-all duration-300 hover:shadow-lg hover:shadow-primary-500/20 hover:-translate-y-0.5">
+                    Espace Admin
+                </a>
+                <button class="md:hidden p-2 text-gray-500 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors">
+                    <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/></svg>
+                </button>
+            </div>
+        </nav>
+    </div>
+
+    <!-- 2. EN-TÊTE DE CATÉGORIE (Simple Hero) -->
+    <header class="relative pt-24 pb-16 px-6 overflow-hidden bg-white border-b border-gray-100 -mt-24">
+        <div class="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] opacity-40 pointer-events-none"></div>
+        <div class="absolute top-24 left-1/2 -translate-x-1/2 w-full max-w-3xl h-[300px] bg-gradient-to-b from-primary-50 to-transparent rounded-full blur-[80px] opacity-70 pointer-events-none"></div>
+
+        <div class="max-w-4xl mx-auto flex flex-col items-center text-center relative z-10 pt-24">
+            <div class="mb-4 animate-fade-in-up">
+                <span class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-bold bg-white text-gray-500 uppercase tracking-widest shadow-sm border border-gray-100">
+                    <svg class="w-4 h-4 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/></svg>
+                    Catégorie
+                </span>
+            </div>
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-heading font-black text-gray-900 leading-[1.15] tracking-tight mb-6 animate-fade-in-up" style="animation-delay: 100ms; animation-fill-mode: both;">
+                Développement Web
+            </h1>
+            <p class="max-w-2xl text-lg text-gray-500 font-medium animate-fade-in-up" style="animation-delay: 200ms; animation-fill-mode: both;">
+                Tutoriels, astuces et bonnes pratiques pour concevoir des applications modernes et performantes.
+            </p>
+        </div>
+    </header>
+
+    <!-- 3. GRID ARTICLES -->
+    <main class="py-16 md:py-24">
+        <div class="max-w-7xl mx-auto px-6">
+            
+            <!-- Grid (Réutilisation de la molécule) -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 animate-fade-in-up" style="animation-delay: 300ms; animation-fill-mode: both;">
+                
+                <!-- Article 1 -->
+                <a href="public-article.html" class="group bg-white rounded-3xl border border-gray-100 overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgb(38,115,232,0.12)] transition-all duration-300 hover:-translate-y-1 flex flex-col h-full">
+                    <div class="relative h-48 md:h-56 overflow-hidden">
+                        <div class="absolute inset-0 bg-gray-900/10 group-hover:bg-transparent transition-colors duration-300 z-10"></div>
+                        <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop" alt="Image" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out">
+                        <div class="absolute top-4 left-4 z-30">
+                            <a href="public-categorie.html" class="inline-block px-3 py-1 bg-white/90 backdrop-blur text-xs font-bold text-primary-600 rounded-full uppercase tracking-wider shadow-sm hover:bg-primary-500 hover:text-white transition-colors">Code</a>
+                        </div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-1">
+                        <h3 class="text-xl font-heading font-bold text-gray-900 mb-3 group-hover:text-primary-600 transition-colors leading-snug line-clamp-2">
+                            Comment structurer ses composants UI avec Atomic Design ?
+                        </h3>
+                        <p class="text-sm text-gray-500 leading-relaxed mb-6 line-clamp-3">
+                            Découvrez les concepts fondamentaux de Tailwind CSS et pourquoi cette approche utilitaire est devenue le standard de l'industrie pour les développeurs frontend modernes.
+                        </p>
+                        <div class="pt-5 mt-auto border-t border-gray-100 flex items-center justify-between">
+                            <div class="flex items-center gap-4 text-xs font-medium text-gray-500">
+                                <div class="flex items-center gap-1.5">
+                                    <svg class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                                    <span>14 Fév 2026</span>
+                                </div>
+                                <div class="flex items-center gap-1.5">
+                                    <svg class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                    <span>5 min</span>
+                                </div>
+                            </div>
+                            <div class="w-8 h-8 rounded-full bg-primary-50 text-primary-500 flex items-center justify-center transition-all duration-300 group-hover:bg-primary-500 group-hover:text-white group-hover:rotate-45 shrink-0">
+                                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 12h14M12 5l7 7-7 7"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Article 2 -->
+                <a href="public-article.html" class="group bg-white rounded-3xl border border-gray-100 overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgb(236,72,153,0.12)] transition-all duration-300 hover:-translate-y-1 flex flex-col h-full">
+                    <div class="relative h-48 md:h-56 overflow-hidden">
+                        <div class="absolute inset-0 bg-gray-900/10 group-hover:bg-transparent transition-colors duration-300 z-10"></div>
+                        <img src="https://images.unsplash.com/photo-1618761714954-0b8cd0026356?w=600&h=400&fit=crop" alt="Image" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out">
+                        <div class="absolute top-4 left-4 z-30">
+                            <a href="public-categorie.html" class="inline-block px-3 py-1 bg-white/90 backdrop-blur text-xs font-bold text-pink-500 rounded-full uppercase tracking-wider shadow-sm hover:bg-pink-500 hover:text-white transition-colors">Design</a>
+                        </div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-1">
+                        <h3 class="text-xl font-heading font-bold text-gray-900 mb-3 group-hover:text-pink-600 transition-colors leading-snug line-clamp-2">
+                            Maîtriser les micro-interactions UX
+                        </h3>
+                        <p class="text-sm text-gray-500 leading-relaxed mb-6 line-clamp-3">
+                            Une interface belle n'est pas suffisante. Comprendre comment animer de petites actions peut transformer l'expérience utilisateur et augmenter l'engagement.
+                        </p>
+                        <div class="pt-5 mt-auto border-t border-gray-100 flex items-center justify-between">
+                            <div class="flex items-center gap-4 text-xs font-medium text-gray-500">
+                                <div class="flex items-center gap-1.5">
+                                    <svg class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                                    <span>10 Fév 2026</span>
+                                </div>
+                                <div class="flex items-center gap-1.5">
+                                    <svg class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                    <span>3 min</span>
+                                </div>
+                            </div>
+                            <div class="w-8 h-8 rounded-full bg-pink-50 text-pink-500 flex items-center justify-center transition-all duration-300 group-hover:bg-pink-500 group-hover:text-white group-hover:rotate-45 shrink-0">
+                                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 12h14M12 5l7 7-7 7"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Article 3 -->
+                <a href="public-article.html" class="group bg-white rounded-3xl border border-gray-100 overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgb(16,185,129,0.12)] transition-all duration-300 hover:-translate-y-1 flex flex-col h-full">
+                    <div class="relative h-48 md:h-56 overflow-hidden">
+                        <div class="absolute inset-0 bg-gray-900/10 group-hover:bg-transparent transition-colors duration-300 z-10"></div>
+                        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop" alt="Image" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out">
+                        <div class="absolute top-4 left-4 z-30">
+                            <a href="public-categorie.html" class="inline-block px-3 py-1 bg-white/90 backdrop-blur text-xs font-bold text-emerald-500 rounded-full uppercase tracking-wider shadow-sm hover:bg-emerald-500 hover:text-white transition-colors">Productivité</a>
+                        </div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-1">
+                        <h3 class="text-xl font-heading font-bold text-gray-900 mb-3 group-hover:text-emerald-600 transition-colors leading-snug line-clamp-2">
+                            Gérer son temps en équipe distribuée
+                        </h3>
+                        <p class="text-sm text-gray-500 leading-relaxed mb-6 line-clamp-3">
+                            Les méthodes agiles et les rituels essentiels pour maintenir la cohésion de groupe et la productivité lorsque tous les membres sont distribués.
+                        </p>
+                        <div class="pt-5 mt-auto border-t border-gray-100 flex items-center justify-between">
+                            <div class="flex items-center gap-4 text-xs font-medium text-gray-500">
+                                <div class="flex items-center gap-1.5">
+                                    <svg class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                                    <span>05 Fév 2026</span>
+                                </div>
+                                <div class="flex items-center gap-1.5">
+                                    <svg class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                    <span>8 min</span>
+                                </div>
+                            </div>
+                            <div class="w-8 h-8 rounded-full bg-emerald-50 text-emerald-500 flex items-center justify-center transition-all duration-300 group-hover:bg-emerald-500 group-hover:text-white group-hover:rotate-45 shrink-0">
+                                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 12h14M12 5l7 7-7 7"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+
+            <!-- Pagination (Mock) -->
+            <div class="mt-16 flex items-center justify-center gap-2 animate-fade-in-up" style="animation-delay: 400ms; animation-fill-mode: both;">
+                <button class="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-gray-400 hover:text-primary-600 hover:border-primary-100 hover:bg-primary-50 transition-colors">
+                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                </button>
+                <button class="w-10 h-10 rounded-full bg-primary-500 text-white font-bold shadow-md shadow-primary-500/20">1</button>
+                <button class="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-gray-600 font-medium hover:border-primary-100 hover:bg-primary-50 transition-colors">2</button>
+                <button class="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-gray-400 hover:text-primary-600 hover:border-primary-100 hover:bg-primary-50 transition-colors">
+                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </button>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- 4. FOOTER -->
+    <footer class="bg-white relative overflow-hidden mt-12 border-t border-gray-100">
+        <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-2xl h-64 bg-primary-50 rounded-full blur-[100px] opacity-60 pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-6 pt-16 pb-8 relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 items-center text-center md:text-left mb-12">
+                <div class="flex flex-col items-center md:items-start gap-4">
+                    <a href="public-index.html" class="group flex items-center gap-2.5 font-heading text-xl tracking-tight transition-transform duration-300 hover:scale-[1.02]">
+                        <div class="flex items-center justify-center w-8 h-8 bg-gradient-to-br from-primary-500 to-blue-400 text-white rounded-lg shadow-md group-hover:shadow-primary-500/30 transition-all duration-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
+                        </div>
+                        <span class="font-black text-gray-900 group-hover:text-primary-500 transition-colors">Mon</span><span class="font-bold text-primary-500">Blog.</span>
+                    </a>
+                    <p class="text-sm text-gray-500 max-w-xs leading-relaxed">
+                        Partager des connaissances, des tutoriels et des découvertes sur le développement web.
+                    </p>
+                </div>
+                <div class="flex flex-col items-center md:items-start gap-4">
+                    <h4 class="text-sm font-bold text-gray-900 uppercase tracking-widest mb-1 flex items-center gap-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-primary-500"></span>
+                        Navigation
+                    </h4>
+                    <ul class="flex flex-col gap-3 items-center md:items-start">
+                        <li>
+                            <a href="public-index.html" class="group flex items-center text-sm text-gray-500 hover:text-primary-600 transition-colors">
+                                <svg class="w-3.5 h-3.5 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 group-hover:mr-1.5 transition-all duration-300 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"/></svg>
+                                <span>Accueil</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="public-categorie.html" class="group flex items-center text-sm text-gray-500 hover:text-primary-600 transition-colors">
+                                <svg class="w-3.5 h-3.5 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 group-hover:mr-1.5 transition-all duration-300 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"/></svg>
+                                <span>Catégories</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="public-apropos.html" class="group flex items-center text-sm text-gray-500 hover:text-primary-600 transition-colors">
+                                <svg class="w-3.5 h-3.5 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 group-hover:mr-1.5 transition-all duration-300 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"/></svg>
+                                <span>À Propos</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="flex flex-col items-center md:items-end gap-5">
+                    <h4 class="text-sm font-bold text-gray-900 uppercase tracking-widest mb-1">Me suivre</h4>
+                    <div class="flex items-center gap-3">
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-gray-500 hover:bg-primary-50 hover:text-primary-600 transition-all duration-300 hover:scale-110"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"/></svg></a>
+                    </div>
+                </div>
+            </div>
+            <div class="pt-8 border-t border-gray-100 flex flex-col md:flex-row items-center justify-between gap-4">
+                <p class="text-xs text-gray-400">&copy; 2026 Mon Blog Personnel. Créé pour le projet d'imitation.</p>
+                <div class="flex items-center gap-4 text-xs font-medium text-gray-400">
+                    <a href="#" class="hover:text-primary-500 transition-colors">Mentions légales</a>
+                    <a href="#" class="hover:text-primary-500 transition-colors">Politique de confidentialité</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Animation de la Navbar au scroll
+        window.addEventListener('scroll', () => {
+            const wrapper = document.getElementById('navbar-wrapper');
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 10) {
+                wrapper.classList.remove('pt-6', 'px-4', 'md:px-8', 'max-w-7xl');
+                wrapper.classList.add('pt-0', 'px-0', 'max-w-full');
+                nav.classList.remove('rounded-2xl', 'border-white/40');
+                nav.classList.add('rounded-none', 'border-b', 'border-gray-200', 'bg-white/95');
+            } else {
+                wrapper.classList.add('pt-6', 'px-4', 'md:px-8', 'max-w-7xl');
+                wrapper.classList.remove('pt-0', 'px-0', 'max-w-full');
+                nav.classList.add('rounded-2xl', 'border-white/40');
+                nav.classList.remove('rounded-none', 'border-b', 'border-gray-200', 'bg-white/95');
+            }
+        });
+    </script>
+</body>
+</html>

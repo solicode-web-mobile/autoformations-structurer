@@ -3,14 +3,14 @@
   <div class="tuto-list">
 
     {% assign displayed_tutos = "" | split: "" %}
+    {% assign tuto_counter = 0 %}
 
     {% for tuto in include.tutos %}
 
       {% unless displayed_tutos contains tuto.tuto_id %}
 
-        {% assign displayed_tutos =
-          displayed_tutos | push: tuto.tuto_id
-        %}
+        {% assign displayed_tutos = displayed_tutos | push: tuto.tuto_id %}
+        {% assign tuto_counter = tuto_counter | plus: 1 %}
 
         {% assign tuto_versions =
           include.tutos
@@ -39,7 +39,7 @@
 
           <a
             href="{{ tuto_normal.url | relative_url }}"
-            class="tuto-card"
+            class="tuto-card {% if tuto.tuto_id == page.tuto_id %}tuto-card-active{% endif %}"
             data-tuto-link
             data-tuto-id="{{ tuto.tuto_id }}"
             data-normal-url="{{ tuto_normal.url | relative_url }}"
@@ -47,9 +47,9 @@
             data-detaille-url="{% if tuto_detaille %}{{ tuto_detaille.url | relative_url }}{% endif %}"
           >
 
-            <!-- <span class="tuto-card-code">
-              {{ tuto.tuto_id }} —
-            </span> -->
+            <span class="tuto-card-number">
+              {{ tuto_counter }}.
+            </span>
 
             <span class="tuto-card-title">
               {{ tuto_normal.title }}

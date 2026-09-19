@@ -82,59 +82,6 @@
 
 
 /* =========================================================
-   LISTE DES TUTORIELS
-   ========================================================= */
-
-.ua-section .tuto-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0.45rem;
-}
-
-.ua-section .tuto-card {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  box-sizing: border-box;
-  min-height: 2.75rem;
-  padding: 0.65rem 0.8rem;
-  border: 1px solid #e5e7eb;
-  border-radius: 0.4rem;
-  background: #fff;
-  color: #374151;
-  text-decoration: none;
-  transition:
-    border-color 0.15s ease,
-    background-color 0.15s ease,
-    transform 0.15s ease;
-}
-
-.ua-section .tuto-card:hover {
-  border-color: #c4b5fd;
-  background-color: #faf9ff;
-  text-decoration: none;
-  transform: translateX(2px);
-}
-
-.ua-section .tuto-card-title {
-  flex: 1;
-  font-size: 0.9rem;
-  line-height: 1.45;
-}
-
-.ua-section .tuto-card-error {
-  color: #b91c1c;
-  cursor: default;
-}
-
-.ua-section .tuto-card-error:hover {
-  border-color: #e5e7eb;
-  background-color: #fff;
-  transform: none;
-}
-
-
-/* =========================================================
    CONTENU MARKDOWN
    ========================================================= */
 
@@ -184,14 +131,6 @@
     font-size: 0.82rem;
   }
 
-  .ua-section .tuto-card {
-    padding: 0.6rem 0.7rem;
-  }
-
-  .ua-section .tuto-card-title {
-    font-size: 0.86rem;
-  }
-
 }
 
 
@@ -219,10 +158,6 @@
     border-bottom: 1px solid #000;
   }
 
-  .ua-section .tuto-card {
-    border: 1px solid #999;
-    color: #000;
-  }
-
 }
 ```
+

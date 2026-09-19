@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Tableau de bord - Admin Mon Blog</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { primary: { 50: '#f0f6ff', 500: '#2673e8', 600: '#1c5bba', 900: '#0a2042' } },
+                    fontFamily: { body: ['Inter', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-100 font-body flex min-h-screen overflow-hidden">
+
+    <!-- 1. SIDEBAR (Zone 1) -->
+    <aside class="w-64 bg-gray-900 border-r border-gray-800 flex flex-col h-screen flex-shrink-0 relative overflow-hidden z-50 hidden lg:flex">
+        <!-- Subtle Glow -->
+        <div class="absolute top-0 left-0 w-full h-32 bg-primary-500/10 blur-[80px] pointer-events-none"></div>
+
+        <!-- Header / Logo -->
+        <div class="p-6 flex items-center gap-3 relative z-10 border-b border-gray-800">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-primary-500 to-blue-400 flex items-center justify-center text-white font-black text-sm shadow-lg shadow-primary-500/20">
+                B.
+            </div>
+            <div>
+                <h2 class="text-sm font-bold text-white tracking-wide">Admin</h2>
+                <p class="text-[10px] text-gray-400 font-medium uppercase tracking-widest mt-0.5">Mon Blog</p>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="flex-1 overflow-y-auto py-6 px-3 space-y-1 relative z-10">
+            <!-- Dashboard (Active) -->
+            <a href="admin-dashboard.html" onclick="if(window.parent && window.parent.loadComponent) { event.preventDefault(); window.parent.loadComponent('mockups/admin-dashboard.html', 'Page : Tableau de bord Admin'); }" class="flex items-center gap-3 px-3 py-2.5 text-sm font-medium rounded-lg bg-primary-500/10 text-white">
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+                Tableau de bord
+            </a>
+            <!-- Articles -->
+            <a href="admin-articles.html" onclick="if(window.parent && window.parent.loadComponent) { event.preventDefault(); window.parent.loadComponent('mockups/admin-articles.html', 'Page : Gestion des Articles'); }" class="flex items-center gap-3 px-3 py-2.5 text-sm font-medium rounded-lg text-gray-400 hover:text-white hover:bg-gray-800 transition-colors">
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/></svg>
+                Articles
+            </a>
+            <!-- Categories -->
+            <a href="admin-categories.html" onclick="if(window.parent && window.parent.loadComponent) { event.preventDefault(); window.parent.loadComponent('mockups/admin-categories.html', 'Page : Gestion des Catégories'); }" class="flex items-center gap-3 px-3 py-2.5 text-sm font-medium rounded-lg text-gray-400 hover:text-white hover:bg-gray-800 transition-colors">
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/></svg>
+                Catégories
+            </a>
+
+        </nav>
+
+        <!-- Footer / Logout -->
+        <div class="p-4 border-t border-gray-800 relative z-10">
+            <a href="admin-login.html" class="flex items-center gap-3 px-3 py-2.5 text-sm font-medium rounded-lg text-gray-400 hover:text-red-400 hover:bg-gray-800 transition-colors">
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
+                Déconnexion
+            </a>
+        </div>
+    </aside>
+
+    <!-- MAIN WRAPPER -->
+    <div class="flex-1 flex flex-col h-screen overflow-hidden">
+        
+        <!-- 2. TOPBAR (Zone 2) -->
+        <header class="h-16 bg-white border-b border-gray-200 px-6 flex items-center justify-between flex-shrink-0 z-40">
+            <!-- Left Side: Mobile Menu Toggle & Search -->
+            <div class="flex items-center gap-4 flex-1">
+                <button class="lg:hidden p-2 text-gray-400 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-colors">
+                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                </button>
+                <div class="hidden md:block max-w-md w-full">
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
+                            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                        </div>
+                        <input type="text" placeholder="Rechercher..." class="w-full pl-10 pr-4 py-2 bg-gray-50 border border-transparent rounded-lg text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:bg-white focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 transition-all duration-300">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Side: Actions & User -->
+            <div class="flex items-center gap-4 ml-auto">
+                <a href="public-index.html" class="hidden sm:inline-flex items-center gap-2 px-3 py-1.5 text-xs font-semibold text-gray-600 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors" title="Voir le site public">
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                    <span class="hidden lg:inline">Voir le site</span>
+                </a>
+                <div class="w-px h-6 bg-gray-200 mx-1 hidden sm:block"></div>
+
+                <button class="flex items-center gap-2 pl-2">
+                    <img src="https://i.pravatar.cc/100?img=11" alt="Profile" class="w-8 h-8 rounded-full object-cover border border-gray-200">
+                    <div class="hidden md:flex flex-col text-left">
+                        <span class="text-xs font-bold text-gray-900 leading-tight">Jean D.</span>
+                        <span class="text-[10px] font-medium text-gray-500">Admin</span>
+                    </div>
+                    <svg class="w-4 h-4 text-gray-400 hidden sm:block" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </button>
+            </div>
+        </header>
+
+        <!-- 3. MAIN CONTENT (Zone 3) -->
+        <main class="flex-1 overflow-y-auto p-6 lg:p-10 bg-gray-50/50">
+            <div class="max-w-6xl mx-auto">
+                
+                <!-- Page Header -->
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+                    <div>
+                        <nav class="flex text-xs text-gray-500 mb-1" aria-label="Breadcrumb">
+                            <ol class="inline-flex items-center space-x-1 md:space-x-2">
+                                <li class="inline-flex items-center">
+                                    <span class="text-gray-900 font-medium">Admin</span>
+                                </li>
+                                <li>
+                                    <div class="flex items-center">
+                                        <svg class="w-3 h-3 text-gray-400 mx-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                                        <span class="text-gray-500 font-medium ml-1">Tableau de bord</span>
+                                    </div>
+                                </li>
+                            </ol>
+                        </nav>
+                        <h1 class="text-2xl font-bold text-gray-900 tracking-tight">Bonjour Jean ! 👋</h1>
+                        <p class="text-sm text-gray-500 mt-1">Voici ce qu'il se passe sur votre blog aujourd'hui.</p>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <button onclick="if(window.parent && window.parent.loadComponent) { window.parent.loadComponent('mockups/admin-article-form.html', 'Page : Formulaire Article'); } else { window.location.href='admin-article-form.html'; }" class="inline-flex items-center justify-center gap-2 px-4 py-2 bg-primary-600 text-white text-sm font-semibold rounded-lg hover:bg-primary-500 hover:shadow-lg hover:shadow-primary-500/30 hover:-translate-y-0.5 transition-all duration-300">
+                            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+                            Nouvel article
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Stats Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                    
+                    <!-- Stat Card 1 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex items-center justify-between hover:shadow-md hover:border-gray-200 transition-all duration-300 group">
+                        <div class="flex flex-col gap-1">
+                            <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest">Articles Publiés</h3>
+                            <div class="flex items-end gap-3 mt-1">
+                                <span class="text-3xl font-black text-gray-900 leading-none">42</span>
+                                <span class="flex items-center text-xs font-bold text-emerald-500 mb-1">
+                                    <svg class="w-3 h-3 mr-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>
+                                    12%
+                                </span>
+                            </div>
+                        </div>
+                        <div class="w-12 h-12 rounded-xl bg-primary-50 text-primary-500 flex items-center justify-center group-hover:scale-110 group-hover:bg-primary-500 group-hover:text-white transition-all duration-300 shadow-sm">
+                            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/></svg>
+                        </div>
+                    </div>
+
+                    <!-- Stat Card 2 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex items-center justify-between hover:shadow-md hover:border-gray-200 transition-all duration-300 group">
+                        <div class="flex flex-col gap-1">
+                            <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest">Catégories</h3>
+                            <div class="flex items-end gap-3 mt-1">
+                                <span class="text-3xl font-black text-gray-900 leading-none">8</span>
+                                <span class="flex items-center text-xs font-bold text-emerald-500 mb-1">
+                                    <svg class="w-3 h-3 mr-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>
+                                    2
+                                </span>
+                            </div>
+                        </div>
+                        <div class="w-12 h-12 rounded-xl bg-indigo-50 text-indigo-500 flex items-center justify-center group-hover:scale-110 group-hover:bg-indigo-500 group-hover:text-white transition-all duration-300 shadow-sm">
+                            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/></svg>
+                        </div>
+                    </div>
+                    
+                    <!-- Stat Card 3 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex items-center justify-between hover:shadow-md hover:border-gray-200 transition-all duration-300 group">
+                        <div class="flex flex-col gap-1">
+                            <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest">Vues totales</h3>
+                            <div class="flex items-end gap-3 mt-1">
+                                <span class="text-3xl font-black text-gray-900 leading-none">12.5k</span>
+                                <span class="flex items-center text-xs font-bold text-emerald-500 mb-1">
+                                    <svg class="w-3 h-3 mr-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>
+                                    24%
+                                </span>
+                            </div>
+                        </div>
+                        <div class="w-12 h-12 rounded-xl bg-amber-50 text-amber-500 flex items-center justify-center group-hover:scale-110 group-hover:bg-amber-500 group-hover:text-white transition-all duration-300 shadow-sm">
+                            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                        </div>
+                    </div>
+                    
+                </div>
+
+                <!-- Recent Activity Table (Preview) -->
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
+                    <div class="p-6 border-b border-gray-100 flex items-center justify-between">
+                        <h2 class="text-base font-bold text-gray-900">Articles Récents</h2>
+                        <a href="admin-articles.html" onclick="if(window.parent && window.parent.loadComponent) { event.preventDefault(); window.parent.loadComponent('mockups/admin-articles.html', 'Page : Gestion des Articles'); }" class="text-sm font-semibold text-primary-600 hover:text-primary-700">Voir tout</a>
+                    </div>
+                    
+                    <div class="grid grid-cols-12 gap-4 p-4 border-b border-gray-100 bg-gray-50 text-xs font-bold text-gray-500 uppercase tracking-wider">
+                        <div class="col-span-6 md:col-span-5">Titre</div>
+                        <div class="hidden md:block col-span-3">Catégorie</div>
+                        <div class="col-span-3 md:col-span-2">Statut</div>
+                        <div class="col-span-3 md:col-span-2 text-right">Actions</div>
+                    </div>
+
+                    <!-- Row 1 -->
+                    <div class="grid grid-cols-12 gap-4 p-4 items-center border-b border-gray-50 hover:bg-gray-50/50 transition-colors group">
+                        <div class="col-span-6 md:col-span-5">
+                            <p class="text-sm font-bold text-gray-900 group-hover:text-primary-600 transition-colors truncate pr-4">L'importance du design UI en 2026</p>
+                            <p class="text-[11px] text-gray-500 mt-0.5">Mis à jour le 14 Fév</p>
+                        </div>
+                        <div class="hidden md:block col-span-3">
+                            <span class="inline-flex items-center gap-1.5 text-sm text-gray-600">
+                                <span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span> Design
+                            </span>
+                        </div>
+                        <div class="col-span-3 md:col-span-2">
+                            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[10px] font-bold bg-emerald-50 text-emerald-600 border border-emerald-100 uppercase tracking-widest">
+                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Publié
+                            </span>
+                        </div>
+                        <div class="col-span-3 md:col-span-2 flex items-center justify-end gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                            <button onclick="if(window.parent && window.parent.loadComponent) { window.parent.loadComponent('mockups/public-article.html', 'Page : Article (Vue publique)'); } else { window.location.href='public-article.html'; }" class="w-8 h-8 flex items-center justify-center text-gray-400 rounded-md hover:bg-white hover:text-emerald-600 hover:shadow-sm border border-transparent hover:border-gray-200 transition-all" title="Voir l'article">
+                                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                            </button>
+                            <button onclick="if(window.parent && window.parent.loadComponent) { window.parent.loadComponent('mockups/admin-article-form.html', 'Page : Formulaire Article'); } else { window.location.href='admin-article-form.html'; }" class="w-8 h-8 flex items-center justify-center text-gray-400 rounded-md hover:bg-white hover:text-primary-600 hover:shadow-sm border border-transparent hover:border-gray-200 transition-all" title="Éditer">
+                                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Row 2 -->
+                    <div class="grid grid-cols-12 gap-4 p-4 items-center border-b border-gray-50 hover:bg-gray-50/50 transition-colors group">
+                        <div class="col-span-6 md:col-span-5">
+                            <p class="text-sm font-bold text-gray-900 group-hover:text-primary-600 transition-colors truncate pr-4">Nouveautés Tailwind CSS v4</p>
+                            <p class="text-[11px] text-gray-500 mt-0.5">Mis à jour il y a 2h</p>
+                        </div>
+                        <div class="hidden md:block col-span-3">
+                            <span class="inline-flex items-center gap-1.5 text-sm text-gray-600">
+                                <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span> Développement
+                            </span>
+                        </div>
+                        <div class="col-span-3 md:col-span-2">
+                            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[10px] font-bold bg-amber-50 text-amber-600 border border-amber-100 uppercase tracking-widest">
+                                <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span> Brouillon
+                            </span>
+                        </div>
+                        <div class="col-span-3 md:col-span-2 flex items-center justify-end gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                            <button onclick="if(window.parent && window.parent.loadComponent) { window.parent.loadComponent('mockups/public-article.html', 'Page : Article (Vue publique)'); } else { window.location.href='public-article.html'; }" class="w-8 h-8 flex items-center justify-center text-gray-400 rounded-md hover:bg-white hover:text-emerald-600 hover:shadow-sm border border-transparent hover:border-gray-200 transition-all" title="Voir l'article">
+                                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                            </button>
+                            <button onclick="if(window.parent && window.parent.loadComponent) { window.parent.loadComponent('mockups/admin-article-form.html', 'Page : Formulaire Article'); } else { window.location.href='admin-article-form.html'; }" class="w-8 h-8 flex items-center justify-center text-gray-400 rounded-md hover:bg-white hover:text-primary-600 hover:shadow-sm border border-transparent hover:border-gray-200 transition-all" title="Éditer">
+                                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+</body>
+</html>

@@ -2,13 +2,13 @@
 layout: default
 ---
 
-<div class="domaine-page">
+<div class="domaine-page layout-page">
 
   <!-- ==================================================
        EN-TÊTE DU DOMAINE
        ================================================== -->
 
-  <header class="domaine-header">
+  <header class="domaine-header layout-header">
 
     <h1>
       {{ page.title }}
@@ -24,7 +24,7 @@ layout: default
 
       {% if competence %}
 
-        <p class="domaine-reference">
+        <p class="domaine-reference layout-reference">
           <strong>Compétence :</strong>
 
           <a href="{{ competence.url | relative_url }}">
@@ -34,7 +34,7 @@ layout: default
 
       {% else %}
 
-        <p class="domaine-reference">
+        <p class="domaine-reference layout-reference">
           <strong>Compétence :</strong>
           {{ page.competence }}
         </p>
@@ -52,7 +52,7 @@ layout: default
 
   {% if content != "" %}
 
-    <section class="domaine-section">
+    <section class="domaine-section layout-section">
       {{ content }}
     </section>
 

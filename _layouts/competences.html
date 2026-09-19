@@ -2,13 +2,13 @@
 layout: default
 ---
 
-<div class="competence-page">
+<div class="competence-page layout-page">
 
   <!-- ==================================================
        EN-TÊTE DE LA COMPÉTENCE
        ================================================== -->
 
-  <header class="competence-header">
+  <header class="competence-header layout-header">
 
     <h1>
       {{ page.title }}
@@ -23,7 +23,7 @@ layout: default
       %}
 
       {% if mission %}
-        <p class="competence-mission">
+        <p class="competence-reference layout-reference">
           <strong>Mission :</strong>
           <a href="{{ mission.url | relative_url }}">
             {{ mission.title }}
@@ -41,7 +41,7 @@ layout: default
 
   {% if page.description %}
 
-    <section class="competence-section">
+    <section class="competence-section layout-section">
 
       <h2>Description</h2>
 
@@ -60,7 +60,7 @@ layout: default
 
   {% if page.objectif %}
 
-    <section class="competence-section">
+    <section class="competence-section layout-section">
 
       <h2>Objectif</h2>
 
@@ -79,7 +79,7 @@ layout: default
 
   {% if page.resultat %}
 
-    <section class="competence-section">
+    <section class="competence-section layout-section">
 
       <h2>Résultat attendu</h2>
 
@@ -98,7 +98,7 @@ layout: default
 
   {% if page.livrable %}
 
-    <section class="competence-section">
+    <section class="competence-section layout-section">
 
       <h2>Livrable</h2>
 
@@ -115,7 +115,7 @@ layout: default
        DOMAINES
        ================================================== -->
 
-  <section class="competence-section">
+  <section class="competence-section layout-section">
 
     <h2>Domaines d'apprentissage</h2>
 
@@ -165,7 +165,7 @@ layout: default
        UNITÉS D'APPRENTISSAGE
        ================================================== -->
 
-  <section class="competence-section">
+  <section class="competence-section layout-section">
 
     <h2>Unités d'apprentissage</h2>
 
@@ -215,7 +215,7 @@ layout: default
      SESSIONS
      ================================================== -->
 
-<section class="competence-section">
+<section class="competence-section layout-section">
 
   <h2>Sessions</h2>
 

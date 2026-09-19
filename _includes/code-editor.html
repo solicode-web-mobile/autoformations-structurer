@@ -1,0 +1,14 @@
+{% assign code = include.code %}
+{% assign language = include.language | default: "html" %}
+```html
+{{ code }}
+``` 
+<div class="code-editor-link">
+    <a href="{{'/editeur-code' | relative_url}}?html={{ code | url_encode }}"
+       target="_blank"
+       rel="noopener noreferrer">
+      Modifier dans l’éditeur
+    </a>
+  </div>
+
+</div>

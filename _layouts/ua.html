@@ -2,14 +2,14 @@
 layout: default
 ---
 
-<div class="ua-page">
+<div class="ua-page layout-page">
 
-  <header class="ua-header">
+  <header class="ua-header layout-header">
 
     <h1>{{ page.title }}</h1>
 
     {% if page.code %}
-      <p class="ua-reference">
+      <p class="ua-reference layout-reference">
         <strong>Code :</strong> {{ page.code }}
       </p>
     {% endif %}
@@ -22,7 +22,7 @@ layout: default
         | first
       %}
 
-      <p class="ua-reference">
+      <p class="ua-reference layout-reference">
         <strong>Compétence :</strong>
 
         {% if competence %}
@@ -45,7 +45,7 @@ layout: default
         | first
       %}
 
-      <p class="ua-reference">
+      <p class="ua-reference layout-reference">
         <strong>Domaine :</strong>
 
         {% if domaine %}
@@ -61,7 +61,7 @@ layout: default
 
 
     {% if page.duree %}
-      <p class="ua-reference">
+      <p class="ua-reference layout-reference">
         <strong>Durée :</strong> {{ page.duree }} h
       </p>
     {% endif %}
@@ -70,7 +70,7 @@ layout: default
 
 
   {% if page.objectif %}
-    <section class="ua-section">
+    <section class="ua-section layout-section">
       <h2>Objectif</h2>
       <p>{{ page.objectif }}</p>
     </section>
@@ -78,7 +78,7 @@ layout: default
 
 
   {% if page.description %}
-    <section class="ua-section">
+    <section class="ua-section layout-section">
       <h2>Description</h2>
       <p>{{ page.description }}</p>
     </section>
@@ -86,7 +86,7 @@ layout: default
 
 
   {% if page.notions and page.notions.size > 0 %}
-    <section class="ua-section">
+    <section class="ua-section layout-section">
 
       <h2>Notions</h2>
 
@@ -101,7 +101,7 @@ layout: default
 
 
   {% if page.livrable %}
-    <section class="ua-section">
+    <section class="ua-section layout-section">
 
       <h2>Livrable attendu</h2>
 
@@ -112,7 +112,7 @@ layout: default
 
 
   {% if page.travail_a_faire %}
-    <section class="ua-section">
+    <section class="ua-section layout-section">
 
       <h2>Travail à faire</h2>
 
@@ -123,7 +123,7 @@ layout: default
 
 
   {% if content != "" %}
-    <section class="ua-section">
+    <section class="ua-section layout-section">
       {{ content }}
     </section>
   {% endif %}
@@ -138,7 +138,7 @@ layout: default
     | where: "ua", page.code
   %}
 
-  <section class="ua-section">
+  <section class="ua-section layout-section">
 
     <h2>Tutoriels</h2>
 

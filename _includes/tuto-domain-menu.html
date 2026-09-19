@@ -1,0 +1,23 @@
+{% assign current_ua = site.uas | where: "code", page.ua | first %}
+{% assign current_domaine_code = page.domaine | default: current_ua.domaine %}
+{% assign domaine_uas = site.uas | where: "domaine", current_domaine_code %}
+
+{% if domaine_uas.size > 0 %}
+<details class="tuto-domain-menu">
+  <summary class="tuto-domain-menu-summary">
+    <span class="tuto-domain-menu-title">Tutoriels du même domaine</span>
+    <span class="tuto-domain-menu-icon">▼</span>
+  </summary>
+  <div class="tuto-domain-menu-content">
+    {% for dom_ua in domaine_uas %}
+      {% assign dom_tutos = site.tutos | where: "ua", dom_ua.code | where: "version", "normal" | sort: "nav_order" %}
+      {% if dom_tutos.size > 0 %}
+        <div class="tuto-domain-ua-group">
+          <h5>{{ dom_ua.title }}</h5>
+          {% include tuto-list.html tutos=dom_tutos %}
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</details>
+{% endif %}

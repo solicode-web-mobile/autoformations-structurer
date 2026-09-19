@@ -2,20 +2,21 @@
 layout: default
 ---
 
-<div class="tuto-page">
+<div class="tuto-page layout-page">
 
   <!-- ==================================================
        EN-TÊTE
        ================================================== -->
 
-  <header class="tuto-header">
+  <header class="tuto-header layout-header">
 
     <div class="tuto-header-title">
 
       {% if page.tuto_id %}
-        <span class="tuto-code">
-          {{ page.tuto_id }}
-        </span>
+      <span class="tuto-code">
+        {{ page.tuto_id }} : 
+         {% include tuto-domain-menu.html %}
+      </span>
       {% endif %}
 
       <h1>{{ page.title }}</h1>
@@ -31,93 +32,93 @@ layout: default
 
       {% if page.competence %}
 
-        {% assign competence =
-          site.competences
-          | where: "code", page.competence
-          | first
-        %}
+      {% assign competence =
+      site.competences
+      | where: "code", page.competence
+      | first
+      %}
 
-        <span class="tuto-reference">
+      <span class="tuto-reference layout-reference">
 
-          <strong class="tuto-reference-label">
-            Compétence
-          </strong>
+        <strong class="tuto-reference-label">
+          Compétence
+        </strong>
 
-          {% if competence %}
+        {% if competence %}
 
-            <a href="{{ competence.url | relative_url }}">
-              {{ competence.code }} — {{ competence.title }}
-            </a>
+        <a href="{{ competence.url | relative_url }}">
+          {{ competence.code }} — {{ competence.title }}
+        </a>
 
-          {% else %}
+        {% else %}
 
-            {{ page.competence }}
+        {{ page.competence }}
 
-          {% endif %}
+        {% endif %}
 
-        </span>
+      </span>
 
       {% endif %}
 
 
       {% if page.domaine %}
 
-        {% assign domaine =
-          site.domaines
-          | where: "code", page.domaine
-          | first
-        %}
+      {% assign domaine =
+      site.domaines
+      | where: "code", page.domaine
+      | first
+      %}
 
-        <span class="tuto-reference">
+      <span class="tuto-reference layout-reference">
 
-          <strong class="tuto-reference-label">
-            Domaine
-          </strong>
+        <strong class="tuto-reference-label">
+          Domaine
+        </strong>
 
-          {% if domaine %}
+        {% if domaine %}
 
-            <a href="{{ domaine.url | relative_url }}">
-              {{ domaine.code }} — {{ domaine.title }}
-            </a>
+        <a href="{{ domaine.url | relative_url }}">
+          {{ domaine.code }} — {{ domaine.title }}
+        </a>
 
-          {% else %}
+        {% else %}
 
-            {{ page.domaine }}
+        {{ page.domaine }}
 
-          {% endif %}
+        {% endif %}
 
-        </span>
+      </span>
 
       {% endif %}
 
 
       {% if page.ua %}
 
-        {% assign ua =
-          site.uas
-          | where: "code", page.ua
-          | first
-        %}
+      {% assign ua =
+      site.uas
+      | where: "code", page.ua
+      | first
+      %}
 
-        <span class="tuto-reference">
+      <span class="tuto-reference layout-reference">
 
-          <strong class="tuto-reference-label">
-            UA
-          </strong>
+        <strong class="tuto-reference-label">
+          UA
+        </strong>
 
-          {% if ua %}
+        {% if ua %}
 
-            <a href="{{ ua.url | relative_url }}">
-              {{ ua.code }} — {{ ua.title }}
-            </a>
+        <a href="{{ ua.url | relative_url }}">
+          {{ ua.code }} — {{ ua.title }}
+        </a>
 
-          {% else %}
+        {% else %}
 
-            {{ page.ua }}
+        {{ page.ua }}
 
-          {% endif %}
+        {% endif %}
 
-        </span>
+      </span>
 
       {% endif %}
 
@@ -137,6 +138,9 @@ layout: default
     {% include text-size-control.html %}
 
   </div>
+
+
+
 
 
   <!-- ==================================================
@@ -184,4 +188,8 @@ layout: default
 
   };
 
+
+
 </script>
+
+<script src="{{ '/assets/js/tuto.js' | relative_url }}"></script>

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajouter un Article - Admin Mon Blog</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { primary: { 50: '#f0f6ff', 500: '#2673e8', 600: '#1c5bba', 900: '#0a2042' } },
+                    fontFamily: { body: ['Inter', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-100 font-body flex min-h-screen overflow-hidden">
+
+    <!-- 1. SIDEBAR (Zone 1) -->
+    <aside class="w-64 bg-gray-900 border-r border-gray-800 flex flex-col h-screen flex-shrink-0 relative overflow-hidden z-50 hidden lg:flex">
+        <div class="absolute top-0 left-0 w-full h-32 bg-primary-500/10 blur-[80px] pointer-events-none"></div>
+
+        <div class="p-6 flex items-center gap-3 relative z-10 border-b border-gray-800">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-primary-500 to-blue-400 flex items-center justify-center text-white font-black text-sm shadow-lg shadow-primary-500/20">
+                B.
+            </div>
+            <div>
+                <h2 class="text-sm font-bold text-white tracking-wide">Admin</h2>
+                <p class="text-[10px] text-gray-400 font-medium uppercase tracking-widest mt-0.5">Mon Blog</p>
+            </div>
+        </div>
+
+        <nav class="flex-1 overflow-y-auto py-6 px-3 space-y-1 relative z-10">
+            <a href="admin-dashboard.html" onclick="if(window.parent && window.parent.loadComponent) { event.preventDefault(); window.parent.loadComponent('mockups/admin-dashboard.html', 'Page : Tableau de bord Admin'); }" class="flex items-center gap-3 px-3 py-2.5 text-sm font-medium rounded-lg text-gray-400 hover:text-white hover:bg-gray-800 transition-colors">
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+                Tableau de bord
+            </a>
+            <a href="admin-articles.html" onclick="if(window.parent && window.parent.loadComponent) { event.preventDefault(); window.parent.loadComponent('mockups/admin-articles.html', 'Page : Gestion des Articles'); }" class="flex items-center gap-3 px-3 py-2.5 text-sm font-medium rounded-lg bg-primary-500/10 text-white">
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/></svg>
+                Articles
+            </a>
+            <a href="admin-categories.html" onclick="if(window.parent && window.parent.loadComponent) { event.preventDefault(); window.parent.loadComponent('mockups/admin-categories.html', 'Page : Gestion des Catégories'); }" class="flex items-center gap-3 px-3 py-2.5 text-sm font-medium rounded-lg text-gray-400 hover:text-white hover:bg-gray-800 transition-colors">
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/></svg>
+                Catégories
+            </a>
+
+        </nav>
+
+        <div class="p-4 border-t border-gray-800 relative z-10">
+            <a href="admin-login.html" class="flex items-center gap-3 px-3 py-2.5 text-sm font-medium rounded-lg text-gray-400 hover:text-red-400 hover:bg-gray-800 transition-colors">
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
+                Déconnexion
+            </a>
+        </div>
+    </aside>
+
+    <!-- MAIN WRAPPER -->
+    <div class="flex-1 flex flex-col h-screen overflow-hidden">
+        
+        <!-- 2. TOPBAR (Zone 2) -->
+        <header class="h-16 bg-white border-b border-gray-200 px-6 flex items-center justify-between flex-shrink-0 z-40">
+            <div class="flex items-center gap-4 flex-1">
+                <button class="lg:hidden p-2 text-gray-400 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-colors">
+                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                </button>
+                <div class="hidden md:block max-w-md w-full">
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
+                            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                        </div>
+                        <input type="text" placeholder="Rechercher..." class="w-full pl-10 pr-4 py-2 bg-gray-50 border border-transparent rounded-lg text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:bg-white focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 transition-all duration-300">
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-4 ml-auto">
+                <a href="public-index.html" class="hidden sm:inline-flex items-center gap-2 px-3 py-1.5 text-xs font-semibold text-gray-600 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors" title="Voir le site public">
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                    <span class="hidden lg:inline">Voir le site</span>
+                </a>
+                <div class="w-px h-6 bg-gray-200 mx-1 hidden sm:block"></div>
+                <button class="flex items-center gap-2 pl-2">
+                    <img src="https://i.pravatar.cc/100?img=11" alt="Profile" class="w-8 h-8 rounded-full object-cover border border-gray-200">
+                    <div class="hidden md:flex flex-col text-left">
+                        <span class="text-xs font-bold text-gray-900 leading-tight">Jean D.</span>
+                        <span class="text-[10px] font-medium text-gray-500">Admin</span>
+                    </div>
+                    <svg class="w-4 h-4 text-gray-400 hidden sm:block" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </button>
+            </div>
+        </header>
+
+        <!-- 3. MAIN CONTENT (Zone 3) -->
+        <main class="flex-1 overflow-y-auto p-6 lg:p-10 bg-gray-50/50">
+            <div class="max-w-4xl mx-auto">
+                
+                <!-- Page Header -->
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+                    <div>
+                        <nav class="flex text-xs text-gray-500 mb-1" aria-label="Breadcrumb">
+                            <ol class="inline-flex items-center space-x-1 md:space-x-2">
+                                <li class="inline-flex items-center">
+                                    <span class="text-gray-900 font-medium">Admin</span>
+                                </li>
+                                <li>
+                                    <div class="flex items-center">
+                                        <svg class="w-3 h-3 text-gray-400 mx-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                                        <a href="admin-articles.html" onclick="if(window.parent && window.parent.loadComponent) { event.preventDefault(); window.parent.loadComponent('mockups/admin-articles.html', 'Page : Gestion des Articles'); }" class="text-gray-500 hover:text-gray-900 font-medium ml-1 transition-colors">Articles</a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="flex items-center">
+                                        <svg class="w-3 h-3 text-gray-400 mx-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                                        <span class="text-gray-500 font-medium ml-1">Ajouter</span>
+                                    </div>
+                                </li>
+                            </ol>
+                        </nav>
+                        <h1 class="text-2xl font-bold text-gray-900 tracking-tight">Ajouter un Article</h1>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <a href="admin-articles.html" onclick="if(window.parent && window.parent.loadComponent) { event.preventDefault(); window.parent.loadComponent('mockups/admin-articles.html', 'Page : Gestion des Articles'); }" class="inline-flex items-center justify-center gap-2 px-4 py-2 bg-white text-gray-700 border border-gray-200 text-sm font-semibold rounded-lg hover:bg-gray-50 hover:text-gray-900 transition-colors">
+                            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+                            Retour à la liste
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Form Card -->
+                <form class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden" onsubmit="event.preventDefault(); if(window.parent && window.parent.loadComponent) { window.parent.loadComponent('mockups/admin-articles.html', 'Page : Gestion des Articles'); } else window.location.href='admin-articles.html';">
+                    
+                    <div class="p-6 md:p-8">
+                        <div class="flex flex-col gap-6">
+                            
+                            <!-- Input Group: Titre -->
+                            <div class="flex flex-col gap-2">
+                                <label for="article_title" class="text-sm font-semibold text-gray-700">Titre de l'article <span class="text-red-500">*</span></label>
+                                <input type="text" id="article_title" placeholder="Ex: Les meilleures pratiques de développement" required class="w-full px-4 py-2.5 bg-gray-50 border border-transparent rounded-xl text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:bg-white focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 transition-all duration-300">
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <!-- Input Group: Catégorie -->
+                                <div class="flex flex-col gap-2 relative">
+                                    <label for="article_category" class="text-sm font-semibold text-gray-700">Catégorie <span class="text-red-500">*</span></label>
+                                    <div class="relative">
+                                        <select id="article_category" required class="w-full px-4 py-2.5 bg-gray-50 border border-transparent rounded-xl text-sm text-gray-900 focus:outline-none focus:bg-white focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 transition-all duration-300 appearance-none">
+                                            <option value="" disabled selected>Sélectionnez une catégorie</option>
+                                            <option value="dev">Développement</option>
+                                            <option value="design">Design UI/UX</option>
+                                            <option value="prod">Productivité</option>
+                                            <option value="marketing">Marketing</option>
+                                        </select>
+                                        <div class="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none text-gray-500">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Input Group: Statut -->
+                                <div class="flex flex-col gap-2 relative">
+                                    <label for="article_status" class="text-sm font-semibold text-gray-700">Statut <span class="text-red-500">*</span></label>
+                                    <div class="relative">
+                                        <select id="article_status" required class="w-full px-4 py-2.5 bg-gray-50 border border-transparent rounded-xl text-sm text-gray-900 focus:outline-none focus:bg-white focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 transition-all duration-300 appearance-none">
+                                            <option value="brouillon" selected>Brouillon</option>
+                                            <option value="publie">Publié</option>
+                                        </select>
+                                        <div class="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none text-gray-500">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Input Group: Image (Upload) -->
+                            <div class="flex flex-col gap-2">
+                                <label class="text-sm font-semibold text-gray-700">Image de couverture</label>
+                                <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-xl bg-gray-50 hover:bg-gray-100 transition-colors group">
+                                    <div class="space-y-1 text-center">
+                                        <svg class="mx-auto h-12 w-12 text-gray-400 group-hover:text-primary-500 transition-colors" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
+                                            <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                        <div class="flex text-sm text-gray-600 justify-center">
+                                            <label for="article_image_upload" class="relative cursor-pointer rounded-md font-medium text-primary-600 hover:text-primary-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-primary-500">
+                                                <span>Télécharger un fichier</span>
+                                                <input id="article_image_upload" name="article_image_upload" type="file" class="sr-only" accept="image/*">
+                                            </label>
+                                            <p class="pl-1">ou glisser-déposer</p>
+                                        </div>
+                                        <p class="text-xs text-gray-500">
+                                            PNG, JPG, GIF jusqu'à 10MB (recommandé 1200x600px)
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Input Group: Contenu -->
+                            <div class="flex flex-col gap-2">
+                                <label for="article_content" class="text-sm font-semibold text-gray-700">Contenu de l'article <span class="text-red-500">*</span></label>
+                                <!-- Mock WYSIWYG Toolbar -->
+                                <div class="flex flex-col border border-gray-200 rounded-xl overflow-hidden focus-within:border-primary-500 focus-within:ring-4 focus-within:ring-primary-500/10 transition-all duration-300">
+                                    <div class="w-full bg-gray-50 border-b border-gray-200 p-2 flex items-center flex-wrap gap-1">
+                                        <button type="button" onclick="document.execCommand('bold', false, null);" class="p-1.5 text-gray-600 hover:text-gray-900 hover:bg-gray-200 rounded transition-colors" title="Gras"><strong class="font-serif">B</strong></button>
+                                        <button type="button" onclick="document.execCommand('italic', false, null);" class="p-1.5 text-gray-600 hover:text-gray-900 hover:bg-gray-200 rounded transition-colors italic" title="Italique"><span class="font-serif">I</span></button>
+                                        <button type="button" onclick="document.execCommand('underline', false, null);" class="p-1.5 text-gray-600 hover:text-gray-900 hover:bg-gray-200 rounded transition-colors underline" title="Souligné"><span class="font-serif">U</span></button>
+                                        <div class="w-px h-4 bg-gray-300 mx-1"></div>
+                                        <button type="button" onclick="document.execCommand('insertUnorderedList', false, null);" class="p-1.5 text-gray-600 hover:text-gray-900 hover:bg-gray-200 rounded transition-colors" title="Liste à puces">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                                        </button>
+                                        <button type="button" onclick="document.execCommand('formatBlock', false, 'H3');" class="p-1.5 text-gray-600 hover:text-gray-900 hover:bg-gray-200 rounded font-bold text-sm transition-colors" title="Sous-titre (H3)">H3</button>
+                                        <div class="w-px h-4 bg-gray-300 mx-1"></div>
+                                        <button type="button" onclick="const url = prompt('Entrez l\'URL du lien:'); if(url) document.execCommand('createLink', false, url);" class="p-1.5 text-gray-600 hover:text-gray-900 hover:bg-gray-200 rounded transition-colors" title="Lien">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
+                                        </button>
+                                        <button type="button" onclick="document.execCommand('formatBlock', false, 'BLOCKQUOTE');" class="p-1.5 text-gray-600 hover:text-gray-900 hover:bg-gray-200 rounded transition-colors" title="Citation">
+                                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h4v10h-10z"/></svg>
+                                        </button>
+                                    </div>
+                                    <div id="article_content" contenteditable="true" class="w-full min-h-[300px] px-4 py-4 bg-white text-sm text-gray-900 focus:outline-none prose prose-sm max-w-none prose-blue">
+                                        <p>Rédigez le contenu de votre article ici...</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Form Actions -->
+                    <div class="px-6 py-4 border-t border-gray-100 bg-gray-50 flex items-center justify-end gap-3">
+                        <button type="button" onclick="if(window.parent && window.parent.loadComponent) { window.parent.loadComponent('mockups/admin-articles.html', 'Page : Gestion des Articles'); } else window.location.href='admin-articles.html'" class="px-5 py-2.5 text-sm font-semibold text-gray-600 bg-white border border-gray-200 rounded-xl hover:bg-gray-50 transition-colors">
+                            Annuler
+                        </button>
+                        <button type="submit" class="px-5 py-2.5 bg-primary-600 text-white text-sm font-semibold rounded-xl hover:bg-primary-500 hover:shadow-lg hover:shadow-primary-500/30 hover:-translate-y-0.5 transition-all duration-300">
+                            Enregistrer l'article
+                        </button>
+                    </div>
+
+                </form>
+
+            </div>
+        </main>
+    </div>
+
+</body>
+</html>

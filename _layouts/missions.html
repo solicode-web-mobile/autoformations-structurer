@@ -2,20 +2,20 @@
 layout: default
 ---
 
-<div class="mission-page">
+<div class="mission-page layout-page">
 
   <!-- ==================================================
        EN-TÊTE DE LA MISSION
        ================================================== -->
 
-  <header class="mission-header">
+  <header class="mission-header layout-header">
 
     <h1>
       {{ page.title }}
     </h1>
 
     {% if page.description %}
-      <section class="mission-section">
+      <section class="mission-section layout-section">
         <h2>Description</h2>
 
         <div>
@@ -31,7 +31,7 @@ layout: default
        COMPÉTENCES
        ================================================== -->
 
-  <section class="mission-section">
+  <section class="mission-section layout-section">
 
     <h2>Compétences</h2>
 
@@ -60,7 +60,7 @@ layout: default
 
             {% if competence.objectif %}
 
-              <p class="competence-objective">
+              <p class="competence-objective layout-objective">
                 {{ competence.objectif }}
               </p>
 

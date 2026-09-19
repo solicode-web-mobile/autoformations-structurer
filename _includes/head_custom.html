@@ -22,7 +22,37 @@
     <link rel="stylesheet" href="{{ '/assets/css/projet.css' | relative_url }}">
 {% endcase %}
 
-<script defer
-        src="{{ '/assets/js/formation.js' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/css/editor.css' | relative_url }}">
+
+
+<link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/styles/vs2015.min.css"
+    >
+
+<!-- Highlight.js -->
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/highlight.min.js"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        document
+            .querySelectorAll("pre code")
+            .forEach(function (codeBlock) {
+
+                hljs.highlightElement(codeBlock);
+
+            });
+
+    });
 </script>
 
+<script defer src="{{ '/assets/js/tutorial-navigation.js' | relative_url }}"></script>
+<script defer src="{{ '/assets/js/text-resizer.js' | relative_url }}"></script>
+<script defer src="{{ '/assets/js/iframe-controls.js' | relative_url }}"></script>
+
+<script>
+    window.editeurCodeUrl = "{{ '/editeur-code' | relative_url }}";
+</script>
+
+<script defer src="{{ '/assets/js/code-editor-injector.js' | relative_url }}"></script>

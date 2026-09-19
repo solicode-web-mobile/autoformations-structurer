@@ -8,16 +8,9 @@
         "_site": true,
         ".github": true,
         ".jekyll-cache": true,
-        "assets": true,
-        "docs": true,
-        "_config.yml": true,
-        ".gitignore": true,
-        "autoformations-structurer.code-workspace": true,
         "Gemfile": true,
         "Gemfile.lock": true,
-        "LICENSE": true,
-        "serve.ps1": true,
-        "_includes": true,
-        "_layouts": true
-    }
+        "LICENSE": true
+    },
+    "folder-color.pathColors": []
 }

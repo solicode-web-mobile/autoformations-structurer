@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Blog Personnel - Accueil</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Merriweather:wght@700;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { primary: { 50: '#f0f6ff', 100: '#e0edff', 500: '#2673e8', 600: '#1c5bba', 900: '#0a2042' } },
+                    fontFamily: { heading: ['Merriweather', 'serif'], body: ['Inter', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        .hero-pattern {
+            background-color: #ffffff;
+            background-image: radial-gradient(#e0edff 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-body m-0 text-gray-800 antialiased">
+    
+    <!-- 1. HEADER (Navbar) -->
+    <div id="navbar-wrapper" class="pt-6 px-4 md:px-8 max-w-7xl mx-auto sticky top-0 left-0 right-0 z-50 transition-all duration-300">
+        <nav id="navbar" class="w-full bg-white/80 backdrop-blur-xl border border-white/40 shadow-[0_8px_30px_rgb(0,0,0,0.04)] rounded-2xl py-3.5 px-6 md:px-8 flex items-center justify-between transition-all duration-300">
+            <!-- Logo -->
+            <a href="public-index.html" class="group flex items-center gap-2.5 font-heading text-xl tracking-tight transition-transform duration-300 hover:scale-[1.02]">
+                <div class="flex items-center justify-center w-9 h-9 bg-gradient-to-br from-primary-500 to-blue-400 text-white rounded-xl shadow-lg shadow-primary-500/20 group-hover:from-primary-600 group-hover:to-primary-500 transition-all duration-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
+                </div>
+                <span class="font-black text-gray-900 group-hover:text-primary-500 transition-colors">Mon</span><span class="font-bold text-primary-500">Blog.</span>
+            </a>
+
+            <!-- Nav Links -->
+            <ul class="hidden md:flex items-center gap-2 lg:gap-4">
+                <li><a href="public-index.html" class="px-4 py-2 bg-primary-50 text-primary-600 font-semibold text-sm rounded-xl transition-all">Accueil</a></li>
+                
+                <!-- Dropdown Catégories -->
+                <li class="relative group">
+                    <button class="flex items-center gap-1.5 px-4 py-2 text-gray-500 font-medium text-sm rounded-xl hover:text-gray-900 hover:bg-gray-50 transition-all">
+                        Catégories
+                        <svg class="w-4 h-4 text-gray-400 group-hover:rotate-180 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                    <!-- Menu dropdown -->
+                    <div class="absolute top-full left-0 mt-1 w-52 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 z-50">
+                        <div class="bg-white rounded-2xl shadow-xl shadow-gray-900/10 border border-gray-100 p-2 flex flex-col gap-1">
+                            <a href="public-categorie.html" class="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-gray-600 rounded-xl hover:text-blue-600 hover:bg-blue-50 transition-colors">
+                                <span class="w-2 h-2 rounded-full bg-blue-500"></span> Développement
+                            </a>
+                            <a href="public-categorie.html" class="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-gray-600 rounded-xl hover:text-pink-600 hover:bg-pink-50 transition-colors">
+                                <span class="w-2 h-2 rounded-full bg-pink-500"></span> Design UI/UX
+                            </a>
+                            <a href="public-categorie.html" class="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-gray-600 rounded-xl hover:text-emerald-600 hover:bg-emerald-50 transition-colors">
+                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span> Productivité
+                            </a>
+                        </div>
+                    </div>
+                </li>
+
+                <li><a href="public-apropos.html" class="px-4 py-2 text-gray-500 font-medium text-sm rounded-xl hover:text-gray-900 hover:bg-gray-50 transition-all">À Propos</a></li>
+            </ul>
+
+            <!-- Button Admin -->
+            <div class="flex items-center gap-4">
+                <a href="admin-login.html" class="hidden md:inline-flex items-center justify-center px-5 py-2.5 bg-primary-50 text-primary-600 font-semibold text-sm rounded-xl hover:bg-primary-500 hover:text-white transition-all duration-300 hover:shadow-lg hover:shadow-primary-500/20 hover:-translate-y-0.5">
+                    Espace Admin
+                </a>
+                <button class="md:hidden p-2 text-gray-500 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors">
+                    <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/></svg>
+                </button>
+            </div>
+        </nav>
+    </div>
+
+    <!-- 2. HERO SECTION -->
+    <section class="relative overflow-hidden hero-pattern border-b border-gray-100">
+        <!-- Decorative blobs -->
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[400px] bg-gradient-to-r from-primary-100/50 to-blue-50/50 rounded-full blur-3xl opacity-60 -z-10 pointer-events-none"></div>
+
+        <div class="max-w-4xl mx-auto px-6 py-28 md:py-36 text-center flex flex-col items-center gap-8 relative z-10">
+            <div class="animate-fade-in-up" style="animation-delay: 100ms; animation-fill-mode: both;">
+                <span class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-bold bg-white text-primary-600 uppercase tracking-widest shadow-sm border border-primary-50">
+                    <span class="w-1.5 h-1.5 rounded-full bg-primary-500 animate-pulse"></span>
+                    Nouveaux articles chaque semaine
+                </span>
+            </div>
+
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-heading font-black text-primary-900 leading-[1.15] tracking-tight animate-fade-in-up" style="animation-delay: 200ms; animation-fill-mode: both;">
+                Mon Blog Personnel : <br/>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary-500 to-blue-400">Développer & Partager</span>
+            </h1>
+            
+            <p class="text-lg md:text-xl text-gray-600 leading-relaxed max-w-2xl animate-fade-in-up" style="animation-delay: 300ms; animation-fill-mode: both;">
+                Découvrez mes derniers articles sur le développement web, l'architecture logicielle et les bonnes pratiques d'intégration UI/UX.
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center gap-4 mt-4 animate-fade-in-up" style="animation-delay: 400ms; animation-fill-mode: both;">
+                <a href="#articles" class="px-8 py-3.5 bg-gradient-to-br from-primary-500 to-primary-600 text-white font-semibold rounded-xl shadow-lg shadow-primary-500/30 hover:shadow-primary-500/50 transition-all duration-300 transform hover:-translate-y-0.5">
+                    Lire les articles
+                </a>
+                <a href="public-apropos.html" class="px-8 py-3.5 bg-white text-gray-700 font-semibold border border-gray-200 rounded-xl hover:bg-gray-50 hover:text-primary-600 hover:border-primary-200 transition-all duration-300">
+                    À propos de moi
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. CONTENU PRINCIPAL (Grille d'articles) -->
+    <main id="articles" class="py-20">
+        <div class="max-w-7xl mx-auto px-6">
+            
+            <!-- Catégories (Pills) -->
+            <div class="w-full flex flex-col gap-4 mb-16 animate-fade-in-up" style="animation-delay: 500ms; animation-fill-mode: both;">
+                <div class="flex items-center gap-2">
+                    <svg class="w-5 h-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/></svg>
+                    <h3 class="text-sm font-bold text-gray-900 uppercase tracking-widest">Explorer par thème</h3>
+                </div>
+                <div class="flex flex-wrap items-center gap-3">
+                    <a href="public-index.html" class="px-5 py-2.5 rounded-xl text-sm font-semibold bg-gray-900 text-white shadow-md hover:bg-gray-800 transition-all duration-300 transform hover:-translate-y-0.5">Tous les articles</a>
+                    <a href="public-categorie.html" class="group px-5 py-2.5 rounded-xl text-sm font-semibold bg-white border border-gray-200 text-gray-600 hover:text-blue-600 hover:border-blue-200 hover:bg-blue-50 hover:shadow-md hover:shadow-blue-500/10 transition-all duration-300 transform hover:-translate-y-0.5 flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-blue-500 group-hover:animate-pulse"></span> Développement
+                    </a>
+                    <a href="public-categorie.html" class="group px-5 py-2.5 rounded-xl text-sm font-semibold bg-white border border-gray-200 text-gray-600 hover:text-pink-600 hover:border-pink-200 hover:bg-pink-50 hover:shadow-md hover:shadow-pink-500/10 transition-all duration-300 transform hover:-translate-y-0.5 flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-pink-500 group-hover:animate-pulse"></span> Design UI/UX
+                    </a>
+                    <a href="public-categorie.html" class="group px-5 py-2.5 rounded-xl text-sm font-semibold bg-white border border-gray-200 text-gray-600 hover:text-emerald-600 hover:border-emerald-200 hover:bg-emerald-50 hover:shadow-md hover:shadow-emerald-500/10 transition-all duration-300 transform hover:-translate-y-0.5 flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-emerald-500 group-hover:animate-pulse"></span> Productivité
+                    </a>
+                    <a href="public-categorie.html" class="group px-5 py-2.5 rounded-xl text-sm font-semibold bg-white border border-gray-200 text-gray-600 hover:text-purple-600 hover:border-purple-200 hover:bg-purple-50 hover:shadow-md hover:shadow-purple-500/10 transition-all duration-300 transform hover:-translate-y-0.5 flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-purple-500 group-hover:animate-pulse"></span> Management
+                    </a>
+                </div>
+            </div>
+
+            <!-- Section Header -->
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-16 relative animate-fade-in-up" style="animation-delay: 600ms; animation-fill-mode: both;">
+                
+                <div class="relative z-10">
+                    <!-- Sur-titre décoratif -->
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="w-8 h-[3px] bg-gradient-to-r from-primary-500 to-blue-400 rounded-full shadow-sm"></span>
+                        <span class="text-xs font-bold text-primary-600 uppercase tracking-widest">À la une</span>
+                    </div>
+                    
+                    <h2 class="text-3xl md:text-4xl font-heading font-black text-gray-900 tracking-tight">
+                        Dernières publications
+                    </h2>
+                    <p class="text-gray-500 mt-3 text-base md:text-lg">
+                        Les articles les plus récents de la communauté.
+                    </p>
+                </div>
+
+                <a href="public-categorie.html" class="group inline-flex items-center justify-center gap-2 px-6 py-3 bg-white text-gray-700 font-semibold rounded-xl border border-gray-200 hover:bg-primary-50 hover:text-primary-600 hover:border-primary-100 transition-all duration-300 hover:shadow-lg hover:shadow-primary-500/10 whitespace-nowrap sm:mb-2">
+                    Explorer tout 
+                    <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Article Card 1 -->
+                <article onclick="window.location.href='public-article.html'" class="group relative bg-white w-full max-w-sm mx-auto rounded-3xl border border-gray-100 shadow-sm hover:shadow-2xl hover:shadow-primary-500/10 transition-all duration-500 overflow-hidden flex flex-col cursor-pointer hover:-translate-y-2">
+                    <div class="aspect-[16/9] w-full overflow-hidden bg-gray-100 relative">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/20 to-transparent z-10 transition-opacity duration-300 group-hover:opacity-0"></div>
+                        <img src="https://images.unsplash.com/photo-1555099962-4199c345e5dd?w=600&h=400&fit=crop" alt="Code" class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110">
+                        <div class="absolute top-5 left-5 z-30">
+                            <a href="public-categorie.html" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[10px] font-bold bg-white/90 backdrop-blur-md text-primary-600 uppercase tracking-widest shadow-sm transition-all duration-300 hover:scale-105 hover:bg-primary-500 hover:text-white group-hover:shadow-md">
+                                <span class="w-1.5 h-1.5 rounded-full bg-primary-500 animate-pulse"></span>
+                                Développement
+                            </a>
+                        </div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-1 gap-4">
+                        <h3 class="text-xl font-heading font-black text-gray-900 leading-snug group-hover:text-primary-600 transition-colors duration-300 line-clamp-2">
+                            Comment bien débuter avec Tailwind CSS en 2026 ?
+                        </h3>
+                        <p class="text-sm text-gray-500 leading-relaxed flex-1 line-clamp-3">
+                            Découvrez les concepts fondamentaux de Tailwind CSS et pourquoi cette approche utilitaire est devenue le standard de l'industrie pour les développeurs frontend modernes.
+                        </p>
+                        <div class="pt-5 mt-auto border-t border-gray-100 flex items-center justify-between">
+                            <div class="flex items-center gap-4 text-xs font-medium text-gray-500">
+                                <div class="flex items-center gap-1.5">
+                                    <svg class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                                    <span>14 Fév 2026</span>
+                                </div>
+                                <div class="flex items-center gap-1.5">
+                                    <svg class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                    <span>5 min</span>
+                                </div>
+                            </div>
+                            <div class="w-8 h-8 rounded-full bg-primary-50 text-primary-500 flex items-center justify-center transition-all duration-300 group-hover:bg-primary-500 group-hover:text-white group-hover:rotate-45 shrink-0">
+                                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 12h14M12 5l7 7-7 7"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Article Card 2 -->
+                <article onclick="window.location.href='public-article.html'" class="group relative bg-white w-full max-w-sm mx-auto rounded-3xl border border-gray-100 shadow-sm hover:shadow-2xl hover:shadow-primary-500/10 transition-all duration-500 overflow-hidden flex flex-col cursor-pointer hover:-translate-y-2">
+                    <div class="aspect-[16/9] w-full overflow-hidden bg-gray-100 relative">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/20 to-transparent z-10 transition-opacity duration-300 group-hover:opacity-0"></div>
+                        <img src="https://images.unsplash.com/photo-1618761714954-0b8cd0026356?w=600&h=400&fit=crop" alt="UI Design" class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110">
+                        <div class="absolute top-5 left-5 z-30">
+                            <a href="public-categorie.html" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[10px] font-bold bg-white/90 backdrop-blur-md text-pink-600 uppercase tracking-widest shadow-sm transition-all duration-300 hover:scale-105 hover:bg-pink-500 hover:text-white group-hover:shadow-md">
+                                <span class="w-1.5 h-1.5 rounded-full bg-pink-500 animate-pulse"></span>
+                                UI / UX
+                            </a>
+                        </div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-1 gap-4">
+                        <h3 class="text-xl font-heading font-black text-gray-900 leading-snug group-hover:text-pink-600 transition-colors duration-300 line-clamp-2">
+                            L'importance des micro-interactions
+                        </h3>
+                        <p class="text-sm text-gray-500 leading-relaxed flex-1 line-clamp-3">
+                            Une interface belle n'est pas suffisante. Comprendre comment animer de petites actions peut transformer l'expérience utilisateur et augmenter l'engagement.
+                        </p>
+                        <div class="pt-5 mt-auto border-t border-gray-100 flex items-center justify-between">
+                            <div class="flex items-center gap-4 text-xs font-medium text-gray-500">
+                                <div class="flex items-center gap-1.5">
+                                    <svg class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                                    <span>10 Fév 2026</span>
+                                </div>
+                                <div class="flex items-center gap-1.5">
+                                    <svg class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                    <span>3 min</span>
+                                </div>
+                            </div>
+                            <div class="w-8 h-8 rounded-full bg-pink-50 text-pink-500 flex items-center justify-center transition-all duration-300 group-hover:bg-pink-500 group-hover:text-white group-hover:rotate-45 shrink-0">
+                                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 12h14M12 5l7 7-7 7"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Article Card 3 -->
+                <article onclick="window.location.href='public-article.html'" class="group relative bg-white w-full max-w-sm mx-auto rounded-3xl border border-gray-100 shadow-sm hover:shadow-2xl hover:shadow-primary-500/10 transition-all duration-500 overflow-hidden flex flex-col cursor-pointer hover:-translate-y-2">
+                    <div class="aspect-[16/9] w-full overflow-hidden bg-gray-100 relative">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/20 to-transparent z-10 transition-opacity duration-300 group-hover:opacity-0"></div>
+                        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop" alt="Equipe" class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110">
+                        <div class="absolute top-5 left-5 z-30">
+                            <a href="public-categorie.html" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[10px] font-bold bg-white/90 backdrop-blur-md text-emerald-600 uppercase tracking-widest shadow-sm transition-all duration-300 hover:scale-105 hover:bg-emerald-500 hover:text-white group-hover:shadow-md">
+                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                                Management
+                            </a>
+                        </div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-1 gap-4">
+                        <h3 class="text-xl font-heading font-black text-gray-900 leading-snug group-hover:text-emerald-600 transition-colors duration-300 line-clamp-2">
+                            Gérer une équipe de développeurs en Full Remote
+                        </h3>
+                        <p class="text-sm text-gray-500 leading-relaxed flex-1 line-clamp-3">
+                            Les méthodes agiles et les rituels essentiels pour maintenir la cohésion de groupe et la productivité lorsque tous les membres sont distribués.
+                        </p>
+                        <div class="pt-5 mt-auto border-t border-gray-100 flex items-center justify-between">
+                            <div class="flex items-center gap-4 text-xs font-medium text-gray-500">
+                                <div class="flex items-center gap-1.5">
+                                    <svg class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                                    <span>05 Fév 2026</span>
+                                </div>
+                                <div class="flex items-center gap-1.5">
+                                    <svg class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                    <span>8 min</span>
+                                </div>
+                            </div>
+                            <div class="w-8 h-8 rounded-full bg-emerald-50 text-emerald-500 flex items-center justify-center transition-all duration-300 group-hover:bg-emerald-500 group-hover:text-white group-hover:rotate-45 shrink-0">
+                                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 12h14M12 5l7 7-7 7"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- 4. FOOTER -->
+    <footer class="bg-white relative overflow-hidden mt-12">
+        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-400 via-primary-500 to-indigo-500"></div>
+        <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-2xl h-64 bg-primary-50 rounded-full blur-[100px] opacity-60 pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-6 pt-16 pb-8 relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 items-center text-center md:text-left mb-12">
+                
+                <div class="flex flex-col items-center md:items-start gap-4">
+                    <a href="public-index.html" class="group flex items-center gap-2.5 font-heading text-xl tracking-tight transition-transform duration-300 hover:scale-[1.02]">
+                        <div class="flex items-center justify-center w-8 h-8 bg-gradient-to-br from-primary-500 to-blue-400 text-white rounded-lg shadow-md group-hover:shadow-primary-500/30 transition-all duration-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
+                        </div>
+                        <span class="font-black text-gray-900 group-hover:text-primary-500 transition-colors">Mon</span><span class="font-bold text-primary-500">Blog.</span>
+                    </a>
+                    <p class="text-sm text-gray-500 max-w-xs leading-relaxed">
+                        Partager des connaissances, des tutoriels et des découvertes sur le développement web.
+                    </p>
+                </div>
+
+                <div class="flex flex-col items-center md:items-start gap-4">
+                    <h4 class="text-sm font-bold text-gray-900 uppercase tracking-widest mb-1 flex items-center gap-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-primary-500"></span>
+                        Navigation
+                    </h4>
+                    <ul class="flex flex-col gap-3 items-center md:items-start">
+                        <li>
+                            <a href="public-index.html" class="group flex items-center text-sm text-gray-500 hover:text-primary-600 transition-colors">
+                                <svg class="w-3.5 h-3.5 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 group-hover:mr-1.5 transition-all duration-300 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"/></svg>
+                                <span>Accueil</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="public-categorie.html" class="group flex items-center text-sm text-gray-500 hover:text-primary-600 transition-colors">
+                                <svg class="w-3.5 h-3.5 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 group-hover:mr-1.5 transition-all duration-300 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"/></svg>
+                                <span>Catégories</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="public-apropos.html" class="group flex items-center text-sm text-gray-500 hover:text-primary-600 transition-colors">
+                                <svg class="w-3.5 h-3.5 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 group-hover:mr-1.5 transition-all duration-300 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"/></svg>
+                                <span>À Propos</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="flex flex-col items-center md:items-end gap-5">
+                    <h4 class="text-sm font-bold text-gray-900 uppercase tracking-widest mb-1">Me suivre</h4>
+                    <div class="flex items-center gap-3">
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-gray-500 hover:bg-primary-50 hover:text-primary-600 transition-all duration-300 hover:scale-110">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"/></svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-gray-500 hover:bg-[#1DA1F2]/10 hover:text-[#1DA1F2] transition-all duration-300 hover:scale-110">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-gray-500 hover:bg-[#0A66C2]/10 hover:text-[#0A66C2] transition-all duration-300 hover:scale-110">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="pt-8 border-t border-gray-100 flex flex-col md:flex-row items-center justify-between gap-4">
+                <p class="text-xs text-gray-400">
+                    &copy; 2026 Mon Blog Personnel. Créé pour le projet d'imitation.
+                </p>
+                <div class="flex items-center gap-4 text-xs font-medium text-gray-400">
+                    <a href="#" class="hover:text-primary-500 transition-colors">Mentions légales</a>
+                    <a href="#" class="hover:text-primary-500 transition-colors">Politique de confidentialité</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Animation de la Navbar au scroll
+        window.addEventListener('scroll', () => {
+            const wrapper = document.getElementById('navbar-wrapper');
+            const nav = document.getElementById('navbar');
+            
+            if (window.scrollY > 10) {
+                // Scrollé : pleine largeur, collé en haut
+                wrapper.classList.remove('pt-6', 'px-4', 'md:px-8', 'max-w-7xl');
+                wrapper.classList.add('pt-0', 'px-0', 'max-w-full');
+                nav.classList.remove('rounded-2xl', 'border-white/40');
+                nav.classList.add('rounded-none', 'border-b', 'border-gray-200', 'bg-white/95');
+            } else {
+                // Haut de page : flottant (pill)
+                wrapper.classList.add('pt-6', 'px-4', 'md:px-8', 'max-w-7xl');
+                wrapper.classList.remove('pt-0', 'px-0', 'max-w-full');
+                nav.classList.add('rounded-2xl', 'border-white/40');
+                nav.classList.remove('rounded-none', 'border-b', 'border-gray-200', 'bg-white/95');
+            }
+        });
+    </script>
+</body>
+</html>
