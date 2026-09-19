@@ -21,9 +21,9 @@ notions:
   - "Héritage"
   - "Classe parent"
   - "Classe enfant"
-  - "\`extends\`"
+  - "`extends`"
   - "Redéfinition de méthode"
-  - "\`parent\`"
+  - "`parent`"
   - "Polymorphisme"
 
 livrable: >
