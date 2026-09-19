@@ -4,6 +4,7 @@ layout: ua
 code: "UA.201.21"
 competence: "C.201"
 domaine: "D.201.2"
+ordre: 1
 duree: 5
 objectif: >
   Apprendre et utiliser des techniques algorithmiques simples pour résoudre

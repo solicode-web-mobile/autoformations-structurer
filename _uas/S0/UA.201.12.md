@@ -4,6 +4,7 @@ layout: ua
 code: "UA.201.12"
 competence: "C.201"
 domaine: "D.201.1"
+ordre: 2
 duree: 2
 objectif: >
   Analyser les données d’une fonctionnalité Web afin d’identifier les dépendances

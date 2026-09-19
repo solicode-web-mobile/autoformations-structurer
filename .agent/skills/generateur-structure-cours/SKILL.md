@@ -67,6 +67,7 @@ layout: ua
 code: "UA.XXX.XX"
 competence: "C.XXX"
 domaine: "D.XXX.X"
+ordre: X
 duree: 1
 objectif: >
   Objectif pédagogique principal de l'UA...

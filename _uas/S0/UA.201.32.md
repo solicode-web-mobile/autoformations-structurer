@@ -4,6 +4,7 @@ layout: ua
 code: "UA.201.32"
 competence: "C.201"
 domaine: "D.201.3"
+ordre: 2
 duree: 1
 objectif: >
   Organiser les tâches d’une réalisation Web en fonction de leur priorité,

@@ -4,6 +4,7 @@ layout: ua
 code: "UA.201.31"
 competence: "C.201"
 domaine: "D.201.3"
+ordre: 1
 duree: 1
 objectif: >
   Identifier et découper une réalisation Web simple en tâches distinctes afin
