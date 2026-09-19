@@ -45,7 +45,9 @@ Les domaines sont les grandes catégories d'apprentissage.
 title: "Titre explicite du domaine"
 layout: domaines
 code: "D.XXX.X"
+mini-code: "nom_court"
 competence: "C.XXX"
+ordre: X
 capacite_finale: >
   Description claire et concise de la capacité finale acquise 
   à l'issue de ce domaine.

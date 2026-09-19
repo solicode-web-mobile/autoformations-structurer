@@ -2,6 +2,7 @@
 title: "Construire un traitement algorithmique"
 layout: domaines
 code: "D.201.2"
+mini-code: "algorithmique"
 competence: "C.201"
 capacite_finale: >
     Construire des traitements algorithmiques simples afin de résoudre un problème

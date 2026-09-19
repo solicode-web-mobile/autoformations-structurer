@@ -2,6 +2,7 @@
 title: "Analyser et concevoir le modèle de données"
 layout: domaines
 code: "D.201.1"
+mini-code: "donnees"
 competence: "C.201"
 capacite_finale: >
     Analyser une maquette représentant un besoin existant afin d’identifier les

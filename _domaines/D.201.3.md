@@ -2,6 +2,7 @@
 title: "Organiser la réalisation"
 layout: domaines
 code: "D.201.3"
+mini-code: "organisation"
 competence: "C.201"
 capacite_finale: >
     Organiser la réalisation d’une fonctionnalité Web simple en identifiant les
