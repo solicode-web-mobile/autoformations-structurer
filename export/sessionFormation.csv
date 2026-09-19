@@ -13,7 +13,7 @@ permalink: /export/sessionFormation.csv
   {%- endif -%}
   {%- assign _code = p.code | append: "" | strip -%}
   {%- assign _thematique = "" -%}
-  {%- assign _filiere = "DWB" -%}
+  {%- assign _filiere = "DMB" -%}
   {%- assign _objectifs = p.objectif | append: "" | strip | replace: '"','""' | replace: '\n',' ' | replace: '\r',' ' -%}
   
   {%- assign proto = site.prototypes | where: "session", _code | first -%}
@@ -44,7 +44,7 @@ permalink: /export/sessionFormation.csv
   {%- assign _date_debut = p.date_debut | default: "" -%}
   {%- assign _date_fin = p.date_fin | default: "" -%}
   {%- assign _jour_feries = "" -%}
-  {%- assign _reference = "DWB-" | append: _code -%}
+  {%- assign _reference = "DMB-" | append: _code -%}
   {%- assign _annee_formation = "2026-2027" -%}
 "{{ _ordre }}","{{ _titre }}","{{ _code }}","{{ _thematique }}","{{ _filiere }}","{{ _objectifs }}","{{ _proto_titre }}","{{ _proto_desc }}","{{ _proto_contraintes }}","{{ _projet_titre }}","{{ _projet_desc }}","{{ _projet_contraintes }}","{{ _remarques }}","{{ _date_debut }}","{{ _date_fin }}","{{ _jour_feries }}","{{ _reference }}","{{ _annee_formation }}"
 {% endfor %}

@@ -9,7 +9,7 @@ permalink: /export/chapitres.csv
   {%- assign _code = p.tuto_id | append: "" | strip -%}
   {%- assign _nom = p.title | append: "" | strip | replace: '"','""' | replace: '\n',' ' | replace: '\r',' ' -%}
   {%- assign _ua = p.ua | append: "" | strip -%}
-  {%- assign _ua_ref = "DWB-" | append: _ua -%}
+  {%- assign _ua_ref = "DMB-" | append: _ua -%}
   {%- assign _duree = "1" -%}
   {%- assign _isofficiel = "1" -%}
   {%- assign _lien = "https://solicode-web-mobile.github.io/autoformations-web" | append: p.url -%}
@@ -21,7 +21,7 @@ permalink: /export/chapitres.csv
     {%- assign _desc = "" -%}
   {%- endif -%}
   {%- assign _formateur = "" -%}
-  {%- assign _ref = "DWB-" | append: _code -%}
+  {%- assign _ref = "DMB-" | append: _code -%}
   {%- assign _imitation = "0" -%}
 "{{ _ordre }}","{{ _code }}","{{ _nom }}","{{ _ua_ref }}","{{ _duree }}","{{ _isofficiel }}","{{ _lien }}","{{ _desc }}","{{ _formateur }}","{{ _ref }}","{{ _imitation }}"
 {% endfor %}
