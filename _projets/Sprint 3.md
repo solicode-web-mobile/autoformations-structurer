@@ -1,8 +1,8 @@
 ---
-title: "Objectifs du Sprint 1 (À définir)"
+title: "Objectifs du Sprint 3 (À définir)"
 layout: projet-fil-rouge
-code: "Sprint 1"
-session: "S1"
+code: "Sprint 3"
+session: "S3"
 
 travail_a_faire: >
   À définir...

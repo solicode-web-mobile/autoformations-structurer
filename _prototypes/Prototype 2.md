@@ -1,8 +1,8 @@
 ---
-title: "Objectifs du Prototype 1 (À définir)"
+title: "Objectifs du Prototype 2 (À définir)"
 layout: prototype
-code: "Prototype 1"
-session: "S1"
+code: "Prototype 2"
+session: "S2"
 
 travail_a_faire: >
   À définir...
