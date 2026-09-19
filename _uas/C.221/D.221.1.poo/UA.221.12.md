@@ -8,6 +8,7 @@ ordre: 2
 duree: 1
 objectif: >
   Utiliser plusieurs classes pour réaliser une même fonctionnalité et comprendre les relations entre objets.
+
 description: >
   À rédiger...
 notions:
@@ -20,10 +21,11 @@ notions:
   - "Héritage"
   - "Classe parent"
   - "Classe enfant"
-  - "`extends`"
+  - "\`extends\`"
   - "Redéfinition de méthode"
-  - "`parent`"
+  - "\`parent\`"
   - "Polymorphisme"
+
 livrable: >
   À définir...
 travail_a_faire: >

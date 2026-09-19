@@ -7,7 +7,8 @@ domaine: "D.212.1"
 ordre: 1
 duree: 1
 objectif: >
-  Passer du modèle relationnel au modèle objet :  **Tables → Classes → Attributs → Identifiants → Associations**  ---
+  Passer du modèle relationnel au modèle objet : Tables → Classes → Attributs → Identifiants → Associations
+
 description: >
   À rédiger...
 notions:
@@ -23,10 +24,10 @@ notions:
   - "Relation 1–1"
   - "Relation 1–N"
   - "Multiplicité"
-  - "`1`"
-  - "`0..1`"
-  - "`*`"
-  - "`0..*`"
+  - "\`1\`"
+  - "\`0..1\`"
+  - "\`*\`"
+  - "\`0..*\`"
   - "Rôle d'une association"
   - "Sens d'une relation"
   - "Cohérence MLD / modèle objet"
@@ -38,6 +39,7 @@ notions:
   - "Cohérence des multiplicités"
   - "Correspondance modèle objet / fonctionnalités"
   - "Modèle objet statique"
+
 livrable: >
   À définir...
 travail_a_faire: >

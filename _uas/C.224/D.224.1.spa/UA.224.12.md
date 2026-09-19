@@ -8,10 +8,12 @@ ordre: 2
 duree: 1
 objectif: >
   Améliorer l’interface pour représenter clairement les différents états d’une opération asynchrone et informer l’utilisateur.
+
 description: >
   À rédiger...
 notions:
   - "À définir"
+
 livrable: >
   À définir...
 travail_a_faire: >

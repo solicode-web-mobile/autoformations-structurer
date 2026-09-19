@@ -7,7 +7,8 @@ domaine: "D.223.1"
 ordre: 1
 duree: 1
 objectif: >
-  Transformer l'organisation obtenue en S2 en une architecture claire :  **Présentation → Traitement → Data**  ---
+  Transformer l'organisation obtenue en S2 en une architecture claire : Présentation → Traitement → Data
+
 description: >
   À rédiger...
 notions:
@@ -42,6 +43,7 @@ notions:
   - "PDO"
   - "Source JSON"
   - "Source MySQL"
+
 livrable: >
   À définir...
 travail_a_faire: >

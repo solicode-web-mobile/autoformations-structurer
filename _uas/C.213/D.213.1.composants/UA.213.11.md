@@ -7,7 +7,8 @@ domaine: "D.213.1"
 ordre: 1
 duree: 1
 objectif: >
-  Passer d'une application qui mélange interface et serveur à une organisation composée de deux grands composants :  **Frontend ↔ Backend**  puis définir leur mode de communication.  ---
+  Passer d'une application qui mélange interface et serveur à une organisation composée de deux grands composants : Frontend ↔ Backend puis définir leur mode de communication.
+
 description: >
   À rédiger...
 notions:
@@ -43,6 +44,7 @@ notions:
   - "Organisation des routes"
   - "Point d'entrée unique"
   - "Vérification de la communication"
+
 livrable: >
   À définir...
 travail_a_faire: >

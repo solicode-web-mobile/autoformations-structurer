@@ -8,6 +8,7 @@ ordre: 1
 duree: 1
 objectif: >
   Utiliser les fondamentaux de la POO en PHP pour transformer une fonctionnalité procédurale en fonctionnalité réalisée avec une classe et des objets.
+
 description: >
   À rédiger...
 notions:
@@ -16,11 +17,11 @@ notions:
   - "Instanciation"
   - "Propriété"
   - "Méthode"
-  - "`$this`"
+  - "\`$this\`"
   - "Constructeur"
-  - "`public`"
-  - "`private`"
-  - "`protected`"
+  - "\`public\`"
+  - "\`private\`"
+  - "\`protected\`"
   - "Encapsulation"
   - "Getter"
   - "Setter"
@@ -29,6 +30,7 @@ notions:
   - "Typage des retours"
   - "Objet comme donnée"
   - "Méthode d'une classe"
+
 livrable: >
   À définir...
 travail_a_faire: >

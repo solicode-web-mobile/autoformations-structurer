@@ -8,10 +8,12 @@ ordre: 1
 duree: 1
 objectif: >
   Utiliser JavaScript pour manipuler le DOM, gérer les événements et réaliser un premier CRUD sans rechargement de la page.
+
 description: >
   À rédiger...
 notions:
   - "À définir"
+
 livrable: >
   À définir...
 travail_a_faire: >

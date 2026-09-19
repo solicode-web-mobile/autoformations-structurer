@@ -8,10 +8,12 @@ ordre: 3
 duree: 1
 objectif: >
   Adapter l’interface à l’API structurée du backend et maintenir la cohérence entre l’interface et les données du serveur.
+
 description: >
   À rédiger...
 notions:
   - "À définir"
+
 livrable: >
   À définir...
 travail_a_faire: >

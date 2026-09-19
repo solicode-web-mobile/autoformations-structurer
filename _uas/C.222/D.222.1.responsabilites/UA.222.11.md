@@ -7,7 +7,8 @@ domaine: "D.222.1"
 ordre: 1
 duree: 1
 objectif: >
-  À partir du code POO réalisé en S1, identifier les responsabilités mélangées, les répartir entre plusieurs classes et vérifier la qualité de cette nouvelle organisation.  Progression :  **Identifier → Séparer → Vérifier**  ---
+  À partir du code POO réalisé en S1, identifier les responsabilités mélangées, les répartir entre plusieurs classes et vérifier la qualité de cette nouvelle organisation. Progression : Identifier → Séparer → Vérifier
+
 description: >
   À rédiger...
 notions:
@@ -38,6 +39,7 @@ notions:
   - "Vérification du couplage"
   - "Refactoring"
   - "Vérification du comportement"
+
 livrable: >
   À définir...
 travail_a_faire: >

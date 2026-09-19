@@ -8,6 +8,7 @@ ordre: 3
 duree: 1
 objectif: >
   Utiliser des contrats et plusieurs implémentations pour rendre les objets interchangeables.
+
 description: >
   À rédiger...
 notions:
@@ -20,6 +21,7 @@ notions:
   - "Polymorphisme"
   - "Interface comme type"
   - "Implémentations multiples"
+
 livrable: >
   À définir...
 travail_a_faire: >

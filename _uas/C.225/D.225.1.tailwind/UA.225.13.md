@@ -8,10 +8,12 @@ ordre: 3
 duree: 1
 objectif: >
   Organiser les styles afin de maintenir une interface cohérente sur l’ensemble de l’application.
+
 description: >
   À rédiger...
 notions:
   - "À définir"
+
 livrable: >
   À définir...
 travail_a_faire: >
