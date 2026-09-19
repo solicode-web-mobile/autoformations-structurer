@@ -82,21 +82,32 @@ Exemple :
 
 L'acteur :
 
-> Administrateur
+```mermaid
+usecase-beta
+    actor Administrateur
+```
 
 Le cas d'utilisation :
 
-> Ajouter une catégorie
+```mermaid
+usecase-beta
+    UC("Ajouter une catégorie")
+```
 
 En diagramme, cela se représente ainsi :
+
+
+
+
+
 
 ```mermaid
 usecase-beta
     actor Administrateur
-    Blog["Blog"]
     UC("Ajouter une catégorie")
     Administrateur --> UC
 ```
+ 
 
 Le cas d'utilisation doit représenter une action utile pour l'acteur.
 
@@ -114,11 +125,17 @@ Exemples :
 
 Éviter un nom qui représente seulement un objet :
 
-> Catégorie
+```mermaid
+usecase-beta
+    UC("Catégorie")
+```
 
 Préférer :
 
-> Consulter les catégories
+```mermaid
+usecase-beta
+    UC("Consulter les catégories")
+```
 
 ### 1.3. L’objectif du cas d’utilisation
 
@@ -143,7 +160,12 @@ Une **association** indique qu'un acteur participe à un cas d'utilisation.
 
 Exemple :
 
-> Administrateur → Ajouter une catégorie
+```mermaid
+usecase-beta
+    actor Administrateur
+    UC("Ajouter une catégorie")
+    Administrateur --> UC
+```
 
 Cela signifie que l'Administrateur utilise le système pour ajouter une catégorie.
 
@@ -182,11 +204,20 @@ Il permet de répondre à deux questions :
 
 Exemple :
 
-> Administrateur → Ajouter une catégorie
+```mermaid
+usecase-beta
+    actor Administrateur
+    actor Auteur
+    actor Visiteur
 
-> Auteur → Ajouter un article
+    UC1("Ajouter une catégorie")
+    UC2("Ajouter un article")
+    UC3("Consulter les articles")
 
-> Visiteur → Consulter les articles
+    Administrateur --> UC1
+    Auteur --> UC2
+    Visiteur --> UC3
+```
 
 ### 1.7. Cohérence acteur / fonctionnalité
 
@@ -194,13 +225,23 @@ Chaque cas d'utilisation doit être lié à un acteur cohérent.
 
 Exemple :
 
-> Ajouter une catégorie → Administrateur
+```mermaid
+usecase-beta
+    actor Administrateur
+    UC("Ajouter une catégorie")
+    Administrateur --> UC
+```
 
 Le Visiteur ne doit pas être relié à cette fonctionnalité si les données de départ ne le prévoient pas.
 
 De même :
 
-> Consulter les articles → Visiteur
+```mermaid
+usecase-beta
+    actor Visiteur
+    UC("Consulter les articles")
+    Visiteur --> UC
+```
 
 L'association doit correspondre au rôle et à l'objectif de l'acteur.
 
@@ -243,11 +284,17 @@ Chaque nom doit :
 
 Exemple :
 
-> Publier un article
+```mermaid
+usecase-beta
+    UC("Publier un article")
+```
 
 est correct.
 
-> Article
+```mermaid
+usecase-beta
+    UC("Article")
+```
 
 n'est pas un cas d'utilisation.
 
@@ -343,6 +390,14 @@ Créez un document Markdown (ou un Google Doc) contenant :
 **Critère de réussite :**
 
 Les deux diagrammes sont cohérents avec les acteurs et les fonctionnalités fournis dans les données de départ.
+
+<button class="btn btn-primary btn-toggle-resultat">Afficher le résultat</button>
+<iframe
+    class="auto-wrapper tuto-resultat"
+    src="{{ '/code/fonctionnalite/tuto-211-112-fonctionnalite.html' | relative_url }}"
+    height="800"
+    title="Résultat attendu">
+</iframe>
 
 ## Bilan
 

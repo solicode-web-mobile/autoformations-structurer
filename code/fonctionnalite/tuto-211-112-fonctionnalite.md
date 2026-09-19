@@ -1,0 +1,63 @@
+---
+layout: fonctionnalite
+title: "Résultat Tuto 211.112 Fonctionnalité"
+nav_exclude: true
+---
+
+### Diagramme de contexte
+
+```mermaid
+usecase-beta
+    actor Administrateur
+    actor Auteur
+    actor Visiteur
+
+    Blog["Blog"]
+
+    Administrateur -- "Gère le contenu" --> Blog
+    Auteur -- "Rédige et gère ses articles" --> Blog
+    Visiteur -- "Consulte les articles publiés" --> Blog
+```
+
+### Diagramme de cas d'utilisation
+
+```mermaid
+usecase-beta
+    actor Administrateur
+    actor Auteur
+    actor Visiteur
+
+    Blog["Blog"]
+    
+    UC1("Consulter les catégories")
+    UC2("Ajouter une catégorie")
+    UC3("Modifier une catégorie")
+    UC4("Supprimer une catégorie")
+    UC5("Créer un auteur")
+    UC6("Valider un article")
+    UC7("Publier un article")
+    
+    UC8("Ajouter un article")
+    UC9("Modifier un article non publié")
+    UC10("Supprimer un article non publié")
+    UC11("Changer son profil")
+    UC12("Réinitialiser son mot de passe")
+    
+    UC13("Consulter les articles")
+
+    Administrateur --> UC1
+    Administrateur --> UC2
+    Administrateur --> UC3
+    Administrateur --> UC4
+    Administrateur --> UC5
+    Administrateur --> UC6
+    Administrateur --> UC7
+    
+    Auteur --> UC8
+    Auteur --> UC9
+    Auteur --> UC10
+    Auteur --> UC11
+    Auteur --> UC12
+    
+    Visiteur --> UC13
+```
