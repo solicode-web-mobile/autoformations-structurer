@@ -56,7 +56,7 @@ capacite_finale: >
 
 # Structure des Unités d'Apprentissage (UAs)
 Les UAs sont les briques de compétences mesurables qui constituent un domaine.
-- Elles sont organisées dans des sous-dossiers spécifiques au domaine, sous `_uas/D.XXX.X.nom_court/`.
+- Elles sont organisées dans des sous-dossiers spécifiques au domaine et à la compétence, sous `_uas/C.XXX/D.XXX.X.nom_court/`.
 - Le nom du fichier suit le format : `UA.XXX.XX.md` (exemple : `UA.151.11.md`).
 - Modèle de Frontmatter obligatoire :
 
