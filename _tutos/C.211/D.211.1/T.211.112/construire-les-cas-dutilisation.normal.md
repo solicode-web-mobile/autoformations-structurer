@@ -88,6 +88,16 @@ Le cas d'utilisation :
 
 > Ajouter une catégorie
 
+En diagramme, cela se représente ainsi :
+
+```mermaid
+usecase-beta
+    actor Administrateur
+    Blog["Blog"]
+    UC("Ajouter une catégorie")
+    Administrateur --> UC
+```
+
 Le cas d'utilisation doit représenter une action utile pour l'acteur.
 
 ### 1.2. Nommer un cas d’utilisation
@@ -255,12 +265,17 @@ Le diagramme doit représenter :
 
 Le résultat attendu est de cette forme :
 
-```text
-Administrateur ── Gère le contenu ──> Blog
+```mermaid
+usecase-beta
+    actor Administrateur
+    actor Auteur
+    actor Visiteur
 
-Auteur ── Rédige et gère ses articles ──> Blog
+    Blog["Blog"]
 
-Visiteur ── Consulte les articles publiés ──> Blog
+    Administrateur -- "Gère le contenu" --> Blog
+    Auteur -- "Rédige et gère ses articles" --> Blog
+    Visiteur -- "Consulte les articles publiés" --> Blog
 ```
 
 ### 2.4. Construire le diagramme de cas d’utilisation
@@ -272,6 +287,21 @@ Visiteur ── Consulte les articles publiés ──> Blog
 * les associations entre acteurs et cas d'utilisation.
 
 Le diagramme doit contenir uniquement les fonctionnalités identifiées dans les données de départ.
+
+Exemple de syntaxe pour une partie du diagramme :
+
+```mermaid
+usecase-beta
+    actor Administrateur
+
+    Blog["Blog"]
+    
+    UC1("Consulter les catégories")
+    UC2("Ajouter une catégorie")
+
+    Administrateur --> UC1
+    Administrateur --> UC2
+```
 
 ### 2.5. Vérifier le diagramme
 
