@@ -1,0 +1,15 @@
+---
+layout: null
+permalink: /export/competences.csv
+---
+code,mini_code,nom,module_reference,description,reference
+{% assign competences = site.competences | sort: "code" -%}
+{%- for p in competences -%}
+{%- assign _title   = (p.title            | append: "" ) | strip | replace: '"','""' | replace: '\n',' ' | replace: '\r',' ' -%}
+{%- assign _code    = (p.code             | append: "" ) | strip | replace: '"','""' | replace: '\n',' ' | replace: '\r',' ' -%}
+{%- assign _minicode= (p.mini_code        | append: "" ) | strip | replace: '"','""' | replace: '\n',' ' | replace: '\r',' ' -%}
+{%- assign _modref  = (p.module_reference | append: "" ) | strip | replace: '"','""' | replace: '\n',' ' | replace: '\r',' ' -%}
+{%- assign _desc    = (p.competence       | append: "" ) | strip | replace: '"','""' | replace: '\n',' ' | replace: '\r',' ' -%}
+{%- assign _ref     = (p.reference        | append: "" ) | strip | replace: '"','""' | replace: '\n',' ' | replace: '\r',' ' %}
+"{{ _code }}","{{ _minicode }}","{{ _title }}","{{ _modref }}","{{ _desc }}","{{ _ref }}"
+{% endfor %}

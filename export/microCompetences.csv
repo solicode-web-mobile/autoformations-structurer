@@ -1,0 +1,18 @@
+---
+layout: null
+permalink: /export/microCompetences.csv
+---
+"ordre","code","titre","sous_titre","competence_reference","lien","description","reference"
+{% assign domaines = site.domaines | sort: "ordre" -%}
+{%- for p in domaines -%}
+  {%- assign comp = site.competences | where: "code", p.competence | first -%}
+  {%- assign _ordre   = p.ordre -%}
+  {%- assign _code    = (p.code | append: "") | strip -%}
+  {%- assign _titre   = (p.title | append: "") | strip | replace: '"','""' | replace: '\n',' ' | replace: '\r',' ' -%}
+  {%- assign _soustitre = "" -%}
+  {%- assign _compref = (comp.reference | append: "") | strip -%}
+  {%- assign _lien    = "" -%}
+  {%- assign _desc    = (p.capacite_finale | append: "") | strip | replace: '"','""' | replace: '\n',' ' | replace: '\r',' ' -%}
+  {%- assign _ref     = comp.filiere | append: "-" | append: _code -%}
+"{{ _ordre }}","{{ _code }}","{{ _titre }}","{{ _soustitre }}","{{ _compref }}","{{ _lien }}","{{ _desc }}","{{ _ref }}"
+{% endfor %}

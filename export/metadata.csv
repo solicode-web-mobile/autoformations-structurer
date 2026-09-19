@@ -1,0 +1,32 @@
+---
+layout: null
+permalink: /metadata.csv
+---
+
+code,ua,autoformation,competence,title,parent,permalink,duree_h,objectif,notions_nouvelles,fil_rouge,livrable_chapitre,alimentation_prototype,alimentation_miniprojet
+{%- assign chapters = site.pages | where_exp: "p", "p.code and p.code != ''" | sort: "code" -%}
+{%- for p in chapters -%}
+{%- assign _title   = (p.title            | append: "" ) | strip | replace: '"','""' | replace: '\n',' ' | replace: '\r',' ' -%}
+{%- assign _title   = (p.title            | append: "" ) | strip | replace: '"','""' | replace: '\n',' ' | replace: '\r',' ' -%}
+{%- assign _parent  = (p.parent           | append: "" ) | strip | replace: '"','""' | replace: '\n',' ' | replace: '\r',' ' -%}
+{%- assign _layout  = (p.layout           | append: "" ) | strip | replace: '"','""' | replace: '\n',' ' | replace: '\r',' ' -%}
+{%- assign _order   = (p.nav_order        | append: "" ) | strip | replace: '"','""' | replace: '\n',' ' | replace: '\r',' ' -%}
+{%- assign _link    = (p.permalink        | append: "" ) | strip | replace: '"','""' | replace: '\n',' ' | replace: '\r',' ' -%}
+{%- assign _code    = (p.code             | append: "" ) | strip | replace: '"','""' | replace: '\n',' ' | replace: '\r',' ' -%}
+{%- assign _comp    = (p.competence       | append: "" ) | strip | replace: '"','""' | replace: '\n',' ' | replace: '\r',' ' -%}
+{%- assign _auto    = (p.autoformation    | append: "" ) | strip | replace: '"','""' | replace: '\n',' ' | replace: '\r',' ' -%}
+{%- assign _ua      = (p.ua               | append: "" ) | strip | replace: '"','""' | replace: '\n',' ' | replace: '\r',' ' -%}
+{%- assign _duree   = (p.duree_h          | append: "" ) | strip | replace: '"','""' | replace: '\n',' ' | replace: '\r',' ' -%}
+{%- assign _obj     = (p.objectif         | append: "" ) | strip | replace: '"','""' | replace: '\n',' ' | replace: '\r',' ' -%}
+{%- if p.notions_nouvelles -%}
+  {%- assign _notions_raw = p.notions_nouvelles | jsonify -%}
+{%- else -%}
+  {%- assign _notions_raw = 'null' -%}
+{%- endif -%}
+{%- assign _notions = _notions_raw | replace: '"','""' | replace: '\n',' ' | replace: '\r',' ' -%}
+{%- assign _fil     = (p.fil_rouge              | append: "" ) | strip | replace: '"','""' | replace: '\n',' ' | replace: '\r',' ' -%}
+{%- assign _liv     = (p.livrable_chapitre      | append: "" ) | strip | replace: '"','""' | replace: '\n',' ' | replace: '\r',' ' -%}
+{%- assign _proto   = (p.alimentation_prototype | append: "" ) | strip | replace: '"','""' | replace: '\n',' ' | replace: '\r',' ' -%}
+{%- assign _mini    = (p.alimentation_miniprojet| append: "" ) | strip | replace: '"','""' | replace: '\n',' ' | replace: '\r',' ' %}
+"{{ _code }}","{{ _ua }}","{{ _auto }}","{{ _comp }}","{{ _title }}","{{ _parent }}","{{ _link }}","{{ _duree }}","{{ _obj }}","{{ _notions }}","{{ _fil }}","{{ _liv }}","{{ _proto }}","{{ _mini }}"
+{%- endfor -%}

@@ -1,0 +1,50 @@
+---
+layout: null
+permalink: /export/sessionFormation.csv
+---
+"ordre","titre","code","thematique","filiere_reference","objectifs_pedagogique","titre_prototype","description_prototype","contraintes_prototype","titre_projet","description_projet","contraintes_projet","remarques","date_debut","date_fin","jour_feries_vacances","reference","annee_formation_reference"
+{% assign sessions = site.sessions | sort: "nav_order" -%}
+{%- for p in sessions -%}
+  {%- assign _ordre = p.nav_order -%}
+  {%- if p.titre_csv -%}
+    {%- assign _titre = p.titre_csv | append: "" | strip | replace: '"','""' | replace: '\n',' ' | replace: '\r',' ' -%}
+  {%- else -%}
+    {%- assign _titre = p.title | append: "" | strip | replace: '"','""' | replace: '\n',' ' | replace: '\r',' ' -%}
+  {%- endif -%}
+  {%- assign _code = p.code | append: "" | strip -%}
+  {%- assign _thematique = "" -%}
+  {%- assign _filiere = "DWB" -%}
+  {%- assign _objectifs = p.objectif | append: "" | strip | replace: '"','""' | replace: '\n',' ' | replace: '\r',' ' -%}
+  
+  {%- assign proto = site.prototypes | where: "session", _code | first -%}
+  {%- if proto -%}
+    {%- assign _proto_titre = proto.title | append: "" | strip | replace: '"','""' | replace: '\n',' ' | replace: '\r',' ' -%}
+    {%- assign _proto_desc = proto.travail_a_faire | append: "" | strip | replace: '"','""' | replace: '\n',' ' | replace: '\r',' ' -%}
+    {%- capture proto_livrables_html -%}<div>Livrables :&nbsp;</div><ul>{%- for item in proto.livrable -%}<li>✓ {{ item }}</li>{%- endfor -%}</ul>{%- endcapture -%}
+    {%- assign _proto_contraintes = proto_livrables_html | strip | replace: '"','""' | replace: '\n','' | replace: '\r','' -%}
+  {%- else -%}
+    {%- assign _proto_titre = "" -%}
+    {%- assign _proto_desc = "" -%}
+    {%- assign _proto_contraintes = "" -%}
+  {%- endif -%}
+
+  {%- assign projet = site.projets | where: "session", _code | first -%}
+  {%- if projet -%}
+    {%- assign _projet_titre = projet.title | append: "" | strip | replace: '"','""' | replace: '\n',' ' | replace: '\r',' ' -%}
+    {%- assign _projet_desc = projet.travail_a_faire | append: "" | strip | replace: '"','""' | replace: '\n',' ' | replace: '\r',' ' -%}
+    {%- capture projet_livrables_html -%}<div>Livrables :&nbsp;</div><ul>{%- for item in projet.livrable -%}<li>✓ {{ item }}</li>{%- endfor -%}</ul>{%- endcapture -%}
+    {%- assign _projet_contraintes = projet_livrables_html | strip | replace: '"','""' | replace: '\n','' | replace: '\r','' -%}
+  {%- else -%}
+    {%- assign _projet_titre = "" -%}
+    {%- assign _projet_desc = "" -%}
+    {%- assign _projet_contraintes = "" -%}
+  {%- endif -%}
+
+  {%- assign _remarques = p.description | append: "" | strip | replace: '"','""' | replace: '\n',' ' | replace: '\r',' ' -%}
+  {%- assign _date_debut = p.date_debut | default: "" -%}
+  {%- assign _date_fin = p.date_fin | default: "" -%}
+  {%- assign _jour_feries = "" -%}
+  {%- assign _reference = "DWB-" | append: _code -%}
+  {%- assign _annee_formation = "2026-2027" -%}
+"{{ _ordre }}","{{ _titre }}","{{ _code }}","{{ _thematique }}","{{ _filiere }}","{{ _objectifs }}","{{ _proto_titre }}","{{ _proto_desc }}","{{ _proto_contraintes }}","{{ _projet_titre }}","{{ _projet_desc }}","{{ _projet_contraintes }}","{{ _remarques }}","{{ _date_debut }}","{{ _date_fin }}","{{ _jour_feries }}","{{ _reference }}","{{ _annee_formation }}"
+{% endfor %}

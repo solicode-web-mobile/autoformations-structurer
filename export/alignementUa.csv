@@ -1,0 +1,19 @@
+---
+layout: null
+permalink: /export/alignementUa.csv
+---
+"ordre","unite_apprentissage_reference","session_formation_reference","description","reference"
+{%- assign sessions = site.sessions | sort: "nav_order" -%}
+{%- assign global_index = 0 -%}
+{%- for s in sessions -%}
+{%- assign _session_ref = "DWB-" | append: s.code -%}
+{%- if s.uas -%}
+{%- for ua_code in s.uas -%}
+{%- assign global_index = global_index | plus: 1 -%}
+{%- assign _ua_ref = "DWB-" | append: ua_code | strip -%}
+{%- assign _desc = "" -%}
+{%- assign _ref = _session_ref | append: "-" | append: _ua_ref %}
+"{{ global_index }}","{{ _ua_ref }}","{{ _session_ref }}","{{ _desc }}","{{ _ref }}"
+{%- endfor -%}
+{%- endif -%}
+{%- endfor -%}
