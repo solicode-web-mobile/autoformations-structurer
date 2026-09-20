@@ -54,6 +54,16 @@
                 <div class="font-semibold text-red-600">7. Test Responsive (1 ligne)</div>
                 <div class="text-xs text-gray-500">Vérifie l'ajustement de hauteur</div>
             </button>
+
+            <button onclick="loadScenario('remote-url')" class="w-full text-left px-4 py-3 bg-gray-50 border border-gray-200 rounded hover:bg-gray-100 transition-colors">
+                <div class="font-semibold text-orange-600">8. Test URL Distante</div>
+                <div class="text-xs text-gray-500">Charge le code depuis un lien externe</div>
+            </button>
+
+            <button onclick="loadScenario('php-class')" class="w-full text-left px-4 py-3 bg-gray-50 border border-gray-200 rounded hover:bg-gray-100 transition-colors">
+                <div class="font-semibold text-red-700">9. Erreur Classe PHP</div>
+                <div class="text-xs text-gray-500">Test de persistance d'état (double exécution)</div>
+            </button>
         </div>
     </aside>
 
@@ -105,6 +115,15 @@
             
             'tiny': {
                 html: '<h1>1 ligne</h1>'
+            },
+
+            'remote-url': {
+                html: 'https://raw.githubusercontent.com/mdn/learning-area/master/html/introduction-to-html/getting-started/index.html'
+            },
+            
+            'php-class': {
+                'index.php': '<?php\nclass User {\n    public $name = "Alice";\n}\n\n$u = new User();\necho "Bonjour " . $u->name;\n?>',
+                activeTab: 'index.php'
             }
         };
 

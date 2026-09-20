@@ -4,63 +4,92 @@ document.addEventListener('alpine:init', () => {
         isLoading: true,
         buttonText: 'Chargement WASM...',
         php: null,
-        hasPhp: window.hasPhpCode,
+        hasPhp: false,
+        wasmInitialized: false,
         
-        async init() {
-            if (!this.hasPhp) return; // Sprint 7 : Ne pas charger WASM si inutile
-
-            try {
-                // Chargement de PHP-WASM depuis l'URL fournie (qui fonctionne localement sans bundler)
-                const { PhpWeb } = await import('https://cdn.jsdelivr.net/npm/php-wasm/PhpWeb.mjs');
+        PhpWebClass: null,
+        isExecutingCLI: false,
+        
+        init() {
+            const initWasm = async () => {
+                if (this.wasmInitialized) return;
                 
-                // Création du runtime PHP
-                this.php = new PhpWeb();
+                this.hasPhp = window.hasPhpCode;
+                if (!this.hasPhp) {
+                    this.isLoading = false;
+                    return;
+                }
 
-                // Intercepter la sortie standard (echo, print)
-                this.php.addEventListener('output', (event) => {
-                    this.phpOutputBuffer = (this.phpOutputBuffer || '') + event.detail;
-                    const consoleEl = document.getElementById('php-console');
-                    if (consoleEl) {
-                        // event.detail contient directement le texte dans ce module
-                        consoleEl.textContent += event.detail;
-                    }
-                });
-                
-                // Intercepter les erreurs PHP
-                this.php.addEventListener('error', (event) => {
-                    const consoleEl = document.getElementById('php-console');
-                    if (consoleEl) {
-                        consoleEl.textContent += '\n[Erreur PHP] ' + event.detail;
-                    }
-                });
+                this.wasmInitialized = true;
 
-                // Attendre que PHP soit prêt avant d'activer le bouton
-                this.php.addEventListener('ready', () => {
+                try {
+                    // Chargement de PHP-WASM depuis l'URL fournie
+                    const { PhpWeb } = await import('https://cdn.jsdelivr.net/npm/php-wasm/PhpWeb.mjs');
+                    this.PhpWebClass = PhpWeb;
+                    
+                    await this.refreshPhp();
+
                     this.isLoading = false;
                     this.buttonText = 'Exécuter PHP';
-                });
-                
-                // Écouter la demande d'exécution en direct
-                document.addEventListener('request-php-execution', () => {
-                    if (this.debounceTimer) clearTimeout(this.debounceTimer);
-                    this.debounceTimer = setTimeout(() => {
-                        this.runPhpSilent();
-                    }, 500); // 500ms debounce
-                });
-                
-            } catch (err) {
-                this.buttonText = 'Erreur chargement';
-                console.error("Erreur d'initialisation de PHP-WASM :", err);
+                    
+                    // Écouter la demande d'exécution en direct
+                    document.addEventListener('request-php-execution', () => {
+                        if (this.debounceTimer) clearTimeout(this.debounceTimer);
+                        this.debounceTimer = setTimeout(() => {
+                            this.runPhpSilent();
+                        }, 500); // 500ms debounce
+                    });
+                    
+                } catch (err) {
+                    this.buttonText = 'Erreur chargement';
+                    console.error("Erreur d'initialisation de PHP-WASM :", err);
+                }
+            };
+
+            // On lance le initWasm soit directement si les données sont prêtes, soit après l'événement
+            if (window.exerciseData && Object.keys(window.exerciseData).length > 0) {
+                initWasm();
             }
+            document.addEventListener('exercise-data-ready', initWasm);
+        },
+        
+        async refreshPhp() {
+            if (!this.PhpWebClass) return;
+            
+            // Recréer le moteur pour nettoyer l'état précédent (classes redéclarées, variables globales...)
+            this.php = new this.PhpWebClass();
+            
+            // Intercepter la sortie standard (echo, print)
+            this.php.addEventListener('output', (event) => {
+                this.phpOutputBuffer = (this.phpOutputBuffer || '') + event.detail;
+                const consoleEl = document.getElementById('php-console');
+                // Ne l'afficher dans la console noire que si ce n'est pas une exécution silencieuse
+                if (consoleEl && this.isExecutingCLI) {
+                    consoleEl.textContent += event.detail;
+                }
+            });
+            
+            // Intercepter les erreurs PHP
+            this.php.addEventListener('error', (event) => {
+                const consoleEl = document.getElementById('php-console');
+                if (consoleEl && this.isExecutingCLI) {
+                    consoleEl.textContent += '\n[Erreur PHP] ' + event.detail;
+                }
+            });
+
+            return new Promise(resolve => {
+                this.php.addEventListener('ready', resolve);
+            });
         },
         
         async runPhpSilent() {
             if (this.isLoading || !this.php) return;
             this.phpOutputBuffer = '';
-            // Remplacer stdout temporairement pour ne pas polluer la console noire
-            const oldOutput = this.php.listeners ? this.php.listeners['output'] : null;
+            this.isExecutingCLI = false;
             
             try {
+                await this.refreshPhp();
+                
                 let code = window.exerciseData ? window.exerciseData['index.php'] : '';
                 await this.php.run(code);
                 document.dispatchEvent(new CustomEvent('php-executed', {
@@ -77,6 +106,7 @@ document.addEventListener('alpine:init', () => {
             this.buttonText = 'Exécution...';
             this.isLoading = true;
             this.phpOutputBuffer = '';
+            this.isExecutingCLI = true;
             
             const consoleEl = document.getElementById('php-console');
             let isCliMode = window.currentTabId === 'php';
@@ -91,6 +121,8 @@ document.addEventListener('alpine:init', () => {
             }
             
             try {
+                await this.refreshPhp();
+                
                 await this.php.run(code);
                 
                 if (!isCliMode) {
@@ -108,6 +140,7 @@ document.addEventListener('alpine:init', () => {
             } finally {
                 this.isLoading = false;
                 this.buttonText = 'Exécuter PHP';
+                this.isExecutingCLI = false;
             }
         }
     }));

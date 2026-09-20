@@ -1,44 +1,70 @@
 // Récupération des paramètres d'URL (ex: ?html=...&css=...)
 const urlParams = new URLSearchParams(window.location.search);
 
-// Déterminer s'il y a des paramètres
-const hasAnyParam = Array.from(urlParams.keys()).length > 0;
 window.exerciseData = {};
+let currentTabId = 'html'; // Valeur par défaut, mise à jour après chargement
 
-if (hasAnyParam) {
-    if (urlParams.has('html')) window.exerciseData.html = urlParams.get('html');
-    if (urlParams.has('css')) window.exerciseData.css = urlParams.get('css');
-    if (urlParams.has('js')) window.exerciseData.js = urlParams.get('js');
-    if (urlParams.has('php')) window.exerciseData.php = urlParams.get('php');
-    if (urlParams.has('index.php')) window.exerciseData['index.php'] = urlParams.get('index.php');
-    if (urlParams.has('activeTab')) window.exerciseData.activeTab = urlParams.get('activeTab');
-} else {
-    // Valeurs par défaut si aucun paramètre
-    window.exerciseData = {
-        html: `<div class="container">\n  <h1>Bonjour le monde !</h1>\n  <p>Ceci est un test en direct.</p>\n</div>`,
-        css: `.container {\n  padding: 20px;\n  text-align: center;\n}\n\nh1 {\n  color: #F97316;\n}`,
-        js: `console.log("Prêt pour l'action !");`,
-        php: `<?php\n// Écrivez votre code PHP ici\necho "Bienvenue dans l'éditeur PHP !";\n?>`,
-        'index.php': `<?php\n  $titre = "Site Dynamique PHP";\n?>\n<h1><?= $titre ?></h1>`
-    };
+async function loadExerciseData() {
+    // Déterminer s'il y a des paramètres
+    const hasAnyParam = Array.from(urlParams.keys()).length > 0;
+    
+    if (hasAnyParam) {
+        const fetchParam = async (paramName) => {
+            if (!urlParams.has(paramName)) return;
+            const value = urlParams.get(paramName);
+            if (value && (value.startsWith('http://') || value.startsWith('https://'))) {
+                try {
+                    const response = await fetch(value);
+                    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                    window.exerciseData[paramName] = await response.text();
+                } catch (e) {
+                    window.exerciseData[paramName] = `/* Erreur de chargement du code : ${e.message} */\n// Vérifiez l'URL ou les paramètres CORS du serveur distant.`;
+                }
+            } else {
+                window.exerciseData[paramName] = value;
+            }
+        };
+
+        await Promise.all([
+            fetchParam('html'),
+            fetchParam('css'),
+            fetchParam('js'),
+            fetchParam('php'),
+            fetchParam('index.php')
+        ]);
+        
+        if (urlParams.has('activeTab')) window.exerciseData.activeTab = urlParams.get('activeTab');
+    } else {
+        // Valeurs par défaut si aucun paramètre
+        window.exerciseData = {
+            html: `<div class="container">\n  <h1>Bonjour le monde !</h1>\n  <p>Ceci est un test en direct.</p>\n</div>`,
+            css: `.container {\n  padding: 20px;\n  text-align: center;\n}\n\nh1 {\n  color: #F97316;\n}`,
+            js: `console.log("Prêt pour l'action !");`,
+            php: `<?php\n// Écrivez votre code PHP ici\necho "Bienvenue dans l'éditeur PHP !";\n?>`,
+            'index.php': `<?php\n  $titre = "Site Dynamique PHP";\n?>\n<h1><?= $titre ?></h1>`
+        };
+    }
+
+    window.hasPhpCode = ('php' in window.exerciseData || 'index.php' in window.exerciseData);
+
+    // Sauvegarde de l'état initial pour le bouton Réinitialiser
+    window.initialExerciseData = Object.assign({}, window.exerciseData);
+
+    // --- Sprint 12 : Sélection Dynamique de l'Onglet Actif ---
+    let requestedTab = window.exerciseData.activeTab;
+    // On s'assure que l'onglet demandé existe vraiment dans les données de l'exercice
+    currentTabId = requestedTab && (requestedTab in window.exerciseData)
+        ? requestedTab 
+        : Object.keys(window.exerciseData).find(key => key !== 'activeTab') || 'html';
+
+    window.currentTabId = currentTabId;
+
+    // Déclencher un événement pour indiquer que les données sont prêtes (utilisé par live-preview)
+    document.dispatchEvent(new CustomEvent('exercise-data-ready'));
+
+    // Initialiser l'éditeur maintenant que les données sont chargées
+    initMonacoEditor();
 }
-
-window.hasPhpCode = ('php' in window.exerciseData || 'index.php' in window.exerciseData);
-
-// Sauvegarde de l'état initial pour le bouton Réinitialiser
-window.initialExerciseData = Object.assign({}, window.exerciseData);
-
-// Variable globale pour stocker l'instance de Monaco
-let monacoEditorInstance = null;
-
-// --- Sprint 12 : Sélection Dynamique de l'Onglet Actif ---
-let requestedTab = window.exerciseData.activeTab;
-// On s'assure que l'onglet demandé existe vraiment dans les données de l'exercice
-let currentTabId = requestedTab && (requestedTab in window.exerciseData)
-    ? requestedTab 
-    : Object.keys(window.exerciseData).find(key => key !== 'activeTab') || 'html';
-
-window.currentTabId = currentTabId;
 
 // Mapping des IDs d'onglets vers les langages reconnus par Monaco
 const monacoLanguages = {
@@ -165,5 +191,8 @@ function initMonacoEditor() {
     });
 }
 
-// Lancer l'initialisation quand le DOM est prêt
-document.addEventListener('DOMContentLoaded', initMonacoEditor);
+// Variable globale pour stocker l'instance de Monaco
+let monacoEditorInstance = null;
+
+// Lancer le chargement asynchrone quand le DOM est prêt
+document.addEventListener('DOMContentLoaded', loadExerciseData);

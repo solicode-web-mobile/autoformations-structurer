@@ -114,13 +114,13 @@ function updateLivePreview(htmlContent = null) {
     iframe.srcdoc = combinedCode;
 }
 
-// Initialiser le rendu au chargement
-document.addEventListener('DOMContentLoaded', () => {
+// Initialiser le rendu au chargement des données
+document.addEventListener('exercise-data-ready', () => {
     // Si l'onglet initial est index.php, on bascule
     if (window.currentTabId === 'index.php') {
         currentViewMode = 'php';
     }
-    setTimeout(updateLivePreview, 100);
+    updateLivePreview();
 });
 
 // Écouter les modifications en direct depuis l'éditeur
