@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>{{ page.title | default: "Conception" }}</title>
+    <title>{{ page.title | default: "Composants" }}</title>
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -21,13 +21,8 @@
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
         h1, h2, h3 { color: #2c3e50; }
-        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
-        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
-        th { background-color: #f4f4f4; }
-        ul { padding-left: 20px; }
+        pre { background: #1e1e1e; padding: 15px; border-radius: 5px; overflow-x: auto; margin: 15px 0; }
     </style>
-    <!-- Mermaid JS -->
-    <script type="module" src="{{ '/assets/js/mermaid-init.js' | relative_url }}"></script>
     
     <!-- Highlight.js -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/styles/vs2015.min.css">

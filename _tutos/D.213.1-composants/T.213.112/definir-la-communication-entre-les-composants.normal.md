@@ -73,24 +73,12 @@ Dans votre dossier `backend/`, nous n'allons pas faire de Programmation Orienté
 Ouvrez votre navigateur et allez sur l'URL de votre fichier (ex: `http://localhost/blog/backend/categories.php`). Vous devriez voir le texte JSON brut s'afficher.
 
 <button class="btn btn-primary btn-toggle-resultat">Afficher le résultat</button>
-<div class="auto-wrapper tuto-resultat" style="display: none; padding: 20px; border: 1px solid #ddd; border-radius: 8px; margin-top: 15px;">
-<strong>Code de `backend/categories.php` :</strong>
-<pre>
-&lt;?php
-// 1. Déclarer que la réponse est du JSON
-header('Content-Type: application/json');
-
-// 2. Préparer les données (Simulation de BDD)
-$categories = [
-    ["id" => 1, "nom" => "Développement Web"],
-    ["id" => 2, "nom" => "Design UI/UX"]
-];
-
-// 3. Convertir le tableau PHP en JSON et l'afficher
-echo json_encode($categories);
-?&gt;
-</pre>
-</div>
+<iframe
+    class="auto-wrapper tuto-resultat"
+    src="{{ '/code/composants/tuto-213-112-composants.html' | relative_url }}"
+    height="400"
+    title="Résultat attendu">
+</iframe>
 
 ## Bilan
 

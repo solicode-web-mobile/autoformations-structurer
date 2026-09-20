@@ -40,14 +40,15 @@ Grâce à AJAX, les applications web modernes (comme Gmail ou Netflix) sont flui
 En JavaScript moderne, l'outil pour faire de l'AJAX s'appelle `fetch()`.
 
 ```javascript
-// 1. On appelle l'URL de l'API
-fetch('http://monsite.com/backend/categories.php')
-  // 2. On transforme la réponse en objet utilisable
+// 1. On appelle une API publique existante
+fetch('https://jsonplaceholder.typicode.com/users')
+  // 2. On transforme la réponse en objet JSON utilisable
   .then(reponse => reponse.json())
   // 3. On utilise les données
-  .then(donnees => {
-      console.log(donnees);
-  });
+  .then(utilisateurs => {
+      console.log("Nom du premier utilisateur :", utilisateurs[0].name);
+  })
+  .catch(erreur => console.error("Erreur :", erreur));
 ```
 
 ### 1.3. L'architecture Component-Based (N2) complète
@@ -74,25 +75,12 @@ Nous allons écrire le script côté Frontend qui va consommer notre API.
 Ouvrez `index.html` dans votre navigateur. Vous devriez voir apparaître la liste des catégories injectées dynamiquement par votre API PHP !
 
 <button class="btn btn-primary btn-toggle-resultat">Afficher le résultat</button>
-<div class="auto-wrapper tuto-resultat" style="display: none; padding: 20px; border: 1px solid #ddd; border-radius: 8px; margin-top: 15px;">
-<strong>Code de `frontend/app.js` :</strong>
-<pre>
-fetch('../backend/categories.php')
-    .then(response => response.json()) // On dit à JS que c'est du JSON
-    .then(categories => {
-        // On récupère notre balise ul
-        const ul = document.getElementById('liste-categories');
-        
-        // On boucle sur le tableau de catégories
-        categories.forEach(categorie => {
-            const li = document.createElement('li');
-            li.textContent = categorie.nom; // On affiche la clé "nom"
-            ul.appendChild(li);
-        });
-    })
-    .catch(erreur => console.error("Erreur de communication :", erreur));
-</pre>
-</div>
+<iframe
+    class="auto-wrapper tuto-resultat"
+    src="{{ '/code/composants/tuto-213-113-composants.html' | relative_url }}"
+    height="450"
+    title="Résultat attendu">
+</iframe>
 
 ## Bilan
 
