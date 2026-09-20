@@ -17,11 +17,8 @@ data_js: ""
 
 Dans ce tutoriel, vous allez apprendre à :
 
-* identifier le système étudié ;
-* définir son périmètre ;
-* identifier les acteurs ;
-* préciser le rôle et l’objectif de chaque acteur ;
-* distinguer ce qui appartient au système et ce qui est extérieur au système ;
+* identifier le système étudié et ses frontières ;
+* identifier les acteurs et leurs objectifs ;
 * construire un diagramme de contexte.
 
 Cette analyse servira à construire le diagramme de cas d’utilisation.
@@ -31,10 +28,9 @@ Cette analyse servira à construire le diagramme de cas d’utilisation.
 Vous devez savoir :
 
 * lire une fonctionnalité déjà identifiée ;
-* distinguer une personne qui utilise une application d'une fonction de l'application ;
 * lire une description simple d'un système.
 
-## Données de départ
+## Cas d'étude
 
 On travaille sur un **Blog**.
 
@@ -52,232 +48,91 @@ Ces informations décrivent les personnes qui utilisent le blog et leurs objecti
 
 ## Partie 1 — Théorie
 
-### 1.1. Le système
+### 1.1. Le système et ses frontières
 
-Un **système** est l'application ou la partie d'une application que l'on étudie.
+Le **système** est l'application que l'on étudie (ici, le Blog). 
 
-Exemple :
-
-> Blog
-
-Ici, le système étudié est le blog.
-
-Le système contient les fonctionnalités de l'application.
-
-### 1.2. Le périmètre
-
-Le **périmètre** indique ce que l'on étudie dans le système.
-
-Pour le Blog, le périmètre comprend notamment :
-
-* la gestion des catégories ;
-* la gestion des auteurs ;
-* la gestion des articles ;
-* la gestion du profil ;
-* la gestion du mot de passe ;
-* la consultation des articles publiés.
-
-### 1.3. La frontière du système
-
-La **frontière** sépare :
-
-* ce qui appartient au système ;
-* ce qui est extérieur au système.
+La **frontière** est simplement la limite imaginaire (comme une "boîte") qui entoure cette application :
+- **À l'intérieur de la frontière :** tout ce qui appartient à l'application (le code, les fonctionnalités, la base de données).
+- **À l'extérieur de la frontière :** les personnes humaines ou les autres logiciels qui s'en servent.
 
 Exemple :
 
-> Le Blog est le système.
+> Le Blog est une boîte. Les utilisateurs restent à l'extérieur de cette boîte pour s'en servir.
 
-> L'Administrateur, l'Auteur et le Visiteur sont à l'extérieur du système.
+```mermaid
+usecase-beta
+    Blog["Boîte du Système (Blog)"]
+```
 
-Ils utilisent le système, mais ils ne font pas partie de l'application.
+### 1.2. Les acteurs et leurs objectifs
 
-### 1.4. L’acteur
+Un **acteur** est une personne, un autre système ou un service externe qui interagit avec le système. Il se situe toujours à l'extérieur de la frontière.
 
-Un **acteur** est une personne ou un élément extérieur qui interagit avec le système.
+Chaque acteur utilise le système pour atteindre un **objectif** précis.
 
-Un acteur peut être :
+Exemple : 
+> L'Auteur (à l'extérieur) interagit avec le Blog (à l'intérieur) dans le but de rédiger des articles. On représente cet objectif par un lien.
 
-* une personne ;
-* un autre système ;
-* un service externe.
+```mermaid
+usecase-beta
+    actor Auteur
+    Blog["Boîte du Système (Blog)"]
+    Auteur -- "Rédiger des articles" --> Blog
+```
 
-Dans notre exemple :
+*Attention : Un écran, un bouton ou une base de données interne n'est jamais un acteur.*
 
-| Acteur         | Interaction avec le blog      |
-| -------------- | ----------------------------- |
-| Administrateur | Administre le contenu du blog |
-| Auteur         | Rédige et gère ses contenus   |
-| Visiteur       | Consulte les articles publiés |
+### 1.3. Le diagramme de contexte
 
-Un écran, un bouton ou une page n'est pas un acteur.
+Le **diagramme de contexte** rassemble le système et les acteurs. Il représente, via des flèches, les grandes interactions entre les acteurs et le système, sans détailler toutes les fonctionnalités.
 
-Exemple :
+Exemple complet :
 
-> « Page d'administration » n'est pas un acteur.
-
-L'acteur est :
-
-> Administrateur
-
-### 1.5. Le rôle
-
-Le **rôle** indique la place occupée par l'acteur par rapport au système.
-
-Exemple :
-
-> Administrateur : gestion du blog.
-
-> Auteur : création et gestion de ses articles.
-
-> Visiteur : consultation des articles publiés.
-
-Le rôle décrit la relation générale avec le système.
-
-### 1.6. L’objectif de l’acteur
-
-L'**objectif** indique ce que l'acteur cherche à obtenir avec le système.
-
-Exemple :
-
-> L'Administrateur veut gérer le contenu du blog.
-
-> L'Auteur veut rédiger et gérer ses articles.
-
-> Le Visiteur veut consulter les articles publiés.
-
-Un objectif doit être exprimé du point de vue de l'acteur.
-
-Éviter une formulation comme :
-
-> « Le système affiche les articles. »
-
-Cette phrase décrit une réaction du système.
-
-Préférer :
-
-> « Le Visiteur veut consulter les articles publiés. »
-
-### 1.7. L’acteur principal
-
-Un **acteur principal** utilise directement le système pour atteindre un objectif.
-
-Exemple :
-
-> L'Auteur utilise directement le Blog pour rédiger un article.
-
-### 1.8. L’acteur secondaire
-
-Un **acteur secondaire** intervient comme support du fonctionnement du système.
-
-Il n'est pas nécessairement à l'origine de l'objectif principal.
-
-Exemple générique :
-
-> Un service externe d'envoi d'e-mails peut être utilisé par l'application pour envoyer une notification.
-
-L'acteur secondaire reste extérieur au système.
-
-### 1.9. Interaction
-
-Une **interaction** est un échange entre un acteur et le système.
-
-Exemple :
-
-> L'Auteur demande au blog d'enregistrer un article.
-
-L'acteur réalise une action.
-
-Le système fournit ensuite une réponse.
-
-### 1.10. Le diagramme de contexte
-
-Le **diagramme de contexte** représente :
-
-* le système ;
-* les acteurs ;
-* les interactions générales entre les acteurs et le système.
-
-Il ne détaille pas encore toutes les fonctionnalités.
-
-Pour notre exemple :
-
-* le système est le Blog ;
-* l'Administrateur gère le contenu ;
-* l'Auteur rédige et gère ses articles ;
-* le Visiteur consulte les articles publiés.
+```mermaid
+usecase-beta
+    actor Administrateur
+    actor Auteur
+    actor Visiteur
+    Blog["Boîte du Système (Blog)"]
+    Administrateur -- "Gère le contenu" --> Blog
+    Auteur -- "Rédige des articles" --> Blog
+    Visiteur -- "Consulte les articles" --> Blog
+```
 
 ## Partie 2 — Pratique
 
 ### 2.1. Identifier le système
 
-À partir des données de départ, indiquez :
-
-* le nom du système ;
-* ce que contient le système ;
-* ce qui est extérieur au système.
+À partir du cas d'étude, indiquez le nom du système étudié.
 
 **Travail à faire :**
 
-Complétez le tableau.
+| Élément | Réponse |
+| --- | --- |
+| Nom du système | |
 
-| Élément                         | Réponse |
-| ------------------------------- | ------- |
-| Nom du système                  |         |
-| Ce qui appartient au système    |         |
-| Ce qui est extérieur au système |         |
+### 2.2. Identifier les acteurs et leurs objectifs
 
-### 2.2. Identifier les acteurs
-
-Relisez les données de départ.
-
-Pour chaque personne qui utilise le blog, indiquez son nom et son rôle.
+Relisez le cas d'étude. Pour chaque entité extérieure qui utilise le blog, indiquez son nom et ce qu'elle cherche à accomplir.
 
 **Travail à faire :**
 
-Complétez le tableau.
-
-| Acteur | Rôle |
-| ------ | ---- |
-|        |      |
-|        |      |
-|        |      |
-
-### 2.3. Identifier les objectifs
-
-Pour chaque acteur, indiquez ce qu'il cherche à faire avec le système.
-
-Utilisez une phrase simple.
-
-Exemple de forme :
-
-> L'acteur veut...
-
-**Travail à faire :**
+Complétez le tableau :
 
 | Acteur | Objectif |
-| ------ | -------- |
-|        |          |
-|        |          |
-|        |          |
+| --- | --- |
+| | |
+| | |
+| | |
 
-### 2.4. Vérifier les acteurs
+*Vérification : Avez-vous bien décrit des personnes/services et non des boutons ou des pages ? Leurs objectifs sont-ils formulés de leur point de vue ?*
 
-Utilisez les questions suivantes :
+### 2.3. Construire le diagramme de contexte
 
-* L'acteur est-il extérieur au système ?
-* L'acteur utilise-t-il le système ?
-* Son rôle est-il clair ?
-* Son objectif est-il exprimé du point de vue de l'acteur ?
-* Ai-je décrit une personne et non une page ou un bouton ?
-* Ai-je oublié un acteur présent dans les données de départ ?
-
-### 2.5. Construire le diagramme de contexte
-
-Utilisez le système et les acteurs identifiés.
+Utilisez le système et les acteurs que vous venez d'identifier pour tracer la carte globale.
 
 Le diagramme doit représenter :
-
 * le système **Blog** ;
 * l'Administrateur ;
 * l'Auteur ;
@@ -299,59 +154,28 @@ usecase-beta
     Visiteur -- "Consulte les articles publiés" --> Blog
 ```
 
-### 2.6. Préparer la suite
-
-Les informations produites ici seront utilisées dans le tutoriel suivant.
-
-Vous devez avoir :
-
-* un système ;
-* un périmètre ;
-* des acteurs ;
-* le rôle de chaque acteur ;
-* l'objectif de chaque acteur ;
-* le diagramme de contexte.
-
-Ces informations serviront ensuite à construire :
-
-> **Système → Acteurs → Cas d'utilisation**
-
-Ne créez pas encore les cas d'utilisation.
-
 ## Bilan
 
 **Vous avez appris :**
 
-* à identifier un système ;
-* à définir son périmètre ;
-* à repérer la frontière du système ;
-* à identifier les acteurs ;
-* à préciser leur rôle ;
-* à préciser leur objectif ;
-* à construire un diagramme de contexte.
+* à identifier un système et ses frontières ;
+* à identifier les acteurs et leurs objectifs ;
+* à construire un diagramme de contexte global.
 
 **Vous avez produit :**
 
 * l'identification du système ;
-* la liste des acteurs ;
-* les rôles des acteurs ;
-* les objectifs des acteurs ;
+* la liste des acteurs et leurs objectifs ;
 * le diagramme de contexte.
 
 **Vous préparerez ensuite :**
 
-> le diagramme de cas d'utilisation.
+> le diagramme de cas d'utilisation détaillé.
 
 ## Glossaire
 
 * **Système** : application ou partie d'application étudiée.
-* **Périmètre** : ensemble des éléments pris en compte dans l'étude.
-* **Frontière** : limite entre le système et son environnement.
-* **Acteur** : élément extérieur qui interagit avec le système.
-* **Rôle** : place occupée par un acteur par rapport au système.
-* **Acteur principal** : acteur qui utilise directement le système pour atteindre un objectif.
-* **Acteur secondaire** : acteur extérieur qui apporte un support au système.
-* **Objectif** : résultat recherché par un acteur.
-* **Interaction** : échange entre un acteur et le système.
-* **Diagramme de contexte** : représentation du système et de ses acteurs externes.
-
+* **Frontière** : limite entre le système et son environnement extérieur.
+* **Acteur** : entité extérieure (personne, service) qui interagit avec le système pour atteindre un objectif.
+* **Objectif** : résultat attendu par l'acteur en utilisant le système.
+* **Diagramme de contexte** : représentation globale du système, de ses acteurs externes et de leurs grandes interactions.

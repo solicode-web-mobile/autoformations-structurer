@@ -1,5 +1,5 @@
 ---
-name: rédaction-tuto-211-1
+name: rédaction-tuto-fonctionnalite
 description: >-
   Expert du domaine technique "Fonctionnalité" (D.211.1). 
   À utiliser conjointement avec le rédacteur-tutos pour fournir les concepts métier, le vocabulaire et les règles UML (Acteurs, Cas d'utilisation, Scénarios) lors de la rédaction.
@@ -61,5 +61,6 @@ usecase-beta
 
 Lorsque tu es invoqué aux côtés du skill `rédacteur-tutos` :
 - Impose l'utilisation de ce vocabulaire exact dans les parties théoriques des tutoriels.
+- **Diagrammes systématiques** : Dans chaque étape, et particulièrement dans la partie théorique, évalue systématiquement s'il est possible d'afficher un diagramme de cas d'utilisation, un diagramme de contexte ou une portion de diagramme (Mermaid) pour apporter plus d'explication et de clarté visuelle.
 - Vérifie que les cas pratiques (Données de départ, Situations) mettent bien en évidence les acteurs et les fonctionnalités.
 - Assure-toi que les diagrammes Mermaid générés dans les livrables respectent la syntaxe `usecase-beta` définie ci-dessus.

@@ -507,7 +507,19 @@ Cette règle limite la charge cognitive au début du tutoriel.
 
 ### Données de départ
 
-Au début du tutoriel, présenter les **données de départ** nécessaires aux exercices.
+Au début du tutoriel, présenter les éléments nécessaires aux exercices. Le titre de cette section doit varier selon le domaine de compétence.
+
+> **Important :** Le titre "Données de départ" doit être remplacé par l'une des alternatives suivantes selon le contexte du domaine :
+> 1. **Contexte initial** (très professionnel, idéal pour des mises en situation)
+> 2. **Situation de départ** (simple et concret pour un niveau N2)
+> 3. **Cas d'étude** (parfait quand on se base sur un projet fil rouge comme le Blog)
+> 4. **Base de travail** (met l'accent sur ce que l'apprenant va manipuler)
+> 5. **Éléments fournis** (très explicite, indique clairement ce qui est donné à l'apprenant)
+> 6. **Point de départ** (simple et direct)
+> 7. **Situation initiale** (terme souvent utilisé en scénarisation ou algorithmique)
+> 8. **Informations préalables** (un peu plus formel)
+> 9. **Données d'entrée** (plus technique, proche du vocabulaire algorithmique)
+> 10. **Matériel fourni** (souvent utilisé si on fournit des fichiers ou du code source)
 
 Pour un tutoriel HTML/CSS/JS, le HTML de départ doit être fourni lorsque le tutoriel travaille sur une page existante.
 
