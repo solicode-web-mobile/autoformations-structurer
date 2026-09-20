@@ -79,7 +79,7 @@ Exemple de raisonnement :
 usecase-beta
     actor Auteur
     Blog["Boîte du Système (Blog)"]
-    Auteur -- "Rédiger des articles" --> Blog
+    Auteur -- "Rédiger des articles" --- Blog
 ```
 
 *Mise en garde : Il est très fréquent de confondre un acteur avec un élément de l'interface. Gardez bien en tête qu'un écran de connexion, un bouton "Valider" ou une base de données interne ne sont jamais des acteurs. Ce sont des morceaux du système.*
@@ -98,9 +98,9 @@ usecase-beta
     actor Auteur
     actor Visiteur
     Blog["Boîte du Système (Blog)"]
-    Administrateur -- "Gère le contenu" --> Blog
-    Auteur -- "Rédige des articles" --> Blog
-    Visiteur -- "Consulte les articles" --> Blog
+    Administrateur -- "Gère le contenu" --- Blog
+    Auteur -- "Rédige des articles" --- Blog
+    Visiteur -- "Consulte les articles" --- Blog
 ```
 
 ## Partie 2 — Pratique
@@ -156,9 +156,9 @@ usecase-beta
 
     Blog["Blog"]
 
-    Administrateur -- "Gère le contenu" --> Blog
-    Auteur -- "Rédige et gère ses articles" --> Blog
-    Visiteur -- "Consulte les articles publiés" --> Blog
+    Administrateur -- "Gère le contenu" --- Blog
+    Auteur -- "Rédige et gère ses articles" --- Blog
+    Visiteur -- "Consulte les articles publiés" --- Blog
 ```
 
 ## Bilan

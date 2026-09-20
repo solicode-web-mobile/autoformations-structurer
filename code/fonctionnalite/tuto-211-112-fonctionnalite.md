@@ -4,21 +4,6 @@ title: "Résultat Tuto 211.112 Fonctionnalité"
 nav_exclude: true
 ---
 
-### Diagramme de contexte
-
-```mermaid
-usecase-beta
-    actor Administrateur
-    actor Auteur
-    actor Visiteur
-
-    Blog["Blog"]
-
-    Administrateur -- "Gère le contenu" --> Blog
-    Auteur -- "Rédige et gère ses articles" --> Blog
-    Visiteur -- "Consulte les articles publiés" --> Blog
-```
-
 ### Diagramme de cas d'utilisation
 
 ```mermaid
@@ -27,7 +12,7 @@ usecase-beta
     actor Auteur
     actor Visiteur
 
-    Blog["Blog"]
+ 
     
     UC1("Consulter les catégories")
     UC2("Ajouter une catégorie")

@@ -12,5 +12,19 @@ document.addEventListener("DOMContentLoaded", function () {
         block.parentElement.replaceWith(div);
     });
     
-    mermaid.initialize({ startOnLoad: true });
+    mermaid.initialize({ startOnLoad: false });
+
+    // Rendre les diagrammes uniquement lorsque le document est visible 
+    // (utile pour les iframes cachées par défaut)
+    const observer = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+            observer.disconnect();
+            // On s'assure qu'il y a des éléments à rendre
+            if (document.querySelectorAll('.mermaid').length > 0) {
+                mermaid.run({ querySelector: '.mermaid' }).catch(e => console.error(e));
+            }
+        }
+    });
+
+    observer.observe(document.body);
 });

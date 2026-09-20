@@ -16,39 +16,30 @@ data_js: ""
 ## 1. Objectif
 
 Dans ce tutoriel, vous allez apprendre à :
+* identifier les cas d’utilisation à partir d'une liste de fonctionnalités ;
+* associer chaque acteur à ses cas d’utilisation ;
+* construire un diagramme de cas d’utilisation complet et cohérent.
 
-* identifier les cas d’utilisation ;
-* relier un acteur à un cas d’utilisation ;
-* construire un diagramme de cas d’utilisation ;
-* vérifier la cohérence entre les acteurs et les fonctionnalités.
-
-Vous utiliserez les acteurs et le diagramme de contexte identifiés dans le tutoriel précédent.
+Vous utiliserez les acteurs et le système identifiés dans le tutoriel précédent.
 
 ## 2. Prérequis
 
 Vous devez savoir :
+* définir le périmètre d'un système ;
+* identifier les acteurs et leurs objectifs.
 
-* identifier le système ;
-* définir son périmètre ;
-* identifier les acteurs ;
-* préciser le rôle et l’objectif d'un acteur.
+## Cas d'étude
 
-## Données de départ
-
-Le système étudié est un **Blog**.
+Le système étudié est le **Blog**.
 
 Les acteurs identifiés sont :
+* Administrateur (Gérer le contenu)
+* Auteur (Rédiger et gérer ses articles)
+* Visiteur (Consulter les articles publiés)
 
-| Acteur         | Objectif                       |
-| -------------- | ------------------------------ |
-| Administrateur | Gérer le contenu du blog       |
-| Auteur         | Rédiger et gérer ses articles  |
-| Visiteur       | Consulter les articles publiés |
+Les fonctionnalités de départ à analyser sont :
 
-Les fonctionnalités déjà identifiées sont :
-
-### Administrateur
-
+**Administrateur :**
 * consulter les catégories ;
 * ajouter une catégorie ;
 * modifier une catégorie ;
@@ -57,134 +48,87 @@ Les fonctionnalités déjà identifiées sont :
 * valider un article ;
 * publier un article.
 
-### Auteur
-
+**Auteur :**
 * ajouter un article ;
 * modifier un article non publié ;
 * supprimer un article non publié ;
 * changer son profil ;
 * réinitialiser son mot de passe.
 
-### Visiteur
-
+**Visiteur :**
 * consulter les articles.
 
 ## Partie 1 — Théorie
 
-### 1.1. Le cas d’utilisation
+### 1.1. Le Cas d’utilisation
 
-Un **cas d’utilisation** représente une action réalisée par un acteur pour atteindre un objectif avec le système.
+Un **cas d’utilisation** représente une action métier spécifique déclenchée par un acteur pour atteindre son objectif. 
 
-Exemple :
+**Nommage :** Il doit toujours être formulé avec un **verbe d'action à l'infinitif**. 
+* ✅ Correct : `Ajouter une catégorie`
+* ❌ Incorrect : `Catégorie`
 
-> Ajouter une catégorie
-
-L'acteur :
-
-```mermaid
-usecase-beta
-    actor Administrateur
-```
-
-Le cas d'utilisation :
+En modélisation, on représente graphiquement le cas d'utilisation par une ellipse (souvent dessinée avec des parenthèses dans le code).
 
 ```mermaid
 usecase-beta
     UC("Ajouter une catégorie")
 ```
 
-En diagramme, cela se représente ainsi :
+### 1.2. Le Diagramme de Cas d’utilisation
 
+Le diagramme rassemble tous les acteurs, le système (la "boîte"), et les cas d'utilisation. 
+On relie un acteur à un cas d'utilisation (via une flèche) pour indiquer qu'il **participe** à cette action.
 
+**Règle de cohérence absolue :** Un acteur ne doit être relié qu'aux actions qui relèvent strictement de ses attributions dans le cas d'étude.
 
-
-
-
-```mermaid
-usecase-beta
-    actor Administrateur
-    UC("Ajouter une catégorie")
-    Administrateur --> UC
-```
- 
-
-Le cas d'utilisation doit représenter une action utile pour l'acteur.
-
-### 1.2. Nommer un cas d’utilisation
-
-Un cas d'utilisation doit utiliser un verbe d'action.
-
-Exemples :
-
-* Ajouter une catégorie
-* Modifier une catégorie
-* Publier un article
-* Consulter les articles
-* Changer son profil
-
-Éviter un nom qui représente seulement un objet :
-
-```mermaid
-usecase-beta
-    UC("Catégorie")
-```
-
-Préférer :
-
-```mermaid
-usecase-beta
-    UC("Consulter les catégories")
-```
-
-### 1.3. L’objectif du cas d’utilisation
-
-Le cas d’utilisation doit correspondre à un objectif de l'acteur.
-
-Exemple :
-
-> L'Administrateur veut gérer les catégories.
-
-Les cas d'utilisation associés peuvent être :
-
-* Consulter les catégories
-* Ajouter une catégorie
-* Modifier une catégorie
-* Supprimer une catégorie
-
-Le cas d’utilisation précise donc une action attendue par l'acteur.
-
-### 1.4. L’association acteur / cas d’utilisation
-
-Une **association** indique qu'un acteur participe à un cas d'utilisation.
-
-Exemple :
+Exemple de diagramme montrant deux interactions :
 
 ```mermaid
 usecase-beta
     actor Administrateur
-    UC("Ajouter une catégorie")
-    Administrateur --> UC
+    actor Visiteur
+
+    UC1("Ajouter une catégorie")
+    UC2("Consulter les articles")
+
+    Administrateur --- UC1
+    Visiteur --- UC2
 ```
 
-Cela signifie que l'Administrateur utilise le système pour ajouter une catégorie.
+## Partie 2 — Pratique
 
-Une association ne décrit pas encore les étapes de l'action.
+### 2.1. Identifier et lier les cas d'utilisation
 
-Elle indique seulement :
+À partir du cas d'étude, associez chaque acteur aux actions métier (cas d'utilisation) qui relèvent de sa responsabilité. 
+Prenez soin d'utiliser des verbes à l'infinitif.
 
-> **Quel acteur utilise quel cas d'utilisation ?**
+**Travail à faire :**
 
-### 1.5. Le diagramme de cas d’utilisation
+Complétez le tableau suivant avec l'ensemble des 13 fonctionnalités de départ :
 
-Le **diagramme de cas d’utilisation** détaille les fonctionnalités du système et les acteurs qui les utilisent.
+| Acteur | Cas d’utilisation (Verbe d'action) |
+| --- | --- |
+| Administrateur | |
+| Administrateur | |
+| ... | |
+| Auteur | |
+| Auteur | |
+| ... | |
+| Visiteur | |
 
-Il permet de répondre à deux questions :
+### 2.2. Construire le diagramme complet
 
-> Qui utilise le système ?
+Il est temps de tracer votre diagramme global à partir du tableau que vous venez de remplir.
 
-> Pour faire quoi ?
+**Travail à faire :**
 
-Exemple :
+Dans un fichier `use_cases.mmd`, représentez :
+* Les 3 acteurs.
+* L'ensemble des cas d'utilisation.
+* Les lignes d'association reliant chaque acteur à ses cas d'utilisation.
+
+Le rendu attendu doit ressembler à cette structure :
 
 ```mermaid
 usecase-beta
@@ -192,155 +136,14 @@ usecase-beta
     actor Auteur
     actor Visiteur
 
-    UC1("Ajouter une catégorie")
-    UC2("Ajouter un article")
-    UC3("Consulter les articles")
-
-    Administrateur --> UC1
-    Auteur --> UC2
-    Visiteur --> UC3
-```
-
-### 1.6. Cohérence acteur / fonctionnalité
-
-Chaque cas d'utilisation doit être lié à un acteur cohérent.
-
-Exemple :
-
-```mermaid
-usecase-beta
-    actor Administrateur
-    UC("Ajouter une catégorie")
-    Administrateur --> UC
-```
-
-Le Visiteur ne doit pas être relié à cette fonctionnalité si les données de départ ne le prévoient pas.
-
-De même :
-
-```mermaid
-usecase-beta
-    actor Visiteur
-    UC("Consulter les articles")
-    Visiteur --> UC
-```
-
-L'association doit correspondre au rôle et à l'objectif de l'acteur.
-
-## Partie 2 — Pratique
-
-### 2.1. Identifier les cas d’utilisation
-
-À partir des données de départ, associez chaque acteur à ses cas d'utilisation.
-
-**Travail à faire :**
-
-Complétez le tableau.
-
-| Acteur         | Cas d’utilisation |
-| -------------- | ----------------- |
-| Administrateur |                   |
-| Administrateur |                   |
-| Administrateur |                   |
-| Administrateur |                   |
-| Administrateur |                   |
-| Administrateur |                   |
-| Administrateur |                   |
-| Auteur         |                   |
-| Auteur         |                   |
-| Auteur         |                   |
-| Auteur         |                   |
-| Auteur         |                   |
-| Visiteur       |                   |
-
-### 2.2. Vérifier les noms
-
-Vérifiez chaque cas d'utilisation.
-
-Chaque nom doit :
-
-* représenter une action ;
-* commencer par un verbe ;
-* correspondre à une fonctionnalité identifiée ;
-* être compréhensible par l'acteur.
-
-Exemple :
-
-```mermaid
-usecase-beta
-    UC("Publier un article")
-```
-
-est correct.
-
-```mermaid
-usecase-beta
-    UC("Article")
-```
-
-n'est pas un cas d'utilisation.
-
-### 2.3. Construire le diagramme de cas d’utilisation
-
-À partir du tableau précédent, représentez :
-
-* les acteurs ;
-* les cas d'utilisation ;
-* les associations entre acteurs et cas d'utilisation.
-
-Le diagramme doit contenir uniquement les fonctionnalités identifiées dans les données de départ.
-
-Exemple de syntaxe pour une partie du diagramme :
-
-```mermaid
-usecase-beta
-    actor Administrateur
-
-    Blog["Blog"]
-    
     UC1("Consulter les catégories")
     UC2("Ajouter une catégorie")
+    %% ... (à compléter avec tous les autres cas) ...
 
-    Administrateur --> UC1
-    Administrateur --> UC2
+    Administrateur --- UC1
+    Administrateur --- UC2
+    %% ... (à compléter) ...
 ```
-
-### 2.4. Vérifier le diagramme
-
-Utilisez les questions suivantes :
-
-* Le système est-il clairement identifié ?
-* Tous les acteurs sont-ils présents ?
-* Tous les cas d'utilisation viennent-ils des fonctionnalités fournies ?
-* Chaque cas d'utilisation est-il lié au bon acteur ?
-* Chaque cas d'utilisation représente-t-il une action ?
-* Un acteur est-il relié à une fonctionnalité qu'il ne réalise pas ?
-* Une fonctionnalité a-t-elle été oubliée ?
-
-### 2.5. Produire le diagramme
-
-Créez le fichier :
-
-```text
-use_cases.mmd
-```
-
-Dans `use_cases.mmd`, représentez les acteurs, les cas d'utilisation et leurs associations.
-
-**Travail à faire :**
-
-Construisez le diagramme à partir des données de départ.
-
-**Livrable :**
-
-Créez un document Markdown (ou un Google Doc) contenant :
-
-* le diagramme de cas d'utilisation ;
-* la liste des associations acteur / cas d'utilisation.
-
-**Critère de réussite :**
-
-Le diagramme est cohérent avec les acteurs et les fonctionnalités fournis dans les données de départ.
 
 <button class="btn btn-primary btn-toggle-resultat">Afficher le résultat</button>
 <iframe
@@ -353,26 +156,19 @@ Le diagramme est cohérent avec les acteurs et les fonctionnalités fournis dans
 ## Bilan
 
 **Vous avez appris :**
-
-* à identifier un cas d'utilisation ;
-* à nommer un cas d'utilisation ;
-* à associer un acteur à un cas d'utilisation ;
-* à construire un diagramme de cas d'utilisation ;
-* à vérifier la cohérence entre acteurs et fonctionnalités.
+* à formuler correctement un cas d'utilisation avec un verbe d'action ;
+* à lier un acteur à un cas d'utilisation en respectant son rôle ;
+* à construire un diagramme complet représentant le périmètre d'un système.
 
 **Vous avez produit :**
-
-* un diagramme de cas d'utilisation ;
-* les associations entre acteurs et cas d'utilisation.
+* la liste des cas d'utilisation associés aux acteurs ;
+* le diagramme global de cas d'utilisation de l'application.
 
 **Vous préparerez ensuite :**
-
-> la description détaillée d'un cas d'utilisation avec son scénario nominal.
+> la description détaillée d'un cas d'utilisation (ses scénarios nominaux et alternatifs).
 
 ## Glossaire
 
-* **Cas d'utilisation** : action réalisée par un acteur pour atteindre un objectif avec le système.
-* **Association** : lien entre un acteur et un cas d'utilisation.
-* **Diagramme de cas d'utilisation** : représentation des acteurs, des fonctionnalités et de leurs associations.
-* **Fonctionnalité** : service proposé par le système à un utilisateur.
-* **Cohérence** : correspondance correcte entre les acteurs et les fonctionnalités.
+* **Cas d'utilisation** : action métier précise réalisée par un acteur dans le système.
+* **Association** : lien représenté par une flèche entre un acteur et le cas d'utilisation auquel il participe.
+* **Diagramme de cas d'utilisation** : carte détaillée modélisant le système, les acteurs, et les actions métier qu'ils peuvent accomplir.

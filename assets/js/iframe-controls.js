@@ -48,7 +48,10 @@ window.initAutoIframe = function (iframe) {
         }
     };
 
-    actions.append(externalBtn, fullscreenBtn, deleteBtn);
+    actions.append(externalBtn, fullscreenBtn);
+    if (!iframe.classList.contains("tuto-resultat")) {
+        actions.append(deleteBtn);
+    }
     header.append(titleSpan, actions);
     
     iframe.parentNode.insertBefore(wrapper, iframe);

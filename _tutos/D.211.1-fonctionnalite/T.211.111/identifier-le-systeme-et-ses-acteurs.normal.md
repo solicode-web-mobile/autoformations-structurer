@@ -78,7 +78,7 @@ Exemple :
 usecase-beta
     actor Auteur
     Blog["Boîte du Système (Blog)"]
-    Auteur -- "Rédiger des articles" --> Blog
+    Auteur -- "Rédiger des articles" --- Blog
 ```
 
 *Attention : Un écran, un bouton ou une base de données interne n'est jamais un acteur.*
@@ -95,9 +95,9 @@ usecase-beta
     actor Auteur
     actor Visiteur
     Blog["Boîte du Système (Blog)"]
-    Administrateur -- "Gère le contenu" --> Blog
-    Auteur -- "Rédige des articles" --> Blog
-    Visiteur -- "Consulte les articles" --> Blog
+    Administrateur -- "Gère le contenu" --- Blog
+    Auteur -- "Rédige des articles" --- Blog
+    Visiteur -- "Consulte les articles" --- Blog
 ```
 
 ## Partie 2 — Pratique
@@ -149,9 +149,9 @@ usecase-beta
 
     Blog["Blog"]
 
-    Administrateur -- "Gère le contenu" --> Blog
-    Auteur -- "Rédige et gère ses articles" --> Blog
-    Visiteur -- "Consulte les articles publiés" --> Blog
+    Administrateur -- "Gère le contenu" --- Blog
+    Auteur -- "Rédige et gère ses articles" --- Blog
+    Visiteur -- "Consulte les articles publiés" --- Blog
 ```
 
 ## Bilan

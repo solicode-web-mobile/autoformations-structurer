@@ -131,3 +131,12 @@ Ordre de priorité obligatoire :
 **Fonctionnement → Maintenabilité → Simplicité → Performance → Esthétique**
 
 Toute modification doit respecter l’architecture existante et produire le moins de code possible.
+
+# Capacités et Fonctionnalités
+
+## Capacités
+* **Mermaid et conteneurs masqués** : [Voir la capacité](capacites/mermaid.md)
+
+## Fonctionnalités
+* **Bouton d'affichage du résultat (`tuto.js`)** : [Voir la fonctionnalité](fonctionnalites/bouton-affichage-resultat.md)
+* **Iframe Auto-Wrapper et Tuto-Resultat (`iframe-controls.js`)** : [Voir la fonctionnalité](fonctionnalites/iframe-auto-wrapper.md)
