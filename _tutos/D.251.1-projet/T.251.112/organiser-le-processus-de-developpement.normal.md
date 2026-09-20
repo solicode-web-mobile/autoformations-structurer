@@ -106,6 +106,19 @@ Reprenez les tâches de T.251.111 et affectez chacune à la bonne étape du proc
 * à distinguer test (comportement technique) et validation (conformité au besoin).
 * à identifier les livrables intermédiaires pour suivre l'avancement.
 
+## Pour aller plus loin : les limites de ce modèle
+
+Le processus que vous venez d'apprendre s'appelle le **modèle en cascade** (*Waterfall*). C'est un excellent point de départ pour structurer sa pensée.
+
+Cependant, il a une **limite principale** : si on découvre un problème lors des tests (ex: le client voulait quelque chose de différent), **revenir en arrière est très coûteux** — il faut repasser par toutes les étapes précédentes.
+
+> [!TIP]
+> **Dans la réalité des équipes modernes**, on utilise des méthodes **Agiles** (comme Scrum ou Kanban). L'idée est de ne pas tout planifier d'un coup, mais de livrer la fonctionnalité par petits **incréments** (appelés *sprints*). Chaque sprint produit une version utilisable, testée et validée. Cela permet d'adapter le travail rapidement selon les retours.
+> 
+> Vous découvrirez cette approche dans le domaine **D.252.1** (Gérer les tâches avec GitHub Issues).
+
+
+
 ## Glossaire
 
 * **Cadrage** : Étape qui définit clairement ce qui doit être réalisé et le livrable attendu.
