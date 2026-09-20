@@ -1,7 +1,7 @@
 ---
 title: "Personnaliser le thème Tailwind"
 layout: tuto
-slug: "personnaliser-le-theme-tailwind"
+slug: "personnaliser-theme-tailwind"
 permalink: /tutos/:slug/
 tuto_id: "T.225.131"
 type: "classique"

@@ -1,7 +1,7 @@
 ---
 title: "Échanger les valeurs de deux variables"
 layout: tuto
-slug: "echanger-les-valeurs-de-deux-variables"
+slug: "echanger-valeurs-deux-variables"
 permalink: /tutos/:slug/
 tuto_id: "T.201.211"
 version: "normal"

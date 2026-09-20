@@ -1,7 +1,7 @@
 ---
 title: "Parcourir et traiter un tableau"
 layout: tuto
-slug: "parcourir-et-traiter-un-tableau"
+slug: "parcourir-traiter-tableau"
 permalink: /tutos/:slug/
 tuto_id: "T.201.213"
 version: "normal"

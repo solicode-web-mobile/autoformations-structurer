@@ -1,7 +1,7 @@
 ---
 title: "Mettre en forme les composants de l’interface"
 layout: tuto
-slug: "mettre-en-forme-les-composants-de-linterface"
+slug: "mettre-forme-composants-interface-tailwind"
 permalink: /tutos/:slug/
 tuto_id: "T.225.112"
 type: "classique"

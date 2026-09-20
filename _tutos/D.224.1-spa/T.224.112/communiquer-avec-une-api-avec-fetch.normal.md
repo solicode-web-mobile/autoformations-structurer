@@ -1,7 +1,7 @@
 ---
 title: "Communiquer avec une API avec Fetch"
 layout: tuto
-slug: "communiquer-avec-une-api-avec-fetch"
+slug: "communiquer-api-fetch"
 permalink: /tutos/:slug/
 tuto_id: "T.224.112"
 type: "classique"

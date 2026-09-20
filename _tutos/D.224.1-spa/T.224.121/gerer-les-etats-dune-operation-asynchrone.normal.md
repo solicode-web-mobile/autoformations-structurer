@@ -1,7 +1,7 @@
 ---
 title: "Gérer les états d’une opération asynchrone"
 layout: tuto
-slug: "gerer-les-etats-dune-operation-asynchrone"
+slug: "gerer-etats-operation-asynchrone"
 permalink: /tutos/:slug/
 tuto_id: "T.224.121"
 type: "classique"

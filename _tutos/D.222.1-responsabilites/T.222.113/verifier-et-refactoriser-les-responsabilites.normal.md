@@ -1,7 +1,7 @@
 ---
 title: "Vérifier et refactoriser les responsabilités"
 layout: tuto
-slug: "verifier-et-refactoriser-les-responsabilites"
+slug: "verifier-refactoriser-responsabilites"
 permalink: /tutos/:slug/
 tuto_id: "T.222.113"
 type: "classique"

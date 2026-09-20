@@ -1,7 +1,7 @@
 ---
 title: "Harmoniser et réutiliser les styles"
 layout: tuto
-slug: "harmoniser-et-reutiliser-les-styles"
+slug: "harmoniser-reutiliser-styles-tailwind"
 permalink: /tutos/:slug/
 tuto_id: "T.225.132"
 type: "classique"

@@ -1,7 +1,7 @@
 ---
 title: "Suivre l’intégration, les tests et les corrections"
 layout: tuto
-slug: "suivre-lintegration-les-tests-et-les-corrections"
+slug: "suivre-integration-tests-corrections"
 permalink: /tutos/:slug/
 tuto_id: "T.251.131"
 type: "classique"

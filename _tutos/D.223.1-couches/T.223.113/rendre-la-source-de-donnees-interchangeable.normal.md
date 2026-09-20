@@ -1,7 +1,7 @@
 ---
 title: "Rendre la source de données interchangeable"
 layout: tuto
-slug: "rendre-la-source-de-donnees-interchangeable"
+slug: "rendre-source-donnees-interchangeable"
 permalink: /tutos/:slug/
 tuto_id: "T.223.113"
 type: "classique"

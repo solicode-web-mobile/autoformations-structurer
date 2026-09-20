@@ -1,7 +1,7 @@
 ---
 title: "Décomposer les données"
 layout: tuto
-slug: "decomposer-les-donnees"
+slug: "decomposer-donnees"
 permalink: /tutos/:slug/
 tuto_id: "T.201.122"
 version: "normal"

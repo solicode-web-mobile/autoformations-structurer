@@ -1,7 +1,7 @@
 ---
 title: "Identifier les responsabilités d’une classe"
 layout: tuto
-slug: "identifier-les-responsabilites-dune-classe"
+slug: "identifier-responsabilites-classe"
 permalink: /tutos/:slug/
 tuto_id: "T.222.111"
 type: "classique"

@@ -1,7 +1,7 @@
 ---
 title: "Structurer une interface avec les utilitaires Tailwind"
 layout: tuto
-slug: "structurer-une-interface-avec-les-utilitaires-tailwind"
+slug: "structurer-interface-utilitaires-tailwind"
 permalink: /tutos/:slug/
 tuto_id: "T.225.111"
 type: "classique"

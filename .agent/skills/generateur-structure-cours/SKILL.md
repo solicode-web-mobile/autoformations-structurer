@@ -91,11 +91,11 @@ travail_a_faire: >
 4. **Vérification préalable :** Toujours s'appuyer sur la liste des UAs existantes (ex: `_liste-ua.md`) avant de générer de nouveaux fichiers en masse.
 
 # Création des fichiers de Tutoriels (Structure de base)
-En plus des Domaines et UAs, tu as la capacité de créer les fichiers de tutoriels vides (mais fonctionnels) à partir des dossiers de conception (ex: `_tutos/CXXX/D.XXX.X/_conception-tutoriels/T.XXX.XXX/fiche-tuto-T.XXX.XXX.md`).
+En plus des Domaines et UAs, tu as la capacité de créer les fichiers de tutoriels vides (mais fonctionnels) à partir des dossiers de conception (ex: `_tutos/D.XXX.X-mini_code/_conception-tutoriels/T.XXX.XXX/fiche-tuto-T.XXX.XXX.md`).
 
 ## Règles de création des tutoriels :
-1. **Organisation des dossiers :** Les tutoriels doivent être créés dans le répertoire `_tutos/`, organisés par compétence (code), puis par domaine (code), puis pour chaque tuto un dossier avec son code.
-   - Chemin attendu : `_tutos/CXXX/D.XXX.X/T.XXX.XXX/`
+1. **Organisation des dossiers :** Les tutoriels doivent être créés dans le répertoire `_tutos/`, organisés par domaine (format : `[code domaine]-[mini-code]`), puis pour chaque tuto un dossier avec son code.
+   - Chemin attendu : `_tutos/D.XXX.X-mini_code/T.XXX.XXX/`
 2. **Fichier de base (version normale) :** Au début, tu ne dois créer **que le fichier pour la version normale** du tutoriel.
    - Le nom du fichier doit idéalement être formaté avec le slug du tutoriel et la version (ex: `slug-du-tuto.normal.md`).
 3. **Contenu du fichier généré :**

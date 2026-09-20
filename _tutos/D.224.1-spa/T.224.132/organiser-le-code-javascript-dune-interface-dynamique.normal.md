@@ -1,7 +1,7 @@
 ---
 title: "Organiser le code JavaScript d’une interface dynamique"
 layout: tuto
-slug: "organiser-le-code-javascript-dune-interface-dynamique"
+slug: "organiser-code-javascript-interface"
 permalink: /tutos/:slug/
 tuto_id: "T.224.132"
 type: "classique"

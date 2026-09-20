@@ -1,7 +1,7 @@
 ---
 title: "Donner un retour à l’utilisateur"
 layout: tuto
-slug: "donner-un-retour-a-lutilisateur"
+slug: "donner-retour-utilisateur"
 permalink: /tutos/:slug/
 tuto_id: "T.224.122"
 type: "classique"

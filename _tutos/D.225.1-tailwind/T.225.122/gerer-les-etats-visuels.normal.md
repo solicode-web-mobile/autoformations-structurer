@@ -1,7 +1,7 @@
 ---
 title: "Gérer les états visuels"
 layout: tuto
-slug: "gerer-les-etats-visuels"
+slug: "gerer-etats-visuels-tailwind"
 permalink: /tutos/:slug/
 tuto_id: "T.225.122"
 type: "classique"

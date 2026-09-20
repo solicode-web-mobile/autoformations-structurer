@@ -1,7 +1,7 @@
 ---
 title: "Organiser les couches de l'application"
 layout: tuto
-slug: "organiser-les-couches-de-lapplication"
+slug: "organiser-couches-application"
 permalink: /tutos/:slug/
 tuto_id: "T.223.111"
 type: "classique"

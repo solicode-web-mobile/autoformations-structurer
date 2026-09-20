@@ -1,7 +1,7 @@
 ---
 title: "Rendre l’interface responsive"
 layout: tuto
-slug: "rendre-linterface-responsive"
+slug: "rendre-interface-responsive"
 permalink: /tutos/:slug/
 tuto_id: "T.225.121"
 type: "classique"

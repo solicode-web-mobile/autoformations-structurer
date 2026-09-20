@@ -1,7 +1,7 @@
 ---
 title: "Consommer une API structurée"
 layout: tuto
-slug: "consommer-une-api-structuree"
+slug: "consommer-api-structuree"
 permalink: /tutos/:slug/
 tuto_id: "T.224.131"
 type: "classique"

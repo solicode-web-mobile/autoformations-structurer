@@ -1,7 +1,7 @@
 ---
 title: "Séparer les responsabilités entre plusieurs classes"
 layout: tuto
-slug: "separer-les-responsabilites-entre-plusieurs-classes"
+slug: "separer-responsabilites-classes"
 permalink: /tutos/:slug/
 tuto_id: "T.222.112"
 type: "classique"

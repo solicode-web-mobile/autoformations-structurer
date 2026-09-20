@@ -1,7 +1,7 @@
 ---
 title: "Isoler l'accès aux données"
 layout: tuto
-slug: "isoler-lacces-aux-donnees"
+slug: "isoler-acces-donnees"
 permalink: /tutos/:slug/
 tuto_id: "T.223.112"
 type: "classique"

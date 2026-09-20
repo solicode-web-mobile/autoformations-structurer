@@ -1,7 +1,7 @@
 ---
 title: "Organiser le processus de développement"
 layout: tuto
-slug: "organiser-le-processus-de-developpement"
+slug: "organiser-processus-developpement"
 permalink: /tutos/:slug/
 tuto_id: "T.251.112"
 type: "classique"

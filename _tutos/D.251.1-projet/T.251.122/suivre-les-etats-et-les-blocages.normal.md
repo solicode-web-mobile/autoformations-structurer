@@ -1,7 +1,7 @@
 ---
 title: "Suivre les états et les blocages"
 layout: tuto
-slug: "suivre-les-etats-et-les-blocages"
+slug: "suivre-etats-blocages"
 permalink: /tutos/:slug/
 tuto_id: "T.251.122"
 type: "classique"

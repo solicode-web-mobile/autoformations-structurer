@@ -1,7 +1,7 @@
 ---
 title: "Créer et organiser les Issues"
 layout: tuto
-slug: "creer-et-organiser-les-issues"
+slug: "creer-organiser-issues"
 permalink: /tutos/:slug/
 tuto_id: "T.251.121"
 type: "classique"

@@ -1,7 +1,7 @@
 ---
 title: "Rechercher une valeur maximale dans un tableau"
 layout: tuto
-slug: "rechercher-une-valeur-maximale"
+slug: "rechercher-valeur-maximale"
 permalink: /tutos/:slug/compact
 tuto_id: "T.201.212"
 version: "compact"

@@ -1,7 +1,7 @@
 ---
 title: "Valider et clôturer une fonctionnalité"
 layout: tuto
-slug: "valider-et-cloturer-une-fonctionnalite"
+slug: "valider-cloturer-fonctionnalite"
 permalink: /tutos/:slug/
 tuto_id: "T.251.132"
 type: "classique"
