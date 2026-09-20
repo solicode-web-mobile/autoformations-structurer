@@ -35,7 +35,7 @@ Vous devez savoir :
 
 ## Données de départ
 
-On travaille sur un **Blog Solicode**.
+On travaille sur un **Blog**.
 
 Le blog permet de gérer et de consulter des articles.
 
@@ -57,7 +57,7 @@ Un **système** est l'application ou la partie d'une application que l'on étudi
 
 Exemple :
 
-> Blog Solicode
+> Blog
 
 Ici, le système étudié est le blog.
 
@@ -67,7 +67,7 @@ Le système contient les fonctionnalités de l'application.
 
 Le **périmètre** indique ce que l'on étudie dans le système.
 
-Pour le Blog Solicode, le périmètre comprend notamment :
+Pour le Blog, le périmètre comprend notamment :
 
 * la gestion des catégories ;
 * la gestion des auteurs ;
@@ -85,7 +85,7 @@ La **frontière** sépare :
 
 Exemple :
 
-> Le Blog Solicode est le système.
+> Le Blog est le système.
 
 > L'Administrateur, l'Auteur et le Visiteur sont à l'extérieur du système.
 
@@ -163,7 +163,7 @@ Un **acteur principal** utilise directement le système pour atteindre un object
 
 Exemple :
 
-> L'Auteur utilise directement le Blog Solicode pour rédiger un article.
+> L'Auteur utilise directement le Blog pour rédiger un article.
 
 ### 1.8. L’acteur secondaire
 
