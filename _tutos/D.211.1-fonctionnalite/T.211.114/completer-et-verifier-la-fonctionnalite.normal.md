@@ -13,380 +13,115 @@ data_css: ""
 data_js: ""
 ---
 
-
 ## 1. Objectif
 
 Dans ce tutoriel, vous allez apprendre à :
-
-* identifier un scénario alternatif ;
-* identifier un scénario d'erreur ;
-* décrire la condition qui provoque ce scénario ;
-* décrire la réaction du système ;
-* compléter un scénario nominal ;
-* vérifier la cohérence entre les diagrammes et les scénarios ;
-* constituer un dossier fonctionnel final.
+* gérer les scénarios d'erreur et les chemins alternatifs ;
+* valider la cohérence globale de votre **Dossier Fonctionnel** (Acteurs ↔ Diagrammes ↔ Scénarios).
 
 ## 2. Prérequis
 
-Vous devez savoir :
+Vous devez avoir rédigé le scénario nominal de votre fonctionnalité (T.211.113).
 
-* identifier le système ;
-* identifier les acteurs ;
-* construire les cas d'utilisation ;
-* décrire un scénario nominal ;
-* distinguer une action de l'acteur d'une réponse du système.
+## Cas d'étude
 
-Vous devez avoir réalisé :
+Le système étudié est le **Blog**. Nous continuons sur notre lancée :
 
-* le diagramme de contexte ;
-* le diagramme de cas d'utilisation ;
-* le scénario nominal.
+### Fonctionnalité 1 (Exemple) : Ajouter une catégorie
+* **Scénario d'erreur identifié :** L'Administrateur tente d'enregistrer avec le champ "Titre" vide. Le système doit bloquer l'action et afficher une erreur.
 
-## Données de départ
-
-Le système étudié est un **Blog**.
-
-Le cas d'utilisation étudié est :
-
-> **Ajouter une catégorie**
-
-L'acteur principal est :
-
-> **Administrateur**
-
-L'objectif est :
-
-> Créer une nouvelle catégorie pour classer les articles.
-
-Le scénario nominal est le suivant :
-
-1. L'Administrateur navigue vers la page d'administration des catégories.
-2. Le système affiche la liste des catégories existantes et le bouton « Nouvelle Catégorie ».
-3. L'Administrateur clique sur « Nouvelle Catégorie ».
-4. Le système affiche le formulaire de création.
-5. L'Administrateur saisit « Technologie » dans le champ Titre et valide.
-6. Le système enregistre la catégorie dans la base de données.
-7. Le système affiche la nouvelle catégorie dans la liste.
-8. Le système affiche un message de succès.
-
-Un cas d'erreur est également identifié :
-
-> Le champ **Titre** est vide au moment de la validation.
-
-Le système doit alors :
-
-* détecter l'erreur ;
-* refuser l'enregistrement ;
-* afficher un message d'erreur ;
-* permettre à l'Administrateur de corriger sa saisie.
+### Fonctionnalité 2 (Exercice) : Ajouter un article
+* **Scénario d'erreur identifié :** L'Auteur oublie de renseigner le contenu de l'article avant d'enregistrer.
+* **Scénario alternatif identifié :** L'Auteur décide de choisir le statut "Brouillon" dans le formulaire plutôt que "Publié". Le système doit sauvegarder l'article sans le rendre visible au public.
 
 ## Partie 1 — Théorie
 
-### 1.1. Le scénario alternatif
+### 1.1. Les chemins alternatifs et d'erreur
 
-Un **scénario alternatif** décrit un autre chemin possible à partir du scénario nominal.
+Le scénario nominal décrit un monde parfait. Mais dans la réalité, des imprévus arrivent. Pour compléter une fonctionnalité, on ajoute des blocs d'**Exceptions** (ou Scénarios alternatifs) à la suite du scénario nominal.
 
-Le fonctionnement reste valide, mais le déroulement change.
+Un bloc d'exception contient :
+1. **La Condition :** Ce qui déclenche l'exception (ex: *Le titre est vide*).
+2. **Le Scénario :** Le dialogue Acteur / Système spécifique à cette exception.
+3. **La Reprise (ou la Fin) :** Ce qui se passe après (ex: *L'Administrateur corrige et reprend à l'étape X*).
 
-Exemple :
+* **Scénario d'erreur :** L'action échoue, le système bloque ou affiche une alerte.
+* **Scénario alternatif :** L'action réussit, mais via un chemin différent (ex: Paiement par Paypal au lieu de Carte Bleue).
 
-> Une catégorie existe déjà avec le même nom.
+**Exemple complet (Fonctionnalité 1) :**
+> **Condition (Erreur) :** À l'étape 5, le champ "Titre" est vide.
+> **Scénario d'erreur :**
+> 1. L'Administrateur valide le formulaire.
+> 2. Le système refuse l'enregistrement et affiche "Le titre est obligatoire".
+> **Reprise :** L'Administrateur corrige et le scénario reprend à l'étape 5.
 
-Le système peut alors demander une autre saisie ou suivre une autre règle prévue par la fonctionnalité.
+*Voici comment modéliser cette exception avec un Diagramme de Séquence :*
+```mermaid
+sequenceDiagram
+    actor Administrateur
+    participant Systeme as Système
+    Administrateur->>Systeme: Valide le formulaire
+    alt Titre renseigné
+        Systeme-->>Administrateur: Enregistre et affiche la catégorie
+    else Titre vide
+        Systeme-->>Administrateur: Refuse et affiche "Le titre est obligatoire"
+    end
+```
 
-Un scénario alternatif ne signifie donc pas nécessairement que le système est en erreur.
+### 1.2. Le Dossier Fonctionnel (Cohérence Globale)
 
-### 1.2. Le scénario d’erreur
+Le livrable final d'une analyse s'appelle le **Dossier Fonctionnel**. Il regroupe tout ce que vous avez produit :
+- Les acteurs identifiés
+- Le diagramme de contexte
+- Le diagramme de cas d'utilisation
+- Les scénarios (nominaux et exceptions)
 
-Un **scénario d'erreur** décrit une situation dans laquelle le système ne peut pas poursuivre le traitement normalement.
-
-Exemple :
-
-> Le champ Titre est vide.
-
-Le système doit détecter le problème et empêcher l'enregistrement.
-
-### 1.3. La condition
-
-La **condition** indique ce qui provoque le scénario alternatif ou d'erreur.
-
-Exemple :
-
-> Le champ Titre est vide.
-
-La condition doit être claire et vérifiable.
-
-Éviter :
-
-> Les données sont mauvaises.
-
-Préférer :
-
-> Le champ Titre est vide.
-
-### 1.4. La réaction du système
-
-La **réaction du système** décrit ce que le système fait lorsque la condition est rencontrée.
-
-Exemple :
-
-> Le système refuse l'enregistrement et affiche le message « Le titre de la catégorie est obligatoire. »
-
-La réaction doit correspondre à la condition.
-
-### 1.5. Le retour au scénario nominal
-
-Après un scénario alternatif ou une erreur corrigée, le traitement peut revenir au scénario nominal.
-
-Exemple :
-
-1. L'Administrateur valide un formulaire vide.
-2. Le système détecte l'erreur.
-3. Le système affiche le message d'erreur.
-4. L'Administrateur corrige sa saisie.
-5. Le traitement reprend à l'étape concernée.
-
-Il faut indiquer clairement où le traitement reprend.
-
-### 1.6. La cohérence
-
-La **cohérence** signifie que les différentes descriptions parlent de la même fonctionnalité.
-
-Le diagramme de cas d'utilisation indique :
-
-> Ajouter une catégorie
-
-Le scénario doit donc décrire :
-
-> Ajouter une catégorie
-
-et non une autre fonctionnalité.
-
-### 1.7. La complétude
-
-La **complétude** signifie que les éléments nécessaires à la description de la fonctionnalité sont présents.
-
-Pour cette UA, le dossier doit contenir :
-
-* le système ;
-* les acteurs ;
-* les cas d'utilisation ;
-* le scénario nominal ;
-* les scénarios alternatifs et d'erreur ;
-* le résultat attendu.
-
-### 1.8. Vérifier le diagramme avec le scénario
-
-Le diagramme et le scénario n'ont pas le même rôle.
-
-Le diagramme montre :
-
-> **Qui fait quoi ?**
-
-Le scénario montre :
-
-> **Comment cela se déroule ?**
-
-Exemple :
-
-Le diagramme contient :
-
-> Administrateur → Ajouter une catégorie
-
-Le scénario doit décrire le déroulement de :
-
-> Ajouter une catégorie
-
-Il ne doit pas décrire :
-
-> Publier un article
+**La règle d'or est la Cohérence.** 
+Tous vos documents doivent raconter *exactement la même histoire*. Si votre diagramme de cas d'utilisation montre l'acteur *Auteur* relié à *Ajouter un article*, votre scénario texte doit concerner l'Auteur et non le Visiteur !
 
 ## Partie 2 — Pratique
 
-### 2.1. Identifier les situations alternatives et d’erreur
+### 2.1. Compléter avec les exceptions
 
-Prenez le cas d'utilisation :
-
-> **Ajouter une catégorie**
-
-Cherchez les situations qui peuvent modifier le déroulement normal.
-
-Exemples de questions :
-
-* Que se passe-t-il si une information obligatoire manque ?
-* Que se passe-t-il si une donnée n'est pas valide ?
-* Que se passe-t-il si une règle métier empêche l'enregistrement ?
-* Que se passe-t-il si le système ne peut pas terminer l'opération ?
+Reprenez le scénario nominal de la **Fonctionnalité 2** ("Ajouter un article" par l'Auteur) que vous avez rédigé au tutoriel précédent. 
 
 **Travail à faire :**
+Ajoutez, à la suite de votre scénario, les deux blocs d'exception fournis dans le **Cas d'étude**.
 
-Complétez le tableau.
+1. Rédigez le **Scénario d'erreur** (L'Auteur oublie le contenu).
+2. Rédigez le **Scénario alternatif** (L'Auteur choisit le statut "Brouillon").
 
-| Situation | Type                | Condition |
-| --------- | ------------------- | --------- |
-|           | Alternatif / Erreur |           |
-|           | Alternatif / Erreur |           |
-|           | Alternatif / Erreur |           |
+<button class="btn btn-primary btn-toggle-resultat">Afficher le résultat</button>
+<iframe
+    class="auto-wrapper tuto-resultat"
+    src="{{ '/code/fonctionnalite/tuto-211-114-fonctionnalite.html' | relative_url }}"
+    height="450"
+    title="Résultat attendu">
+</iframe>
 
-### 2.2. Décrire un scénario d’erreur
+### 2.2. La Checklist du Dossier Fonctionnel
 
-Utilisez la situation suivante :
+Avant de livrer un dossier d'analyse à une équipe de développement, vous devez passer en revue cette checklist :
 
-> Le champ Titre est vide.
+- [ ] Mes diagrammes (Contexte, Cas d'utilisation) n'utilisent que des arcs non orientés (`---`).
+- [ ] Mes acteurs ne sont jamais des interfaces graphiques ou des bases de données.
+- [ ] J'ai vérifié que chaque trait sur le diagramme correspond bien à une fonctionnalité documentée en texte.
+- [ ] Mes scénarios utilisent un vocabulaire précis ("Le système...", "L'Acteur...") et évitent les phrases vagues.
+- [ ] J'ai prévu les cas d'erreur principaux (champs vides, doublons, annulations).
 
-Décrivez :
-
-1. l'étape où l'erreur apparaît ;
-2. la condition ;
-3. la réaction du système ;
-4. l'action demandée à l'Administrateur ;
-5. la reprise du traitement.
-
-Utilisez cette structure :
-
-**Condition :**
-
-> ...
-
-**Scénario d'erreur :**
-
-1. ...
-2. ...
-3. ...
-4. ...
-
-**Reprise :**
-
-> ...
-
-### 2.3. Décrire un scénario alternatif
-
-Choisissez une situation différente du scénario nominal.
-
-Décrivez :
-
-* la condition ;
-* l'action de l'acteur ;
-* la réaction du système ;
-* la suite du traitement.
-
-Utilisez cette structure :
-
-**Condition :**
-
-> ...
-
-**Scénario alternatif :**
-
-1. ...
-2. ...
-3. ...
-
-**Suite du traitement :**
-
-> ...
-
-### 2.4. Relire le scénario complet
-
-Regroupez :
-
-* le scénario nominal ;
-* les scénarios alternatifs ;
-* les scénarios d'erreur.
-
-Vérifiez que chaque scénario est lié au même cas d'utilisation :
-
-> **Ajouter une catégorie**
-
-### 2.5. Vérifier le dossier fonctionnel
-
-Utilisez la grille suivante.
-
-| Élément à vérifier                                         | Oui / Non |
-| ---------------------------------------------------------- | --------- |
-| Le système est identifié                                   |           |
-| Les acteurs sont identifiés                                |           |
-| Les objectifs des acteurs sont clairs                      |           |
-| Les cas d'utilisation sont présents                        |           |
-| Le diagramme de contexte est présent                       |           |
-| Le diagramme de cas d'utilisation est présent              |           |
-| Le scénario nominal est présent                            |           |
-| Les scénarios alternatifs sont présents lorsque nécessaire |           |
-| Les scénarios d'erreur sont présents lorsque nécessaire    |           |
-| Les conditions sont clairement indiquées                   |           |
-| Les réactions du système sont clairement indiquées         |           |
-| Les scénarios correspondent aux cas d'utilisation          |           |
-| Aucun scénario ne décrit une autre fonctionnalité          |           |
-
-### 2.6. Vérifier la cohérence diagramme ↔ scénario
-
-Prenez le diagramme de cas d'utilisation réalisé dans **T.211.112**.
-
-Pour chaque cas d'utilisation, vérifiez :
-
-> L'acteur du diagramme est-il le même acteur que dans le scénario ?
-
-> Le nom du cas d'utilisation est-il identique ?
-
-> Le scénario décrit-il bien la fonctionnalité représentée ?
-
-> Les actions du scénario correspondent-elles à l'objectif de l'acteur ?
-
-### 2.7. Produire le dossier fonctionnel final
-
-Le dossier final doit regrouper les productions de l'UA.
-
-**Travail à faire :**
-
-Constituez un dossier fonctionnel contenant :
-
-1. le diagramme de contexte ;
-2. le diagramme de cas d'utilisation ;
-3. le scénario nominal ;
-4. les scénarios alternatifs ;
-5. les scénarios d'erreur ;
-6. les éléments de vérification.
-
-**Livrable :**
-
-Créez un document Markdown (ou un Google Doc) contenant le dossier fonctionnel final.
-
-**Résultat attendu :**
-
-Le dossier doit présenter une fonctionnalité complète et cohérente, depuis son système et ses acteurs jusqu'aux différents scénarios de son fonctionnement.
-
-**Critère de réussite :**
-
-Le dossier est cohérent de bout en bout : les acteurs, les cas d'utilisation et les scénarios décrivent la même fonctionnalité et les erreurs prévues sont correctement traitées.
+Si tout est coché, votre analyse est solide et prête pour le développement !
 
 ## Bilan
 
 **Vous avez appris :**
-
-* à identifier un scénario alternatif ;
-* à identifier un scénario d'erreur ;
-* à définir une condition ;
-* à décrire la réaction du système ;
-* à vérifier un scénario ;
-* à vérifier la cohérence entre un diagramme et un scénario.
+* à gérer l'imprévu en ajoutant des scénarios alternatifs et d'erreur.
+* à auto-évaluer votre conception grâce à la checklist de cohérence.
 
 **Vous avez réalisé :**
-
-* des scénarios alternatifs ;
-* des scénarios d'erreur ;
-* la vérification de la fonctionnalité ;
-* le dossier fonctionnel final.
-
-**À la fin de l'UA, vous disposez de :**
-
-> **Système → Acteurs → Cas d'utilisation → Scénario nominal → Scénarios alternatifs et d'erreur → Vérification**
+> Votre premier Dossier Fonctionnel complet et robuste pour une fonctionnalité web !
 
 ## Glossaire
 
-* **Scénario alternatif** : autre chemin possible pour réaliser un cas d'utilisation.
-* **Scénario d'erreur** : chemin déclenché lorsqu'un problème empêche le traitement normal.
-* **Condition** : situation qui provoque un scénario particulier.
-* **Réaction du système** : réponse du système à une situation donnée.
-* **Cohérence** : correspondance correcte entre les différents éléments d'une description.
-* **Complétude** : présence de tous les éléments nécessaires à une description.
-* **Dossier fonctionnel** : ensemble des documents qui décrivent une fonctionnalité.
+* **Scénario alternatif** : Un chemin différent du scénario nominal, qui aboutit tout de même à un succès.
+* **Scénario d'erreur** : Un chemin bloquant, où le système empêche le succès à cause d'une condition non respectée.
+* **Dossier fonctionnel** : L'ensemble cohérent de tous vos diagrammes et scénarios décrivant le comportement d'une fonctionnalité.

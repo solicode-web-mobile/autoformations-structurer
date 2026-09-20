@@ -68,8 +68,13 @@ sequenceDiagram
     Auteur->>Systeme: Demande d'ajout d'article
     Systeme-->>Auteur: Affiche le formulaire
     Auteur->>Systeme: Saisit les informations et valide
-    Systeme-->>Auteur: Confirme l'enregistrement
+    alt Informations valides
+        Systeme-->>Auteur: Confirme l'enregistrement
+    else Erreur de saisie
+        Systeme-->>Auteur: Affiche un message d'erreur
+    end
 ```
+*Note : Utilise les blocs `alt` (alternative) ou `opt` (optionnel) pour représenter les scénarios d'erreur ou alternatifs de manière élégante au sein du même diagramme.*
 
 ## Directives pour la collaboration inter-agents
 

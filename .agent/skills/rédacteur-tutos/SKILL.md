@@ -512,7 +512,7 @@ Au début du tutoriel, présenter les éléments nécessaires aux exercices. Le 
 > **Important :** Le titre "Données de départ" doit être remplacé par l'une des alternatives suivantes selon le contexte du domaine :
 > 1. **Contexte initial** (très professionnel, idéal pour des mises en situation)
 > 2. **Situation de départ** (simple et concret pour un niveau N2)
-> 3. **Cas d'étude** (parfait quand on se base sur un projet fil rouge comme le Blog)
+> 3. **Cas d'étude** (parfait quand on se base sur un fil conducteur comme le Blog)
 > 4. **Base de travail** (met l'accent sur ce que l'apprenant va manipuler)
 > 5. **Éléments fournis** (très explicite, indique clairement ce qui est donné à l'apprenant)
 > 6. **Point de départ** (simple et direct)
@@ -528,6 +528,11 @@ Ces données constituent la **base commune utilisée dans les différentes parti
 L'apprenant doit pouvoir utiliser cette base pour tester les exemples et les exercices du tutoriel.
 
 Le code de départ doit être simple et adapté au niveau du tutoriel.
+
+### Distinction : Cas d'étude vs Projet Fil Rouge
+
+**Règle absolue :** Le "Blog" utilisé dans les tutoriels N2 est un **Cas d'étude** ou un fil conducteur pour les exercices. Il ne doit **jamais** être appelé "Projet Fil Rouge".
+Le terme "Projet Fil Rouge" est strictement réservé au projet personnel final de l'apprenant (le sujet sur lequel il appliquera ce qu'il a appris). Dans les tutoriels, utilisez simplement les termes "Le projet", "L'application" ou "Le Blog".
 
 ### Titres
 
