@@ -1,0 +1,14 @@
+[
+    {
+        "id": 1,
+        "nom": "Laravel",
+        "couleur": "Bleu",
+        "icone": "Code"
+    },
+    {
+        "id": 2,
+        "nom": "aa",
+        "couleur": "Rose",
+        "icone": "Pinceau"
+    }
+]

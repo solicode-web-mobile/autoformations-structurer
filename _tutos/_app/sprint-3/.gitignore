@@ -1,0 +1,2 @@
+# Fichiers de configuration locaux contenant des informations sensibles (mots de passe)
+backend/env.php

@@ -1,0 +1,1 @@
+php -S localhost:8000 -d display_errors=On -d error_reporting=32767
