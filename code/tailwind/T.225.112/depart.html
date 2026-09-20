@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administration - Blog</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-800 min-h-screen">
+
+<div class="flex min-h-screen">
+
+    <aside class="w-64">
+        <div>
+            <h2>Admin Blog</h2>
+            <p>Sprint 1</p>
+        </div>
+        <nav class="flex flex-col gap-2">
+            <a href="#">Tableau de bord</a>
+            <a href="#">Articles</a>
+            <a href="#">Catégories</a>
+        </nav>
+    </aside>
+
+    <div class="flex-1 flex flex-col">
+
+        <header class="flex items-center justify-between">
+            <div>Gestion des catégories</div>
+            <div><span>Admin</span></div>
+        </header>
+
+        <main class="flex-1 p-6">
+            <div class="max-w-5xl mx-auto space-y-8">
+
+                <section>
+                    <div>
+                        <h1>Catégories</h1>
+                        <p>Organisez les rubriques de votre blog.</p>
+                    </div>
+                    <button type="button">+ Nouvelle Catégorie</button>
+                </section>
+
+                <section>
+                    <h2>Ajouter / Modifier une catégorie</h2>
+                    <form>
+                        <input type="hidden" value="">
+                        <div>
+                            <label for="cat-nom">Nom de la catégorie</label>
+                            <input type="text" id="cat-nom" placeholder="Ex: Développement Web">
+                        </div>
+                        <div>
+                            <label for="cat-couleur">Couleur</label>
+                            <select id="cat-couleur">
+                                <option value="">Choisir une couleur</option>
+                                <option value="Bleu">Bleu</option>
+                                <option value="Rose">Rose</option>
+                                <option value="Emeraude">Émeraude</option>
+                                <option value="Violet">Violet</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="cat-icone">Icône</label>
+                            <select id="cat-icone">
+                                <option value="">Choisir une icône</option>
+                                <option value="Code">Code</option>
+                                <option value="Pinceau">Pinceau / Crayon</option>
+                                <option value="Eclair">Éclair</option>
+                                <option value="Livre">Livre</option>
+                            </select>
+                        </div>
+                        <div>
+                            <button type="button">Annuler</button>
+                            <button type="submit">Enregistrer</button>
+                        </div>
+                    </form>
+                </section>
+
+                <section>
+                    <h2>Liste des catégories</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nom</th>
+                                <th>Couleur</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>#1</td>
+                                <td>Développement Web</td>
+                                <td>Bleu</td>
+                                <td>
+                                    <button type="button">Éditer</button>
+                                    <button type="button">Supprimer</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#2</td>
+                                <td>Design</td>
+                                <td>Rose</td>
+                                <td>
+                                    <button type="button">Éditer</button>
+                                    <button type="button">Supprimer</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+            </div>
+        </main>
+    </div>
+</div>
+
+</body>
+</html>
