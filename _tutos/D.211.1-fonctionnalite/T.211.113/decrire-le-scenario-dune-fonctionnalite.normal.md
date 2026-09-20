@@ -16,48 +16,24 @@ data_js: ""
 ## 1. Objectif
 
 Dans ce tutoriel, vous allez apprendre à décrire le **scénario nominal** d’un cas d’utilisation.
-
 Vous allez préciser :
-
-* la précondition ;
-* le déclencheur ;
-* les étapes ;
-* les actions de l’acteur ;
-* les réponses du système ;
+* la précondition et le déclencheur ;
+* les échanges entre l'acteur et le système ;
 * le résultat attendu.
 
 ## 2. Prérequis
 
-Vous devez savoir :
+Vous devez avoir identifié le système, ses acteurs, et modélisé le diagramme de cas d’utilisation.
 
-* identifier un système ;
-* identifier les acteurs ;
-* identifier les cas d’utilisation ;
-* associer un acteur à un cas d’utilisation.
+## Cas d'étude
 
-Vous devez avoir réalisé :
+Le système étudié est le **Blog**.
 
-* le diagramme de contexte ;
-* le diagramme de cas d’utilisation.
+* **Cas d'utilisation :** Ajouter une catégorie
+* **Acteur principal :** Administrateur
+* **Objectif :** Créer une nouvelle catégorie pour classer les articles.
 
-## Données de départ
-
-Le système étudié est un **Blog**.
-
-Le cas d’utilisation choisi est :
-
-> **Ajouter une catégorie**
-
-L’acteur principal est :
-
-> **Administrateur**
-
-L’objectif est :
-
-> Créer une nouvelle catégorie pour classer les articles.
-
-Le fonctionnement attendu est le suivant :
-
+**Le fonctionnement brut attendu est le suivant :**
 1. L'Administrateur accède à la gestion des catégories.
 2. Le système affiche les catégories existantes.
 3. L'Administrateur demande la création d'une catégorie.
@@ -67,298 +43,104 @@ Le fonctionnement attendu est le suivant :
 7. Le système enregistre la catégorie.
 8. Le système affiche la nouvelle catégorie.
 
-Dans ce tutoriel, on décrit uniquement le **fonctionnement normal**.
-
-Les erreurs et les autres chemins seront étudiés dans le tutoriel suivant.
+*Note : Dans ce tutoriel, on ne décrit que le fonctionnement parfait sans aucune erreur (le scénario nominal).*
 
 ## Partie 1 — Théorie
 
-### 1.1. Le scénario
+### 1.1. L'anatomie d'un scénario nominal
 
-Un **scénario** décrit le déroulement d'un cas d'utilisation.
+Un **scénario nominal** raconte l'histoire "parfaite" où le cas d'utilisation se déroule du début à la fin sans la moindre erreur. 
+Pour bien l'encadrer, on utilise trois balises obligatoires :
 
-Il montre les échanges entre :
+1. **La Précondition** : L'état dans lequel doit se trouver le système *avant* de commencer. 
+   *(Ex: L'Administrateur est déjà connecté).*
+2. **Le Déclencheur** : L'action précise qui donne le coup d'envoi.
+   *(Ex: L'Administrateur clique sur "Ajouter").*
+3. **Le Résultat attendu** : L'état dans lequel se trouve le système à la toute fin.
+   *(Ex: La catégorie est enregistrée en base de données).*
 
-* l'acteur ;
-* le système.
+### 1.2. L'échange "Ping-Pong" (Acteur / Système)
 
-Exemple :
+Le cœur du scénario décrit les étapes pas à pas. 
+La **règle d'or** est de rédiger sous la forme d'un match de ping-pong : `Action de l'Acteur` ➡️ `Réponse du Système`.
 
-> L'Administrateur demande la création d'une catégorie.
+Chaque phrase doit :
+- Commencer par le nom de l'acteur ou "Le système".
+- Contenir un verbe d'action précis.
+- Être courte et ne faire qu'une seule chose à la fois.
 
-Puis :
+> ❌ **Mauvais exemple (trop vague ou condensé) :**
+> L'Administrateur ouvre la page, tape son titre et le système sauvegarde.
 
-> Le système affiche le formulaire.
-
-Le scénario permet donc de décrire **comment le cas d'utilisation se réalise**.
-
-### 1.2. La précondition
-
-La **précondition** indique ce qui doit être vrai avant le début du scénario.
-
-Exemple :
-
-> L'Administrateur est connecté.
-
-La précondition ne décrit pas une étape du scénario.
-
-Elle indique simplement la situation de départ.
-
-### 1.3. Le déclencheur
-
-Le **déclencheur** indique l'action qui commence le cas d'utilisation.
-
-Exemple :
-
-> L'Administrateur demande l'ajout d'une catégorie.
-
-Le déclencheur explique pourquoi le scénario commence.
-
-### 1.4. Une étape
-
-Une **étape** décrit une action réalisée pendant le scénario.
-
-Une étape doit rester simple.
-
-Exemple :
-
-> L'Administrateur clique sur « Nouvelle catégorie ».
-
-Puis :
-
-> Le système affiche le formulaire.
-
-Une étape décrit donc une action précise.
-
-### 1.5. Action de l’acteur
-
-Une action de l'acteur décrit ce que fait l'utilisateur.
-
-Exemples :
-
-> L'Administrateur ouvre la page des catégories.
-
-> L'Administrateur saisit « Technologie ».
-
-> L'Administrateur valide le formulaire.
-
-L'action commence généralement par le nom de l'acteur.
-
-### 1.6. Réponse du système
-
-La réponse du système décrit ce que l'application fait après l'action de l'acteur.
-
-Exemples :
-
-> Le système affiche la liste des catégories.
-
-> Le système affiche le formulaire.
-
-> Le système enregistre la catégorie.
-
-> Le système affiche un message de succès.
-
-Il faut distinguer :
-
-> **Action de l'acteur**
-
-et
-
-> **Réponse du système**
-
-### 1.7. Le scénario nominal
-
-Le **scénario nominal** décrit le fonctionnement normal du cas d'utilisation.
-
-Toutes les conditions prévues sont respectées.
-
-Exemple :
-
-> L'Administrateur saisit une catégorie valide.
-
-Le système peut alors continuer normalement.
-
-Le scénario nominal ne décrit pas :
-
-* un champ vide ;
-* une donnée incorrecte ;
-* une erreur du système ;
-* une autre possibilité de traitement.
-
-Ces situations seront décrites dans le tutoriel suivant.
-
-### 1.8. Le résultat attendu
-
-Le **résultat attendu** indique l'état obtenu lorsque le scénario nominal est terminé.
-
-Exemple :
-
-> La catégorie est enregistrée et apparaît dans la liste des catégories.
-
-Le résultat doit être observable et vérifiable.
+> ✅ **Bon exemple (séparé en étapes claires) :**
+> 1. L'Administrateur clique sur "Nouvelle catégorie".
+> 2. Le système affiche le formulaire de création.
+> 3. L'Administrateur saisit le titre.
+> 4. L'Administrateur valide.
 
 ## Partie 2 — Pratique
 
-### 2.1. Préparer le scénario
+### 2.1. Rédiger le scénario nominal
 
-Travaillez avec le cas d'utilisation :
+À partir du fonctionnement brut listé dans le **Cas d'étude**, vous devez rédiger le scénario complet et formel de l'ajout d'une catégorie.
 
-> **Ajouter une catégorie**
-
-Complétez les informations suivantes :
-
-| Élément          | Réponse |
-| ---------------- | ------- |
-| Acteur principal |         |
-| Objectif         |         |
-| Précondition     |         |
-| Déclencheur      |         |
-| Résultat attendu |         |
-
-### 2.2. Séparer les actions
-
-Pour chaque étape, indiquez qui agit.
-
-Utilisez le tableau suivant :
-
-| N° | Acteur / Système | Action |
-| -- | ---------------- | ------ |
-| 1  |                  |        |
-| 2  |                  |        |
-| 3  |                  |        |
-| 4  |                  |        |
-| 5  |                  |        |
-| 6  |                  |        |
-| 7  |                  |        |
-| 8  |                  |        |
-
-Utilisez uniquement :
-
-> **Acteur**
-
-ou
-
-> **Système**
-
-### 2.3. Décrire le scénario nominal
-
-À partir du tableau précédent, rédigez le scénario.
-
-Respectez cette forme :
-
-**Précondition :**
-
-> ...
-
-**Déclencheur :**
-
-> ...
-
-**Scénario nominal :**
-
-1. L'acteur ...
-2. Le système ...
-3. L'acteur ...
-4. Le système ...
-5. L'acteur ...
-6. Le système ...
-7. Le système ...
-
-**Résultat attendu :**
-
-> ...
-
-Chaque étape doit décrire une seule action principale.
-
-### 2.4. Vérifier les étapes
-
-Vérifiez chaque étape avec les questions suivantes :
-
-* L'acteur est-il clairement identifié ?
-* La réponse du système est-elle clairement identifiée ?
-* Chaque étape décrit-elle une action ?
-* Les étapes suivent-elles un ordre logique ?
-* Une réponse du système apparaît-elle après une action de l'acteur lorsque cela est nécessaire ?
-* Le scénario correspond-il bien au cas d'utilisation ?
-* Le scénario décrit-il uniquement le fonctionnement normal ?
-
-### 2.5. Éviter les scénarios trop vagues
-
-Évitez :
-
-> L'Administrateur gère les catégories.
-
-Cette phrase ne décrit pas le déroulement.
-
-Préférez :
-
-> L'Administrateur ouvre la page des catégories.
-
-Puis :
-
-> Le système affiche la liste des catégories.
-
-Évitez également une étape qui contient plusieurs actions :
-
-> L'Administrateur ouvre la page, saisit le titre et enregistre la catégorie.
-
-Préférez plusieurs étapes :
-
-1. L'Administrateur ouvre la page des catégories.
-2. Le système affiche la liste.
-3. L'Administrateur saisit le titre.
-4. L'Administrateur valide le formulaire.
-
-### 2.6. Produire le livrable
+> [!TIP]
+> **Conseil de rédaction**
+> Soyez systématique : demandez-vous "Qui fait l'action ?" à chaque ligne. Si c'est l'humain, écrivez "L'Administrateur...". Si c'est l'application qui réagit, écrivez "Le système...".
 
 **Travail à faire :**
 
-Décrivez le scénario nominal du cas d'utilisation :
+Dans votre document de travail, rédigez le livrable final en respectant scrupuleusement la structure ci-dessous. Remplissez les espaces vides.
 
-> **Ajouter une catégorie**
+**Cas d'utilisation :** Ajouter une catégorie
+**Acteur principal :** Administrateur
+**Précondition :** L'Administrateur est connecté au blog.
+**Déclencheur :** ...
 
-**Livrable :**
+**Scénario nominal :**
+1. L'Administrateur ...
+2. Le système ...
+3. L'Administrateur ...
+4. Le système ...
+5. L'Administrateur saisit les informations de la catégorie.
+6. L'Administrateur valide le formulaire.
+7. ...
+8. ...
 
-Créez un document Markdown (ou un Google Doc) contenant :
+**Résultat attendu :** ...
 
-* l'acteur principal ;
-* l'objectif ;
-* la précondition ;
-* le déclencheur ;
-* le scénario nominal ;
-* le résultat attendu.
-
-**Critère de réussite :**
-
-Le scénario décrit, dans le bon ordre, les actions de l'Administrateur et les réponses du système jusqu'à l'obtention du résultat attendu.
+<button class="btn btn-primary btn-toggle-resultat">Afficher le résultat</button>
+<div class="auto-wrapper tuto-resultat" style="display: none; padding: 20px; border: 1px solid #ddd; border-radius: 8px; margin-top: 15px;">
+<strong>Cas d'utilisation :</strong> Ajouter une catégorie<br>
+<strong>Acteur principal :</strong> Administrateur<br>
+<strong>Précondition :</strong> L'Administrateur est connecté au blog.<br>
+<strong>Déclencheur :</strong> L'Administrateur veut créer une nouvelle catégorie.<br>
+<br>
+<strong>Scénario nominal :</strong><br>
+1. L'Administrateur accède à la gestion des catégories.<br>
+2. Le système affiche les catégories existantes.<br>
+3. L'Administrateur demande la création d'une catégorie.<br>
+4. Le système affiche le formulaire.<br>
+5. L'Administrateur saisit les informations de la catégorie.<br>
+6. L'Administrateur valide le formulaire.<br>
+7. Le système enregistre la catégorie.<br>
+8. Le système affiche la nouvelle catégorie.<br>
+<br>
+<strong>Résultat attendu :</strong> La catégorie est sauvegardée et visible dans l'interface de gestion.
+</div>
 
 ## Bilan
 
 **Vous avez appris :**
-
-* à décrire un scénario ;
-* à définir une précondition ;
-* à identifier un déclencheur ;
-* à décrire les actions de l'acteur ;
-* à décrire les réponses du système ;
-* à construire un scénario nominal ;
-* à définir le résultat attendu.
-
-**Vous avez produit :**
-
-> le scénario nominal d'un cas d'utilisation.
+* à définir les bornes d'un scénario (Précondition, Déclencheur, Résultat).
+* à décrire précisément un échange d'étapes (Ping-Pong) entre un acteur et le système.
 
 **Vous préparerez ensuite :**
-
-> les scénarios alternatifs et les scénarios d'erreur.
+> les scénarios alternatifs (erreurs et cas particuliers) pour rendre ce cas d'utilisation parfaitement robuste.
 
 ## Glossaire
 
-* **Scénario** : description du déroulement d'un cas d'utilisation.
-* **Précondition** : condition vraie avant le début du scénario.
-* **Déclencheur** : action qui démarre le cas d'utilisation.
-* **Étape** : action réalisée pendant le scénario.
-* **Action de l'acteur** : action réalisée par l'utilisateur.
-* **Réponse du système** : réaction du système après une action.
-* **Scénario nominal** : déroulement normal du cas d'utilisation.
-* **Résultat attendu** : état obtenu à la fin du scénario.
+* **Scénario nominal** : le chemin idéal où le cas d'utilisation se déroule parfaitement, sans aucune erreur.
+* **Précondition** : état requis du système avant de pouvoir démarrer le scénario.
+* **Déclencheur** : l'événement initial qui provoque le démarrage du scénario.
+* **Résultat attendu** : état garanti par le système à la fin du scénario nominal.
