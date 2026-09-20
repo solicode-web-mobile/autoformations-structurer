@@ -141,3 +141,4 @@ Toute modification doit respecter l’architecture existante et produire le moin
 * **Bouton d'affichage du résultat (`tuto.js`)** : [Voir la fonctionnalité](fonctionnalites/bouton-affichage-resultat.md)
 * **Iframe Auto-Wrapper et Tuto-Resultat (`iframe-controls.js`)** : [Voir la fonctionnalité](fonctionnalites/iframe-auto-wrapper.md)
 * **Bouton Exécuter le code (`code-editor-injector.js`)** : [Voir la fonctionnalité](fonctionnalites/code-editor-injector.md)
+* **Bloc Plein Écran (`fullscreen-block.js`)** : [Voir la fonctionnalité](fonctionnalites/fullscreen-block.md)

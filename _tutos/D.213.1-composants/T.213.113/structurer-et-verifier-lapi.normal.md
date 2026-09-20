@@ -55,6 +55,10 @@ fetch('https://jsonplaceholder.typicode.com/users')
 
 Votre architecture est désormais complète :
 
+
+
+<div class="fullscreenable" markdown="1">
+
 ```mermaid
 flowchart LR
     subgraph Client ["🖥️ Navigateur (Frontend)"]
@@ -79,6 +83,10 @@ flowchart LR
     style BDD fill:#f9f9f9,stroke:#666,stroke-width:2px
 ```
 
+</div>
+
+
+
 1. Le client charge `index.html`.
 2. Le fichier `app.js` s'exécute et fait un `fetch()` vers `categories.php`.
 3. Le serveur exécute `categories.php` (qui interrogera plus tard la BDD).
@@ -92,12 +100,10 @@ flowchart LR
 Nous allons écrire le script côté Frontend qui va consommer notre API.
 
 **Travail à faire :**
-1. Dans `frontend/index.html`, ajoutez une balise `<ul id="liste-categories"></ul>`.
-2. Créez un fichier `frontend/app.js` et liez-le à votre HTML.
-3. Dans `app.js`, utilisez `fetch()` pour appeler votre fichier `../backend/categories.php`.
-4. Récupérez les données JSON, faites une boucle (`forEach`), et ajoutez chaque nom de catégorie dans la liste `<ul>` du HTML.
 
-Ouvrez `index.html` dans votre navigateur. Vous devriez voir apparaître la liste des catégories injectées dynamiquement par votre API PHP !
+Affichez la liste des catégories sur la page d'accueil en utilisant AJAX (`fetch`) pour appeler votre API PHP.
+
+Ouvrez `index.html` dans votre navigateur. Vous devriez voir apparaître la liste des catégories injectées dynamiquement par votre script JavaScript !
 
 <button class="btn btn-primary btn-toggle-resultat">Afficher le résultat</button>
 <iframe
