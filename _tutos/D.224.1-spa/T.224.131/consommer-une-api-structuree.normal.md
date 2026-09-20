@@ -8,26 +8,8 @@ type: "classique"
 version: "normal"
 ua: "UA.224.13"
 nav_order: 1
-data_html: ""
-data_css: ""
-data_js: ""
----
-
----
-
-title: "Consommer une API structurée"
-layout: tuto
-slug: "consommer-api-structuree"
-permalink: /tutos/:slug/
-tuto_id: "T.224.131"
-type: "classique"
-version: "normal"
-ua: "UA.224.13"
-nav_order: 1
 data_html: |
-
   <!DOCTYPE html>
-
   <html lang="fr">
   <head>
       <meta charset="UTF-8">
@@ -36,74 +18,71 @@ data_html: |
   <body>
       <h1>Catégories</h1>
 
-```
-  <button type="button" id="btn-show-form">
-      Nouvelle catégorie
-  </button>
+      <button type="button" id="btn-show-form">
+          Nouvelle catégorie
+      </button>
 
-  <section id="section-form" hidden>
-      <h2>Ajouter / Modifier une catégorie</h2>
+      <section id="section-form" hidden>
+          <h2>Ajouter / Modifier une catégorie</h2>
 
-      <form id="form-categorie">
-          <input type="hidden" id="cat-id" value="">
+          <form id="form-categorie">
+              <input type="hidden" id="cat-id" value="">
 
-          <div>
-              <label for="cat-nom">Nom</label>
-              <input type="text" id="cat-nom" required>
-          </div>
+              <div>
+                  <label for="cat-nom">Nom</label>
+                  <input type="text" id="cat-nom" required>
+              </div>
 
-          <div>
-              <label for="cat-couleur">Couleur</label>
-              <select id="cat-couleur" required>
-                  <option value="">Choisir</option>
-                  <option value="Bleu">Bleu</option>
-                  <option value="Rose">Rose</option>
-                  <option value="Emeraude">Émeraude</option>
-                  <option value="Violet">Violet</option>
-              </select>
-          </div>
+              <div>
+                  <label for="cat-couleur">Couleur</label>
+                  <select id="cat-couleur" required>
+                      <option value="">Choisir</option>
+                      <option value="Bleu">Bleu</option>
+                      <option value="Rose">Rose</option>
+                      <option value="Emeraude">Émeraude</option>
+                      <option value="Violet">Violet</option>
+                  </select>
+              </div>
 
-          <div>
-              <label for="cat-icone">Icône</label>
-              <select id="cat-icone" required>
-                  <option value="">Choisir</option>
-                  <option value="Code">Code</option>
-                  <option value="Pinceau">Pinceau</option>
-                  <option value="Eclair">Éclair</option>
-                  <option value="Livre">Livre</option>
-              </select>
-          </div>
+              <div>
+                  <label for="cat-icone">Icône</label>
+                  <select id="cat-icone" required>
+                      <option value="">Choisir</option>
+                      <option value="Code">Code</option>
+                      <option value="Pinceau">Pinceau</option>
+                      <option value="Eclair">Éclair</option>
+                      <option value="Livre">Livre</option>
+                  </select>
+              </div>
 
-          <button type="submit" id="btn-submit-form">
-              Enregistrer
-          </button>
+              <button type="submit" id="btn-submit-form">
+                  Enregistrer
+              </button>
 
-          <button type="button" id="btn-cancel-form">
-              Annuler
-          </button>
-      </form>
-  </section>
+              <button type="button" id="btn-cancel-form">
+                  Annuler
+              </button>
+          </form>
+      </section>
 
-  <p id="loading-message" hidden>
-      Chargement...
-  </p>
+      <p id="loading-message" hidden>
+          Chargement...
+      </p>
 
-  <table>
-      <thead>
-          <tr>
-              <th>ID</th>
-              <th>Nom</th>
-              <th>Couleur</th>
-              <th>Actions</th>
-          </tr>
-      </thead>
-      <tbody id="table-categories-body">
-      </tbody>
-  </table>
+      <table>
+          <thead>
+              <tr>
+                  <th>ID</th>
+                  <th>Nom</th>
+                  <th>Couleur</th>
+                  <th>Actions</th>
+              </tr>
+          </thead>
+          <tbody id="table-categories-body">
+          </tbody>
+      </table>
 
-  <div id="toast-container"></div>
-```
-
+      <div id="toast-container"></div>
   </body>
   </html>
 data_css: ""
@@ -111,33 +90,40 @@ data_js: |
   document.addEventListener('DOMContentLoaded', () => {
       const API_URL = 'api/router.php?route=categories';
 
-```
-  const tbody = document.getElementById('table-categories-body');
-  const btnShowForm = document.getElementById('btn-show-form');
-  const btnCancelForm = document.getElementById('btn-cancel-form');
-  const sectionForm = document.getElementById('section-form');
-  const formCategorie = document.getElementById('form-categorie');
+      const tbody = document.getElementById('table-categories-body');
+      const btnShowForm = document.getElementById('btn-show-form');
+      const btnCancelForm = document.getElementById('btn-cancel-form');
+      const sectionForm = document.getElementById('section-form');
+      const formCategorie = document.getElementById('form-categorie');
 
-  const inputId = document.getElementById('cat-id');
-  const inputNom = document.getElementById('cat-nom');
-  const selectCouleur = document.getElementById('cat-couleur');
-  const selectIcone = document.getElementById('cat-icone');
+      const inputId = document.getElementById('cat-id');
+      const inputNom = document.getElementById('cat-nom');
+      const selectCouleur = document.getElementById('cat-couleur');
+      const selectIcone = document.getElementById('cat-icone');
 
-  const btnSubmitForm = document.getElementById('btn-submit-form');
-  const loadingMessage = document.getElementById('loading-message');
+      const btnSubmitForm = document.getElementById('btn-submit-form');
+      const loadingMessage = document.getElementById('loading-message');
 
-  btnShowForm.addEventListener('click', () => {
-      sectionForm.hidden = false;
+      btnShowForm.addEventListener('click', () => {
+          sectionForm.hidden = false;
+      });
+
+      btnCancelForm.addEventListener('click', () => {
+          sectionForm.hidden = true;
+          formCategorie.reset();
+          inputId.value = '';
+      });
   });
+---
 
-  btnCancelForm.addEventListener('click', () => {
-      sectionForm.hidden = true;
-      formCategorie.reset();
-      inputId.value = '';
-  });
-```
-
-## });
+<script>
+window.pageData = {
+    html: {{ page.data_html | default: "" | jsonify }},
+    css: {{ page.data_css | default: "" | jsonify }},
+    js: {{ page.data_js | default: "" | jsonify }},
+    php: {{ page.data_php | default: "" | jsonify }}
+};
+</script>
 
 ## 1. Objectif
 

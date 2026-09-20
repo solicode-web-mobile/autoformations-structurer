@@ -1,22 +1,6 @@
 ---
 title: "Mettre en forme les composants de l’interface"
 layout: tuto
-slug: "mettre-forme-composants-interface-tailwind"
-permalink: /tutos/:slug/
-tuto_id: "T.225.112"
-type: "classique"
-version: "normal"
-ua: "UA.225.11"
-nav_order: 2
-data_html: ""
-data_css: ""
-data_js: ""
----
-
----
-
-title: "Mettre en forme les composants de l’interface"
-layout: tuto
 slug: "mettre-en-forme-composants-interface-tailwind"
 permalink: /tutos/:slug/
 tuto_id: "T.225.112"
@@ -37,7 +21,6 @@ data_html: |
   </head>
   <body class="bg-gray-100 text-gray-800 min-h-screen">
 
-```
   <div class="flex min-h-screen">
 
       <aside class="w-64">
@@ -164,13 +147,21 @@ data_html: |
       </div>
 
   </div>
-```
 
   </body>
   </html>
 data_css: ""
 data_js: ""
 ---
+
+<script>
+window.pageData = {
+    html: {{ page.data_html | default: "" | jsonify }},
+    css: {{ page.data_css | default: "" | jsonify }},
+    js: {{ page.data_js | default: "" | jsonify }},
+    php: {{ page.data_php | default: "" | jsonify }}
+};
+</script>
 
 ## 1. Objectif
 

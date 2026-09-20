@@ -13,24 +13,6 @@ data_css: ""
 data_js: ""
 ---
 
----
-
-title: "Valider et clôturer une fonctionnalité"
-layout: tuto
-slug: t-251-132-valider-cloturer-fonctionnalite
-permalink: /t-251-132/
-tuto_id: T.251.132
-type: classique
-version: normal
-ua: UA.251.13
-sprint: S3
-session: S3
-nav_order: 32
-data_html: ""
-data_css: ""
-data_js: ""
------------
-
 ## 1. Objectif
 
 Une fonctionnalité est prête à être clôturée lorsque le travail prévu est terminé et que le résultat attendu est vérifié.

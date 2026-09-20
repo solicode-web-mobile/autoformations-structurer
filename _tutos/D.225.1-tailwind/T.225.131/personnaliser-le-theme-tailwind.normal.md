@@ -8,22 +8,6 @@ type: "classique"
 version: "normal"
 ua: "UA.225.13"
 nav_order: 1
-data_html: ""
-data_css: ""
-data_js: ""
----
-
----
-
-title: "Personnaliser le thème Tailwind"
-layout: tuto
-slug: "personnaliser-theme-tailwind"
-permalink: /tutos/:slug/
-tuto_id: "T.225.131"
-type: "classique"
-version: "normal"
-ua: "UA.225.13"
-nav_order: 1
 data_html: |
 
   <!DOCTYPE html>
@@ -33,7 +17,6 @@ data_html: |
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-```
   <title>Administration - Blog</title>
 
   <script src="https://cdn.tailwindcss.com"></script>
@@ -45,13 +28,11 @@ data_html: |
           }
       }
   </script>
-```
 
   </head>
 
   <body class="bg-gray-100 text-gray-800 min-h-screen">
 
-```
   <div class="flex min-h-screen">
 
       <aside class="hidden md:flex w-64 bg-gray-900 text-white p-6 flex-col">
@@ -247,11 +228,19 @@ data_html: |
       </div>
 
   </div>
-```
 
 data_css: ""
 data_js: ""
------------
+---
+
+<script>
+window.pageData = {
+    html: {{ page.data_html | default: "" | jsonify }},
+    css: {{ page.data_css | default: "" | jsonify }},
+    js: {{ page.data_js | default: "" | jsonify }},
+    php: {{ page.data_php | default: "" | jsonify }}
+};
+</script>
 
 ## 1. Objectif
 

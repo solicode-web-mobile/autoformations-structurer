@@ -533,6 +533,15 @@ Utiliser uniquement :
 
 Ne jamais utiliser `#` dans le contenu du tutoriel.
 
+### Slug
+
+Le slug doit être simplifié au maximum pour garder des URL concises.
+Il faut supprimer tous les articles ("le", "la", "les", "un", "une", "des") ainsi que les conjonctions et prépositions ("et", "de", "d'", "à", etc.) qui n'apportent pas de sens essentiel.
+
+Exemples :
+* `identifier-et-separer-les-composants` ➔ `identifier-separer-composants`
+* `rechercher-une-valeur-maximale` ➔ `rechercher-valeur-maximale`
+
 ## Partie 7 — Template
 
 ```markdown

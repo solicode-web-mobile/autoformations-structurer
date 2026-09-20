@@ -8,22 +8,6 @@ type: "classique"
 version: "normal"
 ua: "UA.225.11"
 nav_order: 1
-data_html: ""
-data_css: ""
-data_js: ""
----
-
----
-
-title: "Structurer une interface avec les utilitaires Tailwind"
-layout: tuto
-slug: "structurer-interface-utilitaires-tailwind"
-permalink: /tutos/:slug/
-tuto_id: "T.225.111"
-type: "classique"
-version: "normal"
-ua: "UA.225.11"
-nav_order: 1
 data_html: |
 
   <!DOCTYPE html>
@@ -40,7 +24,6 @@ data_html: |
           <aside>
               <h2>Admin Blog</h2>
 
-```
           <nav>
               <a href="#">Tableau de bord</a>
               <a href="#">Articles</a>
@@ -74,13 +57,21 @@ data_html: |
           </main>
       </div>
   </div>
-```
 
   </body>
   </html>
 data_css: ""
 data_js: ""
 ---
+
+<script>
+window.pageData = {
+    html: {{ page.data_html | default: "" | jsonify }},
+    css: {{ page.data_css | default: "" | jsonify }},
+    js: {{ page.data_js | default: "" | jsonify }},
+    php: {{ page.data_php | default: "" | jsonify }}
+};
+</script>
 
 ## 1. Objectif
 

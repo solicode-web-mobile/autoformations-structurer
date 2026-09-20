@@ -13,22 +13,6 @@ data_css: ""
 data_js: ""
 ---
 
----
-
-title: "Créer et organiser les Issues"
-layout: tuto
-slug: "creer-organiser-issues-github"
-permalink: /tutos/:slug/
-tuto_id: "T.251.121"
-type: "classique"
-version: "normal"
-ua: "UA.251.12"
-nav_order: 1
-data_html: ""
-data_css: ""
-data_js: ""
------------
-
 ## 1. Objectif
 
 Dans ce tutoriel, vous allez apprendre à transformer les tâches préparées dans S1 en **Issues GitHub**.
