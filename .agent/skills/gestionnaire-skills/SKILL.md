@@ -14,6 +14,12 @@ Vous êtes expert en création et gestion de skills pour l'agent. Un skill perme
 Tous les skills du projet sont stockés dans le dossier `.agent/skills/`.
 Chaque skill doit avoir son propre dossier contenant au minimum un fichier `SKILL.md`.
 
+### Conventions de nommage
+* **Règle générale** : Le nom du skill doit être en minuscules, avec des tirets (ex: `nom-du-skill`).
+* **Skills de rédaction de domaine** : Un skill dédié à la rédaction de tutoriels pour un domaine spécifique doit obligatoirement être nommé selon le format `rédaction-tuto-[mini-code domaine]`.
+  - Le `[mini-code domaine]` doit être lu à partir de la propriété `mini-code` dans le front matter du fichier markdown du domaine correspondant, situé dans la collection `_domaines/`. 
+  - Par exemple, si le fichier domaine a `mini-code: "fonctionnalite"`, le skill devra être nommé `rédaction-tuto-fonctionnalite`.
+
 Format attendu pour `SKILL.md` :
 ```markdown
 ---

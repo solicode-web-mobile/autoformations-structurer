@@ -19,7 +19,6 @@ Dans ce tutoriel, vous allez apprendre à :
 
 - identifier les cas d’utilisation ;
 - relier un acteur à un cas d’utilisation ;
-- construire un diagramme de contexte ;
 - construire un diagramme de cas d’utilisation ;
 - vérifier la cohérence entre acteurs et fonctionnalités.
 
@@ -101,11 +100,7 @@ Correspond à l'objectif de l'acteur (ex: *L'Administrateur veut gérer les cat�
 
 **Association** : indique l'acteur qui participe au cas d'utilisation (représentée par une flèche `-->`).
 
-### 1.5. Le diagramme de contexte
-
-Représente le système, les acteurs et les interactions générales (sans détailler toutes les fonctionnalités).
-
-### 1.6. Le diagramme de cas d’utilisation
+### 1.5. Le diagramme de cas d’utilisation
 
 Détaille les fonctionnalités du système et les acteurs associés (Qui fait quoi ?).
 
@@ -126,7 +121,7 @@ usecase-beta
     Visiteur --> UC3
 ```
 
-### 1.7. Cohérence acteur / fonctionnalité
+### 1.6. Cohérence acteur / fonctionnalité
 
 Chaque cas d'utilisation doit être lié à l'acteur cohérent selon son rôle et objectif.
 
@@ -158,26 +153,7 @@ Complétez le tableau.
 
 Chaque cas d'utilisation doit être un verbe d'action correspondant à une fonctionnalité.
 
-### 2.3. Construire le diagramme de contexte
-
-**Système :** Blog.
-**Acteurs :** Administrateur, Auteur, Visiteur.
-Tracez les interactions générales.
-
-```mermaid
-usecase-beta
-    actor Administrateur
-    actor Auteur
-    actor Visiteur
-
-    Blog["Blog"]
-
-    Administrateur -- "Gère le contenu" --> Blog
-    Auteur -- "Rédige et gère ses articles" --> Blog
-    Visiteur -- "Consulte les articles publiés" --> Blog
-```
-
-### 2.4. Construire le diagramme de cas d’utilisation
+### 2.3. Construire le diagramme de cas d’utilisation
 
 Représentez acteurs, cas d'utilisation et associations.
 
@@ -194,7 +170,7 @@ usecase-beta
     Administrateur --> UC2
 ```
 
-### 2.5. Vérifier le diagramme
+### 2.4. Vérifier le diagramme
 
 Contrôlez :
 
@@ -204,28 +180,26 @@ Contrôlez :
 - Associations correctes ?
 - Noms d'action ?
 
-### 2.6. Produire les deux diagrammes
+### 2.5. Produire le diagramme
 
 Fichiers à créer :
 
-- `context_diagram.mmd`
 - `use_cases.mmd`
 
 **Travail à faire :**
 
-Construisez les deux diagrammes.
+Construisez le diagramme.
 
 **Livrable :**
 
 Créez un document Markdown (ou un Google Doc) contenant :
 
-- le diagramme de contexte ;
 - le diagramme de cas d'utilisation ;
 - la liste des associations acteur / cas d'utilisation.
 
 **Critère de réussite :**
 
-Les deux diagrammes sont cohérents avec les acteurs et les fonctionnalités fournis.
+Le diagramme est cohérent avec les acteurs et les fonctionnalités fournis.
 
 <button class="btn btn-primary btn-toggle-resultat">Afficher le résultat</button>
 <iframe
@@ -240,12 +214,12 @@ Les deux diagrammes sont cohérents avec les acteurs et les fonctionnalités fou
 **Vous avez appris :**
 
 - identifier, nommer et associer des cas d'utilisation ;
-- construire des diagrammes de contexte et de cas d'utilisation ;
+- construire un diagramme de cas d'utilisation ;
 - vérifier la cohérence.
 
 **Vous avez produit :**
 
-- les deux diagrammes et la liste des associations.
+- le diagramme de cas d'utilisation et la liste des associations.
 
 **Vous préparerez ensuite :**
 
@@ -255,7 +229,6 @@ Les deux diagrammes sont cohérents avec les acteurs et les fonctionnalités fou
 
 * **Cas d'utilisation** : action réalisée par un acteur.
 * **Association** : lien acteur - cas d'utilisation.
-* **Diagramme de contexte** : représentation générale du système et acteurs externes.
 * **Diagramme de cas d'utilisation** : détail des fonctionnalités et acteurs.
 * **Fonctionnalité** : service proposé.
 * **Cohérence** : correspondance correcte.

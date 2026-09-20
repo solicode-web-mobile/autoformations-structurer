@@ -21,7 +21,8 @@ Dans ce tutoriel, vous allez apprendre à :
 * définir son périmètre ;
 * identifier les acteurs ;
 * préciser le rôle et l’objectif de chaque acteur ;
-* distinguer ce qui appartient au système et ce qui est extérieur.
+* distinguer ce qui appartient au système et ce qui est extérieur ;
+* construire un diagramme de contexte.
 
 ## 2. Prérequis
 
@@ -89,6 +90,11 @@ Formulation depuis le point de vue de l'acteur (ex : *Le Visiteur veut consulter
 
 **Interaction** : échange acteur-système (action → réponse).
 
+### 1.10. Le diagramme de contexte
+
+**Diagramme de contexte** : représente le système, les acteurs et les interactions générales. Ne détaille pas les fonctionnalités.
+Exemple : le Blog (système), Administrateur (gère contenu), Auteur (rédige), Visiteur (consulte).
+
 ## Partie 2 — Pratique
 
 ### 2.1. Identifier le système
@@ -136,7 +142,25 @@ Questions de contrôle :
 * Est-ce une personne/système (et non un composant) ?
 * Acteurs manquants ?
 
-### 2.5. Préparer la suite
+### 2.5. Construire le diagramme de contexte
+
+**Travail à faire :**
+Tracez les interactions générales (Système : Blog. Acteurs : Administrateur, Auteur, Visiteur).
+
+```mermaid
+usecase-beta
+    actor Administrateur
+    actor Auteur
+    actor Visiteur
+
+    Blog["Blog"]
+
+    Administrateur -- "Gère le contenu" --> Blog
+    Auteur -- "Rédige et gère ses articles" --> Blog
+    Visiteur -- "Consulte les articles publiés" --> Blog
+```
+
+### 2.6. Préparer la suite
 
 **Éléments nécessaires pour la suite :**
 
@@ -144,7 +168,8 @@ Questions de contrôle :
 * périmètre ;
 * acteurs ;
 * rôles ;
-* objectifs.
+* objectifs ;
+* diagramme de contexte.
 
 Ne pas créer les cas d'utilisation à ce stade.
 
@@ -153,16 +178,18 @@ Ne pas créer les cas d'utilisation à ce stade.
 **Vous avez appris :**
 
 * identifier le système, son périmètre et sa frontière ;
-* identifier les acteurs, leurs rôles et objectifs.
+* identifier les acteurs, leurs rôles et objectifs ;
+* construire un diagramme de contexte.
 
 **Vous avez produit :**
 
 * l'identification du système ;
-* la liste des acteurs, leurs rôles et objectifs.
+* la liste des acteurs, leurs rôles et objectifs ;
+* le diagramme de contexte.
 
 **Vous préparerez ensuite :**
 
-> le diagramme de contexte et les cas d'utilisation.
+> le diagramme de cas d'utilisation.
 
 ## Glossaire
 
@@ -175,3 +202,4 @@ Ne pas créer les cas d'utilisation à ce stade.
 * **Acteur secondaire** : acteur extérieur de support.
 * **Objectif** : résultat recherché par un acteur.
 * **Interaction** : échange acteur-système.
+* **Diagramme de contexte** : représentation générale du système et acteurs externes.
