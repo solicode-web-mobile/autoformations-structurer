@@ -1,7 +1,7 @@
 ---
 title: "Structurer et vérifier l’API"
 layout: tuto
-slug: "structurer-et-verifier-lapi"
+slug: "structurer-verifier-api"
 permalink: /tutos/:slug/
 tuto_id: "T.213.113"
 type: "classique"

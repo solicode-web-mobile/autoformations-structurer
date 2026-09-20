@@ -1,7 +1,7 @@
 ---
 title: "Encapsuler les données d’un objet"
 layout: tuto
-slug: "encapsuler-les-donnees-dun-objet"
+slug: "encapsuler-donnees-objet"
 permalink: /tutos/:slug/
 tuto_id: "T.221.112"
 type: "classique"

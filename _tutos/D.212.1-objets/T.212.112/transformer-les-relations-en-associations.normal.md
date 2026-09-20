@@ -1,7 +1,7 @@
 ---
 title: "Transformer les relations en associations"
 layout: tuto
-slug: "transformer-les-relations-en-associations"
+slug: "transformer-relations-associations"
 permalink: /tutos/:slug/
 tuto_id: "T.212.112"
 type: "classique"

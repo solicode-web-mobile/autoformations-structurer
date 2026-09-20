@@ -1,7 +1,7 @@
 ---
 title: "Faire collaborer plusieurs objets"
 layout: tuto
-slug: "faire-collaborer-plusieurs-objets"
+slug: "faire-collaborer-objets"
 permalink: /tutos/:slug/
 tuto_id: "T.221.121"
 type: "classique"

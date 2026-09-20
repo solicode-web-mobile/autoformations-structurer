@@ -1,7 +1,7 @@
 ---
 title: "Transformer les tables en classes"
 layout: tuto
-slug: "transformer-les-tables-en-classes"
+slug: "transformer-tables-classes"
 permalink: /tutos/:slug/
 tuto_id: "T.212.111"
 type: "classique"

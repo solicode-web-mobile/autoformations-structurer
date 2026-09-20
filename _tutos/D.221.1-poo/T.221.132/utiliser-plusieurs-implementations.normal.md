@@ -1,7 +1,7 @@
 ---
 title: "Utiliser plusieurs implémentations"
 layout: tuto
-slug: "utiliser-plusieurs-implementations"
+slug: "utiliser-implementations"
 permalink: /tutos/:slug/
 tuto_id: "T.221.132"
 type: "classique"

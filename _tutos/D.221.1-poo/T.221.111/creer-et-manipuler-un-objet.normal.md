@@ -1,7 +1,7 @@
 ---
 title: "Créer et manipuler un objet"
 layout: tuto
-slug: "creer-et-manipuler-un-objet"
+slug: "creer-manipuler-objet"
 permalink: /tutos/:slug/
 tuto_id: "T.221.111"
 type: "classique"

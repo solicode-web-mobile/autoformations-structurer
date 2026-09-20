@@ -1,7 +1,7 @@
 ---
 title: "Spécialiser et polymorphiser des objets"
 layout: tuto
-slug: "specialiser-et-polymorphiser-des-objets"
+slug: "specialiser-polymorphiser-objets"
 permalink: /tutos/:slug/
 tuto_id: "T.221.122"
 type: "classique"

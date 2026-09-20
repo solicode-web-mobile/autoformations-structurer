@@ -1,7 +1,7 @@
 ---
 title: "Vérifier et finaliser le modèle objet"
 layout: tuto
-slug: "verifier-et-finaliser-le-modele-objet"
+slug: "verifier-finaliser-modele-objet"
 permalink: /tutos/:slug/
 tuto_id: "T.212.113"
 type: "classique"

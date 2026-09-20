@@ -1,7 +1,7 @@
 ---
 title: "Définir un contrat avec une interface"
 layout: tuto
-slug: "definir-un-contrat-avec-une-interface"
+slug: "definir-contrat-interface"
 permalink: /tutos/:slug/
 tuto_id: "T.221.131"
 type: "classique"

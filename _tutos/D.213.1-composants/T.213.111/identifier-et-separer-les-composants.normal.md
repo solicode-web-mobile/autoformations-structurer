@@ -1,7 +1,7 @@
 ---
 title: "Identifier et séparer les composants"
 layout: tuto
-slug: "identifier-et-separer-les-composants"
+slug: "identifier-separer-composants"
 permalink: /tutos/:slug/
 tuto_id: "T.213.111"
 type: "classique"

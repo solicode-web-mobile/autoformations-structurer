@@ -1,7 +1,7 @@
 ---
 title: "Définir la communication entre les composants"
 layout: tuto
-slug: "definir-la-communication-entre-les-composants"
+slug: "definir-communication-composants"
 permalink: /tutos/:slug/
 tuto_id: "T.213.112"
 type: "classique"
