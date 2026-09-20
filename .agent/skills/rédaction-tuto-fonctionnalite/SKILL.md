@@ -36,7 +36,8 @@ Ton rôle est de fournir les règles métier, les conventions et le vocabulaire 
    - Un cas d'utilisation se détaille par des scénarios.
    - **Scénario nominal** : le chemin idéal où tout se passe sans erreur jusqu'au succès.
    - **Scénarios d'exception/alternatifs** : les cas d'erreur (champ obligatoire manquant, doublon, etc.).
-   - Le formalisme attendu est un échange de type "ping-pong" : `Action de l'acteur` → `Réponse du système`.
+   - Le formalisme attendu est un **dialogue Acteur / Système** (avec une stricte alternance, semblable à un match de ping-pong) : `Action de l'acteur` → `Réponse du système`.
+   - *Représentation visuelle* : Un scénario peut être présenté de manière très visuelle et efficace à l'aide d'un **Diagramme de Séquence** (en UML).
 
 ## Règles de modélisation (Mermaid)
 
@@ -58,6 +59,17 @@ usecase-beta
     Visiteur --- UC1
 ```
 *Note : Les cas d'utilisation utilisent des parenthèses `()` pour former une ellipse. Les systèmes/contextes utilisent des crochets `[]` pour former un rectangle.*
+
+### Modèle pour un Diagramme de Séquence (pour illustrer un scénario) :
+```mermaid
+sequenceDiagram
+    actor Auteur
+    participant Systeme as Système
+    Auteur->>Systeme: Demande d'ajout d'article
+    Systeme-->>Auteur: Affiche le formulaire
+    Auteur->>Systeme: Saisit les informations et valide
+    Systeme-->>Auteur: Confirme l'enregistrement
+```
 
 ## Directives pour la collaboration inter-agents
 

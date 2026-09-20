@@ -27,21 +27,17 @@ Vous devez avoir identifié le système, ses acteurs, et modélisé le diagramme
 
 ## Cas d'étude
 
-Le système étudié est le **Blog**.
+Le système étudié est le **Blog**. Nous allons analyser deux fonctionnalités : la première servira d'exemple théorique, la seconde d'exercice pratique.
 
-* **Cas d'utilisation :** Ajouter une catégorie
+### Fonctionnalité 1 (Exemple) : Ajouter une catégorie
 * **Acteur principal :** Administrateur
-* **Objectif :** Créer une nouvelle catégorie pour classer les articles.
+* **Fonctionnement brut attendu :** 
+  L'Administrateur accède à la gestion des catégories. Le système affiche les catégories existantes. L'Administrateur clique sur créer. Le système affiche le formulaire. Il saisit les informations et valide. Le système enregistre et affiche la nouvelle catégorie.
 
-**Le fonctionnement brut attendu est le suivant :**
-1. L'Administrateur accède à la gestion des catégories.
-2. Le système affiche les catégories existantes.
-3. L'Administrateur demande la création d'une catégorie.
-4. Le système affiche le formulaire.
-5. L'Administrateur saisit les informations de la catégorie.
-6. L'Administrateur valide le formulaire.
-7. Le système enregistre la catégorie.
-8. Le système affiche la nouvelle catégorie.
+### Fonctionnalité 2 (Exercice) : Ajouter un article
+* **Acteur principal :** Auteur
+* **Fonctionnement brut attendu :** 
+  L'Auteur accède à la page d'ajout d'article. Le système affiche le formulaire. L'Auteur saisit le titre, sélectionne la catégorie et le statut, téléverse une image, rédige le contenu, puis clique sur "Enregistrer l'article". Le système sauvegarde l'article et redirige l'Auteur vers la liste des articles.
 
 *Note : Dans ce tutoriel, on ne décrit que le fonctionnement parfait sans aucune erreur (le scénario nominal).*
 
@@ -49,91 +45,93 @@ Le système étudié est le **Blog**.
 
 ### 1.1. L'anatomie d'un scénario nominal
 
-Un **scénario nominal** raconte l'histoire "parfaite" où le cas d'utilisation se déroule du début à la fin sans la moindre erreur. 
-Pour bien l'encadrer, on utilise trois balises obligatoires :
+Un **scénario nominal** raconte l'histoire "parfaite" où le cas d'utilisation se déroule du début à la fin sans erreur. 
+Il est encadré par trois balises obligatoires :
+1. **Précondition** : L'état requis du système *avant* de commencer. 
+2. **Déclencheur** : L'action précise qui donne le coup d'envoi.
+3. **Résultat attendu** : L'état du système à la toute fin.
 
-1. **La Précondition** : L'état dans lequel doit se trouver le système *avant* de commencer. 
-   *(Ex: L'Administrateur est déjà connecté).*
-2. **Le Déclencheur** : L'action précise qui donne le coup d'envoi.
-   *(Ex: L'Administrateur clique sur "Ajouter").*
-3. **Le Résultat attendu** : L'état dans lequel se trouve le système à la toute fin.
-   *(Ex: La catégorie est enregistrée en base de données).*
+### 1.2. Le dialogue Acteur / Système
 
-### 1.2. L'échange "Ping-Pong" (Acteur / Système)
+Le cœur du scénario décrit les étapes sous la forme d'une alternance stricte (comme un match de ping-pong) : `Action de l'Acteur` ➡️ `Réponse du Système`.
+Chaque ligne doit contenir un verbe d'action précis.
 
-Le cœur du scénario décrit les étapes pas à pas. 
-La **règle d'or** est de rédiger sous la forme d'un match de ping-pong : `Action de l'Acteur` ➡️ `Réponse du Système`.
-
-Chaque phrase doit :
-- Commencer par le nom de l'acteur ou "Le système".
-- Contenir un verbe d'action précis.
-- Être courte et ne faire qu'une seule chose à la fois.
-
-> ❌ **Mauvais exemple (trop vague ou condensé) :**
+> ❌ **Mauvais exemple (trop vague) :**
 > L'Administrateur ouvre la page, tape son titre et le système sauvegarde.
 
-> ✅ **Bon exemple (séparé en étapes claires) :**
+> ✅ **Bon exemple (séparé en étapes) :**
 > 1. L'Administrateur clique sur "Nouvelle catégorie".
 > 2. Le système affiche le formulaire de création.
-> 3. L'Administrateur saisit le titre.
-> 4. L'Administrateur valide.
+> 3. L'Administrateur saisit le titre et valide.
+> 4. Le système enregistre la catégorie.
+
+### 1.3. Exemple complet : Ajouter une catégorie
+
+Voici la formalisation complète de la première fonctionnalité de notre cas d'étude :
+
+- **Cas d'utilisation :** Ajouter une catégorie
+- **Acteur principal :** Administrateur
+- **Précondition :** L'Administrateur est connecté au blog.
+- **Déclencheur :** L'Administrateur souhaite créer une nouvelle catégorie.
+
+**Scénario nominal :**
+1. L'Administrateur accède à la gestion des catégories.
+2. Le système affiche les catégories existantes.
+3. L'Administrateur clique sur le bouton de création.
+4. Le système affiche un formulaire vide.
+5. L'Administrateur saisit les informations et valide.
+6. Le système enregistre la nouvelle catégorie.
+7. Le système affiche la nouvelle catégorie dans la liste.
+
+**Résultat attendu :** La catégorie est sauvegardée et visible dans l'interface de gestion.
+
+*Bonus visuel : Ce dialogue peut être modélisé très efficacement avec un Diagramme de Séquence UML :*
+```mermaid
+sequenceDiagram
+    actor Administrateur
+    participant Systeme as Système
+    Administrateur->>Systeme: Demande l'ajout d'une catégorie
+    Systeme-->>Administrateur: Affiche le formulaire
+    Administrateur->>Systeme: Saisit les informations et valide
+    Systeme-->>Administrateur: Enregistre et affiche la catégorie
+```
 
 ## Partie 2 — Pratique
 
 ### 2.1. Rédiger le scénario nominal
 
-À partir du fonctionnement brut listé dans le **Cas d'étude**, vous devez rédiger le scénario complet et formel de l'ajout d'une catégorie.
-
-> [!TIP]
-> **Conseil de rédaction**
-> Soyez systématique : demandez-vous "Qui fait l'action ?" à chaque ligne. Si c'est l'humain, écrivez "L'Administrateur...". Si c'est l'application qui réagit, écrivez "Le système...".
+À partir du fonctionnement brut de la **Fonctionnalité 2** listée dans le Cas d'étude, vous devez rédiger le scénario complet et formel pour l'ajout d'un article.
 
 **Travail à faire :**
 
-Dans votre document de travail, rédigez le livrable final en respectant scrupuleusement la structure ci-dessous. Remplissez les espaces vides.
+Dans votre document de travail, rédigez le livrable final en respectant scrupuleusement l'anatomie vue en théorie (Précondition, Déclencheur, dialogue Acteur/Système, Résultat).
 
-**Cas d'utilisation :** Ajouter une catégorie
-**Acteur principal :** Administrateur
-**Précondition :** L'Administrateur est connecté au blog.
+**Cas d'utilisation :** Ajouter un article
+**Acteur principal :** Auteur
+**Précondition :** ...
 **Déclencheur :** ...
 
 **Scénario nominal :**
-1. L'Administrateur ...
+1. L'Auteur ...
 2. Le système ...
-3. L'Administrateur ...
-4. Le système ...
-5. L'Administrateur saisit les informations de la catégorie.
-6. L'Administrateur valide le formulaire.
-7. ...
-8. ...
+3. ...
 
 **Résultat attendu :** ...
 
 <button class="btn btn-primary btn-toggle-resultat">Afficher le résultat</button>
-<div class="auto-wrapper tuto-resultat" style="display: none; padding: 20px; border: 1px solid #ddd; border-radius: 8px; margin-top: 15px;">
-<strong>Cas d'utilisation :</strong> Ajouter une catégorie<br>
-<strong>Acteur principal :</strong> Administrateur<br>
-<strong>Précondition :</strong> L'Administrateur est connecté au blog.<br>
-<strong>Déclencheur :</strong> L'Administrateur veut créer une nouvelle catégorie.<br>
-<br>
-<strong>Scénario nominal :</strong><br>
-1. L'Administrateur accède à la gestion des catégories.<br>
-2. Le système affiche les catégories existantes.<br>
-3. L'Administrateur demande la création d'une catégorie.<br>
-4. Le système affiche le formulaire.<br>
-5. L'Administrateur saisit les informations de la catégorie.<br>
-6. L'Administrateur valide le formulaire.<br>
-7. Le système enregistre la catégorie.<br>
-8. Le système affiche la nouvelle catégorie.<br>
-<br>
-<strong>Résultat attendu :</strong> La catégorie est sauvegardée et visible dans l'interface de gestion.
-</div>
+<iframe
+    class="auto-wrapper tuto-resultat"
+    src="{{ '/code/fonctionnalite/tuto-211-113-fonctionnalite.html' | relative_url }}"
+    height="500"
+    title="Résultat attendu">
+</iframe>
 
 ## Bilan
 
 **Vous avez appris :**
 * à définir les bornes d'un scénario (Précondition, Déclencheur, Résultat).
-* à décrire précisément un échange d'étapes (Ping-Pong) entre un acteur et le système.
+* à décrire précisément le dialogue (l'alternance des étapes) entre un acteur et le système.
+* à lire un diagramme de séquence UML modélisant cet échange.
 
 **Vous préparerez ensuite :**
 > les scénarios alternatifs (erreurs et cas particuliers) pour rendre ce cas d'utilisation parfaitement robuste.
@@ -144,3 +142,4 @@ Dans votre document de travail, rédigez le livrable final en respectant scrupul
 * **Précondition** : état requis du système avant de pouvoir démarrer le scénario.
 * **Déclencheur** : l'événement initial qui provoque le démarrage du scénario.
 * **Résultat attendu** : état garanti par le système à la fin du scénario nominal.
+* **Diagramme de Séquence** : Modélisation UML permettant de visualiser chronologiquement les échanges entre les acteurs et le système.
