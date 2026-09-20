@@ -600,6 +600,13 @@ data_css: ""
 
 data_js: ""
 
+> [!WARNING]
+> **Limite de taille des paramètres (2KB max) :**
+> Si le contenu de `data_html`, `data_css`, `data_js` ou `data_php` dépasse environ 2000 caractères, **ne le mettez pas directement dans le Front Matter** (cela ferait planter les paramètres d'URL des iframes). 
+> À la place, créez un fichier externe dans le dossier `code/` (ex: `code/domaine/T.123/depart.html`) et renseignez uniquement ce chemin (en URL relative à la racine) dans le paramètre :
+> `data_html: "/code/domaine/T.123/depart.html"`
+> L'éditeur de code chargera le fichier dynamiquement par AJAX.
+
 ---
 
 **Note d'initialisation de l'éditeur :**
