@@ -87,7 +87,7 @@ Le fichier `categories.json` contient :
         "icone": "Pinceau"
     },
     {
-        "id": "3",
+        "id": 3,
         "nom": "Laravel",
         "couleur": "Bleu",
         "icone": "Code"

@@ -576,6 +576,20 @@ data_js: ""
 
 ---
 
+**Note d'initialisation de l'éditeur :**
+Si le tutoriel contient des données HTML, CSS ou JS dans le front matter (`data_html`, `data_css`, `data_js`), il **faut** initialiser l'éditeur juste avant `## 1. Objectif` en insérant le script suivant :
+
+```html
+<script>
+window.pageData = {
+    html: {{ page.data_html | default: "" | jsonify }},
+    css: {{ page.data_css | default: "" | jsonify }},
+    js: {{ page.data_js | default: "" | jsonify }},
+    php: {{ page.data_php | default: "" | jsonify }}
+};
+</script>
+```
+
 ## 1. Objectif
 
 [Ce que l'apprenant va apprendre.]

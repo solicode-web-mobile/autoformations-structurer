@@ -8,21 +8,6 @@ type: "classique"
 version: "normal"
 ua: "UA.224.11"
 nav_order: 2
-data_html: ""
-data_css: ""
-data_js: ""
----
----
-
-title: "Communiquer avec une API avec Fetch"
-layout: tuto
-slug: "communiquer-api-fetch"
-permalink: /tutos/:slug/
-tuto_id: "T.224.112"
-type: "classique"
-version: "normal"
-ua: "UA.224.11"
-nav_order: 2
 data_html: |
 
   <!DOCTYPE html>
@@ -34,8 +19,6 @@ data_html: |
   </head>
   <body>
       <h1>Catégories</h1>
-
-```
   <button type="button" id="btn-show-form">
       Nouvelle catégorie
   </button>
@@ -92,7 +75,6 @@ data_html: |
       <tbody id="table-categories-body">
       </tbody>
   </table>
-```
 
   </body>
   </html>
@@ -108,8 +90,6 @@ data_js: |
       const inputNom = document.getElementById('cat-nom');
       const selectCouleur = document.getElementById('cat-couleur');
       const selectIcone = document.getElementById('cat-icone');
-
-```
   let ligneEnEdition = null;
 
   btnShowForm.addEventListener('click', () => {
@@ -122,9 +102,18 @@ data_js: |
       inputId.value = '';
       ligneEnEdition = null;
   });
-```
+  });
+---
 
-## });
+
+<script>
+window.pageData = {
+    html: {{ page.data_html | default: "" | jsonify }},
+    css: {{ page.data_css | default: "" | jsonify }},
+    js: {{ page.data_js | default: "" | jsonify }},
+    php: {{ page.data_php | default: "" | jsonify }}
+};
+</script>
 
 ## 1. Objectif
 
