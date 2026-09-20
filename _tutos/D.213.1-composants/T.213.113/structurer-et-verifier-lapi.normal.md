@@ -54,6 +54,31 @@ fetch('https://jsonplaceholder.typicode.com/users')
 ### 1.3. L'architecture Component-Based (N2) complète
 
 Votre architecture est désormais complète :
+
+```mermaid
+flowchart LR
+    subgraph Client ["🖥️ Navigateur (Frontend)"]
+        HTML["index.html"]
+        JS["app.js<br/>(AJAX / fetch)"]
+    end
+    
+    subgraph Serveur ["⚙️ Serveur (Backend)"]
+        PHP["categories.php<br/>(API)"]
+        BDD[("Base de Données")]
+    end
+
+    HTML -- "1. Charge" --> JS
+    JS -- "2. Requête HTTP" --> PHP
+    PHP -. "3. Interroge" .-> BDD
+    PHP -- "4. Réponse (JSON)" --> JS
+    JS -- "5. Injecte HTML (li)" --> HTML
+    
+    style HTML fill:#f0f6ff,stroke:#2673e8,stroke-width:2px,color:#0a2042
+    style JS fill:#fff0b3,stroke:#e6b800,stroke-width:2px,color:#4d3e00
+    style PHP fill:#fff0f0,stroke:#e82626,stroke-width:2px,color:#420a0a
+    style BDD fill:#f9f9f9,stroke:#666,stroke-width:2px
+```
+
 1. Le client charge `index.html`.
 2. Le fichier `app.js` s'exécute et fait un `fetch()` vers `categories.php`.
 3. Le serveur exécute `categories.php` (qui interrogera plus tard la BDD).
