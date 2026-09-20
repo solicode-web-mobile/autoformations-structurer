@@ -51,7 +51,13 @@ document.addEventListener("DOMContentLoaded", function () {
             const languages = ["html", "css", "js", "php"];
             
             languages.forEach(lang => {
-                const content = (language === lang) ? exampleCode : (pageData[lang] || "");
+                let content = (language === lang) ? exampleCode : (pageData[lang] || "");
+                // Si le contenu est un chemin local (/code/...), le transformer en URL HTTP complète
+                // pour que l'éditeur puisse le charger via fetch(), en tenant compte du baseurl Jekyll
+                if (content && content.startsWith("/code/")) {
+                    const baseUrl = (typeof window.__jekyll_baseurl !== "undefined") ? window.__jekyll_baseurl : "";
+                    content = window.location.origin + baseUrl + content;
+                }
                 if (content) params.set(lang, content);
             });
 

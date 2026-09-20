@@ -8,56 +8,20 @@ type: "classique"
 version: "normal"
 ua: "UA.224.11"
 nav_order: 1
-data_html: |
-  <!DOCTYPE html>
-  <html lang="fr">
-  <head>
-      <meta charset="UTF-8">
-      <title>Gestion des catégories</title>
-  </head>
-  <body>
-      <h1>Catégories</h1>
-  <button type="button" id="btn-show-form">
-      Nouvelle catégorie
-  </button>
-  <section id="section-form" hidden>
-      <h2>Ajouter une catégorie</h2>
-      <form id="form-categorie">
-          <div>
-              <label for="cat-nom">Nom</label>
-              <input type="text" id="cat-nom" required>
-          </div>
-          <div>
-              <label for="cat-couleur">Couleur</label>
-              <select id="cat-couleur" required>
-                  <option value="">Choisir</option>
-                  <option value="Bleu">Bleu</option>
-                  <option value="Rose">Rose</option>
-                  <option value="Émeraude">Émeraude</option>
-                  <option value="Violet">Violet</option>
-              </select>
-          </div>
-          <button type="submit">Enregistrer</button>
-          <button type="button" id="btn-cancel-form">Annuler</button>
-      </form>
-  </section>
-  <h2>Liste des catégories</h2>
-  <table>
-      <thead>
-          <tr>
-              <th>Nom</th>
-              <th>Couleur</th>
-              <th>Actions</th>
-          </tr>
-      </thead>
-      <tbody id="table-categories-body">
-      </tbody>
-  </table>
-  </body>
-  </html>
+data_html: "/code/spa/T.224.111/depart.html"
 data_css: ""
 data_js: ""
 ---
+
+<script>
+window.pageData = {
+    html: {{ page.data_html | default: "" | jsonify }},
+    css: {{ page.data_css | default: "" | jsonify }},
+    js: {{ page.data_js | default: "" | jsonify }},
+    php: {{ page.data_php | default: "" | jsonify }}
+};
+</script>
+
 
 ## 1. Objectif
 
