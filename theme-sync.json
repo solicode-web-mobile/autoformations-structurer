@@ -22,7 +22,10 @@
     "_layouts/prototype.html",
     "_layouts/session.html",
     "_layouts/tuto.html",
-    "_layouts/ua.html"
+    "_layouts/ua.html",
+    "push_theme.ps1",
+    "pull_theme.ps1",
+    "theme-sync.json"
   ],
   "exclude": []
 }
