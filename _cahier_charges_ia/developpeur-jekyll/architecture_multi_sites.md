@@ -1,57 +1,67 @@
 # Architecture Multi-Sites pour Plateforme d'Autoformation (N1, N2, N3)
 
 ## 📌 Contexte et Problématique
-Nous disposons de trois versions du site d'autoformation (Niveau 1, Niveau 2, Niveau 3). 
-* **Ce qui diffère :** Chaque site possède son propre contenu (collections : `_missions`, `_tutos`, `_projets`, etc.) **ET des layouts spécifiques à ses propres domaines de compétence** (ex: pour l'affichage des résultats de tutos).
-* **Ce qui est commun :** Les trois sites partagent le socle de base, la logique métier, les fonctionnalités principales (layouts globaux, JS partagé, CSS de base) et utilisent le thème "Just the Docs".
+Vous développez trois sites d'autoformation (Niveau 1, Niveau 2, Niveau 3) qui partagent une base technique commune (layouts globaux, JS, CSS) mais ont leurs propres collections (`_tutos`, etc.) et layouts spécifiques.
 
-**Objectif :** Centraliser le code commun pour éviter la duplication tout en conservant l'indépendance du contenu et des spécificités d'affichage de chaque niveau, en respectant les principes de simplicité du développement Jekyll.
+**Contrainte majeure de développement :** 
+L'utilisation d'un agent IA pour le développement nécessite que les fichiers partagés (CSS, JS, Layouts) soient **accessibles et modifiables localement** au sein du site en cours de développement (N1, N2 ou N3). L'agent a besoin de modifier un fichier local et de voir le résultat immédiatement. L'approche classique (`remote_theme`) ralentit ce flux de travail car elle impose de publier le thème avant de voir le résultat sur le site.
+
+**Objectif :** Trouver une architecture qui favorise le "Local-First" pour l'IA, tout en permettant de centraliser et de distribuer les mises à jour du socle commun sur les trois sites de manière versionnée.
 
 ---
 
-## 💡 Architecture Retenue : Le "Remote Theme"
+## 💡 Architecture Retenue : "Local-First" & Synchronisation Scriptée (Push/Pull)
 
-L'architecture s'appuie sur le système de thème distant (`remote_theme`) natif à Jekyll. Cette approche permet de séparer complètement le socle technique commun du contenu pédagogique spécifique à chaque site.
+Pour répondre à ce besoin, l'architecture abandonne le concept de `remote_theme` au profit d'une approche **"Développement Local + Synchronisation Centralisée"**. 
 
-### Le Modèle de Répartition
+Chaque site (N1, N2, N3) possède **sa propre copie physique** des layouts et assets. Un dépôt central "Core" agit comme la source de vérité, et la mise à jour se fait via des scripts d'automatisation.
 
-1. **Le Dépôt Central (Thème)** : Un nouveau dépôt dédié (ex: `autoformations-theme`) regroupe tous les éléments partagés : les dossiers `_layouts` globaux, `_includes`, `assets` (CSS, JS) et `_sass`. Il sert de surcouche centralisée pour "Just the Docs".
-2. **Les Dépôts Locaux (N1, N2, N3)** : Les dépôts de chaque niveau sont allégés. Ils ne contiennent plus que la matière pédagogique (collections `_tutos`, `_missions`, etc.), leur configuration (`_config.yml`, `_data/`), ainsi que **leurs layouts spécifiques** (ex: `_layouts/resultat-frontend.html` pour un domaine de compétence précis).
+### Le Fonctionnement
 
-### L'Avantage de la Surcharge Native (Overriding)
-La force de cette architecture réside dans le fonctionnement en cascade de Jekyll. Lors de la compilation d'un site (ex: N1), Jekyll cherche d'abord les fichiers (layouts, includes) dans le dépôt local. S'il ne les trouve pas, il les récupère depuis le dépôt central (`autoformations-theme`). 
-Cela garantit :
-* Zéro duplication pour le code partagé (mis à jour à un seul endroit).
-* Une flexibilité totale pour gérer des affichages spécifiques aux domaines de compétence de chaque site.
+1. **Le Dépôt "Theme Core"** : Un dépôt Git (ou dossier parent) qui sert uniquement d'archive versionnée pour le socle commun (layouts génériques, `base.css`, `formation.js`, etc.).
+2. **Développement Local (L'IA au travail)** : L'agent IA travaille par exemple sur N1. Il modifie directement `N1/assets/css/base.css` ou `N1/_layouts/default.html`. L'effet est immédiat via le `jekyll serve` local.
+3. **Le Script `push_theme`** : Une fois la fonctionnalité finalisée sur N1, vous (ou l'agent) exécutez un script `push_theme`. Ce script copie les fichiers communs de N1 vers le dépôt "Theme Core", crée un commit, et ajoute un tag de version (ex: `v1.2.0`).
+4. **Le Script `pull_theme`** : Pour mettre à jour N2 et N3, vous ouvrez ces projets et lancez `pull_theme`. Le script télécharge la dernière version (ou une version spécifique) depuis "Theme Core" et écrase les fichiers communs locaux (tout en préservant les layouts spécifiques aux domaines).
+
+---
+
+## 🛠️ Avantages de cette solution
+
+* **Flexibilité maximale pour l'IA :** Les fichiers sont tous présents dans le projet, l'IA peut analyser le code existant (CSS/JS) facilement et le modifier en temps réel.
+* **Résultat immédiat :** Pas de temps de latence de déploiement lié aux thèmes distants.
+* **Versionning contrôlé :** Grâce aux numéros de version, vous savez exactement quelle version du socle technique est déployée sur N1, N2 ou N3.
+* **Zéro friction avec Jekyll et GitHub Pages :** Les sites N1, N2, N3 sont des sites Jekyll standards parfaitement lisibles par GitHub Pages sans plugin supplémentaire.
 
 ---
 
 ## 🚀 Plan de Mise en Œuvre
 
-### 1. Création du Dépôt Thème (`autoformations-theme`)
-- Extraire et transférer les dossiers `_layouts/` globaux, `_includes/`, `assets/`, et `_sass/` vers ce nouveau dépôt.
-- S'assurer que le thème inclut ou déclare correctement les dépendances de "Just the Docs".
+### 1. Définition du périmètre commun
+Il est indispensable de définir strictement la liste des fichiers/dossiers qui font partie du socle commun (qui seront synchronisés) et ceux qui sont spécifiques au site (qui seront ignorés).
+* **Synchronisés :** `_includes/`, `assets/css/base.css`, `assets/js/`, `_layouts/default.html`, `_layouts/page.html`...
+* **Ignorés (Locaux) :** `_layouts/resultat-frontend.html` (spécifique), `_tutos/`, `_missions/`, `_data/`, `_config.yml`.
 
-### 2. Nettoyage et Adaptation des Dépôts N1, N2, N3
-- Supprimer les éléments désormais centralisés (layouts génériques, includes, assets).
-- Conserver de manière stricte :
-  - Les dossiers de collections (ex: `_missions/`, `_tutos/`).
-  - Les pages racines (`index.md`).
-  - Le dossier `_data/`.
-  - Le dossier `_layouts/`, qui ne doit désormais contenir **que** les layouts spécifiques aux domaines de compétence du niveau concerné.
+### 2. Création du dépôt "Theme Core"
+Créer un dépôt Git vierge `autoformations-core-theme`. Ce dépôt n'est pas un site Jekyll exécutable, juste une bibliothèque de fichiers.
 
-### 3. Configuration des Sites
-Dans les fichiers `_config.yml` de N1, N2 et N3, ajouter l'appel au thème partagé :
+### 3. Développement des scripts de synchronisation (Node.js ou Powershell)
+Développer deux scripts utilitaires (qui pourront être placés à la racine de chaque projet ou installés globalement) :
 
-```yaml
-plugins:
-  - jekyll-remote-theme
+#### Script `push_theme`
+- Copie la liste stricte des fichiers communs du dossier local vers le dossier `autoformations-core-theme`.
+- Effectue un `git commit` sur le Core avec un message automatique.
+- Ajoute un `git tag` avec le numéro de version (passé en argument).
+- Fait un `git push`.
 
-remote_theme: "organisation/autoformations-theme" # À adapter avec le nom réel de l'organisation et du dépôt
-```
+#### Script `pull_theme`
+- Fait un `git pull` sur le dépôt Core (ou un `git checkout` d'un tag spécifique).
+- Copie les fichiers du Core vers le projet local (en écrasant les anciens).
+- Affiche un rapport des fichiers mis à jour.
 
-### 4. Déploiement sur GitHub Pages
-Cette architecture est pleinement compatible avec l'hébergement GitHub Pages.
-
-- **Si le dépôt `autoformations-theme` est public** : GitHub Pages récupérera le thème nativement sans configuration supplémentaire.
-- **Si le dépôt `autoformations-theme` est privé** : Le build classique de GitHub Pages n'aura pas les droits d'accès. Il sera nécessaire de déployer les sites N1, N2, N3 via des workflows **GitHub Actions**. Ces workflows devront être configurés avec un jeton d'accès personnel (*Personal Access Token*) permettant de lire le dépôt privé du thème lors de la compilation.
+### 4. Flux de travail de l'IA (Workflow)
+- L'IA implémente une fonctionnalité sur N1.
+- Vous testez et validez.
+- Vous demandez à l'IA : "Pousse cette mise à jour avec la version 1.3".
+- L'IA exécute `./push_theme.ps1 -Version "1.3.0"`.
+- Vous passez sur N2 et demandez : "Mets à jour le thème".
+- L'IA exécute `./pull_theme.ps1`. N2 est à jour.

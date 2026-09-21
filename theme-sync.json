@@ -1,0 +1,12 @@
+{
+  "sync_directories": [
+    "_includes",
+    "assets/css",
+    "assets/js",
+    "_layouts"
+  ],
+  "sync_files": [],
+  "exclude": [
+    "_layouts/resultat-*.html"
+  ]
+}
