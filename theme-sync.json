@@ -2,7 +2,16 @@
   "sync_directories": [
     "_includes",
     "assets/css",
-    "assets/js"
+    "assets/js",
+    ".agent/skills/developpeur-jekyll",
+    ".agent/skills/gestionnaire-theme-core",
+    ".agent/skills/edition-skills",
+    ".agent/skills/mermaid-expert",
+    ".agent/skills/rédacteur-tutos",
+    ".agent/skills/simplificateur-tutos",
+    ".agent/skills/créateur-exemple-tuto",
+    ".agent/skills/generateur-resultats-tutos",
+    ".agent/skills/generateur-structure-cours"
   ],
   "sync_files": [
     "_layouts/default.html",
