@@ -2,13 +2,24 @@ param (
     [string]$Version = ""
 )
 
+[Console]::OutputEncoding = [System.Text.Encoding]::UTF8
+
 $currentDir = Get-Location
 $coreThemeDir = Join-Path (Split-Path $currentDir -Parent) "autoformations-core-theme"
 $configFile = Join-Path $currentDir "theme-sync.json"
 
 if (!(Test-Path $coreThemeDir)) {
-    Write-Host "Erreur : Le dépôt central introuvable ($coreThemeDir)" -ForegroundColor Red
-    exit 1
+    Write-Host "Le dépôt central est introuvable. Clonage en cours depuis GitHub..." -ForegroundColor Yellow
+    $parentDir = Split-Path $currentDir -Parent
+    Set-Location $parentDir
+    git clone https://github.com/solicode-web-mobile/autoformations-core-theme.git
+    Set-Location $currentDir
+    
+    if (!(Test-Path $coreThemeDir)) {
+        Write-Host "Erreur : Le clonage a échoué. Impossible de continuer." -ForegroundColor Red
+        exit 1
+    }
+    Write-Host "Clonage terminé avec succès." -ForegroundColor Green
 }
 
 if (!(Test-Path $configFile)) {
