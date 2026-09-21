@@ -2,11 +2,18 @@
   "sync_directories": [
     "_includes",
     "assets/css",
-    "assets/js",
-    "_layouts"
+    "assets/js"
   ],
-  "sync_files": [],
-  "exclude": [
-    "_layouts/resultat-*.html"
-  ]
+  "sync_files": [
+    "_layouts/default.html",
+    "_layouts/page.html",
+    "_layouts/competences.html",
+    "_layouts/domaines.html",
+    "_layouts/missions.html",
+    "_layouts/prototype.html",
+    "_layouts/session.html",
+    "_layouts/tuto.html",
+    "_layouts/ua.html"
+  ],
+  "exclude": []
 }

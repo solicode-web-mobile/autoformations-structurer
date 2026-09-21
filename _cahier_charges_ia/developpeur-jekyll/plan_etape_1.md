@@ -40,27 +40,22 @@ Pour que les scripts sachent quoi synchroniser, la meilleure pratique est de cr√
 ```json
 {
   "sync_directories": [
-    "_includes"
+    "_includes",
+    "assets/css",
+    "assets/js"
   ],
   "sync_files": [
-    "assets/css/base.css",
-    "assets/css/mission.css",
-    "assets/css/tuto.css",
-    "assets/css/ua.css",
-    "assets/css/session.css",
-    "assets/js/formation.js",
-    "assets/js/afficher-editor.js",
-    "assets/js/code-to-iframe.js",
     "_layouts/default.html",
     "_layouts/page.html",
+    "_layouts/competences.html",
+    "_layouts/domaines.html",
     "_layouts/missions.html",
+    "_layouts/prototype.html",
+    "_layouts/session.html",
     "_layouts/tuto.html",
-    "_layouts/ua.html",
-    "_layouts/session.html"
+    "_layouts/ua.html"
   ],
-  "exclude": [
-    "_layouts/resultat-*.html"
-  ]
+  "exclude": []
 }
 ```
 
