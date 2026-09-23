@@ -43,7 +43,14 @@
             <span class="text-[10px] sm:text-xs px-2 py-0.5 bg-blue-100 text-blue-700 rounded-full font-medium">PHP 8.2 & Web</span>
         </div>
         
-        <div class="flex space-x-2">
+        <div class="flex space-x-3 items-center">
+            <!-- Toggle Auto-Run -->
+            <label class="flex items-center space-x-1 cursor-pointer" title="Activer/Désactiver l'exécution automatique à la fin de la saisie">
+                <input type="checkbox" x-model="$store.editor.autoRun" class="form-checkbox h-3.5 w-3.5 text-spartel-orange rounded-sm border-gray-300">
+                <span class="text-[10px] sm:text-xs text-gray-600 font-medium select-none">Auto-Run</span>
+            </label>
+
+            <!-- Reset Button -->
             <button 
                 @click="if(confirm('Voulez-vous vraiment réinitialiser tout le code de cet exercice ?')) $dispatch('reset-editor')"
                 class="px-2 py-1.5 sm:px-3 text-xs font-medium text-gray-600 bg-gray-200 rounded hover:bg-gray-300 transition-colors flex items-center"
@@ -51,13 +58,14 @@
                 <svg class="w-4 h-4 sm:mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
                 <span class="hidden sm:inline">Réinitialiser</span>
             </button>
+
+            <!-- Run Button (Universel) -->
             <button 
-                x-show="hasPhp"
-                @click="runPhp"
+                @click="['php', 'index.php'].includes(window.currentTabId) ? runPhp() : $dispatch('request-code-execution')"
                 :disabled="isLoading"
                 :class="isLoading ? 'bg-orange-400 cursor-not-allowed' : 'bg-spartel-orange hover:bg-orange-600'"
                 class="px-2 py-1.5 sm:px-3 text-xs font-medium text-white rounded shadow transition-colors flex items-center"
-                title="Exécuter PHP">
+                title="Exécuter le code">
                 <!-- Icône Play -->
                 <svg x-show="!isLoading" class="w-4 h-4 sm:mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                 <!-- Spinner Chargement -->
@@ -65,7 +73,7 @@
                   <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                   <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                 </svg>
-                <span class="hidden sm:inline" x-text="buttonText">Exécuter PHP</span>
+                <span class="hidden sm:inline" x-text="['php', 'index.php'].includes(window.currentTabId) ? buttonText : 'Exécuter'">Exécuter</span>
             </button>
         </div>
     </header>
