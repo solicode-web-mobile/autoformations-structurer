@@ -27,6 +27,13 @@ Les nœuds peuvent avoir différentes formes définies par les caractères qui e
 - Parallélogramme : `id1[/Texte/]` (ou `[\Texte\]`)
 - Trapèze : `id1[/Texte\]` (ou `[\Texte/]`)
 
+### Nouvelle syntaxe unifiée (v11.3+)
+Mermaid permet désormais d'assigner une forme avec la syntaxe `@{}`, ce qui donne accès à de nombreuses nouvelles formes sémantiques (comme `cloud`, `doc`, `folder`, `db`, `win-pane`, etc.) :
+```mermaid
+A["Texte du nœud"]@{ shape: cloud }
+B["Autre nœud"]@{ shape: doc }
+```
+
 ## 3. Liens (Links)
 Pour relier les nœuds :
 - Ligne continue avec flèche : `A --> B`
