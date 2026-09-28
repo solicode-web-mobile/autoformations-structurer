@@ -1,0 +1,23 @@
+usecase-beta
+direction LR
+actor User("Développeur / Apprenant")
+
+systemBoundary "Système Éditeur de Code In-Browser"
+  EditCode("Éditer le code HTML, CSS, JS et PHP")
+  Preview("Prévisualiser le rendu web en temps réel")
+  ExecutePHP("Exécuter le code PHP (WebAssembly)")
+  ViewConsoleJS("Voir les logs console JS")
+  ViewConsolePHP("Voir la sortie terminal PHP")
+  Reset("Réinitialiser le bac à sable")
+  ToggleAutoRun("Activer/Désactiver l'exécution automatique")
+  ManualRun("Exécuter le code manuellement")
+end
+
+User -- EditCode
+User -- Preview
+User -- ExecutePHP
+User -- ViewConsoleJS
+User -- ViewConsolePHP
+User -- Reset
+User -- ToggleAutoRun
+User -- ManualRun

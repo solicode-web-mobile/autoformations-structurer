@@ -137,22 +137,45 @@ function initMonacoEditor() {
             }
         });
         
-        // (Préparation pour Sprint 3 & 4) Diffuser les changements de code
-        monacoEditorInstance.onDidChangeModelContent(() => {
-            const currentCode = monacoEditorInstance.getValue();
-            // Mettre à jour les données locales en temps réel pour le Live Preview
-            window.exerciseData[currentTabId] = currentCode;
-            
-            if (currentTabId === 'index.php') {
-                document.dispatchEvent(new CustomEvent('request-php-execution'));
-            }
-            
+        // Debounce timer pour l'exécution automatique
+        let debounceTimer;
+
+        // Écouter l'événement d'exécution manuelle globale (HTML/CSS/JS)
+        document.addEventListener('request-code-execution', () => {
             document.dispatchEvent(new CustomEvent('editor-code-changed', {
                 detail: { 
                     tabId: currentTabId, 
-                    code: currentCode 
+                    code: window.exerciseData[currentTabId]
                 }
             }));
+        });
+
+        // (Préparation pour Sprint 3 & 4) Diffuser les changements de code
+        monacoEditorInstance.onDidChangeModelContent(() => {
+            const currentCode = monacoEditorInstance.getValue();
+            // Mettre à jour les données locales en temps réel (sans exécuter)
+            window.exerciseData[currentTabId] = currentCode;
+            
+            // Si Alpine existe et que l'auto-run est désactivé, on ne déclenche pas le refresh
+            if (window.Alpine && window.Alpine.store('editor') && !window.Alpine.store('editor').autoRun) {
+                return;
+            }
+            
+            // Logique de Debounce (800ms) pour ne pas figer le navigateur
+            if (debounceTimer) clearTimeout(debounceTimer);
+            
+            debounceTimer = setTimeout(() => {
+                if (currentTabId === 'index.php') {
+                    document.dispatchEvent(new CustomEvent('request-php-execution'));
+                } else {
+                    document.dispatchEvent(new CustomEvent('editor-code-changed', {
+                        detail: { 
+                            tabId: currentTabId, 
+                            code: currentCode 
+                        }
+                    }));
+                }
+            }, 800);
         });
 
         // --- Sprint 6 : Ajustement Dynamique de la Hauteur sur Mobile ---
