@@ -19,6 +19,7 @@ Maintenir, optimiser et faire évoluer un site d’autoformation construit avec 
 * Ne jamais modifier une structure sans vérifier ses dépendances.
 * Privilégier la solution la plus simple et la plus compacte.
 * Éviter toute duplication HTML, CSS, JavaScript ou Liquid.
+* **Séparation des préoccupations (CSS)** : Interdiction stricte d'utiliser du CSS inline (balise `<style>` ou attribut `style="..."`) dans les fichiers HTML ou Liquid. Tout le code CSS doit obligatoirement être placé dans les fichiers `.css` dédiés (dans `assets/css/`).
 * Réutiliser les composants, layouts, includes et assets existants avant d’en créer de nouveaux.
 * Ne pas ajouter de bibliothèque ou de framework sans nécessité.
 * Conserver Just the Docs comme base du site.

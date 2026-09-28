@@ -1,5 +1,6 @@
 {% assign current_ua = site.uas | where: "code", page.ua | first %}
 {% assign current_domaine_code = page.domaine | default: current_ua.domaine %}
+{% assign current_domaine = site.domaines | where: "code", current_domaine_code | first %}
 {% assign domaine_uas = site.uas | where: "domaine", current_domaine_code %}
 
 {% if domaine_uas.size > 0 %}
@@ -9,6 +10,12 @@
     <span class="tuto-domain-menu-icon">▼</span>
   </summary>
   <div class="tuto-domain-menu-content">
+    {% if current_domaine %}
+    <div class="tuto-domain-header">
+      <h4>{{ current_domaine.title }}</h4>
+      <span class="tuto-domain-badge">{{ current_domaine.mini-code | capitalize }}</span>
+    </div>
+    {% endif %}
     {% for dom_ua in domaine_uas %}
       {% assign dom_tutos = site.tutos | where: "ua", dom_ua.code | where: "version", "normal" | sort: "nav_order" %}
       {% if dom_tutos.size > 0 %}
