@@ -149,6 +149,7 @@ data_js: |
           ligneEnEdition = null;
       });
   });
+en_construction: true
 ---
 
 <script>

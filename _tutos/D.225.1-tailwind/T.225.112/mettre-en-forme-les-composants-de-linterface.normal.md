@@ -11,6 +11,7 @@ nav_order: 2
 data_html: "/code/tailwind/T.225.112/depart.html"
 data_css: ""
 data_js: ""
+simplified: true
 ---
 
 <script>

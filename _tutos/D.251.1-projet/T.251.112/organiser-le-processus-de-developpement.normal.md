@@ -11,6 +11,7 @@ nav_order: 2
 data_html: ""
 data_css: ""
 data_js: ""
+simplified: true
 ---
 
 ## 1. Objectif

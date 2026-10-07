@@ -7,6 +7,7 @@ tuto_id: "T.201.213"
 version: "compact"
 ua: "UA.201.21"
 nav_order: 3
+simplified: true
 ---
  
 ## 1. Objectif
