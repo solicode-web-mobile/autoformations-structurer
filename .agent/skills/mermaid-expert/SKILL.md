@@ -20,6 +20,7 @@ Les règles syntaxiques et modèles de base pour les diagrammes supportés sont 
 * [Syntaxe des Diagrammes de Flux (Flowchart)](file:///d:/solicode-web-mobile/autoformations-structurer/.agent/skills/mermaid-expert/capacites/flowchart.md)
 
 ## Directives de génération
-* Toujours englober le code généré dans un bloc de code markdown avec l'identifiant `mermaid`.
+* **Règle absolue de rendu** : Ne JAMAIS placer un fragment de code incomplet, invalide ou vide (ex: juste un mot-clé comme `classDiagram`) dans un bloc ````mermaid````. Le code ````mermaid```` est exécuté par le navigateur et plantera la page. Pour montrer un mot-clé isolé à des fins pédagogiques, utiliser toujours ````text````.
+* Toujours englober le code final et valide généré dans un bloc de code markdown avec l'identifiant `mermaid`.
 * Privilégier les directions `LR` (Left to Right) pour les architectures et `TB` (Top to Bottom) pour les arbres de décision.
 * Citer l'utilisation du skill `mermaid-expert` à la fin de chaque réponse.

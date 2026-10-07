@@ -1,11 +1,16 @@
-{% if include.tutos and include.tutos.size > 0 %}
+{% assign filtered_tutos = include.tutos %}
+{% unless site.show_construction %}
+  {% assign filtered_tutos = filtered_tutos | where_exp: "item", "item.en_construction != true" %}
+{% endunless %}
+
+{% if filtered_tutos and filtered_tutos.size > 0 %}
 
   <div class="tuto-list">
 
     {% assign displayed_tutos = "" | split: "" %}
     {% assign tuto_counter = 0 %}
 
-    {% for tuto in include.tutos %}
+    {% for tuto in filtered_tutos %}
 
       {% unless displayed_tutos contains tuto.tuto_id %}
 
@@ -13,7 +18,7 @@
         {% assign tuto_counter = tuto_counter | plus: 1 %}
 
         {% assign tuto_versions =
-          include.tutos
+          filtered_tutos
           | where: "tuto_id", tuto.tuto_id
         %}
 

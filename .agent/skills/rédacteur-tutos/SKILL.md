@@ -746,6 +746,8 @@ ua: "UA.XXX.XX"
 
 nav_order: 1
 
+en_construction: true
+
 data_html: |
   <!DOCTYPE html>
   <html lang="fr">
@@ -787,6 +789,8 @@ ua: "UA.XXX.XX"
 
 nav_order: 1
 
+en_construction: true
+
 data_html: |
   <!DOCTYPE html>
   <html lang="fr">
@@ -827,6 +831,8 @@ version: "detaille"
 ua: "UA.XXX.XX"
 
 nav_order: 1
+
+en_construction: true
 
 data_html: |
   <!DOCTYPE html>

@@ -100,9 +100,14 @@ layout: default
 
   <main class="tuto-content">
 
-    {% if page.en_construction %}
+    {% if page.en_construction and site.show_construction != true %}
       <p>🚧 <strong>Ce tutoriel est en cours de construction.</strong> Son contenu sera disponible prochainement.</p>
     {% else %}
+      {% if page.en_construction %}
+        <div class="banner-construction" style="background: #fff3cd; color: #856404; padding: 15px; margin-bottom: 25px; border-radius: 6px; border: 1px solid #ffeeba;">
+          🚧 <strong>Mode Conception actif</strong> : Ce tutoriel est marqué "en construction". Son contenu vous est affiché pour révision.
+        </div>
+      {% endif %}
       {{ content }}
     {% endif %}
 
