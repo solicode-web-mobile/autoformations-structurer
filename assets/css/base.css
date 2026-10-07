@@ -78,6 +78,11 @@
   width: 350px !important;
 }
 
+
+
+.site-header {
+  width: 100% !important;
+}
 @media (min-width: 50rem) {
 
   /* Ajuster la marge pour correspondre Ã  la largeur de la sidebar (350px) 
@@ -516,4 +521,57 @@ a:focus-visible {
   max-height: none !important;
 }
 
+/* =========================================================
+   14. SIDEBAR TOGGLE
+   ========================================================= */
 
+.sidebar-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.4rem;
+  border: none;
+  border-radius: 0.35rem;
+  background: transparent;
+  cursor: pointer;
+  color: #6b7280;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.sidebar-toggle-btn:hover {
+  background: #f3f4f6;
+  color: #111827;
+}
+
+.sidebar-toggle-btn:active {
+  background: #e5e7eb;
+}
+
+.sidebar-toggle-btn:focus-visible {
+  outline: 2px solid #7253ed;
+  outline-offset: 2px;
+}
+
+/* Animations for sidebar and main content */
+.side-bar {
+  transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.main {
+  transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.no-transition {
+  transition: none !important;
+}
+
+@media (min-width: 50rem) {
+  .side-bar.sidebar-hidden {
+    margin-left: -350px !important;
+  }
+  
+  .main.sidebar-hidden-main,
+  .side-bar.sidebar-hidden + .main {
+    margin-left: 0 !important;
+  }
+}

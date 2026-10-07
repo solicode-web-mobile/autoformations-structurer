@@ -1,0 +1,57 @@
+{% assign vals = include.values | split: ',' %}
+{% assign total = vals.size %}
+{% assign svg_width = total | times: 90 | plus: 120 %}
+
+<div class="algo-svg-container">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {{ svg_width }} 160" class="algo-svg" width="{{ svg_width }}">
+  <defs>
+    <!-- Ombre douce pour les boîtes normales -->
+    <filter id="algo-shadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-opacity="0.06" flood-color="#111827" />
+    </filter>
+    <!-- Ombre colorée pour l'élément en surbrillance -->
+    <filter id="algo-shadow-hl" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-opacity="0.25" flood-color="#7253ed" />
+    </filter>
+    <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#d1d5db" />
+    </marker>
+  </defs>
+  
+  <!-- Titre optionnel -->
+  {% if include.title %}
+  <text x="{{ svg_width | divided_by: 2 }}" y="25" class="algo-svg-label algo-svg-label-center">
+    {{ include.title }} {% if include.name %}({{ include.name }}){% endif %}
+  </text>
+  {% endif %}
+
+  <!-- Labels de lignes -->
+  <text x="90" y="60" class="algo-svg-label algo-svg-label-end">INDEX</text>
+  <text x="90" y="125" class="algo-svg-label algo-svg-label-end">VALEUR</text>
+
+  <!-- Éléments du tableau -->
+  {% for val in vals %}
+    {% assign cx = forloop.index0 | times: 90 | plus: 150 %}
+    {% assign rect_x = cx | minus: 30 %}
+    
+    {% capture current_idx %}{{ forloop.index0 }}{% endcapture %}
+    {% assign is_hl = false %}
+    {% capture highlight_str %}{{ include.highlight }}{% endcapture %}
+    {% if include.highlight and current_idx == highlight_str %}
+      {% assign is_hl = true %}
+    {% endif %}
+
+    <!-- Index -->
+    <text x="{{ cx }}" y="60" class="algo-svg-idx {% if is_hl %}algo-svg-hl-idx{% endif %}">{{ forloop.index0 }}</text>
+    
+    <!-- Arrow -->
+    <line x1="{{ cx }}" y1="72" x2="{{ cx }}" y2="82" class="algo-svg-arrow" />
+    
+    <!-- Box -->
+    <rect x="{{ rect_x }}" y="90" width="60" height="46" filter="url({% if is_hl %}#algo-shadow-hl{% else %}#algo-shadow{% endif %})" class="algo-svg-box {% if is_hl %}algo-svg-hl-box{% endif %}" />
+    
+    <!-- Value -->
+    <text x="{{ cx }}" y="120" class="algo-svg-val {% if is_hl %}algo-svg-hl-text{% endif %}">{{ val | strip }}</text>
+  {% endfor %}
+</svg>
+</div>

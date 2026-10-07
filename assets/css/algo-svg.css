@@ -1,0 +1,83 @@
+/* =========================================================
+   COMPOSANT : ARRAY SVG (algo-svg)
+   ========================================================= */
+
+.algo-svg-container {
+  overflow-x: auto;
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.algo-svg {
+  max-width: 100%;
+  height: auto;
+}
+
+.algo-svg-idx {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 14px;
+  font-weight: 600;
+  fill: #6b7280;
+  text-anchor: middle;
+}
+
+.algo-svg-box {
+  fill: #ffffff;
+  stroke: #e5e7eb;
+  stroke-width: 1.5px;
+  rx: 6px;
+  transition: all 0.2s ease;
+}
+
+.algo-svg-box:hover {
+  stroke: #c4b5fd;
+  fill: #f9f5ff;
+}
+
+.algo-svg-val {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 18px;
+  font-weight: 700;
+  fill: #1f2937;
+  text-anchor: middle;
+}
+
+.algo-svg-arrow {
+  stroke: #d1d5db;
+  stroke-width: 1.5px;
+}
+
+.algo-svg-label {
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  fill: #9ca3af;
+  letter-spacing: 0.05em;
+}
+
+.algo-svg-label-center {
+  text-anchor: middle;
+}
+
+.algo-svg-label-end {
+  text-anchor: end;
+}
+
+.algo-svg-hl-box {
+  fill: #7253ed;
+  stroke: #7253ed;
+}
+
+.algo-svg-hl-box:hover {
+  fill: #6042d3;
+  stroke: #6042d3;
+}
+
+.algo-svg-hl-text {
+  fill: #ffffff;
+}
+
+.algo-svg-hl-idx {
+  fill: #7253ed;
+  font-weight: 700;
+}

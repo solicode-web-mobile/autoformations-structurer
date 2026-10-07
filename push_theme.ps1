@@ -58,25 +58,25 @@ foreach ($file in $config.sync_files) {
     }
 }
 
-Write-Host "Synchronisation Git sur le Core Theme..." -ForegroundColor Cyan
-Set-Location $coreThemeDir
+# Write-Host "Synchronisation Git sur le Core Theme..." -ForegroundColor Cyan
+# Set-Location $coreThemeDir
 
-$gitStatus = git status --porcelain
-if ([string]::IsNullOrWhiteSpace($gitStatus)) {
-    Write-Host "Aucune modification détectée dans le Core Theme." -ForegroundColor Yellow
-} else {
-    git add .
-    git commit -m "Mise à jour du socle commun depuis $(Split-Path $currentDir -Leaf)"
+# $gitStatus = git status --porcelain
+# if ([string]::IsNullOrWhiteSpace($gitStatus)) {
+#     Write-Host "Aucune modification détectée dans le Core Theme." -ForegroundColor Yellow
+# } else {
+#     git add .
+#     git commit -m "Mise à jour du socle commun depuis $(Split-Path $currentDir -Leaf)"
     
-    if ($Version) {
-        git tag $Version
-        Write-Host "Tag $Version ajouté." -ForegroundColor Green
-        git push origin HEAD --tags
-    } else {
-        git push origin HEAD
-    }
-    Write-Host "Push Git terminé." -ForegroundColor Green
-}
+#     if ($Version) {
+#         git tag $Version
+#         Write-Host "Tag $Version ajouté." -ForegroundColor Green
+#         git push origin HEAD --tags
+#     } else {
+#         git push origin HEAD
+#     }
+#     Write-Host "Push Git terminé." -ForegroundColor Green
+# }
 
 Set-Location $currentDir
 Write-Host "push_theme terminé avec succès !" -ForegroundColor Green

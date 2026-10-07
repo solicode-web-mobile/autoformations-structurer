@@ -2,142 +2,93 @@
 layout: default
 ---
 
-<div class="tuto-page layout-page">
+<div class="tuto-layout-wrapper">
+  
+  <div class="tuto-main-column">
+    <div class="tuto-page layout-page">
+      
+      {% include tuto-nav-logic.html %}
 
-  <!-- ==================================================
-       EN-TÊTE
-       ================================================== -->
+      <div class="tuto-topbar">
+        <div class="tuto-topbar-left">
+          {% if page.tuto_id %}
+          <span class="tuto-code">
+            <span class="tuto-code-badge">{{ page.tuto_id }}</span>
+            <span class="tuto-domain-name">
+              {% assign current_ua_header = site.uas | where: "code", page.ua | first %}
+              {% assign current_domaine_code_header = page.domaine | default: current_ua_header.domaine %}
+              {% assign current_domaine_header = site.domaines | where: "code", current_domaine_code_header | first %}
+              {{ current_domaine_header.title }}
+            </span>
+          </span>
+          {% endif %}
+        </div>
+      </div>
 
   <header class="tuto-header layout-header">
-
     <div class="tuto-header-title">
-
-      {% if page.tuto_id %}
-      <span class="tuto-code">
-        {{ page.tuto_id }} : 
-         {% include tuto-domain-menu.html %}
-      </span>
-      {% endif %}
-
       <h1>{{ page.title }}</h1>
-
     </div>
-
-
-    <!-- ==================================================
-         RÉFÉRENCES
-         ================================================== -->
-
-    <div class="tuto-references">
-
-      {% if page.competence %}
-
-      {% assign competence =
-      site.competences
-      | where: "code", page.competence
-      | first
-      %}
-
-      <span class="tuto-reference layout-reference">
-
-        <strong class="tuto-reference-label">
-          Compétence
-        </strong>
-
-        {% if competence %}
-
-        <a href="{{ competence.url | relative_url }}">
-          {{ competence.code }} — {{ competence.title }}
-        </a>
-
-        {% else %}
-
-        {{ page.competence }}
-
-        {% endif %}
-
-      </span>
-
-      {% endif %}
-
-
-      {% if page.domaine %}
-
-      {% assign domaine =
-      site.domaines
-      | where: "code", page.domaine
-      | first
-      %}
-
-      <span class="tuto-reference layout-reference">
-
-        <strong class="tuto-reference-label">
-          Domaine
-        </strong>
-
-        {% if domaine %}
-
-        <a href="{{ domaine.url | relative_url }}">
-          {{ domaine.code }} — {{ domaine.title }}
-        </a>
-
-        {% else %}
-
-        {{ page.domaine }}
-
-        {% endif %}
-
-      </span>
-
-      {% endif %}
-
-
+    <div class="tuto-references tuto-breadcrumb">
+      {% assign current_ua = nil %}
       {% if page.ua %}
-
-      {% assign ua =
-      site.uas
-      | where: "code", page.ua
-      | first
-      %}
-
-      <span class="tuto-reference layout-reference">
-
-        <strong class="tuto-reference-label">
-          UA
-        </strong>
-
-        {% if ua %}
-
-        <a href="{{ ua.url | relative_url }}">
-          {{ ua.code }} — {{ ua.title }}
-        </a>
-
-        {% else %}
-
-        {{ page.ua }}
-
-        {% endif %}
-
-      </span>
-
+        {% assign current_ua = site.uas | where: "code", page.ua | first %}
       {% endif %}
 
+      {% assign current_domaine_code = page.domaine | default: current_ua.domaine %}
+      {% assign current_competence_code = page.competence | default: current_ua.competence %}
+
+      {% assign current_competence = nil %}
+      {% if current_competence_code %}
+        {% assign current_competence = site.competences | where: "code", current_competence_code | first %}
+      {% endif %}
+
+      {% assign current_domaine = nil %}
+      {% if current_domaine_code %}
+        {% assign current_domaine = site.domaines | where: "code", current_domaine_code | first %}
+      {% endif %}
+
+      {% if current_competence %}
+        {% if current_competence.mission %}
+          {% assign mission = site.missions | where: "code", current_competence.mission | first %}
+          <span class="tuto-reference layout-reference">
+            {% if mission %}
+              <a href="{{ mission.url | relative_url }}" title="{{ mission.title }}">{{ mission.code }}</a>
+            {% else %}
+              {{ current_competence.mission }}
+            {% endif %}
+          </span>
+          <span class="tuto-breadcrumb-separator">&gt;</span>
+        {% endif %}
+
+        <span class="tuto-reference layout-reference">
+          <a href="{{ current_competence.url | relative_url }}" title="{{ current_competence.title }}">{{ current_competence.code }}</a>
+        </span>
+      {% endif %}
+
+      {% if current_domaine %}
+        {% if current_competence %}
+          <span class="tuto-breadcrumb-separator">&gt;</span>
+        {% endif %}
+        <span class="tuto-reference layout-reference">
+          <a href="{{ current_domaine.url | relative_url }}" title="{{ current_domaine.code }}">{{ current_domaine.title }}</a>
+        </span>
+      {% endif %}
+
+      {% if current_ua %}
+        {% if current_domaine or current_competence %}
+          <span class="tuto-breadcrumb-separator">&gt;</span>
+        {% endif %}
+        <span class="tuto-reference layout-reference">
+          <a href="{{ current_ua.url | relative_url }}" title="{{ current_ua.code }}">{{ current_ua.title }}</a>
+        </span>
+      {% endif %}
     </div>
 
   </header>
 
 
-  <!-- ==================================================
-       OUTILS DE LECTURE
-       ================================================== -->
 
-  <div class="tuto-tools">
-
-    {% include version-switcher.html %}
-
-    {% include text-size-control.html %}
-
-  </div>
 
 
 
@@ -149,7 +100,11 @@ layout: default
 
   <main class="tuto-content">
 
-    {{ content }}
+    {% if page.en_construction %}
+      <p>🚧 <strong>Ce tutoriel est en cours de construction.</strong> Son contenu sera disponible prochainement.</p>
+    {% else %}
+      {{ content }}
+    {% endif %}
 
   </main>
 
@@ -160,8 +115,50 @@ layout: default
 
   {% include next-step.html %}
 
+    </div>
+  </div>
+
+  <aside class="tuto-sidebar" id="tuto-sidebar">
+    <div class="tuto-sidebar-header">
+      <h3 class="tuto-sidebar-title">Parcours</h3>
+      <button class="tuto-sidebar-toggle" id="tuto-sidebar-toggle" title="Réduire le menu">
+        <span class="tuto-sidebar-icon-close">>&gt;</span>
+      </button>
+    </div>
+    <div class="tuto-sidebar-content">
+      {% include tuto-domain-menu.html %}
+    </div>
+  </aside>
+  
+  <button class="tuto-sidebar-open-btn" id="tuto-sidebar-open-btn" title="Afficher le parcours">
+    &lt;&lt;
+  </button>
 </div>
 
+<div class="tuto-action-bar" id="tuto-action-bar">
+  <div class="tuto-action-bar-inner">
+    <div class="tuto-action-bar-nav">
+      {% if previous_type %}
+        <a class="tuto-topbar-btn" href="{{ previous_url | relative_url }}" title="{{ previous_title }}">←</a>
+      {% else %}
+        <span class="tuto-topbar-btn disabled">←</span>
+      {% endif %}
+      
+      {% if next_type %}
+        <a class="tuto-topbar-btn" href="{{ next_url | relative_url }}" title="{{ next_title }}">→</a>
+      {% else %}
+        <span class="tuto-topbar-btn disabled">→</span>
+      {% endif %}
+    </div>
+    <div class="tuto-action-bar-tools">
+      {% include version-switcher.html %}
+      {% include text-size-control.html %}
+      <div class="tuto-action-bar-separator"></div>
+      <button class="tuto-topbar-btn tuto-action-bar-pos-btn" id="tuto-action-bar-pos-btn" title="Changer la position (Haut/Bas)">↕️</button>
+      <button class="tuto-topbar-btn tuto-action-bar-pin-btn" id="tuto-action-bar-pin-btn" title="Détacher / Épingler la barre">📌</button>
+    </div>
+  </div>
+</div>
 
 <!-- ======================================================
      DONNÉES POUR JAVASCRIPT
