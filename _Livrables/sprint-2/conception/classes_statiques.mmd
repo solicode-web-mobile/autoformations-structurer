@@ -1,0 +1,38 @@
+classDiagram
+    %% Ce diagramme représente uniquement les structures de données pures (POJO) destinées à interagir avec la BD ou les fichiers.
+    
+    class User {
+        -int id
+        -string email
+        -string password
+        -string role
+    }
+
+    class Auteur {
+        -int id
+        -string nom
+        -string prenom
+        -string biographie
+        -string avatar
+    }
+
+    class Categorie {
+        -int id
+        -string nom
+        -string couleur
+        -string icone
+    }
+
+    class Article {
+        -int id
+        -string titre
+        -string contenu
+        -string image_couverture
+        -string statut
+        -DateTime date_creation
+        -int vues
+    }
+
+    User "1" -- "1" Auteur : est le profil de
+    Categorie "1" -- "*" Article : catégorise
+    Auteur "1" -- "*" Article : rédige
