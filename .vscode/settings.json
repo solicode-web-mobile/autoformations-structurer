@@ -13,5 +13,11 @@
         "Gemfile.lock": true,
         "LICENSE": true
     },
-    "folder-color.pathColors": []
+    "folder-color.pathColors": [
+        {
+            "folderPath": "autoformations-structurer\\.agent\\",
+            "color": "foldercolorizer.color_d787af",
+            "isFolderOnly": true
+        }
+    ]
 }
