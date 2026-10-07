@@ -83,55 +83,86 @@ Ici : `hidden` cache l'élément par défaut (mobile). Dès que l'écran atteint
 
 ## Partie 2 — Pratique
 
-### Mission : Rendre le panneau d'administration Responsive
+### Mission : Structurer l'interface responsive de votre Blog
 
-L'interface actuelle est "cassée" sur mobile. Vous allez utiliser les modificateurs `md:` pour adapter la mise en page.
+Dans le cadre de votre projet de Blog (Sprint 2), vous devez intégrer TailwindCSS et créer l'interface d'administration qui accueillera votre formulaire et votre tableau. Cette interface doit appliquer l'approche "Mobile First".
 
-**Travail à faire (dans l'éditeur HTML) :**
+**Travail à faire (dans votre dépôt GitHub) :**
 
-1. **La Sidebar (`<aside>`)** :
-   * Par défaut (sur mobile), cachez la sidebar avec `hidden`.
-   * Affichez-la sous forme de bloc uniquement à partir de `md:`.
-   * *Indice : `<aside class="hidden md:block w-64 ...">`*
-2. **Le conteneur principal (`<div class="flex min-h-screen">`)** :
-   * Modifiez cette ligne pour que sur mobile, il soit en `flex-col` (le contenu s'empile).
-   * Sur ordinateur (`md:`), il doit revenir en ligne (`md:flex-row`).
-3. **Le Formulaire** :
-   * Le formulaire a actuellement : `<div class="grid grid-cols-2 gap-4">`.
-   * Modifiez ceci pour avoir une seule colonne sur mobile (`grid-cols-1`), et 2 colonnes sur tablette/ordinateur (`md:grid-cols-2`).
-4. **Le Tableau** :
-   * Les tableaux larges cassent les interfaces mobiles. Ajoutez un `div` parent avec `overflow-x-auto` autour de `<table ...>`. Cela permettra au tableau de scroller horizontalement sur mobile sans casser toute la page.
-   * Ajoutez aussi une largeur minimum au tableau (`min-w-[600px]`) pour éviter qu'il ne s'écrase.
+1. Dans votre fichier principal HTML (`index.html` ou `app.html`), intégrez le CDN Tailwind dans le `<head>` : `<script src="https://cdn.tailwindcss.com"></script>`.
+2. **La mise en page globale** :
+   - Créez un conteneur principal autour de votre `<body>` (ou à l'intérieur) avec `flex flex-col md:flex-row min-h-screen`.
+3. **La Sidebar (`<aside>`)** :
+   - Par défaut (sur mobile), cachez la sidebar avec `hidden`.
+   - Affichez-la sous forme de bloc uniquement à partir de `md:block` avec une largeur fixe (`w-64`).
+4. **La zone principale (`<main>`)** :
+   - Ajoutez-lui la classe `flex-1 p-6` pour qu'elle prenne le reste de l'espace.
+5. **Le Formulaire et le Tableau** :
+   - Intégrez votre formulaire de catégorie et votre tableau (ceux manipulés en JS) dans cette zone `<main>`.
+   - Ajoutez `grid grid-cols-1 md:grid-cols-2 gap-4` à votre formulaire pour qu'il s'adapte à l'écran.
+   - Entourez votre tableau avec une `div` `overflow-x-auto` pour éviter qu'il ne déborde sur les téléphones.
 
 <details>
-<summary>Voir une solution possible</summary>
+<summary>Voir le code de structure attendu dans votre HTML</summary>
 <div markdown="1">
 
-Voici les éléments HTML modifiés avec les classes responsives :
-
-**1. Conteneur principal (mobile flex-col, PC flex-row)**
+**index.html**
 ```html
-<div class="flex flex-col md:flex-row min-h-screen">
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog - Administration</title>
+    <!-- Intégration de Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <!-- Conteneur flex (colonne sur mobile, ligne sur PC) -->
+    <div class="flex flex-col md:flex-row min-h-screen">
+
+        <!-- Sidebar (cachée sur mobile, visible sur md) -->
+        <aside class="hidden md:block w-64 bg-slate-900 text-white p-6">
+            <h2 class="text-2xl font-bold mb-6">Mon Blog</h2>
+            <nav>
+                <a href="#" class="block py-2 px-4 bg-slate-800 rounded">Catégories</a>
+            </nav>
+        </aside>
+
+        <!-- Contenu principal -->
+        <main class="flex-1 p-4 md:p-8">
+            <h1 class="text-3xl font-bold mb-6">Gestion des Catégories</h1>
+
+            <!-- Formulaire (1 col mobile, 2 cols PC) -->
+            <form id="form-categorie" class="bg-white p-6 rounded shadow mb-8 grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- Vos inputs ici... -->
+                <div class="md:col-span-2 mt-4">
+                    <button type="submit" id="btn-submit-form" class="bg-blue-600 text-white px-4 py-2 rounded flex items-center gap-2 hover:bg-blue-700">
+                        <span id="spinner-submit" hidden>⏳</span>
+                        <span id="text-submit">Enregistrer</span>
+                    </button>
+                </div>
+            </form>
+
+            <!-- Tableau responsive -->
+            <div class="overflow-x-auto bg-white p-6 rounded shadow">
+                <table class="w-full text-left border-collapse min-w-[600px]">
+                    <!-- En-têtes et tbody id="table-categories-body" -->
+                </table>
+            </div>
+            
+            <div id="toast-container" class="fixed bottom-4 right-4 flex flex-col gap-2"></div>
+        </main>
+
+    </div>
+
+    <!-- JS de l'application -->
+    <script src="assets/js/app.js"></script>
+</body>
+</html>
 ```
 
-**2. Sidebar (cachée sur mobile)**
-```html
-<aside class="hidden md:block w-64 bg-gray-900 text-white p-6">
-```
-
-**3. Grille du Formulaire (1 colonne puis 2)**
-```html
-<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-```
-
-**4. Tableau scollable**
-```html
-<div class="overflow-x-auto w-full">
-    <table class="w-full text-left border-collapse min-w-[600px]">
-        <!-- contenu du tableau -->
-    </table>
-</div>
-```
+**Livrable :** Le lien vers le commit GitHub contenant l'intégration de Tailwind et la structure de votre page.
 
 </div>
 </details>

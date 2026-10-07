@@ -202,80 +202,66 @@ fetch(API_URL)
 
 ## Partie 2 — Pratique
 
-### Mission : Ajouter la gestion des états au formulaire
+### Mission : Gérer l'état de chargement du Blog
 
-Nous allons implémenter la fonction de création/modification (submit) en bloquant le bouton pendant l'appel et en gérant proprement les retours.
+Dans votre projet de Blog (Sprint 2), vous devez intercepter la soumission du formulaire d'ajout de catégorie pour appeler votre API tout en bloquant l'interface pour éviter les doubles clics.
 
-**Travail à faire (dans l'éditeur JS) :**
-1. **Créer une fonction `setLoadingState(isLoading)`** : Elle doit accepter un booléen. Si `true`, elle désactive le bouton de soumission et change son texte en "Enregistrement...". Si `false`, elle le réactive et remet le texte "Enregistrer".
-2. **Ajouter l'événement `submit` sur le formulaire** :
-   - Empêcher le rechargement de page (`e.preventDefault()`).
-   - Appeler `setLoadingState(true)`.
-   - Lancer un `fetch()` en POST vers `API_URL` avec les données du formulaire.
-   - Gérer la réponse : en cas de succès, afficher un message vert, sinon un message rouge.
-   - Utiliser `.catch()` pour les erreurs réseau.
-   - Utiliser `.finally()` pour appeler `setLoadingState(false)`.
+**Travail à faire (dans votre dépôt GitHub) :**
+
+1. Ouvrez (ou créez) le fichier `assets/js/app.js` de votre blog.
+2. **Créer la fonction de chargement** : Ajoutez une fonction `setLoadingState(isLoading)` qui cible le bouton d'enregistrement du formulaire.
+   - Si `isLoading` est vrai : désactiver le bouton (`disabled = true`) et changer son texte en "Enregistrement...".
+   - Si `isLoading` est faux : réactiver le bouton et remettre le texte "Enregistrer".
+3. **Intercepter le formulaire** : Ajoutez un écouteur `submit` sur votre formulaire de catégorie (assurez-vous d'avoir les bons `id` dans votre HTML).
+   - Utilisez `e.preventDefault()`.
+   - Appelez `setLoadingState(true)` avant de lancer le `fetch()` vers votre `CategorieController.php`.
+   - Utilisez le bloc `.finally()` de votre `fetch()` pour appeler systématiquement `setLoadingState(false)`.
 
 <details>
-<summary>Voir une solution possible</summary>
+<summary>Voir le code attendu dans `app.js`</summary>
 <div markdown="1">
 
-Ajoutez ce code à la fin de votre fichier JavaScript :
-
+**assets/js/app.js**
 ```javascript
-// 1. Fonction utilitaire de chargement
+const formCategorie = document.getElementById('form-categorie');
+const btnSubmit = document.getElementById('btn-submit-form');
+
 function setLoadingState(isLoading) {
-    btnSubmitForm.disabled = isLoading;
+    btnSubmit.disabled = isLoading;
     if (isLoading) {
-        btnSubmitForm.textContent = 'Enregistrement...';
+        btnSubmit.textContent = 'Enregistrement...';
     } else {
-        btnSubmitForm.textContent = 'Enregistrer';
+        btnSubmit.textContent = 'Enregistrer';
     }
 }
 
-// 2. Gestion de la soumission du formulaire
 formCategorie.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    // Bloquer l'interface
+    // 1. Bloquer l'interface
     setLoadingState(true);
-    statusMessage.textContent = '';
-    statusMessage.style.color = 'black';
 
-    // Préparation des données
-    const data = {
-        nom: inputNom.value,
-        couleur: selectCouleur.value,
-        icone: selectIcone.value
-    };
-
-    fetch(API_URL, {
+    // 2. Appel API vers votre propre backend
+    fetch('api/controllers/CategorieController.php', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
+        body: new FormData(formCategorie)
     })
     .then(response => response.json())
-    .then(result => {
-        if (result.status === 'success') {
-            statusMessage.textContent = 'Catégorie enregistrée avec succès !';
-            statusMessage.style.color = 'green';
-            formCategorie.reset();
-        } else {
-            statusMessage.textContent = 'Erreur API : ' + result.message;
-            statusMessage.style.color = 'red';
-        }
+    .then(data => {
+        console.log("Succès :", data);
+        formCategorie.reset();
     })
     .catch(error => {
-        statusMessage.textContent = 'Erreur réseau : Impossible de contacter le serveur.';
-        statusMessage.style.color = 'red';
-        console.error(error);
+        console.error("Erreur réseau :", error);
     })
     .finally(() => {
-        // Débloquer l'interface quoi qu'il arrive
+        // 3. Débloquer l'interface quoi qu'il arrive
         setLoadingState(false);
     });
 });
 ```
+
+**Livrable :** Le lien vers le commit GitHub contenant ces modifications dans votre `app.js`.
 
 </div>
 </details>

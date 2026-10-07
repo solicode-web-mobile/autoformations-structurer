@@ -58,50 +58,55 @@ Il est important de ne pas confondre :
 * **L'état du travail** (À faire, En cours, Bloqué...) : Souvent géré via un tableau kanban (GitHub Projects) ou des Labels.
 * **L'état GitHub de l'Issue** : Une Issue n'a que deux états natifs (Ouverte ou Fermée). On ne ferme une Issue QUE lorsque le travail est **Validé**.
 
-### 1.3. Gérer les dépendances et les blocages
+### 1.3. Comment matérialiser ces états dans GitHub ?
+
+GitHub ne propose nativement que les états "Ouvert" ou "Fermé" pour une Issue. Pour suivre les étapes intermédiaires (En cours, Bloquée), vous avez deux solutions principales :
+
+1. **La méthode simple (Labels)** : Vous créez des étiquettes personnalisées (ex: `status: in progress`, `status: blocked`) que vous ajoutez ou retirez sur l'Issue via le menu latéral droit.
+2. **La méthode professionnelle (GitHub Projects)** : Vous liez votre dépôt à un tableau Kanban (via l'onglet *Projects*). Vous y glissez-déposez vos Issues sous forme de cartes d'une colonne à l'autre (*Todo* ➡️ *In Progress* ➡️ *Done*).
+
+### 1.4. Gérer les dépendances et les blocages
 
 Si l'Issue B ne peut pas avancer avant que l'Issue A ne soit terminée, on dit que **B est bloquée par A**.
 Dans GitHub, la meilleure façon de gérer ça est :
-* De l'écrire clairement dans les commentaires ou la description.
-* D'utiliser la syntaxe GitHub : `Blocked by #101` pour créer des liens automatiques entre les Issues.
+* De l'écrire clairement dans les commentaires de l'Issue bloquée.
+* D'utiliser la syntaxe GitHub : écrivez `Blocked by #numéro` (ex: `Blocked by #101`) dans le commentaire pour créer un lien cliquable automatique entre les deux Issues.
 
-### 1.4. Communiquer via les commentaires
+### 1.5. Communiquer via les commentaires
 
-Une Issue est un fil de discussion. Le développeur doit l'utiliser pour informer le reste de l'équipe :
+Quelle que soit la méthode choisie (Labels ou Projects), utiliser les commentaires comme un journal de bord est indispensable. Informez l'équipe avec des messages courts :
 * *"Je commence cette tâche aujourd'hui."*
-* *"Je suis bloqué car l'API ne répond pas."*
-* *"La tâche est terminée, voici le lien vers la pull request."*
+* *"Je suis bloqué car la base de données n'est pas prête."*
+* *"La tâche est terminée, voici le code."*
 
 ---
 
 ## Partie 2 — Pratique
 
-### Mission : Gérer le cycle de vie d'une Issue
+### Mission : Démarrer le Sprint 2 et lier les Issues
 
-Vous allez simuler l'avancement de l'Issue créée dans le tutoriel précédent, en utilisant les commentaires et en gérant un blocage.
+Maintenant que vos 3 Issues du Sprint 2 sont créées, vous allez mettre à jour leur statut et créer des dépendances entre elles.
 
 **Travail à faire (dans votre dépôt GitHub) :**
 
-1. **Signaler le début du travail** :
-   - Ouvrez l'Issue "Construire le formulaire de catégorie".
-   - Ajoutez un commentaire : *"Je commence le travail sur ce formulaire."* (Cela simule le passage en **En cours**).
-2. **Créer et signaler un blocage** :
-   - Créez une deuxième Issue nommée "Définir la base de données". Laissez-la ouverte. Retenez son numéro (ex: `#2`).
-   - Retournez sur votre Issue "Construire le formulaire".
-   - Ajoutez un commentaire pour signaler que vous êtes bloqué en mentionnant la deuxième Issue : *"Je suis bloqué en attendant la création de la base de données. Blocked by #2"*.
-   - Si vous utilisez des Labels de gestion de projet, ajoutez un Label `Blocked`.
-3. **Simuler la fin du travail** :
-   - Dans le commentaire, signalez : *"Blocage résolu, le formulaire est terminé et fonctionne !"*
-   - Cochez toutes les cases de la checklist que vous aviez créée dans la description.
-4. **Fermer l'Issue** :
-   - Cliquez sur le bouton **Close issue**. L'Issue passe en violet/fermé, ce qui signifie qu'elle est définitivement **Validée**.
+1. **Signaler le début du travail (État: En cours)** :
+   - Ouvrez l'Issue "Refactoriser la gestion des catégories en POO".
+   - Ajoutez un commentaire explicite : *"Je commence le travail sur la refactorisation de l'architecture backend."*
+2. **Créer un blocage (Dépendance)** :
+   - Retenez le numéro de votre Issue de refactorisation (ex: `#1`).
+   - Allez sur l'Issue "Ajouter des feedbacks asynchrones".
+   - Ajoutez un commentaire pour signaler qu'elle ne peut pas commencer : *"Je suis bloqué. Il faut d'abord terminer la refactorisation du backend. Blocked by #1"*.
+3. **Ne fermez aucune Issue pour le moment !** :
+   - Vous allez réaliser le code pour ces Issues tout au long de la Session S2. Vous ne fermerez l'Issue de refactorisation qu'à la fin de la partie POO, et ainsi de suite.
 
 <details>
-<summary>Comprendre les bonnes pratiques GitHub</summary>
+<summary>Voir le résultat attendu sur GitHub</summary>
 <div markdown="1">
 
-**Pourquoi ne pas simplement tout fermer ?**
-Fermer une Issue fait disparaître la tâche des vues par défaut. Si vous fermez la tâche alors qu'elle n'est pas testée par le client/professeur, elle risque de passer aux oubliettes s'il y a un bug. C'est pourquoi on garde l'Issue **Ouverte** tant qu'elle n'est pas **Validée**, même si le dev a fini de coder.
+- L'Issue de refactorisation possède un commentaire signifiant le début du travail.
+- L'Issue des feedbacks possède un commentaire indiquant le blocage avec un lien direct vers la première Issue (grâce à la mention `#numéro`).
+
+**Livrable :** Le lien vers l'Issue "Ajouter des feedbacks asynchrones" montrant votre commentaire de blocage.
 
 </div>
 </details>

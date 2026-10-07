@@ -217,34 +217,35 @@ sequenceDiagram
 
 ## Partie 2 — Pratique
 
-### Mission : Créer un système de Feedback Complet
+### Mission : Afficher des Toasts de succès et d'erreur
 
-Vous allez implémenter la création des Toasts et la gestion visuelle du bouton d'enregistrement (Spinner).
+Vous allez remplacer vos `console.log()` du tutoriel précédent par de vrais messages visuels (Toasts) qui informeront l'utilisateur du résultat de l'enregistrement de sa catégorie.
 
-**Travail à faire (dans l'éditeur JS) :**
-1. **Créer la fonction `showToast(message, type)`** : 
-   - Elle crée une `div` HTML avec la classe `.toast` et `.toast-success` (ou `.toast-error`).
-   - Elle injecte le `message` et l'ajoute dans le `toast-container`.
+**Travail à faire (dans votre dépôt GitHub) :**
+
+1. Ouvrez `assets/js/app.js` de votre projet Blog.
+2. **Créer le conteneur** : Assurez-vous d'avoir une balise `<div id="toast-container"></div>` quelque part dans votre HTML (idéalement en bas de `<body>`).
+3. **Créer la fonction de notification** : Ajoutez une fonction `showToast(message, type = 'success')` dans votre JS :
+   - Elle doit créer un élément `div`, lui ajouter des classes CSS (`toast`, et `toast-success` ou `toast-error` selon le paramètre `type`).
+   - Elle injecte le texte du `message`.
+   - Elle ajoute ce Toast dans le `toast-container`.
    - Elle utilise `setTimeout` pour supprimer la `div` après 3 secondes.
-2. **Créer `setLoadingState(isLoading)`** :
-   - Elle active/désactive le `btnSubmitForm`.
-   - Elle cache/affiche le `spinnerSubmit` (un petit texte "..." ou icône).
-3. **Simuler la soumission** :
-   - Ajoutez l'événement `submit` sur le formulaire.
-   - Appelez `setLoadingState(true)`, attendez 1 seconde (avec `setTimeout`), puis affichez un Toast de succès et remettez `setLoadingState(false)`.
+4. **Appeler la fonction dans le `fetch()`** :
+   - Dans le `.then()` de l'écouteur de votre formulaire, appelez `showToast("Catégorie ajoutée avec succès", "success")`.
+   - Dans le `.catch()`, appelez `showToast("Erreur lors de l'enregistrement", "error")`.
 
 <details>
-<summary>Voir une solution possible</summary>
+<summary>Voir le code attendu dans `app.js`</summary>
 <div markdown="1">
 
-Ajoutez ce code dans votre fichier JavaScript :
-
+**assets/js/app.js**
 ```javascript
-// 1. Système de Toasts dynamiques
+// 1. Fonction de création de Toasts dynamiques
 function showToast(message, type = 'success') {
     const container = document.getElementById('toast-container');
     const toast = document.createElement('div');
     
+    // NB: Vous modifierez ces classes plus tard avec Tailwind !
     toast.className = `toast toast-${type}`;
     toast.textContent = message;
     
@@ -256,35 +257,32 @@ function showToast(message, type = 'success') {
     }, 3000);
 }
 
-// 2. Gestion du Spinner sur le bouton
-function setLoadingState(isLoading) {
-    btnSubmitForm.disabled = isLoading;
-    if (isLoading) {
-        spinnerSubmit.hidden = false;
-        textSubmit.textContent = 'En cours';
-    } else {
-        spinnerSubmit.hidden = true;
-        textSubmit.textContent = 'Enregistrer';
-    }
-}
-
-// 3. Simulation de l'appel réseau
+// 2. Intégration dans le fetch() existant
 formCategorie.addEventListener('submit', (e) => {
     e.preventDefault();
-    
     setLoadingState(true);
 
-    // Simulation d'un délai réseau de 1.5s
-    setTimeout(() => {
-        setLoadingState(false);
-        showToast('Catégorie enregistrée avec succès !', 'success');
-        
-        // Cacher le formulaire et nettoyer
-        sectionForm.hidden = true;
+    fetch('api/controllers/CategorieController.php', {
+        method: 'POST',
+        body: new FormData(formCategorie)
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Remplacement du console.log() par un retour visuel UX !
+        showToast("Catégorie enregistrée avec succès !", "success");
         formCategorie.reset();
-    }, 1500);
+    })
+    .catch(error => {
+        showToast("Erreur réseau : Impossible de contacter le serveur.", "error");
+        console.error(error);
+    })
+    .finally(() => {
+        setLoadingState(false);
+    });
 });
 ```
+
+**Livrable :** Le lien vers le commit GitHub contenant l'ajout de la fonction `showToast()` dans votre application.
 
 </div>
 </details>

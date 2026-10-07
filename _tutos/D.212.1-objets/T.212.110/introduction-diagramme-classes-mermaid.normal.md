@@ -90,32 +90,39 @@ classDiagram
 
 ## Partie 2 — Pratique
 
-### 2.1. Créer une classe Utilisateur
+### Mission : Modéliser l'Entité Catégorie de votre Blog
 
-#### Étape 1 — Déclarer le diagramme et la classe
+Vous allez initier le dossier de conception de votre projet de Blog (Sprint 2) en y écrivant votre premier diagramme de classes.
 
-Démarrez un diagramme de classes et déclarez une classe nommée `Utilisateur`.
+**Travail à faire (dans votre dépôt GitHub) :**
 
-#### Étape 2 — Ajouter les attributs
+1. À la racine de votre projet Blog, créez un dossier `conception`.
+2. À l'intérieur, créez un fichier nommé `classes.mmd`.
+3. Dans ce fichier, utilisez la syntaxe Mermaid pour déclarer une classe nommée `Categorie`.
+4. Ajoutez-lui les attributs privés suivants correspondant aux données de votre Sprint 1 :
+   - `id` de type `int`
+   - `nom` de type `string`
+   - `couleur` de type `string`
+   - `icone` de type `string`
 
-Ajoutez les attributs suivants à votre classe `Utilisateur` :
-- Un identifiant `id` de type `int`
-- Un nom complet `nom_complet` de type `string`
-- Une date d'inscription `date_inscription` de type `date`
+<details>
+<summary>Voir le résultat attendu dans `classes.mmd`</summary>
+<div markdown="1">
 
-**Livrable :**
+```text
+classDiagram
+    class Categorie {
+        -int id
+        -string nom
+        -string couleur
+        -string icone
+    }
+```
 
-Créez un document Markdown (ou utilisez Mermaid Live Editor) contenant votre code Mermaid.
+**Livrable :** Le lien GitHub vers votre fichier `conception/classes.mmd`.
 
-**Résultat attendu :**
-
-<button class="btn btn-primary btn-toggle-resultat">Afficher le résultat</button>
-<iframe
-    class="auto-wrapper tuto-resultat"
-    src="{{ '/code/objets/T.212.110.html' | relative_url }}"
-    height="450"
-    title="Résultat attendu">
-</iframe>
+</div>
+</details>
 
 ## Bilan
 

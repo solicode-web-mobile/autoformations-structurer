@@ -83,46 +83,60 @@ flowchart LR
 
 ## Partie 2 — Pratique
 
-### Mission : Chasser le Code Smell
+### Mission : Transformer votre Contrôleur en véritable API
 
-Votre objectif est de refactoriser le code pour extraire la logique d'affichage hors de la classe de données.
+Dans le cadre de l'architecture du Sprint 2 (Frontend SPA séparé), votre backend ne doit générer **aucun** affichage (HTML/texte formaté). Son rôle est uniquement de fournir de la donnée brute. Actuellement, votre `CategorieController` fait des `echo` avec des balises `<br>`. C'est un **Code Smell** !
 
-**Travail à faire :**
-1. **Nettoyer l'Entité** : Supprimez la méthode `exporterEnHTML()` de la classe `Categorie`. L'entité doit redevenir 100% pure (uniquement des propriétés, getters, setters).
-2. **Créer une classe d'Affichage** : Créez un fichier `VueCategorie.php`. À l'intérieur, créez une classe contenant une méthode `afficher(Categorie $cat)` qui renverra le code HTML.
-3. **Tester** : Dans votre script principal, instanciez un objet `Categorie`, passez-le à `VueCategorie->afficher()`, et vérifiez que le résultat à l'écran reste identique.
+**Travail à faire (dans votre dépôt GitHub) :**
+
+1. Ouvrez `api/controllers/CategorieController.php`.
+2. Repérez la boucle `foreach` qui fait un `echo` (le comportement visuel illégitime).
+3. **Refactorisation** :
+   - Transformez les objets `$categories` en tableaux associatifs simples pour faciliter l'export.
+   - Ajoutez l'entête HTTP nécessaire pour déclarer que le backend renvoie de la donnée pure : `header('Content-Type: application/json');`.
+   - Utilisez `echo json_encode()` pour renvoyer le tableau.
+4. Testez votre fichier dans le navigateur : vous devriez voir un format JSON brut. Le backend est maintenant une vraie API, avec une responsabilité parfaitement définie !
 
 <details>
 <summary>Voir la solution de refactoring</summary>
 <div markdown="1">
 
-**1. `VueCategorie.php` (La nouvelle classe spécialisée)**
+**api/controllers/CategorieController.php**
 ```php
 <?php
-require_once 'Categorie.php';
+require_once '../../backend/classes/GestionCategorie.php';
 
-class VueCategorie {
-    // Cette classe a pour unique responsabilité l'affichage HTML
-    public function afficher(Categorie $categorie) {
-        return "<span class='badge'>" . $categorie->getNom() . "</span>";
+class CategorieController {
+    public function listerCategories(): void {
+        $gestion = new GestionCategorie();
+        $categories = $gestion->getAll();
+        
+        // 1. Préparation de la donnée pure (sans HTML)
+        $data = [];
+        foreach ($categories as $cat) {
+            $data[] = [
+                'id' => $cat->getId(),
+                'nom' => $cat->getNom(),
+                'couleur' => $cat->getCouleur(),
+                'icone' => $cat->getIcone()
+            ];
+        }
+        
+        // 2. Déclaration de la responsabilité de la réponse
+        header('Content-Type: application/json');
+        header('Access-Control-Allow-Origin: *'); // Pratique pour le dev local
+        
+        // 3. Renvoi des données brutes
+        echo json_encode($data);
     }
 }
+
+$controller = new CategorieController();
+$controller->listerCategories();
 ?>
 ```
 
-**2. `test.php` (L'utilisation)**
-```php
-<?php
-require_once 'Categorie.php';
-require_once 'VueCategorie.php';
-
-$cat = new Categorie("Design", "Rose", "Pinceau", 1);
-$vue = new VueCategorie();
-
-// Le comportement visuel est préservé, mais l'architecture est saine !
-echo $vue->afficher($cat);
-?>
-```
+**Livrable :** Le lien vers le commit GitHub contenant la refactorisation de votre contrôleur en API JSON.
 
 </div>
 </details>

@@ -109,34 +109,69 @@ Ici, on lit dans les deux sens :
 
 ## Partie 2 — Pratique
 
-### Mission : Traduire les relations en associations
+### Mission : Finaliser le diagramme de classes de votre Blog
 
-**Travail à faire :**
-Reprenez votre fichier `classes_statiques.mmd` du tutoriel précédent, qui contenait vos 4 classes nues (`User`, `Auteur`, `Categorie`, `Article`). Notez bien que les clés étrangères (`id_user`, etc.) ont été supprimées des attributs.
+**Travail à faire (dans votre dépôt GitHub) :**
 
-En vous basant sur les relations du MLD (dans la section "Données de départ"), ajoutez les associations entre les classes en utilisant la syntaxe Mermaid vue dans la théorie.
-Faites attention à mettre la bonne multiplicité (`1`, `0..1`, ou `0..*`) de chaque côté de l'association.
+1. Ouvrez votre fichier `conception/classes.mmd` qui contient vos 4 classes.
+2. En vous basant sur le diagramme de données (section "Données de départ" plus haut), ajoutez les associations entre les classes avec la syntaxe Mermaid en bas de votre fichier.
+3. Les liens à créer sont :
+   - Un `User` possède zéro ou un `Auteur`.
+   - Un `Auteur` rédige zéro ou plusieurs `Article`.
+   - Une `Categorie` contient zéro ou plusieurs `Article`.
 
 ### Étape de vérification (Audit du Modèle)
 
-Avant de valider définitivement votre modèle, passez-le toujours à la loupe avec cette "Checklist du Concepteur" :
+Avant de *commit* et de valider définitivement votre modèle sur GitHub, passez-le toujours à la loupe avec cette "Checklist du Concepteur" :
 
 - [ ] **Classes** : Chaque table du MLD a-t-elle sa classe (au singulier) ?
-- [ ] **Identifiants** : Chaque classe possède-t-elle son attribut `id` (issu de la clé primaire) ?
-- [ ] **Attributs** : Tous les champs (hors clés étrangères) sont-ils présents et correctement typés (`string`, `int`, `DateTime`) ?
+- [ ] **Identifiants** : Chaque classe possède-t-elle son attribut `id` ?
+- [ ] **Attributs** : Tous les champs (hors clés étrangères) sont-ils présents et correctement typés ?
 - [ ] **Associations** : Les clés étrangères ont-elles bien disparu des attributs pour devenir des lignes d'association ?
 - [ ] **Multiplicités** : Le sens de chaque association a-t-il été testé avec une phrase ? *(ex: "Un Auteur rédige 0 ou plusieurs Articles")*.
-- [ ] **Pureté** : Le diagramme est-il exempt de méthodes ou de classes d'architecture (Controller, Repository) ?
 
-**Résultat attendu :**
+<details>
+<summary>Voir le résultat attendu dans `classes.mmd`</summary>
+<div markdown="1">
 
-<button class="btn btn-primary btn-toggle-resultat">Afficher le résultat</button>
-<iframe
-    class="auto-wrapper tuto-resultat"
-    src="{{ '/code/objets/T.212.112.html' | relative_url }}"
-    height="1200"
-    title="Résultat attendu">
-</iframe>
+```text
+classDiagram
+    class Categorie {
+        -int id
+        -string nom
+        -string couleur
+        -string icone
+    }
+    class User {
+        -int id
+        -string email
+        -string password
+        -string role
+    }
+    class Auteur {
+        -int id
+        -string nom
+        -string prenom
+        -string biographie
+        -string avatar
+    }
+    class Article {
+        -int id
+        -string titre
+        -string contenu
+        -string statut
+        -DateTime date_creation
+    }
+
+    User "1" -- "0..1" Auteur : a pour profil
+    Auteur "1" -- "0..*" Article : rédige
+    Categorie "1" -- "0..*" Article : contient
+```
+
+**Livrable :** Le lien GitHub vers votre fichier `conception/classes.mmd` finalisé et validé.
+
+</div>
+</details>
 
 ## Bilan
 

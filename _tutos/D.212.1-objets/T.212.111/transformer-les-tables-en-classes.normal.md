@@ -79,9 +79,11 @@ Dans ce tutoriel, vous allez donc extraire les données propres à chaque classe
 
 ## Pratique
 
-### Cas d'étude : Le MLD du Blog
+### Mission : Compléter le diagramme de votre Blog
 
-Voici le Modèle Logique de Données d'un blog.
+Dans le tutoriel précédent, vous avez modélisé l'entité `Categorie` dans votre fichier `conception/classes.mmd`. Lors de la phase de conception, un diagramme de classes doit refléter **la totalité** de votre base de données, même si vous n'allez coder qu'une partie de ces classes par la suite.
+
+Voici le MLD complet du projet Blog (Sprint 2) :
 
 ```text
 USER
@@ -98,46 +100,64 @@ AUTEUR
 - biographie : string
 - avatar : string
 
-CATEGORIE
-- id_categorie : int (PK)
-- nom : string
-- couleur : string
-- icone : string
-
 ARTICLE
 - id_article : int (PK)
 - id_categorie : int (FK)
 - id_auteur : int (FK)
 - titre : string
 - contenu : text
-- image_couverture : string
 - statut : string
 - date_creation : date
-- vues : int
 ```
 
-### Mission
+**Travail à faire (dans votre dépôt GitHub) :**
 
-Votre objectif est de transformer ce MLD en un diagramme de classes.
+1. Ouvrez votre fichier `conception/classes.mmd`.
+2. Ajoutez les classes `User`, `Auteur` et `Article` à la suite de `Categorie`.
+3. Traduisez les colonnes de chaque table en attributs de classe (n'oubliez pas de typer correctement, ex: `string`, `DateTime`).
+4. **Règle d'or :** Ne traduisez pas les clés étrangères (`id_categorie`, `id_user`, `id_auteur`). Les clés étrangères n'ont pas leur place en tant qu'attributs dans un diagramme de classes.
 
-**Travail à faire :**
-1. Créez un fichier `classes_statiques.mmd`.
-2. Déclarez un bloc `classDiagram`.
-3. Ajoutez les 4 classes : `User`, `Auteur`, `Categorie` et `Article`.
-4. Ajoutez les attributs et leurs types pour chaque classe, en ignorant les clés étrangères. N'oubliez pas l'identifiant (`id`).
+<details>
+<summary>Voir le résultat attendu dans `classes.mmd`</summary>
+<div markdown="1">
 
-> [!TIP]
-> Pensez à adapter les noms d'attributs au contexte. Par exemple, l'attribut `mot_de_passe` de la table `USER` devient plus naturellement `password` dans la classe `User`.
+```text
+classDiagram
+    class Categorie {
+        -int id
+        -string nom
+        -string couleur
+        -string icone
+    }
+    
+    class User {
+        -int id
+        -string email
+        -string password
+        -string role
+    }
+    
+    class Auteur {
+        -int id
+        -string nom
+        -string prenom
+        -string biographie
+        -string avatar
+    }
+    
+    class Article {
+        -int id
+        -string titre
+        -string contenu
+        -string statut
+        -DateTime date_creation
+    }
+```
 
-**Résultat attendu :**
+**Livrable :** Le lien GitHub vers votre fichier `conception/classes.mmd` contenant l'intégralité du modèle de données (4 classes).
 
-<button class="btn btn-primary btn-toggle-resultat">Afficher le résultat</button>
-<iframe
-    class="auto-wrapper tuto-resultat"
-    src="{{ '/code/objets/T.212.111.html' | relative_url }}"
-    height="1000"
-    title="Résultat attendu">
-</iframe>
+</div>
+</details>
 
 ## Bilan
 

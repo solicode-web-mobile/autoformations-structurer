@@ -55,30 +55,27 @@ class GestionCategorie {
 
 ## Partie 2 — Pratique
 
-### Mission : Faire collaborer vos classes
+### Mission : Débuter la refactorisation MVC de votre Blog
 
-**Travail à faire :**
-1. Conservez votre classe `Categorie` (avec ses propriétés privées et ses getters).
-2. Créez `backend/classes/GestionCategorie.php`. Ajoutez une méthode `getAll(): array` qui instancie manuellement deux objets `Categorie` et les retourne dans un tableau.
-3. Créez `api/controllers/CategorieController.php`. Ce contrôleur doit :
-   - Instancier le gestionnaire.
+Vous allez créer la nouvelle structure MVC de votre Blog (Sprint 2) en faisant collaborer une Entité, un Gestionnaire et un Contrôleur. Pour valider l'architecture, nous utiliserons des données fictives pour l'instant.
+
+**Travail à faire (dans votre dépôt GitHub) :**
+
+1. Créez le dossier `backend/classes/`.
+2. Créez-y la classe `Categorie.php` avec ses propriétés privées (`id`, `nom`, `couleur`, `icone`), son constructeur et ses Getters.
+3. Créez-y la classe `GestionCategorie.php`. Ajoutez une méthode `getAll(): array` qui instancie manuellement deux objets `Categorie` fictifs et les retourne dans un tableau.
+4. Créez le dossier `api/controllers/` et ajoutez-y `CategorieController.php`. Ce contrôleur doit :
+   - Requérir et instancier le gestionnaire.
    - Appeler `getAll()`.
-   - Parcourir le tableau avec un `foreach` pour afficher (via `echo`) le nom et la couleur de chaque catégorie.
+   - Parcourir le tableau avec un `foreach` pour afficher (via `echo`) le nom de chaque catégorie.
 
-**Résultat attendu lors de l'exécution du contrôleur :**
-
-<button class="btn btn-primary btn-toggle-resultat">Afficher le résultat</button>
-<iframe
-    class="auto-wrapper tuto-resultat"
-    src="{{ '/code/poo/T.221.121.html' | relative_url }}"
-    height="150"
-    title="Résultat attendu">
-</iframe>
+*Note : À ce stade, nous testons juste la collaboration des objets. La lecture du vrai fichier JSON sera implémentée dans les prochains tutoriels.*
 
 <details>
-<summary>Voir une solution possible</summary>
+<summary>Voir le résultat attendu (Code de test)</summary>
 <div markdown="1">
-**GestionCategorie.php**
+
+**backend/classes/GestionCategorie.php**
 ```php
 <?php
 require_once 'Categorie.php';
@@ -86,15 +83,15 @@ require_once 'Categorie.php';
 class GestionCategorie {
     public function getAll(): array {
         return [
-            new Categorie(1, "Développement Web", "Bleu", "Code"),
-            new Categorie(2, "Design UI/UX", "Rose", "Pinceau")
+            new Categorie(1, "Développement Web", "blue", "fa-code"),
+            new Categorie(2, "Design", "pink", "fa-paint-brush")
         ];
     }
 }
 ?>
 ```
 
-**CategorieController.php**
+**api/controllers/CategorieController.php**
 ```php
 <?php
 require_once '../../backend/classes/GestionCategorie.php';
@@ -105,15 +102,19 @@ class CategorieController {
         $categories = $gestion->getAll();
         
         foreach ($categories as $cat) {
-            echo $cat->getNom() . " (Couleur: " . $cat->getCouleur() . ")<br>";
+            echo $cat->getNom() . "<br>";
         }
     }
 }
 
+// Test d'exécution
 $controller = new CategorieController();
 $controller->listerCategories();
 ?>
 ```
+
+**Livrable :** Le lien vers le commit GitHub contenant la création de ces 3 fichiers.
+
 </div>
 </details>
 

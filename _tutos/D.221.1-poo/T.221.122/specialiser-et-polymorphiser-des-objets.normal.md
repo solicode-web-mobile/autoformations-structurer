@@ -82,80 +82,60 @@ echo $a->getRole() . "<br>";
 
 ## Partie 2 — Pratique
 
-### 2.1. Hériter et Surcharger
+### Mission : Spécialiser l'Utilisateur du Blog
 
-**Travail à faire :**
-1. Créez un fichier `backend/classes/Utilisateur.php` avec une méthode `getRole()` qui retourne simplement `"Utilisateur standard"`.
-2. Créez un fichier `backend/classes/Admin.php`. Cette classe doit **hériter** de `Utilisateur`. 
-3. Surchargez (redéfinissez) la méthode `getRole()` dans `Admin` pour qu'elle retourne cette fois `"Administrateur suprême"`.
-4. Dans un fichier `test.php`, créez un tableau contenant un objet `Utilisateur` et un objet `Admin`. Parcourez ce tableau avec un `foreach` et appelez `getRole()` sur chaque élément pour constater le polymorphisme en action.
+Dans le cadre de votre projet de Blog (Sprint 2), vous allez créer la hiérarchie des utilisateurs en vous basant sur votre diagramme de classes.
 
-**Résultat attendu lors de l'exécution de `test.php` :**
+**Travail à faire (dans votre dépôt GitHub) :**
 
-<button class="btn btn-primary btn-toggle-resultat">Afficher le résultat</button>
-<iframe
-    class="auto-wrapper tuto-resultat"
-    src="{{ '/code/poo/T.221.122.html' | relative_url }}"
-    height="120"
-    title="Résultat attendu">
-</iframe>
+1. Dans le dossier `backend/classes/`, créez l'entité `User.php`.
+   - Ajoutez ses propriétés (basées sur le diagramme). *Attention : mettez-les en `protected` pour que l'enfant puisse y accéder plus tard si besoin.*
+   - Ajoutez une méthode `getRoleName(): string` qui retourne simplement `"Visiteur anonyme"`.
+2. Créez ensuite l'entité `Auteur.php` qui **hérite** (`extends`) de `User`.
+   - Ajoutez ses propriétés spécifiques (`nom`, `prenom`, `biographie`).
+   - Surchargez (redéfinissez) la méthode `getRoleName()` pour qu'elle retourne cette fois `"Auteur publié"`.
+3. Dans votre fichier `api/controllers/CategorieController.php` (ou un fichier de test temporaire), créez un tableau contenant un `User` et un `Auteur`, parcourez-le et appelez `getRoleName()` pour tester la magie du polymorphisme !
 
 <details>
-<summary>Voir une solution possible</summary>
+<summary>Voir le résultat attendu pour les Entités</summary>
 <div markdown="1">
 
-**1. Fichier `backend/classes/Utilisateur.php` :**
+**backend/classes/User.php**
 ```php
 <?php
-class Utilisateur {
-    // protected permet aux enfants d'y accéder, contrairement à private
-    protected string $nom; 
+class User {
+    protected int $id;
+    protected string $email;
+    protected string $password;
+    protected string $role;
 
-    public function __construct(string $nom) {
-        $this->nom = $nom;
-    }
-
-    public function getRole(): string {
-        return "Utilisateur standard";
+    public function getRoleName(): string {
+        return "Visiteur anonyme";
     }
 }
 ?>
 ```
 
-**2. Fichier `backend/classes/Admin.php` :**
+**backend/classes/Auteur.php**
 ```php
 <?php
-require_once 'Utilisateur.php';
+require_once 'User.php';
 
-// Admin hérite de Utilisateur
-class Admin extends Utilisateur {
-    
+class Auteur extends User {
+    private string $nom;
+    private string $prenom;
+    private string $biographie;
+
     // Surcharge de la méthode du parent
-    public function getRole(): string {
-        return "Administrateur suprême";
+    public function getRoleName(): string {
+        return "Auteur publié";
     }
 }
 ?>
 ```
 
-**3. Fichier `test.php` :**
-```php
-<?php
-require_once 'backend/classes/Utilisateur.php';
-require_once 'backend/classes/Admin.php';
+**Livrable :** Le lien vers le commit GitHub contenant l'ajout de ces deux classes.
 
-// Création d'un tableau polymorphe
-$personnes = [
-    new Utilisateur("Alice"),
-    new Admin("Bob")
-];
-
-// Chaque objet réagit différemment à la même méthode (Polymorphisme) !
-foreach ($personnes as $personne) {
-    echo $personne->getRole() . "<br>";
-}
-?>
-```
 </div>
 </details>
 

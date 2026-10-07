@@ -87,22 +87,27 @@ flowchart TD
 
 ## Partie 2 — Pratique
 
-### Mission : Analyser la classe Categorie
+### Mission : Analyser le code du Sprint 1 de votre Blog
 
-Votre objectif est de produire un document d'analyse clair de la classe `Categorie` pour préparer sa future séparation.
+Avant de coder la nouvelle architecture du Sprint 2, vous devez comprendre ce qui posait problème dans le code du Sprint 1.
 
-**Travail à faire (sur un document Markdown ou texte) :**
-1. Analysez les méthodes de la classe `Categorie` du Cas d'étude.
-2. Regroupez ces méthodes dans un tableau ou une liste selon 4 grandes responsabilités distinctes (Données, Accès, CRUD, Persistance).
-3. Rédigez un court bilan expliquant pourquoi cette classe manque de cohésion et identifiez sa dépendance technique principale.
+**Travail à faire (dans votre dépôt GitHub) :**
 
-<button class="btn btn-primary btn-toggle-resultat">Afficher le résultat attendu</button>
-<iframe
-    class="auto-wrapper tuto-resultat"
-    src="{{ '/code/analyse/T.222.111.html' | relative_url }}"
-    height="320"
-    title="Résultat attendu">
-</iframe>
+1. **Ouvrez le code de gestion des catégories de votre Sprint 1** (votre ancien fichier PHP qui gérait la logique d'ajout/lecture).
+2. **Identifiez le mélange des responsabilités** : Repérez les lignes de code qui définissent simplement la structure d'une catégorie (id, nom, couleur), et celles qui ouvrent/lisent/écrivent techniquement dans le fichier `categories.json`.
+3. **Documentez sur GitHub** : Ouvrez l'Issue "Refactoriser la gestion des catégories en POO" que vous avez créée précédemment.
+4. **Ajoutez un commentaire d'analyse** expliquant le problème actuel. Exemple : *"Actuellement, le code est fortement couplé : il mélange la structure de la donnée (Entité) et l'accès au fichier JSON (Gestionnaire). L'objectif est de les séparer."*
+
+<details>
+<summary>Voir le résultat attendu sur GitHub</summary>
+<div markdown="1">
+
+L'Issue de refactorisation doit maintenant contenir un commentaire avec votre analyse des problèmes de cohésion et de couplage du Sprint 1.
+
+**Livrable :** Le lien vers l'Issue contenant votre commentaire d'analyse.
+
+</div>
+</details>
 
 ---
 

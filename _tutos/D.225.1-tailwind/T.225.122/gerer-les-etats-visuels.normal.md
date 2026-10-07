@@ -8,7 +8,7 @@ type: "classique"
 version: "normal"
 ua: "UA.225.12"
 nav_order: 2
-data_html: "
+data_html: ""
 data_css: ""
 data_js: ""
 simplified: true
@@ -85,55 +85,62 @@ Tailwind intègre des animations prêtes à l'emploi. L'utilitaire `animate-spin
 
 ---
 
-## Partie 2 — Pratique
+### Mission : Styliser l'interactivité de votre Blog
 
-### Mission : Donner vie à l'interface
+Maintenant que votre page d'administration est structurée, vous allez la rendre interactive visuellement avec Tailwind, en stylisant notamment vos formulaires, vos boutons de chargement, et vos Toasts dynamiques générés en JavaScript.
 
-Le panneau d'administration actuel est très "statique". Vous allez ajouter les états interactifs avec Tailwind.
+**Travail à faire (dans votre dépôt GitHub) :**
 
-**Travail à faire (dans l'éditeur HTML) :**
-
-1. **Les Boutons (Hover & Transitions)** :
-   - Ajoutez `hover:bg-blue-700` au bouton principal "+ Nouvelle Catégorie".
-   - Ajoutez-lui des transitions douces avec `transition duration-200 ease-in-out`.
-   - Appliquez le même principe aux boutons "Annuler" et "Enregistrer".
-   - Dans le tableau, ajoutez un survol sur les textes "Éditer" (`hover:text-blue-800`) et "Supprimer" (`hover:text-red-800`).
-2. **Le Formulaire (Focus)** :
-   - Sur les champs (`<input>` et `<select>`), ajoutez des classes pour mettre en évidence le focus : `focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500`.
-3. **Le Tableau (Hover sur ligne)** :
-   - Ajoutez un changement de fond subtil au passage de la souris sur les lignes du tableau : `<tr class="hover:bg-gray-50 transition duration-200">`.
-4. **Le Bouton Désactivé (Chargement)** :
-   - Repérez le bouton "Enregistrement..." en bas de l'HTML.
-   - Il possède déjà l'attribut HTML `disabled`.
-   - Utilisez Tailwind pour l'atténuer visuellement et montrer qu'il n'est pas cliquable : `disabled:opacity-75 disabled:cursor-not-allowed`.
+1. Ouvrez `index.html` et `assets/js/app.js`.
+2. **Les Boutons (Hover & Transitions)** :
+   - Ajoutez `hover:bg-blue-700 transition duration-200` au bouton principal d'enregistrement.
+3. **Le Formulaire (Focus)** :
+   - Sur les champs (`<input>` et `<select>`), ajoutez des classes pour mettre en évidence le curseur : `focus:outline-none focus:ring-2 focus:ring-blue-500 border border-gray-300 rounded p-2`.
+4. **L'état de Chargement (Bouton désactivé)** :
+   - Sur votre bouton d'enregistrement HTML, ajoutez les classes `disabled:opacity-75 disabled:cursor-not-allowed`. (Ainsi, lorsque votre JS fera `btn.disabled = true`, le design changera automatiquement).
+5. **Le Spinner** :
+   - Au lieu d'un emoji sablier, insérez un SVG de Spinner Tailwind à l'intérieur de votre bouton d'enregistrement (avec la classe `animate-spin` et `hidden` par défaut). Votre JS se chargera de retirer la classe `hidden`.
+6. **Les Toasts dynamiques** :
+   - Dans `app.js` (fonction `showToast()`), modifiez les classes affectées dynamiquement pour utiliser Tailwind :
+     - Base : `text-white px-4 py-2 rounded shadow-lg transition-opacity duration-300`
+     - Succès : ajouter `bg-green-500`
+     - Erreur : ajouter `bg-red-500`
 
 <details>
-<summary>Voir une solution possible</summary>
+<summary>Voir une suggestion de JS pour les Toasts Tailwind</summary>
 <div markdown="1">
 
-Voici un résumé des classes Tailwind ajoutées :
+**assets/js/app.js**
+```javascript
+// La fonction de Toast avec de vraies classes Tailwind
+function showToast(message, type = 'success') {
+    const container = document.getElementById('toast-container');
+    const toast = document.createElement('div');
+    
+    // Classes de base pour tous les toasts
+    let classes = 'text-white px-4 py-2 rounded shadow-lg mb-2 transition-opacity duration-500';
+    
+    // Couleur conditionnelle
+    if (type === 'success') {
+        classes += ' bg-green-500';
+    } else {
+        classes += ' bg-red-500';
+    }
+    
+    toast.className = classes;
+    toast.textContent = message;
+    
+    container.appendChild(toast);
 
-**1. Un bouton classique avec Hover et Transition**
-```html
-<button class="... bg-blue-600 text-white hover:bg-blue-700 transition duration-200 ease-in-out">
+    // Disparition avec animation
+    setTimeout(() => {
+        toast.style.opacity = '0'; // Déclenche la transition CSS Tailwind
+        setTimeout(() => toast.remove(), 500); // Supprime du DOM après la fin de l'animation
+    }, 3000);
+}
 ```
 
-**2. Un champ de texte avec Focus**
-```html
-<input class="... border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
-```
-
-**3. Une ligne de tableau interactive**
-```html
-<tr class="hover:bg-gray-50 transition duration-200">
-```
-
-**4. Un bouton de chargement désactivé**
-```html
-<button disabled class="... disabled:opacity-75 disabled:cursor-not-allowed flex items-center gap-2">
-    <!-- SVG avec animate-spin à l'intérieur -->
-</button>
-```
+**Livrable :** Le lien vers le commit GitHub contenant ces finitions visuelles (HTML + JS).
 
 </div>
 </details>

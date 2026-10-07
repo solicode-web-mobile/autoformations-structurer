@@ -72,48 +72,30 @@ flowchart TD
 
 ## Partie 2 — Pratique
 
-### Mission : Transformer les tâches en Issues GitHub
+### Mission : Planifier le Sprint 2 de votre Blog
 
-Vous allez créer les Issues pour la fonctionnalité **"Gérer les catégories"** sur votre propre dépôt GitHub.
+Vous allez préparer les Issues pour le **Sprint 2** de votre projet de Blog. L'objectif de ce sprint est d'améliorer l'architecture du code (MVC) et l'expérience utilisateur (Responsive et Asynchrone).
 
-**Travail à faire (dans votre dépôt GitHub) :**
+**Travail à faire (dans le dépôt GitHub de votre Blog) :**
 
-1. **Créer un Milestone** : Nommez-le "Sprint 2".
-2. **Créer l'Issue principale** : 
-   - **Titre** : "Construire le formulaire de catégorie"
-   - **Description** : Expliquez brièvement que le formulaire doit contenir le nom, la couleur et l'icône.
-   - **Checklist** : Ajoutez les 3 champs et le bouton sous forme de cases à cocher Markdown (`- [ ]`).
-3. **Configurer l'Issue** :
-   - Ajoutez le label `enhancement` (ou créez un label `feature`).
-   - Assignez-vous vous-même à l'Issue (Assignee).
-   - Renseignez le Milestone "Sprint 2".
-4. **Créer les autres Issues (Optionnel)** :
-   - "Définir les données des catégories"
-   - "Construire la liste des catégories"
+1. **Créer le Milestone** : Créez un jalon nommé "Sprint 2".
+2. **Créer les Issues du sprint** : Créez les 3 Issues suivantes et associez-les au Milestone "Sprint 2", avec le label `enhancement` :
+   - **Issue 1 :** "Refactoriser la gestion des catégories en POO (Modèle et Gestionnaire)"
+   - **Issue 2 :** "Ajouter des feedbacks asynchrones (Toasts et Spinners) sur les formulaires"
+   - **Issue 3 :** "Rendre l'interface d'administration responsive avec Tailwind"
+3. **Détailler la première Issue** : Dans l'Issue "Refactoriser la gestion des catégories en POO", ajoutez une description avec la checklist suivante :
+   - `- [ ] Créer la classe Entité Categorie.php`
+   - `- [ ] Créer la classe GestionCategorie.php pour le CRUD`
+   - `- [ ] Créer les contrôleurs API`
+4. **Assignation** : Assignez-vous ces 3 Issues.
 
 <details>
-<summary>Voir un exemple de création d'Issue</summary>
+<summary>Voir le résultat attendu sur GitHub</summary>
 <div markdown="1">
 
-Voici à quoi doit ressembler le contenu de votre Issue avant de valider :
+Votre onglet **Issues** doit afficher 3 tickets ouverts. Si vous filtrez par **Milestones**, vous devriez voir que le "Sprint 2" contient ces 3 tickets, tous assignés à vous-même avec le label `enhancement`.
 
-**Titre :** Construire le formulaire de catégorie
-
-**Description :**
-```markdown
-L'objectif est de créer un formulaire pour l'ajout et la modification des catégories du blog.
-
-### Sous-tâches :
-- [ ] Créer le champ Nom (texte)
-- [ ] Créer le champ Couleur (sélecteur)
-- [ ] Créer le champ Icône (sélecteur)
-- [ ] Ajouter les boutons Annuler et Enregistrer
-```
-
-**Panneau latéral droit :**
-- **Assignees :** @votre_pseudo
-- **Labels :** `enhancement`
-- **Milestone :** `Sprint 2`
+**Livrable :** Le lien vers l'onglet Issues de votre dépôt GitHub.
 
 </div>
 </details>

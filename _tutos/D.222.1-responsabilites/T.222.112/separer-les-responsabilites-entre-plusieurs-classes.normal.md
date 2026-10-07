@@ -70,78 +70,60 @@ flowchart LR
 
 ## Partie 2 — Pratique
 
-### Mission : Refactoriser la gestion des Catégories
+### Mission : Connecter le Gestionnaire au fichier JSON
 
-Votre objectif est de séparer le code de la classe "fourre-tout" initiale en deux classes distinctes.
+Dans le tutoriel `T.221.121`, votre `GestionCategorie.php` retournait de fausses données en dur. Il est temps de rapatrier la logique de lecture et d'écriture de votre Sprint 1 pour qu'elle s'intègre proprement dans la nouvelle architecture MVC, réalisant ainsi la vraie séparation des responsabilités.
 
-**Travail à faire :**
-1. **Créer l'Entité** : Modifiez `Categorie.php` pour qu'il ne conserve **que** les propriétés (`$id`, `$nom`, etc.), le constructeur, les getters et les setters. Supprimez tout le reste.
-2. **Créer le Gestionnaire** : Créez un nouveau fichier `GestionCategorie.php`. Copiez-y toutes les méthodes CRUD (`readAll`, `create`, `update`, `delete`, `saveAll`) ainsi que la propriété de stockage `$dataFile`.
-3. **Lier les classes** : N'oubliez pas d'ajouter un `require_once 'Categorie.php';` en haut de votre gestionnaire, puisque celui-ci devra manipuler des objets `Categorie`.
+**Travail à faire (dans votre dépôt GitHub) :**
+
+1. Ouvrez `backend/classes/GestionCategorie.php`.
+2. Ajoutez une propriété privée statique `$dataFile` qui pointe vers votre fichier `categories.json` du Sprint 1 (généralement dans le dossier `data/`).
+3. Modifiez votre méthode `getAll(): array` :
+   - Elle doit maintenant utiliser `file_get_contents()` pour lire le fichier JSON.
+   - Décoder le JSON avec `json_decode`.
+   - Parcourir les données du JSON et instancier de VRAIS objets `Categorie` pour chaque enregistrement.
+   - Retourner le tableau contenant tous ces objets `Categorie`.
+4. Ajoutez les autres méthodes CRUD (`create`, `delete`, etc.) en déplaçant et en adaptant le code procédural que vous aviez écrit lors du Sprint 1.
 
 <details>
-<summary>Voir la solution de refactoring</summary>
+<summary>Voir un exemple de `getAll` connecté au JSON</summary>
 <div markdown="1">
 
-**1. `Categorie.php` (L'Entité pure)**
-```php
-<?php
-class Categorie {
-    private $id;
-    private $nom;
-    private $couleur;
-    private $icone;
-
-    public function __construct($nom = null, $couleur = null, $icone = null, $id = null) {
-        $this->nom = $nom;
-        $this->couleur = $couleur;
-        $this->icone = $icone;
-        $this->id = $id;
-    }
-
-    // Uniquement les getters et setters
-    public function getId() { return $this->id; }
-    public function getNom() { return $this->nom; }
-    public function getCouleur() { return $this->couleur; }
-    public function getIcone() { return $this->icone; }
-
-    public function setId($id) { $this->id = $id; }
-    public function setNom($nom) { $this->nom = $nom; }
-    public function setCouleur($couleur) { $this->couleur = $couleur; }
-    public function setIcone($icone) { $this->icone = $icone; }
-}
-?>
-```
-
-**2. `GestionCategorie.php` (Le Gestionnaire)**
+**backend/classes/GestionCategorie.php**
 ```php
 <?php
 require_once 'Categorie.php';
 
 class GestionCategorie {
-    private static $dataFile = __DIR__ . '/data/categories.json';
+    // Chemin relatif vers le fichier de données (à adapter selon votre structure)
+    private static $dataFile = __DIR__ . '/../../data/categories.json';
 
-    public static function readAll() {
+    public function getAll(): array {
         if (!file_exists(self::$dataFile)) return [];
+        
         $json = file_get_contents(self::$dataFile);
-        return json_decode($json, true);
-    }
-
-    public function create($categorieData) {
-        $data = self::readAll();
-        // logique de création...
-        $data[] = $categorieData;
-        self::saveAll($data);
+        $data = json_decode($json, true);
+        
+        $categories = [];
+        foreach ($data as $row) {
+            // Le Gestionnaire crée de vraies Entités avec les données du fichier
+            $categories[] = new Categorie(
+                $row['id'], 
+                $row['nom'], 
+                $row['couleur'], 
+                $row['icone']
+            );
+        }
+        
+        return $categories;
     }
     
-    // ... autres méthodes update(), delete()
-    
-    private static function saveAll($categories) {
-        file_put_contents(self::$dataFile, json_encode($categories, JSON_PRETTY_PRINT));
-    }
+    // TODO: Ajoutez ensuite create(), update(), delete()
 }
 ?>
 ```
+
+**Livrable :** Le lien vers le commit GitHub contenant la mise à jour de `GestionCategorie.php` avec la logique JSON de votre Sprint 1.
 
 </div>
 </details>
