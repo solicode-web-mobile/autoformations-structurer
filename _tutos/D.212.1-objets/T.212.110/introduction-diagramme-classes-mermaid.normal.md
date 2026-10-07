@@ -110,28 +110,12 @@ Créez un document Markdown (ou utilisez Mermaid Live Editor) contenant votre co
 **Résultat attendu :**
 
 <button class="btn btn-primary btn-toggle-resultat">Afficher le résultat</button>
-<div class="auto-wrapper tuto-resultat">
-
-**Code Mermaid :**
-```text
-classDiagram
-    class Utilisateur {
-        -int id
-        -string nom_complet
-        -date date_inscription
-    }
-```
-
-**Rendu visuel :**
-```mermaid
-classDiagram
-    class Utilisateur {
-        -int id
-        -string nom_complet
-        -date date_inscription
-    }
-```
-</div>
+<iframe
+    class="auto-wrapper tuto-resultat"
+    src="{{ '/code/objets/T.212.110.html' | relative_url }}"
+    height="450"
+    title="Résultat attendu">
+</iframe>
 
 ## Bilan
 

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ page.title | default: "Résultat - Modélisation Objet" }}</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; line-height: 1.6; padding: 20px; }
+        .container { max-width: 800px; margin: 0 auto; background: #fff; padding: 30px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); border-radius: 8px;}
+        pre { border-radius: 5px; overflow-x: auto; padding: 10px; background: #f8f9fa;}
+    </style>
+    
+    <!-- Scripts obligatoires pour Mermaid -->
+    <script type="module" src="{{ '/assets/js/mermaid-init.js' | relative_url }}"></script>
+    
+</head>
+<body><div class="container">{{ content }}</div></body>
+</html>

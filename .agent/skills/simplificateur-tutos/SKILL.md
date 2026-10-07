@@ -33,8 +33,9 @@ Utilise systématiquement des blocs visuels (notamment avec Mermaid) pour montre
 - Supprime les distinctions purement académiques si elles ne sont pas utiles pour l'exercice (ex: distinction entre acteur principal et secondaire).
 - **Le Glossaire** : Ne garde que les mots stricts et essentiels qui sont effectivement manipulés dans le tutoriel.
 
-### 5. Marquer la simplification
+### 5. Marquer la simplification et finaliser
 - Ajoute toujours la variable `simplified: true` dans le Front Matter (en haut du fichier Markdown) pour indiquer que ce tutoriel a été optimisé par tes soins.
+- Modifie impérativement la variable `en_construction: false` (ou supprime-la si elle était à true). Un tutoriel simplifié est considéré comme finalisé et prêt pour la production.
 
 ### 6. Mettre à jour le résultat attendu
 - Si le tutoriel contient un "Résultat attendu" pointant vers un fichier (généralement via une `iframe` vers le dossier `/code/...`), il est impératif de modifier également ce fichier cible.
@@ -52,6 +53,8 @@ Les exemples (Données de départ / code initial) doivent être capables de mont
 0. **Identifier le domaine et les capacités globales** : 
    - **Toujours lire et appliquer la capacité globale `bonnes-pratiques-editeur`** (située dans `.agent/capacites/bonnes-pratiques-editeur.md`) pour garantir que le code de préparation est correctement isolé dans les données de départ.
    - **Toujours lire et appliquer la capacité globale `progression-pratique`** (située dans `.agent/capacites/progression-pratique.md`) pour s'assurer que l'exercice pratique s'inscrit dans la progression de l'unité d'apprentissage.
+   - **Toujours lire et appliquer la capacité globale `generateur-resultats-tutos`** (située dans `.agent/capacites/generateur-resultats-tutos.md`) pour créer les iframes et fichiers `code/` des résultats.
+   - **Toujours lire et appliquer la capacité globale `generateur-exemples-tutos`** (située dans `.agent/capacites/generateur-exemples-tutos.md`) pour créer les iframes et fichiers `code/` des exemples interactifs.
    - Avant toute action, lisez le Front Matter du tutoriel pour identifier son domaine (via le champ `ua`, `tuto_id`, ou le chemin du fichier). 
    - Cherchez le skill de domaine correspondant dans le dossier `.agent/skills/` (par exemple `domaine-objets` pour le domaine objets, `domaine-fonctionnalite`, etc.).
    - **RÈGLE CRITIQUE** : Si le skill de domaine correspondant n'existe pas, vous devez **OBLIGATOIREMENT** demander au skill `sys-agent` de le créer pour ce domaine avant de procéder à la simplification.

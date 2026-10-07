@@ -1,7 +1,4 @@
 {% assign filtered_tutos = include.tutos %}
-{% unless site.show_construction %}
-  {% assign filtered_tutos = filtered_tutos | where_exp: "item", "item.en_construction != true" %}
-{% endunless %}
 
 {% if filtered_tutos and filtered_tutos.size > 0 %}
 
@@ -57,7 +54,7 @@
             </span>
 
             <span class="tuto-card-title">
-              {{ tuto_normal.title }}
+              {{ tuto_normal.title }}{% if tuto_normal.en_construction %} 🚧{% endif %}
             </span>
 
           </a>

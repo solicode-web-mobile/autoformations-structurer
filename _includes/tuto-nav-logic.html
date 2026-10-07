@@ -36,9 +36,6 @@
     | where: "version", "normal"
     | sort: "nav_order"
   %}
-  {% unless site.show_construction %}
-    {% assign current_ua_tutos = current_ua_tutos | where_exp: "item", "item.en_construction != true" %}
-  {% endunless %}
 
   {% assign current_tuto_index = nil %}
 
@@ -121,9 +118,6 @@
         | where: "version", "normal"
         | sort: "nav_order"
       %}
-      {% unless site.show_construction %}
-        {% assign previous_ua_tutos = previous_ua_tutos | where_exp: "item", "item.en_construction != true" %}
-      {% endunless %}
 
       {% assign previous_tuto =
         previous_ua_tutos | last
@@ -239,9 +233,6 @@
         | where: "version", "normal"
         | sort: "nav_order"
       %}
-      {% unless site.show_construction %}
-        {% assign next_ua_tutos = next_ua_tutos | where_exp: "item", "item.en_construction != true" %}
-      {% endunless %}
 
       {% assign next_tuto =
         next_ua_tutos | first

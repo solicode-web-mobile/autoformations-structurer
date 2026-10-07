@@ -50,6 +50,18 @@ ARTICLE
 
 Se traduit par la classe suivante :
 
+*Code :*
+```text
+classDiagram
+    class Article {
+        -int id
+        -string titre
+        -int vues
+        -DateTime date_creation
+    }
+```
+
+*Rendu visuel :*
 ```mermaid
 classDiagram
     class Article {
@@ -116,6 +128,16 @@ Votre objectif est de transformer ce MLD en un diagramme de classes.
 
 > [!TIP]
 > Pensez à adapter les noms d'attributs au contexte. Par exemple, l'attribut `mot_de_passe` de la table `USER` devient plus naturellement `password` dans la classe `User`.
+
+**Résultat attendu :**
+
+<button class="btn btn-primary btn-toggle-resultat">Afficher le résultat</button>
+<iframe
+    class="auto-wrapper tuto-resultat"
+    src="{{ '/code/objets/T.212.111.html' | relative_url }}"
+    height="1000"
+    title="Résultat attendu">
+</iframe>
 
 ## Bilan
 
