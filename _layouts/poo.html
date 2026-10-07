@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ page.title | default: "Résultat" }}</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; line-height: 1.6; padding: 20px; background-color: #f8f9fa; }
+        .container { max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); border-radius: 8px; }
+        .output { font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace; font-size: 14px; color: #333; }
+        pre { border-radius: 5px; overflow-x: auto; }
+    </style>
+    
+    <!-- Scripts obligatoires -->
+    <script type="module" src="{{ '/assets/js/mermaid-init.js' | relative_url }}"></script>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/styles/vs2015.min.css">
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/highlight.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelectorAll("pre code").forEach(function (block) {
+                hljs.highlightElement(block);
+            });
+        });
+    </script>
+</head>
+<body><div class="container">{{ content }}</div></body>
+</html>

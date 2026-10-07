@@ -11,7 +11,7 @@ nav_order: 2
 data_html: ""
 data_css: ""
 data_js: ""
-en_construction: true
+simplified: true
 ---
 
 ## 1. Objectif
@@ -41,19 +41,7 @@ En POO, une classe (l'**Enfant**) peut hériter de toutes les propriétés et m�
 
 <div class="fullscreenable" markdown="1">
 
-```mermaid
-flowchart TD
-    Parent[Classe Parent : Utilisateur<br>nom, email<br>seConnecter()]
-    Enfant1[Classe Enfant : Admin<br>+ bannirUtilisateur()]
-    Enfant2[Classe Enfant : Auteur<br>+ redigerArticle()]
-    
-    Parent <|-- Enfant1
-    Parent <|-- Enfant2
-    
-    style Parent fill:#f3f0ff,stroke:#7253ed,stroke-width:2px
-    style Enfant1 fill:#e8f5e9,stroke:#4caf50,stroke-width:2px
-    style Enfant2 fill:#fff3e0,stroke:#ff9800,stroke-width:2px
-```
+<img src="{{ '/images-tutos/D.221.1-poo/T.221.122/heritage-utilisateurs.svg' | relative_url }}" alt="Héritage Utilisateurs">
 
 </div>
 
@@ -102,8 +90,19 @@ echo $a->getRole() . "<br>";
 3. Surchargez (redéfinissez) la méthode `getRole()` dans `Admin` pour qu'elle retourne cette fois `"Administrateur suprême"`.
 4. Dans un fichier `test.php`, créez un tableau contenant un objet `Utilisateur` et un objet `Admin`. Parcourez ce tableau avec un `foreach` et appelez `getRole()` sur chaque élément pour constater le polymorphisme en action.
 
-<button class="btn btn-primary btn-toggle-resultat">Afficher la solution</button>
-<div class="auto-wrapper tuto-resultat" style="display: none; padding: 20px; border: 1px solid #ddd; border-radius: 8px; margin-top: 15px;" markdown="1">
+**Résultat attendu lors de l'exécution de `test.php` :**
+
+<button class="btn btn-primary btn-toggle-resultat">Afficher le résultat</button>
+<iframe
+    class="auto-wrapper tuto-resultat"
+    src="{{ '/code/poo/T.221.122.html' | relative_url }}"
+    height="120"
+    title="Résultat attendu">
+</iframe>
+
+<details>
+<summary>Voir une solution possible</summary>
+<div markdown="1">
 
 **1. Fichier `backend/classes/Utilisateur.php` :**
 ```php
@@ -155,12 +154,10 @@ $personnes = [
 foreach ($personnes as $personne) {
     echo $personne->getRole() . "<br>";
 }
-// Résultat à l'écran :
-// Utilisateur standard
-// Administrateur suprême
 ?>
 ```
 </div>
+</details>
 
 ---
 

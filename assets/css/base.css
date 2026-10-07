@@ -826,48 +826,6 @@ a:focus-visible {
   gap: 0.75rem;
 }
 
-.tuto-card {
-  display: block;
-
-  padding: 1rem;
-
-  border: 1px solid #e5e7eb;
-  border-radius: 0.5rem;
-
-  text-decoration: none;
-
-  transition:
-    border-color 0.15s ease,
-    box-shadow 0.15s ease;
-}
-
-.tuto-card:hover {
-  text-decoration: none;
-
-  border-color: #cbd5e1;
-
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-}
-
-.tuto-card-code {
-  display: block;
-
-  margin-bottom: 0.25rem;
-
-  font-size: 0.85rem;
-  font-weight: 700;
-}
-
-.tuto-card-title {
-  display: block;
-
-  font-size: 1rem;
-}
-
-.tuto-card-error {
-  color: #b00020;
-}
-
 
 /* =========================================================
    10. NAVIGATION

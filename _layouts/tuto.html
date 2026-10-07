@@ -154,12 +154,23 @@ layout: default
           tabs[0].style.borderColor = '#2563eb';
           tabs[0].style.color = '#0f172a';
           document.getElementById('sidebar-domain-menu').style.display = 'block';
+          localStorage.setItem('tutoActiveMenu', 'domain');
         } else {
           tabs[1].style.borderColor = '#2563eb';
           tabs[1].style.color = '#0f172a';
           document.getElementById('sidebar-session-menu').style.display = 'block';
+          localStorage.setItem('tutoActiveMenu', 'session');
         }
       }
+
+      document.addEventListener("DOMContentLoaded", function() {
+        var savedMenu = localStorage.getItem('tutoActiveMenu');
+        if (savedMenu === 'domain') {
+          switchSidebarMenu('domain');
+        } else {
+          switchSidebarMenu('session');
+        }
+      });
     </script>
   </aside>
   

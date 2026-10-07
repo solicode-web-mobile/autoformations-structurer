@@ -21,7 +21,8 @@ Ne jamais isoler des concepts qui sont toujours utilisés ensemble.
 
 ### 2. Remplace le texte par des visuels (Théorie)
 Si une explication fait plus de 4 lignes, c'est qu'il manque un schéma ou un exemple de code.
-Utilise systématiquement des blocs visuels (notamment avec Mermaid) pour montrer le concept.
+Utilise systématiquement des blocs visuels (notamment avec Mermaid ou des fichiers SVG) pour montrer le concept.
+La partie théorique peut tout à fait intégrer des fichiers SVG pour expliquer visuellement une architecture ou un mécanisme.
 *La règle : Je vois -> Je comprends.*
 
 ### 3. Mutualiser les exercices (Pratique)

@@ -36,37 +36,7 @@ Jusqu'à présent, notre application n'avait qu'une seule classe qui faisait tou
 Lorsqu'une classe utilise une autre classe, on parle de **dépendance**. Le contrôleur dépend du gestionnaire, qui lui-même manipule des entités.
 Très souvent, le gestionnaire retourne une **liste d'objets** sous forme de tableau (`array`) que le contrôleur va parcourir.
 
-*Code :*
-```text
-flowchart TD
-    Controller[CategorieController<br>Orchestre]
-    Gestion[GestionCategorie<br>Logique]
-    Entite[Categorie<br>Donnée]
-
-    Controller -- "1. Demande liste" --> Gestion
-    Gestion -- "2. Crée et stocke" --> Entite
-    Gestion -. "3. Retourne array d'objets" .-> Controller
-    
-    style Controller fill:#e3f2fd,stroke:#2196f3,stroke-width:2px
-    style Gestion fill:#fff3e0,stroke:#ff9800,stroke-width:2px
-    style Entite fill:#f3f0ff,stroke:#7253ed,stroke-width:2px
-```
-
-*Rendu visuel :*
-```mermaid
-flowchart TD
-    Controller[CategorieController<br>Orchestre]
-    Gestion[GestionCategorie<br>Logique]
-    Entite[Categorie<br>Donnée]
-
-    Controller -- "1. Demande liste" --> Gestion
-    Gestion -- "2. Crée et stocke" --> Entite
-    Gestion -. "3. Retourne array d'objets" .-> Controller
-    
-    style Controller fill:#e3f2fd,stroke:#2196f3,stroke-width:2px
-    style Gestion fill:#fff3e0,stroke:#ff9800,stroke-width:2px
-    style Entite fill:#f3f0ff,stroke:#7253ed,stroke-width:2px
-```
+<img src="{{ '/images-tutos/D.221.1-poo/T.221.121/architecture-mvc.svg' | relative_url }}" alt="Architecture MVC">
 
 **Exemple : Typage strict et Tableau**
 ```php

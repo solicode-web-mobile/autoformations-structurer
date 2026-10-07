@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 300" width="100%" height="100%">
+  <defs>
+    <marker id="inheritance" markerWidth="14" markerHeight="14" refX="14" refY="7" orient="auto" markerUnits="strokeWidth">
+      <polygon points="0,0 14,7 0,14" fill="#fff" stroke="#333" stroke-width="1.5"/>
+    </marker>
+  </defs>
+
+  <!-- Lines -->
+  <!-- Horizontal connector -->
+  <path d="M 170 160 L 430 160" fill="none" stroke="#333" stroke-width="1.5" />
+  <!-- Vertical from Enfant1 -->
+  <path d="M 170 200 L 170 160" fill="none" stroke="#333" stroke-width="1.5" />
+  <!-- Vertical from Enfant2 -->
+  <path d="M 430 200 L 430 160" fill="none" stroke="#333" stroke-width="1.5" />
+  <!-- Vertical to Parent -->
+  <path d="M 300 160 L 300 125" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#inheritance)"/>
+
+  <!-- Parent Node -->
+  <rect x="190" y="40" width="220" height="80" rx="8" fill="#f3f0ff" stroke="#7253ed" stroke-width="2"/>
+  <text x="300" y="65" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#333">Classe Parent : Utilisateur</text>
+  <text x="300" y="85" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#666">nom, email</text>
+  <text x="300" y="105" font-family="Arial, sans-serif" font-size="12" font-style="italic" text-anchor="middle" fill="#666">seConnecter()</text>
+
+  <!-- Enfant1 Node -->
+  <rect x="60" y="200" width="220" height="60" rx="8" fill="#e8f5e9" stroke="#4caf50" stroke-width="2"/>
+  <text x="170" y="225" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#333">Classe Enfant : Admin</text>
+  <text x="170" y="245" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#666">+ bannirUtilisateur()</text>
+
+  <!-- Enfant2 Node -->
+  <rect x="320" y="200" width="220" height="60" rx="8" fill="#fff3e0" stroke="#ff9800" stroke-width="2"/>
+  <text x="430" y="225" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#333">Classe Enfant : Auteur</text>
+  <text x="430" y="245" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#666">+ redigerArticle()</text>
+</svg>
