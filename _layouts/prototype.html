@@ -2,205 +2,286 @@
 layout: default
 ---
 
-<div class="prototype-page">
+<div class="tuto-layout-wrapper">
+  <div class="tuto-main-column">
+    <div class="prototype-page">
 
-  <header class="prototype-header">
+      <header class="prototype-header">
 
-    <div class="prototype-header-main">
+        <div class="prototype-header-main">
 
-      <span class="prototype-badge">
-        Prototype
-      </span>
+          <span class="prototype-badge">
+            Prototype
+          </span>
 
-      <h1>{{ page.title }}</h1>
+          <h1>{{ page.title }}</h1>
 
+          {% if page.session %}
+            {% assign session = site.sessions | where: "code", page.session | first %}
+
+            {% if session %}
+              <a
+                href="{{ session.url | relative_url }}"
+                class="prototype-session"
+              >
+                {{ session.title }}
+              </a>
+            {% endif %}
+          {% endif %}
+
+        </div>
+
+        {% if page.code %}
+          <span class="prototype-code">
+            {{ page.code }}
+          </span>
+        {% endif %}
+
+      </header>
+
+
+      <main class="prototype-content">
+
+
+        <!-- ==========================================
+             TRAVAIL À FAIRE
+             ========================================== -->
+
+        {% if page.travail_a_faire %}
+
+          <section class="prototype-section prototype-work-section">
+
+            <div class="prototype-section-header">
+
+              <span class="prototype-section-number">
+                01
+              </span>
+
+              <div>
+                <h2>Travail à faire</h2>
+
+                <p class="prototype-section-intro">
+                  Réalisation attendue
+                </p>
+              </div>
+
+            </div>
+
+            <div class="prototype-work">
+              {{ page.travail_a_faire | markdownify }}
+            </div>
+
+          </section>
+
+        {% endif %}
+
+
+        <!-- ==========================================
+             LIVRABLE
+             ========================================== -->
+
+        {% if page.livrable %}
+
+          <section class="prototype-section">
+
+            <div class="prototype-section-header">
+
+              <span class="prototype-section-number">
+                02
+              </span>
+
+              <div>
+                <h2>Livrable</h2>
+
+                <p class="prototype-section-intro">
+                  Ce qui doit être produit
+                </p>
+              </div>
+
+            </div>
+
+            <ul class="prototype-deliverables">
+
+              {% for item in page.livrable %}
+
+                <li>
+                  <span class="prototype-check">
+                    ✓
+                  </span>
+
+                  <span>
+                    {{ item }}
+                  </span>
+                </li>
+
+              {% endfor %}
+
+            </ul>
+
+          </section>
+
+        {% endif %}
+
+
+        <!-- ==========================================
+             UNITÉS D'APPRENTISSAGE
+             ========================================== -->
+
+        {% if page.uas %}
+
+          <section class="prototype-section">
+
+            <div class="prototype-section-header">
+
+              <span class="prototype-section-number">
+                03
+              </span>
+
+              <div>
+                <h2>Unités d'apprentissage</h2>
+
+                <p class="prototype-section-intro">
+                  Notions mobilisées dans ce prototype
+                </p>
+              </div>
+
+            </div>
+
+            <div class="prototype-ua-list">
+
+              {% for ua_code in page.uas %}
+
+                {% assign ua =
+                  site.uas
+                  | where: "code", ua_code
+                  | first
+                %}
+
+                {% if ua %}
+
+                  <a
+                    href="{{ ua.url | relative_url }}"
+                    class="prototype-ua"
+                  >
+
+                    <span class="prototype-ua-code">
+                      {{ ua.code }}
+                    </span>
+
+                    <span class="prototype-ua-title">
+                      {{ ua.title }}
+                    </span>
+
+                    <span class="prototype-ua-arrow">
+                      →
+                    </span>
+
+                  </a>
+
+                {% endif %}
+
+              {% endfor %}
+
+            </div>
+
+          </section>
+
+        {% endif %}
+
+
+        <!-- ==========================================
+             CONTENU COMPLÉMENTAIRE
+             ========================================== -->
+
+        {% if content != "" %}
+
+          <section class="prototype-section prototype-extra">
+
+            {{ content }}
+
+          </section>
+
+        {% endif %}
+
+      </main>
+
+    </div>
+  </div>
+
+  <aside class="tuto-sidebar" id="tuto-sidebar">
+    <div class="tuto-sidebar-header">
+      <h3 class="tuto-sidebar-title">Parcours Session</h3>
+      <button class="tuto-sidebar-toggle" id="tuto-sidebar-toggle" title="Réduire le menu">
+        <span class="tuto-sidebar-icon-close">>&gt;</span>
+      </button>
+    </div>
+    <div class="tuto-sidebar-content">
+      {% include tuto-session-menu.html %}
+    </div>
+  </aside>
+
+  <button class="tuto-sidebar-open-btn" id="tuto-sidebar-open-btn" title="Afficher le parcours">
+    &lt;&lt;
+  </button>
+</div>
+
+<div class="tuto-action-bar" id="tuto-action-bar">
+  <div class="tuto-action-bar-inner">
+    <div class="tuto-action-bar-nav">
+      {% assign previous_url = nil %}
+      {% assign previous_title = nil %}
+      {% assign next_url = nil %}
+      {% assign next_title = nil %}
+      
       {% if page.session %}
         {% assign session = site.sessions | where: "code", page.session | first %}
-
         {% if session %}
-          <a
-            href="{{ session.url | relative_url }}"
-            class="prototype-session"
-          >
-            {{ session.title }}
-          </a>
+          {% if session.labs and session.labs.size > 0 %}
+            {% assign lab_code = session.labs | first %}
+            {% assign lab = site.labs | where: "code", lab_code | first %}
+            {% if lab %}
+              {% assign previous_url = lab.url %}
+              {% assign previous_title = lab.title %}
+            {% endif %}
+          {% elsif session.uas and session.uas.size > 0 %}
+            {% assign last_ua_code = session.uas | last %}
+            {% assign last_ua_tutos = site.tutos | where: "ua", last_ua_code | where: "version", "normal" | sort: "nav_order" %}
+            {% if last_ua_tutos.size > 0 %}
+              {% assign last_tuto = last_ua_tutos | last %}
+              {% assign previous_url = last_tuto.url %}
+              {% assign previous_title = last_tuto.title %}
+            {% endif %}
+          {% endif %}
+          
+          {% if session.projet_fil_rouge and session.projet_fil_rouge.size > 0 %}
+            {% assign projet_code = session.projet_fil_rouge | first %}
+            {% assign projet = site.projets | where: "code", projet_code | first %}
+            {% if projet %}
+              {% assign next_url = projet.url %}
+              {% assign next_title = projet.title %}
+            {% endif %}
+          {% endif %}
         {% endif %}
       {% endif %}
 
+      {% if previous_url %}
+        <a class="tuto-topbar-btn" href="{{ previous_url | relative_url }}" title="{{ previous_title }}">←</a>
+      {% else %}
+        <span class="tuto-topbar-btn disabled">←</span>
+      {% endif %}
+      
+      {% if next_url %}
+        <a class="tuto-topbar-btn" href="{{ next_url | relative_url }}" title="{{ next_title }}">→</a>
+      {% else %}
+        <span class="tuto-topbar-btn disabled">→</span>
+      {% endif %}
     </div>
-
-    {% if page.code %}
-      <span class="prototype-code">
-        {{ page.code }}
-      </span>
-    {% endif %}
-
-  </header>
-
-
-  <main class="prototype-content">
-
-
-    <!-- ==========================================
-         TRAVAIL À FAIRE
-         ========================================== -->
-
-    {% if page.travail_a_faire %}
-
-      <section class="prototype-section prototype-work-section">
-
-        <div class="prototype-section-header">
-
-          <span class="prototype-section-number">
-            01
-          </span>
-
-          <div>
-            <h2>Travail à faire</h2>
-
-            <p class="prototype-section-intro">
-              Réalisation attendue
-            </p>
-          </div>
-
-        </div>
-
-        <div class="prototype-work">
-          {{ page.travail_a_faire | markdownify }}
-        </div>
-
-      </section>
-
-    {% endif %}
-
-
-    <!-- ==========================================
-         LIVRABLE
-         ========================================== -->
-
-    {% if page.livrable %}
-
-      <section class="prototype-section">
-
-        <div class="prototype-section-header">
-
-          <span class="prototype-section-number">
-            02
-          </span>
-
-          <div>
-            <h2>Livrable</h2>
-
-            <p class="prototype-section-intro">
-              Ce qui doit être produit
-            </p>
-          </div>
-
-        </div>
-
-        <ul class="prototype-deliverables">
-
-          {% for item in page.livrable %}
-
-            <li>
-              <span class="prototype-check">
-                ✓
-              </span>
-
-              <span>
-                {{ item }}
-              </span>
-            </li>
-
-          {% endfor %}
-
-        </ul>
-
-      </section>
-
-    {% endif %}
-
-
-    <!-- ==========================================
-         UNITÉS D'APPRENTISSAGE
-         ========================================== -->
-
-    {% if page.uas %}
-
-      <section class="prototype-section">
-
-        <div class="prototype-section-header">
-
-          <span class="prototype-section-number">
-            03
-          </span>
-
-          <div>
-            <h2>Unités d'apprentissage</h2>
-
-            <p class="prototype-section-intro">
-              Notions mobilisées dans ce prototype
-            </p>
-          </div>
-
-        </div>
-
-        <div class="prototype-ua-list">
-
-          {% for ua_code in page.uas %}
-
-            {% assign ua =
-              site.uas
-              | where: "code", ua_code
-              | first
-            %}
-
-            {% if ua %}
-
-              <a
-                href="{{ ua.url | relative_url }}"
-                class="prototype-ua"
-              >
-
-                <span class="prototype-ua-code">
-                  {{ ua.code }}
-                </span>
-
-                <span class="prototype-ua-title">
-                  {{ ua.title }}
-                </span>
-
-                <span class="prototype-ua-arrow">
-                  →
-                </span>
-
-              </a>
-
-            {% endif %}
-
-          {% endfor %}
-
-        </div>
-
-      </section>
-
-    {% endif %}
-
-
-    <!-- ==========================================
-         CONTENU COMPLÉMENTAIRE
-         ========================================== -->
-
-    {% if content != "" %}
-
-      <section class="prototype-section prototype-extra">
-
-        {{ content }}
-
-      </section>
-
-    {% endif %}
-
-  </main>
-
+    <div class="tuto-action-bar-tools">
+      {% include text-size-control.html %}
+      <div class="tuto-action-bar-separator"></div>
+      <button class="tuto-topbar-btn tuto-action-bar-pos-btn" id="tuto-action-bar-pos-btn" title="Changer la position (Haut/Bas)">↕️</button>
+      <button class="tuto-topbar-btn tuto-action-bar-pin-btn" id="tuto-action-bar-pin-btn" title="Détacher / Épingler la barre">📌</button>
+    </div>
+  </div>
 </div>
+<script src="{{ '/assets/js/tuto.js' | relative_url }}"></script>

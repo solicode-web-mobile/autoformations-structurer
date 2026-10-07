@@ -124,15 +124,43 @@ layout: default
   </div>
 
   <aside class="tuto-sidebar" id="tuto-sidebar">
-    <div class="tuto-sidebar-header">
-      <h3 class="tuto-sidebar-title">Parcours</h3>
-      <button class="tuto-sidebar-toggle" id="tuto-sidebar-toggle" title="Réduire le menu">
+    <div class="tuto-sidebar-header" style="align-items: flex-end;">
+      <div class="tuto-sidebar-tabs" style="display:flex; gap:0.5rem; flex:1;">
+        <button class="tuto-sidebar-tab" onclick="switchSidebarMenu('domain')" style="background:none; border:none; border-bottom:2px solid transparent; color:#64748b; font-weight:600; padding:0.25rem 0.5rem; cursor:pointer; font-size:0.85rem;">Domaine</button>
+        <button class="tuto-sidebar-tab" onclick="switchSidebarMenu('session')" style="background:none; border:none; border-bottom:2px solid #2563eb; color:#0f172a; font-weight:600; padding:0.25rem 0.5rem; cursor:pointer; font-size:0.85rem;">Session</button>
+      </div>
+      <button class="tuto-sidebar-toggle" id="tuto-sidebar-toggle" title="Réduire le menu" style="margin-bottom:0.25rem;">
         <span class="tuto-sidebar-icon-close">>&gt;</span>
       </button>
     </div>
-    <div class="tuto-sidebar-content">
+    <div class="tuto-sidebar-content" id="sidebar-domain-menu" style="display: none;">
       {% include tuto-domain-menu.html %}
     </div>
+    <div class="tuto-sidebar-content" id="sidebar-session-menu">
+      {% include tuto-session-menu.html %}
+    </div>
+    
+    <script>
+      function switchSidebarMenu(menu) {
+        var tabs = document.querySelectorAll('.tuto-sidebar-tab');
+        tabs.forEach(function(tab) {
+          tab.style.borderColor = 'transparent';
+          tab.style.color = '#64748b';
+        });
+        document.getElementById('sidebar-domain-menu').style.display = 'none';
+        document.getElementById('sidebar-session-menu').style.display = 'none';
+        
+        if(menu === 'domain') {
+          tabs[0].style.borderColor = '#2563eb';
+          tabs[0].style.color = '#0f172a';
+          document.getElementById('sidebar-domain-menu').style.display = 'block';
+        } else {
+          tabs[1].style.borderColor = '#2563eb';
+          tabs[1].style.color = '#0f172a';
+          document.getElementById('sidebar-session-menu').style.display = 'block';
+        }
+      }
+    </script>
   </aside>
   
   <button class="tuto-sidebar-open-btn" id="tuto-sidebar-open-btn" title="Afficher le parcours">

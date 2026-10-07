@@ -1,0 +1,84 @@
+{% assign current_session = nil %}
+{% for session in site.sessions %}
+  {% if page.layout == 'tuto' %}
+    {% if session.uas contains page.ua %}
+      {% assign current_session = session %}
+      {% break %}
+    {% endif %}
+  {% elsif page.layout == 'prototype' %}
+    {% if session.prototype contains page.code %}
+      {% assign current_session = session %}
+      {% break %}
+    {% endif %}
+  {% elsif page.layout == 'projet-fil-rouge' %}
+    {% if session.projet_fil_rouge contains page.code %}
+      {% assign current_session = session %}
+      {% break %}
+    {% endif %}
+  {% endif %}
+{% endfor %}
+
+{% if current_session %}
+<div class="tuto-domain-menu">
+  <div class="tuto-domain-menu-content">
+    
+    <div class="tuto-domain-header">
+      <h4>{{ current_session.title }}</h4>
+      <span class="tuto-domain-badge">{{ current_session.code }}</span>
+    </div>
+    
+    {% if current_session.uas and current_session.uas.size > 0 %}
+      <div class="tuto-domain-ua-group">
+        <h5>Apprentissage (UAs)</h5>
+        {% for ua_code in current_session.uas %}
+          {% assign sess_ua = site.uas | where: "code", ua_code | first %}
+          {% if sess_ua %}
+            <div style="font-size:0.85rem; font-weight:600; margin-bottom:0.25rem; margin-top:0.5rem; color:#1e293b;">
+              {{ sess_ua.title }}
+            </div>
+            {% assign sess_tutos = site.tutos | where: "ua", sess_ua.code | where: "version", "normal" | sort: "nav_order" %}
+            {% if sess_tutos.size > 0 %}
+              {% include tuto-list.html tutos=sess_tutos %}
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    {% if current_session.prototype and current_session.prototype.size > 0 %}
+      <div class="tuto-domain-ua-group">
+        <h5>Prototype (Adapter)</h5>
+        <div class="tuto-list">
+        {% for proto_code in current_session.prototype %}
+          {% assign proto = site.prototypes | where: "code", proto_code | first %}
+          {% if proto %}
+            <a href="{{ proto.url | relative_url }}" class="tuto-card {% if page.url == proto.url %}tuto-card-active{% endif %}">
+              <span class="tuto-card-number">⚙️</span>
+              <span class="tuto-card-title">{{ proto.title }}</span>
+            </a>
+          {% endif %}
+        {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+
+    {% if current_session.projet_fil_rouge and current_session.projet_fil_rouge.size > 0 %}
+      <div class="tuto-domain-ua-group">
+        <h5>Réalisation (Transposer)</h5>
+        <div class="tuto-list">
+        {% for projet_code in current_session.projet_fil_rouge %}
+          {% assign projet = site.projets | where: "code", projet_code | first %}
+          {% if projet %}
+            <a href="{{ projet.url | relative_url }}" class="tuto-card {% if page.url == projet.url %}tuto-card-active{% endif %}">
+              <span class="tuto-card-number">🚀</span>
+              <span class="tuto-card-title">{{ projet.title }}</span>
+            </a>
+          {% endif %}
+        {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+
+  </div>
+</div>
+{% endif %}
