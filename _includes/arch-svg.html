@@ -1,0 +1,61 @@
+{% assign nodes = include.tree | split: ',' %}
+{% assign total = nodes.size %}
+{% assign svg_height = total | times: 32 | plus: 20 %}
+{% if include.title %}
+  {% assign svg_height = svg_height | plus: 40 %}
+  {% assign start_y = 50 %}
+{% else %}
+  {% assign start_y = 25 %}
+{% endif %}
+
+<div style="background-color: #1e1e2e; border-radius: 8px; padding: 20px; font-family: 'Consolas', 'Courier New', monospace; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 1.5em; overflow-x: auto;">
+<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="{{ svg_height }}" style="min-width: 300px;">
+  
+  {% if include.title %}
+  <text x="10" y="25" fill="#a6accd" font-size="14px" font-weight="bold" letter-spacing="1">{{ include.title | upcase }}</text>
+  <line x1="10" y1="35" x2="95%" y2="35" stroke="#313244" stroke-width="2" />
+  {% endif %}
+
+  {% for node in nodes %}
+    {% assign parts = node | split: '|' %}
+    {% assign name = parts[0] | strip %}
+    {% assign type = parts[1] | strip %}
+    {% assign depth = parts[2] | strip | plus: 0 %}
+    
+    {% assign y = forloop.index0 | times: 32 | plus: start_y %}
+    {% assign x = depth | times: 25 | plus: 15 %}
+    
+    {% assign icon = "📄" %}
+    {% assign color = "#cdd6f4" %}
+    {% if type == 'folder' %}
+      {% assign icon = "📁" %}
+      {% assign color = "#89b4fa" %}
+    {% elsif type == 'file-css' %}
+      {% assign icon = "🎨" %}
+      {% assign color = "#89dceb" %}
+    {% elsif type == 'file-php' %}
+      {% assign icon = "🐘" %}
+      {% assign color = "#cba6f7" %}
+    {% elsif type == 'file-html' %}
+      {% assign icon = "🌐" %}
+      {% assign color = "#f38ba8" %}
+    {% elsif type == 'file-js' %}
+      {% assign icon = "🟨" %}
+      {% assign color = "#f9e2af" %}
+    {% endif %}
+
+    <!-- Ligne guide verticale discrète pour l'indentation -->
+    {% if depth > 0 %}
+      {% assign line_x = x | minus: 12 %}
+      <line x1="{{ line_x }}" y1="{{ y | minus: 22 }}" x2="{{ line_x }}" y2="{{ y | minus: 6 }}" stroke="#45475a" stroke-width="1" stroke-dasharray="2,2" />
+      <line x1="{{ line_x }}" y1="{{ y | minus: 6 }}" x2="{{ line_x | plus: 6 }}" y2="{{ y | minus: 6 }}" stroke="#45475a" stroke-width="1" stroke-dasharray="2,2" />
+    {% endif %}
+
+    <!-- Icon -->
+    <text x="{{ x }}" y="{{ y }}" font-size="16px">{{ icon }}</text>
+    
+    <!-- Name -->
+    <text x="{{ x | plus: 25 }}" y="{{ y | minus: 1 }}" fill="{{ color }}" font-size="15px">{{ name }}</text>
+  {% endfor %}
+</svg>
+</div>

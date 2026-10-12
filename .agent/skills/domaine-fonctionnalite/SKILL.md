@@ -1,5 +1,5 @@
 ---
-name: rédaction-tuto-fonctionnalite
+name: domaine-fonctionnalite
 description: >-
   Expert du domaine technique "Fonctionnalité" (D.211.1). 
   À utiliser conjointement avec le rédacteur-tutos pour fournir les concepts métier, le vocabulaire et les règles UML (Acteurs, Cas d'utilisation, Scénarios) lors de la rédaction.

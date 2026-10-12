@@ -11,6 +11,7 @@ nav_order: 1
 data_html: "/code/spa/T.224.111/depart.html"
 data_css: ""
 data_js: ""
+simplified: true
 ---
 
 <script>

@@ -316,6 +316,9 @@ Avant de rédiger, disposer de :
 
 Avant la rédaction :
 
+0. **Toujours lire et appliquer les capacités globales :**
+   - `.agent/capacites/generateur-resultats-tutos.md` (pour structurer le résultat attendu via iframe)
+   - `.agent/capacites/generateur-exemples-tutos.md` (pour structurer les exemples interactifs via iframe)
 1. Identifier le **Domaine**, la **Compétence** et l’UA cible.
 2. Consulter le plan pédagogique validé du Domaine.
 3. Vérifier l’ordre des UA, leur progression, leurs prérequis, leurs notions et leurs tutoriels.
@@ -746,6 +749,8 @@ ua: "UA.XXX.XX"
 
 nav_order: 1
 
+en_construction: true
+
 data_html: |
   <!DOCTYPE html>
   <html lang="fr">
@@ -787,6 +792,8 @@ ua: "UA.XXX.XX"
 
 nav_order: 1
 
+en_construction: true
+
 data_html: |
   <!DOCTYPE html>
   <html lang="fr">
@@ -827,6 +834,8 @@ version: "detaille"
 ua: "UA.XXX.XX"
 
 nav_order: 1
+
+en_construction: true
 
 data_html: |
   <!DOCTYPE html>

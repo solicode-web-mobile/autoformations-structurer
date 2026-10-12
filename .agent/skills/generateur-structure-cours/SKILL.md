@@ -91,16 +91,68 @@ travail_a_faire: >
 4. **Vérification préalable :** Toujours s'appuyer sur la liste des UAs existantes (ex: `_liste-ua.md`) avant de générer de nouveaux fichiers en masse.
 
 # Création des fichiers de Tutoriels (Structure de base)
-En plus des Domaines et UAs, tu as la capacité de créer les fichiers de tutoriels vides (mais fonctionnels) à partir des dossiers de conception (ex: `_tutos/D.XXX.X-mini_code/_conception-tutoriels/T.XXX.XXX/fiche-tuto-T.XXX.XXX.md`).
+En plus des Domaines et UAs, tu as la capacité de créer les fichiers de tutoriels vides (mais fonctionnels) à partir des dossiers de conception.
+
+## Structure des dossiers des tutoriels
+
+Chaque fichier de tutoriel est enregistré selon la hiérarchie suivante :
+
+```text
+_tutos/
+└── [Code Domaine]-[mini-code domaine]/
+    └── [Code UA]/
+        └── [Code Tuto]/
+            └── [slug-du-tutoriel].md
+```
+
+Règles :
+
+* Le dossier racine des tutoriels est `_tutos/`.
+* Le premier niveau est le **dossier du Domaine de compétence**, nommé avec le code du domaine suivi d'un tiret et du mini-code (ex: `D.122.2-css`).
+* Le deuxième niveau est le **dossier de l'UA**, nommé avec le code de l'UA (ex: `UA.122.21`).
+* Le troisième niveau est le **dossier du tutoriel**, nommé avec le code du tutoriel (ex: `T.122.21.10`).
+* Le fichier Markdown du tutoriel est placé dans ce dossier, nommé avec le slug du tutoriel (ex: `tutoriel-synthese-css.md`).
+
+Exemple complet :
+
+```text
+_tutos/
+└── D.122.2-css/
+    └── UA.122.21/
+        └── T.122.21.10/
+            └── tutoriel-synthese-css.md
+```
+
+Ne jamais placer un fichier de tutoriel directement dans `_tutos/` ou dans le dossier du Domaine sans respecter cette hiérarchie.
 
 ## Règles de création des tutoriels :
-1. **Organisation des dossiers :** Les tutoriels doivent être créés dans le répertoire `_tutos/`, organisés par domaine (format : `[code domaine]-[mini-code]`), puis pour chaque tuto un dossier avec son code.
-   - Chemin attendu : `_tutos/D.XXX.X-mini_code/T.XXX.XXX/`
+1. **Organisation des dossiers :** Respecter strictement la hiérarchie `_tutos/[Domaine]-[mini-code]/[UA]/[Tuto]/[slug].md` définie ci-dessus.
 2. **Fichier de base (version normale) :** Au début, tu ne dois créer **que le fichier pour la version normale** du tutoriel.
-   - Le nom du fichier doit idéalement être formaté avec le slug du tutoriel et la version (ex: `slug-du-tuto.normal.md`).
-3. **Contenu du fichier généré :**
-   - Le fichier **ne doit pas être entièrement rédigé**. Il doit uniquement contenir le squelette de base :
-     - **Un Front Matter complet et valide** pour la version "normal", conforme aux règles du skill `rédacteur-tutos` (incluant `title`, `layout: tuto`, `slug`, `permalink: /tutos/:slug/`, `tuto_id`, `type`, `version: normal`, `ua`, `data_html`, etc.).
-     - La section `## 1. Objectif` contenant l'objectif directement extrait de la fiche de conception.
-     - Le reste du tutoriel sera rédigé plus tard, tu laisses donc le fichier vide après l'objectif ou avec des sections vides.
+   - Le nom du fichier doit être le slug du tutoriel (ex: `syntaxe-css.md`).
+3. **Contenu du fichier généré — Front Matter uniquement :**
+   - Lors de la création initiale d'un tutoriel, le fichier **ne contient que le Front Matter**. Aucun contenu Markdown ne doit être rédigé.
+   - Le Front Matter doit être **complet et valide** pour la version `normal`, conforme aux règles du skill `rédacteur-tutos`.
+   - Champs obligatoires : `title`, `layout: tuto`, `slug`, `permalink: /tutos/:slug/`, `tuto_id`, `type`, `version: normal`, `ua`, `nav_order`, `data_html`, `data_css`, `data_js`.
+   - Les champs `data_html`, `data_css` et `data_js` sont laissés vides (`""`) lors de la création initiale.
+   - **Aucune section Markdown** (`## Objectif`, `## Prérequis`, etc.) ne doit être ajoutée à cette étape.
+   - La rédaction du contenu est une étape ultérieure distincte, réalisée avec le skill `rédacteur-tutos`.
+
+## Template Front Matter (création initiale)
+
+```yaml
+---
+title: "Titre du tutoriel"
+layout: tuto
+slug: "slug-du-tutoriel"
+permalink: /tutos/slug-du-tutoriel/
+tuto_id: "T.XXX.XXX"
+type: "classique"
+version: "normal"
+ua: "UA.XXX.XX"
+nav_order: X
+data_html: ""
+data_css: ""
+data_js: ""
+---
+```
 

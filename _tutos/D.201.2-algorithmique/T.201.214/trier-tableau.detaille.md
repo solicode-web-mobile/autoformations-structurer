@@ -7,6 +7,7 @@ tuto_id: "T.201.214"
 version: "detaille"
 ua: "UA.201.21"
 nav_order: 4
+simplified: true
 ---
 
 

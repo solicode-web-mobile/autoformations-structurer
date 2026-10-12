@@ -21,7 +21,8 @@ Ne jamais isoler des concepts qui sont toujours utilisés ensemble.
 
 ### 2. Remplace le texte par des visuels (Théorie)
 Si une explication fait plus de 4 lignes, c'est qu'il manque un schéma ou un exemple de code.
-Utilise systématiquement des blocs visuels (notamment avec Mermaid) pour montrer le concept.
+Utilise systématiquement des blocs visuels (notamment avec Mermaid ou des fichiers SVG) pour montrer le concept.
+La partie théorique peut tout à fait intégrer des fichiers SVG pour expliquer visuellement une architecture ou un mécanisme.
 *La règle : Je vois -> Je comprends.*
 
 ### 3. Mutualiser les exercices (Pratique)
@@ -33,8 +34,9 @@ Utilise systématiquement des blocs visuels (notamment avec Mermaid) pour montre
 - Supprime les distinctions purement académiques si elles ne sont pas utiles pour l'exercice (ex: distinction entre acteur principal et secondaire).
 - **Le Glossaire** : Ne garde que les mots stricts et essentiels qui sont effectivement manipulés dans le tutoriel.
 
-### 5. Marquer la simplification
+### 5. Marquer la simplification et finaliser
 - Ajoute toujours la variable `simplified: true` dans le Front Matter (en haut du fichier Markdown) pour indiquer que ce tutoriel a été optimisé par tes soins.
+- Modifie impérativement la variable `en_construction: false` (ou supprime-la si elle était à true). Un tutoriel simplifié est considéré comme finalisé et prêt pour la production.
 
 ### 6. Mettre à jour le résultat attendu
 - Si le tutoriel contient un "Résultat attendu" pointant vers un fichier (généralement via une `iframe` vers le dossier `/code/...`), il est impératif de modifier également ce fichier cible.
@@ -45,12 +47,19 @@ La section **"Données de départ"** ne doit être incluse dans le tutoriel ré�
 
 **Si ces trois champs sont vides (`""`), la section "Données de départ" doit être omise du tutoriel.**
 
+### 8. L'exemple doit être prêt à l'emploi et fonctionnel
+Les exemples (Données de départ / code initial) doivent être capables de montrer dans l'éditeur de code la technique en train d'être expliquée. L'exemple doit être créé spécifiquement pour atteindre son objectif sans préparation inutile de la part de l'apprenant. L'effet visuel ou fonctionnel doit être garanti dès le premier test (consultez les skills de domaine pour les règles spécifiques liées à chaque technologie).
+
 ## Procédure d'exécution
-0. **Identifier le domaine** : Avant toute action, lisez le Front Matter du tutoriel pour identifier son domaine (via le champ `ua`, `tuto_id`, ou le chemin du fichier). Ensuite, **activez et appliquez le skill de domaine correspondant** en plus des règles du présent skill :
-   - Tutoriel du domaine algo (C.121, UA.121.xx) → lire et appliquer le skill `domaine-algo`.
-   - Tutoriel du domaine analyse (C.111, UA.111.xx) → lire et appliquer le skill `domaine-analyse`.
-   - Tutoriel du domaine conception (C.112, UA.112.xx) → lire et appliquer le skill `domaine-conception`.
-   - Tutoriel du domaine git (C.151, UA.151.xx) → lire et appliquer le skill `domaine-git`.
+0. **Identifier le domaine et les capacités globales** : 
+   - **Toujours lire et appliquer la capacité globale `bonnes-pratiques-editeur`** (située dans `.agent/capacites/bonnes-pratiques-editeur.md`) pour garantir que le code de préparation est correctement isolé dans les données de départ.
+   - **Toujours lire et appliquer la capacité globale `progression-pratique`** (située dans `.agent/capacites/progression-pratique.md`) pour s'assurer que l'exercice pratique s'inscrit dans la progression de l'unité d'apprentissage.
+   - **Toujours lire et appliquer la capacité globale `generateur-resultats-tutos`** (située dans `.agent/capacites/generateur-resultats-tutos.md`) pour créer les iframes et fichiers `code/` des résultats.
+   - **Toujours lire et appliquer la capacité globale `generateur-exemples-tutos`** (située dans `.agent/capacites/generateur-exemples-tutos.md`) pour créer les iframes et fichiers `code/` des exemples interactifs.
+   - Avant toute action, lisez le Front Matter du tutoriel pour identifier son domaine (via le champ `ua`, `tuto_id`, ou le chemin du fichier). 
+   - Cherchez le skill de domaine correspondant dans le dossier `.agent/skills/` (par exemple `domaine-objets` pour le domaine objets, `domaine-fonctionnalite`, etc.).
+   - **RÈGLE CRITIQUE** : Si le skill de domaine correspondant n'existe pas, vous devez **OBLIGATOIREMENT** demander au skill `sys-agent` de le créer pour ce domaine avant de procéder à la simplification.
+   - Si le skill de domaine existe, lisez et appliquez ses règles en plus de celles de ce skill.
 1. **Analyse** : Dresse un constat rapide des redondances du fichier d'origine.
 2. **Proposition** : Si l'utilisateur le demande, propose un plan de fusion des concepts (sans modifier le code tout de suite).
 3. **Application** : Réécris intégralement le fichier `.normal.md` (ou autre) en appliquant les règles d'or, tout en conservant scrupuleusement la structure canonique (Objectif, Prérequis, Cas d'étude, Théorie, Pratique, Bilan, Glossaire). N'oublie pas d'ajouter `simplified: true` dans le Front Matter. **Vérifie aussi si les champs `data_js`/`data_html`/`data_css` sont non vides pour décider d'inclure ou non la section "Données de départ" (règle 7).**

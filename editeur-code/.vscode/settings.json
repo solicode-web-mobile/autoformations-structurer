@@ -1,4 +1,12 @@
 {
     "liveServer.settings.port": 5501,
-    "folder-color.pathColors": []
+    "folder-color.pathColors": [],
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/.jj": true,
+        "**/.DS_Store": true,
+        "**/Thumbs.db": true
+    }
 }

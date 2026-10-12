@@ -4,11 +4,7 @@
 {% assign domaine_uas = site.uas | where: "domaine", current_domaine_code %}
 
 {% if domaine_uas.size > 0 %}
-<details class="tuto-domain-menu">
-  <summary class="tuto-domain-menu-summary">
-    <span class="tuto-domain-menu-title">Tutoriels du même domaine</span>
-    <span class="tuto-domain-menu-icon">▼</span>
-  </summary>
+<div class="tuto-domain-menu">
   <div class="tuto-domain-menu-content">
     {% if current_domaine %}
     <div class="tuto-domain-header">
@@ -26,5 +22,5 @@
       {% endif %}
     {% endfor %}
   </div>
-</details>
+</div>
 {% endif %}
