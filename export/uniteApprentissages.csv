@@ -11,7 +11,7 @@ permalink: /export/uniteApprentissages.csv
   {%- assign _nom = p.title | append: "" | strip | replace: '"','""' | replace: '\n',' ' | replace: '\r',' ' -%}
   {%- assign _micro_comp = comp.filiere | append: "-" | append: p.domaine -%}
   {%- if p.url != empty and p.url != nil -%}
-    {%- assign _lien = "https://solicode-web-mobile.github.io/autoformations-web" | append: p.url -%}
+    {%- assign _lien = p.url | absolute_url -%}
   {%- else -%}
     {%- assign _lien = "" -%}
   {%- endif -%}

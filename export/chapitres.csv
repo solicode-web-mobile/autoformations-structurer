@@ -14,7 +14,7 @@ permalink: /export/chapitres.csv
   {%- assign _ua_ref = comp.filiere | append: "-" | append: _ua -%}
   {%- assign _duree = "1" -%}
   {%- assign _isofficiel = "1" -%}
-  {%- assign _lien = "https://solicode-web-mobile.github.io/autoformations-web" | append: p.url -%}
+  {%- assign _lien = p.url | absolute_url -%}
   {%- assign _raw_desc = p.content | split: '## 1. Objectif' -%}
   {%- if _raw_desc.size > 1 -%}
     {%- assign _desc_part = _raw_desc[1] | split: '## 2.' | first | strip -%}
