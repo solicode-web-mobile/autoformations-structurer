@@ -15,7 +15,8 @@
     ".agent/skills/generateur-structure-cours",
     ".agent/skills/sys-agent",
     ".agent/skills/raffinement-agent",
-    ".agent/skills/redacteur-docs"
+    ".agent/skills/redacteur-docs",
+    "export"
   ],
   "sync_files": [
     "_layouts/default.html",
