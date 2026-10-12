@@ -4,6 +4,7 @@ layout: domaines
 code: "D.201.2"
 mini-code: "algorithmique"
 competence: "C.201"
+ordre: 2
 capacite_finale: >
     Construire des traitements algorithmiques simples afin de résoudre un problème
     en mobilisant les variables, les structures de contrôle, les tableaux, les

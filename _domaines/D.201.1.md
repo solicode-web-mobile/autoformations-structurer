@@ -4,6 +4,7 @@ layout: domaines
 code: "D.201.1"
 mini-code: "donnees"
 competence: "C.201"
+ordre: 1
 capacite_finale: >
     Analyser une maquette représentant un besoin existant afin d’identifier les
     informations manipulées, leurs caractéristiques et leurs relations, de

@@ -4,6 +4,7 @@ layout: domaines
 code: "D.201.3"
 mini-code: "organisation"
 competence: "C.201"
+ordre: 2
 capacite_finale: >
     Organiser la réalisation d’une fonctionnalité Web simple en identifiant les
     tâches à accomplir, en les ordonnant selon leur priorité et en répartissant

@@ -2,7 +2,7 @@
 title: "Structurer l’application en composants"
 layout: competences
 code: "C.213"
-module_reference: "DMB-M201"
+module_reference: "DMB-M109"
 reference: "DMB-M201-C.213"
 filiere: "DMB"
 niveau: "N2"

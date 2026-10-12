@@ -2,7 +2,7 @@
 title: "Organiser et suivre le travail d’un projet"
 layout: competences
 code: "C.251"
-module_reference: "DMB-M205"
+module_reference: "DMB-M107"
 reference: "DMB-M205-C.251"
 filiere: "DMB"
 niveau: "N2"

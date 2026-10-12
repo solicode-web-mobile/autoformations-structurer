@@ -2,7 +2,7 @@
 title: "Traduire le modèle relationnel en modèle objet"
 layout: competences
 code: "C.212"
-module_reference: "DMB-M201"
+module_reference: "DMB-M106"
 reference: "DMB-M201-C.212"
 filiere: "DMB"
 niveau: "N2"

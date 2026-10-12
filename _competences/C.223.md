@@ -2,7 +2,7 @@
 title: "Organiser l’application en couches"
 layout: competences
 code: "C.223"
-module_reference: "DMB-M202"
+module_reference: "DMB-M109"
 reference: "DMB-M202-C.223"
 filiere: "DMB"
 niveau: "N2"

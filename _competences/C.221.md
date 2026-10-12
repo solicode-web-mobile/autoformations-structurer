@@ -2,7 +2,7 @@
 title: "Développer une fonctionnalité en programmation orientée objet"
 layout: competences
 code: "C.221"
-module_reference: "DMB-M202"
+module_reference: "DMB-M109"
 reference: "DMB-M202-C.221"
 filiere: "DMB"
 niveau: "N2"

@@ -2,7 +2,7 @@
 title: "Formaliser une fonctionnalité"
 layout: competences
 code: "C.211"
-module_reference: "DMB-M201"
+module_reference: "DMB-M106"
 reference: "DMB-M201-C.211"
 filiere: "DMB"
 niveau: "N2"

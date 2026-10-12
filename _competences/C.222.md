@@ -2,7 +2,7 @@
 title: "Répartir les responsabilités entre les classes"
 layout: competences
 code: "C.222"
-module_reference: "DMB-M202"
+module_reference: "DMB-M109"
 reference: "DMB-M202-C.222"
 filiere: "DMB"
 niveau: "N2"
